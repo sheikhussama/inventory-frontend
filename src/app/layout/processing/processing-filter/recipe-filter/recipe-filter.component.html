@@ -1,0 +1,63 @@
+<div class="container-fluid register-form">
+    <div class="form">
+        <div class="note">
+            <p> Sale History</p>
+        </div>
+
+        <form class="form-content" [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <Label> <strong> Start Date</strong></Label>
+                        <input
+                            type="date"
+                            class="form-control"
+                            formControlName="startDate"
+                            placeholder="Enter Start Date"
+                            value=""
+                        />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <Label> <strong> End Date</strong></Label>
+
+                        <input
+                        type="date"
+                        class="form-control"
+                        formControlName="endDate"
+                        placeholder="Enter End Date"
+                        value=""
+                    />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <Label> <strong>Finish Good Product</strong></Label>
+
+                        <ng-select  placeholder="Finish Good Product" formControlName="productId"
+                        [items]="products" class="" bindLabel="productName" bindValue="id"
+                        >
+                       </ng-select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <Label> <strong>Select Sale</strong></Label>
+
+                        <ng-select placeholder="Select Sale" formControlName="saleId"
+                        [items]="sale" class="" bindLabel="productId" bindValue="productId"
+                        >
+                       </ng-select>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="col-lg-4">
+                    <button type="submit" class="btnSubmit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

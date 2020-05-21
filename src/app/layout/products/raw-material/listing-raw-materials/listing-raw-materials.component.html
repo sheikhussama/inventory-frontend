@@ -1,0 +1,53 @@
+<div>
+    <app-page-header [heading]="'Raw Materials'" [icon]="'fa-bar-chart-o'"></app-page-header>
+
+    <div class="row product-form-1">
+        <div class="col-lg-4 offset-lg-9 mb-3">
+            <button class="btnSubmit" [routerLink]="['create']"> Create Raw Materials </button>
+        </div>
+    </div>  
+
+    <div class="container">
+        <div class="card">
+            <table class="table table-hover shopping-cart-wrap">
+                <thead class="text-muted">
+                    <tr>
+                        <th scope="col" class="text-dark">Product</th>
+                        <th scope="col" width="200" class="text-dark">Quantity</th>
+                        <th scope="col" width="200" class="text-right">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of rawMaterial; let i = index">
+                        <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.productName}} </h6>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.Quantity}}</h6>
+
+                                </figcaption>
+                            </figure>
+                        </td>
+
+                        <td class="text-right">
+                            <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"
+                            data-original-title="Save to Wishlist"> <i class="fa fa-pencil"
+                                aria-hidden="true" (click)="updateProduct(data)"></i></button>
+                        <button href="" class="btn btn-outline-danger" (click)="deleteMaterial(data)"> <i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> <!-- card.// -->
+
+
+    </div>
+
+</div>

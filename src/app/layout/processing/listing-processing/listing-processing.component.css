@@ -1,0 +1,4 @@
+.card {
+ overflow-y: hidden;
+ overflow-x: scroll;
+}

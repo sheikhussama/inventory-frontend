@@ -1,0 +1,63 @@
+<div class="container-fluid register-form">
+    <div class="form">
+        <div class="note">
+            <p> Sale History</p>
+        </div>
+
+        <form class="form-content" [formGroup]="saleHistoryForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <Label> <strong> Start Date</strong></Label>
+                        <input
+                            type="date"
+                            class="form-control"
+                            formControlName="startDate"
+                            placeholder="Enter Start Date"
+                            value=""
+                        />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <Label> <strong> End Date</strong></Label>
+
+                        <input
+                        type="date"
+                        class="form-control"
+                        formControlName="endDate"
+                        placeholder="Enter End Date"
+                        value=""
+                    />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <Label> <strong> Enter End Product</strong></Label>
+
+                        <ng-select  placeholder="Enter End Product" formControlName="productId"
+                        [items]="endProducts" class="" bindLabel="productName" bindValue="id"
+                        >
+                       </ng-select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <Label> <strong>Enter Distributor</strong></Label>
+
+                        <ng-select placeholder="Enter Distributor" formControlName="customerId"
+                        [items]="clientDetail" class="" bindLabel="customerName" bindValue="id"
+                        >
+                       </ng-select>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="col-lg-4">
+                    <button type="submit" class="btnSubmit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

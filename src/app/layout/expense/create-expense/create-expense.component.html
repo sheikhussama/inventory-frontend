@@ -1,0 +1,37 @@
+<app-page-header [heading]="'Register Expense'" [icon]="'fa-bar-chart-o'"></app-page-header>
+
+<div class="container register-form">
+    <div class="form">
+        <div class="note">
+            <p>{{buttonText ? 'Update': 'Register'}} Expense</p>
+        </div>
+
+        <form class="form-content" [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" formControlName="purpose" class="form-control" placeholder="Enter Purpose" value="" />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" formControlName="amount" placeholder="Enter Amount" value="" />
+                   </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" formControlName="reference" placeholder="Enter Reference" value="" />
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <button type="submit" class="btnSubmit">{{buttonText ? 'Update': 'Create'}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

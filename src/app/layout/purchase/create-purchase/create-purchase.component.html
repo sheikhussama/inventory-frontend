@@ -1,0 +1,133 @@
+<app-page-header [heading]="'Purchase'" [icon]="'fa-bar-chart-o'"></app-page-header>
+
+<div class="container-fluid register-form">
+    <div class="form">
+        <div class="note">
+            <p>{{ buttonText ? 'Update' : 'Register' }} Purchase</p>
+        </div>
+
+        <form class="form-content" [formGroup]="purchaseForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input
+                            type="text"
+                            formControlName="DcNo"
+                            class="form-control"
+                            placeholder="Enter DC NO"
+                            value=""
+                        />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <ng-select
+                            *ngIf="flag"
+                            placeholder="Select Product"
+                            [items]="product"
+                            class=""
+                            formControlName="productId"
+                            bindLabel="productName"
+                            bindValue="id"
+                        >
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <ng-select
+                            *ngIf="flag"
+                            placeholder="Select Distributer"
+                            [items]="clientDetail"
+                            class=""
+                            formControlName="distibutorId"
+                            bindLabel="customerName"
+                            bindValue="id"
+                        >
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <ng-select
+                            *ngIf="flag"
+                            placeholder="Type"
+                            [items]="type"
+                            class=""
+                            formControlName="type"
+                            bindLabel="value"
+                            bindValue="id"
+                        >
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input
+                            type="number"
+                            formControlName="price"
+                            class="form-control"
+                            placeholder="Enter Price"
+                            value=""
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <input
+                            (change)="bulkQuantity($event)"
+                            type="number"
+                            class="form-control"
+                            formControlName="bulkQuantity"
+                            placeholder="Enter Bulk Quantity"
+                            value=""
+                        />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <input
+                            type="number"
+                            (change)="QuantityInKg($event)"
+                            class="form-control"
+                            placeholder="QuantityInKg"
+                            value=""
+                        />
+                    </div>
+                </div>
+                <label for="" class="mt-2 ml-2">
+                    <strong>{{ total }} Kg</strong>
+                </label>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <ng-select
+                            *ngIf="flag"
+                            placeholder="Select Unit"
+                            [items]="unit"
+                            class=""
+                            (change)="QuantityUnit($event)"
+                            formControlName="unit"
+                            bindLabel="value"
+                            bindValue="id"
+                        >
+                        </ng-select>
+                    </div>
+                </div>
+                <label for="" class="mt-2 ml-2">
+                    <strong>{{ totalUnit }} {{ unitName }}</strong>
+                </label>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <button type="submit" class="btnSubmit">{{ buttonText ? 'Update' : 'Register' }}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

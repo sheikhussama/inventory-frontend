@@ -1,0 +1,108 @@
+<div class="container-fluid register-form">
+    <div class="form">
+        <div class="note">
+            <p> Payment Detail Filter</p>
+        </div>
+
+        <form class="form-content" [formGroup]="paymentDetailFilterForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <Label> <strong> Start Date</strong></Label>
+                        <input
+                            type="date"
+                            class="form-control"
+                            formControlName="startDate"
+                            placeholder="Enter Start Date"
+                            value=""
+                        />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <Label> <strong> End Date</strong></Label>
+
+                        <input
+                        type="date"
+                        class="form-control"
+                        formControlName="endDate"
+                        placeholder="Enter End Date"
+                        value=""
+                    />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <Label> <strong> Balanced</strong></Label>
+
+                        <div class="d-flex mt-3">
+                            <label class="customradio"
+                                ><span class="radiotextsty">Credit</span>
+                                <input type="radio" value="true" formControlName="isCredit" name="isCredit" />
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="customradio ml-2"
+                                ><span class="radiotextsty">Debit</span>
+                                <input type="radio" value="false" formControlName="isCredit" name="isCredit" />
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <Label> <strong>Enter Distributor</strong></Label>
+
+                        <ng-select *ngIf="flag" placeholder="Enter Distributor" formControlName="distibutorId"
+                        [items]="clientDetail" class="" bindLabel="customerName" bindValue="id"
+                        >
+                       </ng-select>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="col-lg-4">
+                    <button type="submit" class="btnSubmit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="container" *ngIf="finishGoodsFilter">
+    <div class="card">
+        <table class="table table-hover shopping-cart-wrap">
+            <thead class="text-muted">
+                <tr>
+                    <th scope="col" class="text-dark">DC N0</th>
+                    <th scope="col"  width="200" class="text-dark">Quantity</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let data of finishGoodsFilter; let i = index">
+                <tr>
+                    <td>
+                        <figure class="media">
+                            <figcaption class="media-body">
+                                <dl class="param param-inline small">
+                                    <dt>DC NO: </dt>
+                                    <dd>{{data.DcNo}}</dd>
+                                </dl>
+                            </figcaption>
+                        </figure>
+                    </td>
+                    <td>
+                        <figure class="media">
+                            <figcaption class="media-body">
+                                <h6 class="title text-truncate">{{data.Quantity}}</h6>
+                            </figcaption>
+                        </figure>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div> <!-- card.// -->
+
+
+</div>

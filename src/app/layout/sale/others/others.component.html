@@ -1,0 +1,149 @@
+<div class="modal fade " id="others" tabindex="-1" role="dialog" aria-labelledby="clubTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <!-- Modal content starts here-->
+        <div class="modal-content">
+
+            <div class="note">
+                <h4 class="modal-title text-uppercase mt-3"> {{ buttonText ? 'Update' : 'Register' }} Others Sale</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form [formGroup]="saleForm" (ngSubmit)="onSubmit()">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label> <strong> Select Product: </strong> </label>
+                                            <ng-select placeholder="Select Product" formControlName="productId"
+                                                [items]="endProductList" bindLabel="productName" bindValue="id">
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label> <strong> Select Customer: </strong> </label>
+                                            <ng-select formControlName="customerId" placeholder="Select Customer"
+                                                [items]="clients" bindLabel="customerName" bindValue="id">
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label> <strong> Select Packing Unit: </strong> </label>
+                                        <ng-select formControlName="packingUnit" placeholder="Select Packing Unit"
+                                            [items]="unit" bindLabel="value" bindValue="value">
+                                        </ng-select>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label> <strong> Select Packing Type: </strong> </label>
+                                        <ng-select formControlName="packingType" placeholder="Select Packing Type"
+                                            [items]="type" bindLabel="value" bindValue="value">
+                                        </ng-select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label> <strong> Select Packing Capacity: </strong> </label>
+                                        <ng-select formControlName="packingCapacity"
+                                            placeholder="Select Packing Capacity" [items]="capacity" bindLabel="value"
+                                            bindValue="value">
+                                        </ng-select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label> <strong> Master Cartoon: </strong> </label>
+                                        <input type="number" formControlName="masterCartoons" class="form-control"
+                                            placeholder="Quantity" value="" />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label> <strong> Dozen Boxes: </strong> </label>
+                                            <input type="text" formControlName="dozenBoxes" class="form-control"
+                                                placeholder="Dozen Boxes" value="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label> <strong>Packing Type Quantity: </strong> </label>
+                                            <input formControlName="packingTypeQuanitity" type="text"
+                                                class="form-control" placeholder="Packing Type Quantity" value="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label> <strong> Total Quantity in Packing Unit: </strong> </label>
+                                        <input formControlName="totalQuantityinPackingUnit" type="text"
+                                            class="form-control" placeholder="Quantity in Packing Unit" value="" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label> <strong> Total Quantity in Liters: </strong> </label>
+                                            <input formControlName="totalQuantityinLiters" type="text"
+                                                class="form-control" placeholder="Quantity in Liters" value="" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label> <strong> Total Quantity in Kg: </strong> </label>
+                                        <input formControlName="totalQuantityinKg" type="text" class="form-control"
+                                            placeholder="Quantity in Kg" value="" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label> <strong> Price: </strong> </label>
+                                            <input formControlName="price" type="text" class="form-control"
+                                                placeholder="Price" value="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-dark round-corner text-uppercase px-4"><small>
+                        {{ buttonText ? 'Update' : 'Register' }} </small></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

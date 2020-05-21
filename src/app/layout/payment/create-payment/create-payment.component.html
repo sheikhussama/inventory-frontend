@@ -1,0 +1,95 @@
+<app-page-header [heading]="'Register Payment'" [icon]="'fa-bar-chart-o'"></app-page-header>
+
+<div class="container register-form">
+    <div class="form">
+        <div class="note">
+            <p>{{ buttonText ? 'Update' : 'Register' }} Payment</p>
+        </div>
+
+        <form class="form-content" [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" formControlName="amount" placeholder="Enter Amount" />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <ng-select
+                            placeholder="Given Type"
+                            formControlName="givenType"
+                            [items]="type"
+                            class=""
+                            bindLabel="value"
+                            bindValue="id"
+                        >
+                        </ng-select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <ng-select
+                            placeholder="Select Distributor"
+                            [items]="clientDetail"
+                            class=""
+                            formControlName="distibutorId"
+                            bindLabel="customerName"
+                            bindValue="id"
+                        >
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <div class="form-check-inline">
+                        <label class="customradio"
+                            ><span class="radiotextsty">Credit</span>
+                            <input type="radio" value="true" formControlName="isCredit" name="isCredit" />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="customradio ml-2"
+                            ><span class="radiotextsty">Debit</span>
+                            <input type="radio" value="false" formControlName="isCredit" name="isCredit" />
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6 form-group">
+                    <div class="form-check-inline">
+                        <label class="customradio"
+                            ><span class="radiotextsty">Customer</span>
+                            <input type="radio" value="true" formControlName="isCustomer" name="isCustomer" />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="customradio ml-2"
+                            ><span class="radiotextsty">Distributor</span>
+                            <input type="radio" value="false"name="isCustomer" formControlName="isCustomer" />
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <textarea
+                    name=""
+                    formControlName="detail"
+                    placeholder="Enter Detail"
+                    id=""
+                    cols="50"
+                    rows="5"
+                    class="ml-3"
+                ></textarea>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 offset-lg-3">
+                    <button type="submit" class="btnSubmit mt-2">{{ buttonText ? 'Update' : 'Register' }}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

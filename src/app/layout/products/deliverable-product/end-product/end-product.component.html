@@ -1,0 +1,32 @@
+<app-page-header [heading]="'Deliverable Products'" [icon]="'fa-bar-chart-o'"></app-page-header>
+
+
+<div class="container register-form">
+    <div class="form">
+        <div class="note">
+            <p> {{buttonText ? 'Update': 'Register'}} Deliverable Products</p>
+        </div>
+
+        <form class="form-content" [formGroup]="endProductForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="form-group">
+                        <input type="text" class="form-control"
+                         placeholder="Product Name" value=""
+                         formControlName="productName" />
+                    </div>
+                    <div class="form-group">
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6 offset-md-4">
+                    <button type="submit" class="btnSubmit ml-3">{{buttonText ? 'Update': 'Register'}}</button>
+
+                </div>
+            </div>
+        </form>
+    </div>

@@ -1,0 +1,101 @@
+<app-page-header [heading]="'Client'" [icon]="'fa-bar-chart-o'"></app-page-header>
+
+
+<div class="container register-form">
+    <div class="form">
+        <div class="note">
+            <p>{{buttonText ? 'Update': 'Create'}} Client</p>
+        </div>
+
+        <form class="form-content" [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" 
+                         class="form-control"
+                         placeholder="Enter Customer Name" 
+                         formControlName="customerName"
+                         value="" />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control"
+                        placeholder="Enter Company" value="" 
+                        formControlName="company"
+                        />
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control"
+                         placeholder="Wnter Address" value=""
+                         formControlName="address" />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" formControlName="contactNo"
+                         class="form-control" placeholder="Enter Contact No" value="" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control"
+                         placeholder="Enter CNIC NO" formControlName="nicNo" value="" />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" 
+                        placeholder="Enter Balance" formControlName="balance"
+                        value="" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <textarea name="" id="" cols="50"
+                         rows="5"
+                          placeholder="Enter Detail" 
+                          formControlName="detail" ></textarea> </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="col-md-6 form-group">
+                        <div class="form-check-inline">
+      
+                          <label class="customradio"><span class="radiotextsty">Credit</span>
+                            <input type="radio" name="isCredit" formControlName="isCredit" checked="isCredit" value="true">
+                            <span class="checkmark"></span>
+                          </label>        
+                          <label class="customradio"><span class="radiotextsty">Debit</span>
+                            <input type="radio" name="isCredit" formControlName="isCredit" checked="isCredit" value="false">
+                            <span class="checkmark"></span>
+                          </label>
+      
+                      </div>
+                </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <button type="submit" class="btnSubmit">{{buttonText ? 'Update': 'Create'}}</button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

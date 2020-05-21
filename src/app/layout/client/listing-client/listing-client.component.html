@@ -1,0 +1,88 @@
+<div>
+    <app-page-header [heading]="'Listing Client Info'" [icon]="'fa-bar-chart-o'"></app-page-header>
+
+    <div class="row product-form-1">
+        <div class="col-lg-4 offset-lg-9 mb-3">
+            <button class="btnSubmit" [routerLink]="['create']"> Create Client </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <table class="table table-hover shopping-cart-wrap">
+                <thead class="text-muted">
+                    <tr>
+                        <th scope="col" class="text-dark">Customer Info</th>
+                        <th scope="col" class="text-dark">Detail</th>
+                        <th scope="col" class="text-dark">Balance</th>
+                        <th scope="col" class="text-dark">Role</th>
+                        <th scope="col" class="text-dark">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of clientDetail; let i = index">
+                        <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate"> Customer Name: {{data.customerName}} </h6>
+                                    <dl class="param param-inline small">
+                                        <dt>Company Name:  </dt>
+                                        <dd>{{data.company}}</dd>
+                                    </dl>
+                                    <dl class="param param-inline small">
+                                        <dt>address:  </dt>
+                                        <dd>{{data.address}}</dd>
+                                    </dl>
+                                    <dl class="param param-inline small">
+                                        <dt>Contact No:  </dt>
+                                        <dd>{{data.contactNo}}</dd>
+                                    </dl>
+                                    <dl class="param param-inline small">
+                                        <dt>CNIC No:  </dt>
+                                        <dd>{{data.nicNo}}</dd>
+                                    </dl>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.detail}}</h6>
+
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.balance}}</h6>
+
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate" *ngIf="data.role === 'C'">Customer</h6>
+                                    <h6 class="title text-truncate" *ngIf="data.role === 'D'">Distributor</h6>
+                                </figcaption>
+                            </figure>
+                        </td> 
+                        <td class="text-right">
+                            <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"
+                                data-original-title="Save to Wishlist"> <i class="fa fa-pencil"
+                                    aria-hidden="true" (click)="updateclient(data)"></i></button>
+                            <button href="" class="btn btn-outline-danger" (click)="deleteclient(data)"> <i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> <!-- card.// -->
+
+
+    </div>
+
+</div>

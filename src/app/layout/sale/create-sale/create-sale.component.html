@@ -1,0 +1,27 @@
+<app-page-header [heading]="'Sale'" [icon]="'fa-bar-chart-o'"></app-page-header>
+
+<div class="container-fluid register-form">
+    <div class="form">
+        <div class="note">
+            <p>Sale</p>
+        </div>
+
+        <div class="form-content">
+            <div class="row">
+
+                <div class="col-md-4 offset-lg-4">
+                    <div class="form-group">
+                        <ng-select placeholder="Select Fields" [items]="unit" class="" bindLabel="value" bindValue="id"
+                            (change)="saleDropDown($event)">
+                        </ng-select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-oil  [buttonText]="buttonText" [saleDetail]="saleDetail"></app-oil>
+<app-others  [buttonText]="buttonText" [saleDetail]="saleDetail"></app-others>
+<app-salt-seed [buttonText]="buttonText" [saleDetail]="saleDetail"></app-salt-seed>

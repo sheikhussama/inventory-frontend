@@ -1,0 +1,38 @@
+<app-page-header [heading]="'Register Finish Goods'" [icon]="'fa-bar-chart-o'"></app-page-header>
+
+
+<div class="container register-form">
+    <div class="form">
+        <div class="note">
+            <p>{{buttonText ? 'Update': 'Register'}} Raw Materials</p>
+        </div>
+
+        <form class="form-content" [formGroup]="materialForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control"
+                         placeholder="Product Name" value=""
+                         formControlName="productName" />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" 
+                        placeholder="Quantity"
+                         value=""
+                         formControlName="Quantity" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+              <div class="col-lg-4">
+                <button type="submit" class="btnSubmit">{{buttonText ? 'Update': 'Register'}}</button>
+
+              </div>
+            </div>
+        </form>
+    </div>
+</div>

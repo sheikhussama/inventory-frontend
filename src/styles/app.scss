@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/bootstrap';
+@import 'spinner';
+@import 'utils';
+@import 'rtl';
+@import 'responsive';
+@import 'auth-form.scss';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import "_form-layout";
+@import "_listing-data";
+@import "_radio";
+@import "_modal-form";
+
+@media print {
+    .breadcrumb {
+        display: none !important;
+    }
+}
+
+
+.ng-select .ng-select-container {
+    border-radius: 5rem !important;
+}
+
+.dropdown-menu.show {
+    border-radius: 1rem;
+}
+.cursor-pointer {
+    cursor: pointer;
+}

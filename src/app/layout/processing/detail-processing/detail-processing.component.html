@@ -1,0 +1,222 @@
+<app-page-header class="mt-2" [heading]="'Processing'" [icon]="'fa-bar-chart-o'"></app-page-header>
+
+<div class="jumbotron">
+    <div class="row mb-2">
+        <div class="col-md-3">
+            <div class="card border-dark-1 mx-sm-1 ">
+                <div class="text-dark text-center ">
+                    <label>ID</label>
+                </div>
+                <div class="text-dark text-center">
+                    <label>{{processing?.id}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-dark-1 mx-sm-1 ">
+                <div class="text-dark text-center text-truncate">
+                    <label>Master Cartoon</label>
+                </div>
+                <div class="text-dark text-center">
+                    <label>{{processing?.masterCartoons}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-dark-1 mx-sm-1">
+                <div class="text-dark text-center text-truncate">
+                    <label>Dozen Boxes</label>
+                </div>
+                <div class="text-dark text-center">
+                    <label>{{processing?.dozenBoxes}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-dark-1 mx-sm-1 ">
+                <div class="text-dark text-center  text-truncate ">
+                    <label>Packing Capacity</label>
+                </div>
+                <div class="text-dark text-center">
+                    <label>{{processing?.packingCapacity}}</label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-3">
+            <div class="card border-dark-1 mx-sm-1 ">
+                <div class="text-dark text-center text-truncate">
+                    <label>Packing Unit</label>
+                </div>
+                <div class="text-dark text-center">
+                    <label>{{processing?.packingUnit}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-dark-1 mx-sm-1 ">
+                <div class="text-dark text-center text-truncate ">
+                    <label>Packing Type</label>
+                </div>
+                <div class="text-dark text-center ">
+                    <label>{{processing?.packingType}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-dark-1 mx-sm-1 ">
+                <div class="text-dark text-center  text-truncate ">
+                    <label>Packing Type Quantity</label>
+                </div>
+                <div class="text-dark text-center">
+                    <label>{{processing?.packingTypeQuanitity}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-dark-1 mx-sm-1 ">
+                <div class="text-dark text-center   text-truncate">
+                    <label>Total Quantity in Unit</label>
+                </div>
+                <div class="text-dark text-center">
+                    <label>{{processing?.totalQuantityinPackingUnit}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card border-dark-1 mx-sm-1 ">
+                <div class="text-dark text-center  text-truncate ">
+                    <label>Total Quantity in Liters</label>
+                </div>
+                <div class="text-dark text-center">
+                    <label>{{processing?.totalQuantityinLiters}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-dark-1 mx-sm-1 ">
+                <div class="text-dark text-center  text-truncate ">
+                    <label>Total Quantity in Kg</label>
+                </div>
+                <div class="text-dark text-center">
+                    <label>{{processing?.totalQuantityinKg}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-dark-1 mx-sm-1 ">
+                <div class="text-dark text-center   text-truncate">
+                    <label>Price</label>
+                </div>
+                <div class="text-dark text-center">
+                    <label>{{processing?.price}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid register-form">
+    <div class="form">
+
+        <form class="form-content" [formGroup]="processingForm" (ngSubmit)="onSubmit()">
+            <!-- Reciepe -->
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mt-2 mb-2">
+                        <label for="" class="headings"> <strong>Recipe</strong></label>
+                    </div>
+                </div>
+                <div class="col-sm-8 mt-3">
+                    <p class="pull-right">
+                        <i class="fa fa-plus-circle text-success fontSize40 cusrsor-pointer" (click)="addRecipe()"></i>
+                    </p>
+                </div>
+
+            </div>
+
+            <div formArrayName="recipie" *ngFor="let item of recipie.controls; let i = index;">
+                <div class="row" [formGroupName]="i">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <input type="text" formControlName="recipieQuantity" class="form-control"
+                                placeholder="Quantity" value="" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+
+                            <ng-select *ngIf="flag" placeholder="Select End Product" formControlName="ProductId"
+                                [items]="endProduct" bindValue="id" bindLabel="productName">
+                            </ng-select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <ng-select *ngIf="flag" placeholder="Select Unit Type" formControlName="unit" [items]="unit"
+                                bindValue="id" bindLabel="value">
+                            </ng-select>
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <i (click)="removeRecipie(i)"
+                            class="fa fa-minus-circle text-danger fontSize40 cusrsor-pointer"></i>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Raw -->
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mt-2 mb-2">
+                        <label for="" class="headings"> <strong>Raw</strong></label>
+                    </div>
+                </div>
+                <div class="col-sm-8 mt-3">
+                    <p class="pull-right">
+                        <i class="fa fa-plus-circle text-success fontSize40 cusrsor-pointer" (click)="addRaw()"></i>
+                    </p>
+                </div>
+
+            </div>
+
+            <div formArrayName="raw" *ngFor="let item of raw.controls; let i = index;">
+                <div class="row" [formGroupName]="i">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="text" formControlName="rawQuantity" class="form-control" placeholder="Quantity"
+                                value="" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <ng-select *ngIf="flag" placeholder="Select Raw Material" class=""
+                                formControlName="ProductId" [items]="rawMaterial" bindValue="id"
+                                bindLabel="productName">
+                            </ng-select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <i (click)="removeRaw(i)" class="fa fa-minus-circle text-danger fontSize40 cusrsor-pointer"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <button type="submit" class="btnSubmit">Register</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
