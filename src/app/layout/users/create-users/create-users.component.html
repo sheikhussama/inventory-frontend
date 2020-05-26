@@ -1,0 +1,65 @@
+<app-page-header [heading]="'Users'" [icon]="'fa-bar-chart-o'"></app-page-header>
+
+<div class="container-fluid register-form">
+    <div class="form">
+        <div class="note">
+            <p> SignUp Users </p>
+        </div>
+
+        <form class="form-content" [formGroup]="usersForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <input
+                            type="text"
+                            formControlName="username"
+                            class="form-control"
+                            placeholder="Username"
+                            value=""
+                        />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <input
+                            type="text"
+                            formControlName="email"
+                            class="form-control"
+                            placeholder="abc@gmail.com"
+                            value=""
+                        />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <input
+                        type="password"
+                        formControlName="password"
+                        class="form-control"
+                        placeholder="Password"
+                        value=""
+                    />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <ng-select
+                        placeholder="Select Role"
+                        [items]="roleType"
+                        class=""
+                        bindLabel="value"
+                        bindValue="value"
+                        (change)="roleBased($event)"
+                    >
+                    </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <button type="submit" class="btnSubmit">Register</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -26,11 +26,14 @@ const routes: Routes = [
             {
                 path: 'sale',
                 loadChildren: () => import('./sale/sale.module').then((m) => m.SaleModule)
-            }
-            ,
+            },
             {
                 path: 'processing',
                 loadChildren: () => import('./processing/processing.module').then((m) => m.ProcessingModule)
+            },
+            {
+                path: 'users',
+                loadChildren: () => import('./users/users.module').then((m) => m.UsersModule)
             }
         ]
     }
