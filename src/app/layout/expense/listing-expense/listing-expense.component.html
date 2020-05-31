@@ -2,7 +2,7 @@
     <app-page-header [heading]="'Expense'" [icon]="'fa-bar-chart-o'"></app-page-header>
      
     <div class="row product-form-1">
-     <div class="col-lg-4 offset-lg-8 mb-3">
+     <div class="col-lg-6 offset-lg-4 mb-3">
         <button  class="btnSubmit" [routerLink]="['create']"> Create Expense </button>
      </div>
     </div>
@@ -15,6 +15,7 @@
                         <th scope="col" class="text-dark">Purpose</th>
                         <th scope="col" width="200" class="text-dark">Amount</th>
                         <th scope="col" width="200" class="text-dark">Reference</th>
+                        <th scope="col" width="200" class="text-dark"> Created Date</th>
                         <th scope="col" width="200" class="text-right">Action</th>
                     </tr>
                 </thead>
@@ -40,6 +41,14 @@
                             <figure class="media">
                                 <figcaption class="media-body">
                                     <h6 class="title text-truncate">{{data.reference}}</h6>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.timecreated | date : 'mediumDate'}}</h6>
                                 </figcaption>
                             </figure>
                         </td>

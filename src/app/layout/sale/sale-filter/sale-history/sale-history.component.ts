@@ -59,7 +59,6 @@ onSubmit() {
   const data = this.saleHistoryForm.value;  
     this.saleService.saleHistory(data).subscribe((response: any) => {
       this.saleHistory = response;
-      console.log(this.saleHistory)
       this.toast.pop('success', 'Success!', 'Sale Hsitory Search is Completed.');
       this.callCompleted();
     },

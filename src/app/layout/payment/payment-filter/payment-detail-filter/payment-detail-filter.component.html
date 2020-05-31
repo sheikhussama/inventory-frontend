@@ -1,7 +1,7 @@
 <div class="container-fluid register-form">
     <div class="form">
         <div class="note">
-            <p> Payment Detail Filter</p>
+            <p> Payment History</p>
         </div>
 
         <form class="form-content" [formGroup]="paymentDetailFilterForm" (ngSubmit)="onSubmit()">
@@ -33,20 +33,11 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <Label> <strong> Balanced</strong></Label>
-
-                        <div class="d-flex mt-3">
-                            <label class="customradio"
-                                ><span class="radiotextsty">Credit</span>
-                                <input type="radio" value="true" formControlName="isCredit" name="isCredit" />
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="customradio ml-2"
-                                ><span class="radiotextsty">Debit</span>
-                                <input type="radio" value="false" formControlName="isCredit" name="isCredit" />
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
+                        <Label> <strong> Check Balance</strong></Label>
+                        <ng-select *ngIf="flag" placeholder="Check Balance" formControlName="isCredit"
+                        [items]="blance" class="" bindLabel="Label" bindValue="value"
+                        >
+                       </ng-select>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -69,36 +60,114 @@
         </form>
     </div>
 </div>
-
-
-<div class="container" *ngIf="finishGoodsFilter">
+<div class="container" *ngIf="paymentDetailFilter">
     <div class="card">
         <table class="table table-hover shopping-cart-wrap">
             <thead class="text-muted">
                 <tr>
-                    <th scope="col" class="text-dark">DC N0</th>
-                    <th scope="col"  width="200" class="text-dark">Quantity</th>
+                    <th scope="col" width=""class="text-dark text-truncate">Payment ID</th>
+                    <th scope="col" width=""class="text-dark text-truncate">Customer Name</th>
+                    <th scope="col" width=""class="text-dark text-truncate">Customer Address</th>
+                    <th scope="col" width=""class="text-dark text-truncate">Contact No</th>
+                    <th scope="col" width=""class="text-dark text-truncate">Opening Balance</th>
+                    <th scope="col" width=""class="text-dark text-truncate">Company Name</th>
+                    <th scope="col" width="" class="text-dark text-truncate ">Type</th>
+                    <th scope="col" width="" class="text-dark text-truncate">Detail</th>
+                    <th scope="col" width="" class="text-dark text-truncate">Amount</th>
+                    <th scope="col" width="" class="text-dark text-truncate">Created Date</th>
                 </tr>
             </thead>
-            <tbody *ngFor="let data of finishGoodsFilter; let i = index">
-                <tr>
+            <tbody>
+                <tr *ngFor="let data of paymentDetailFilter; let i = index">
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <dl class="param param-inline small">
-                                    <dt>DC NO: </dt>
-                                    <dd>{{data.DcNo}}</dd>
-                                </dl>
+                                <h6 class="title text-truncate">{{data.id}}</h6>
                             </figcaption>
                         </figure>
                     </td>
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.Quantity}}</h6>
+                                <h6 class="title text-truncate">{{data.payment_customer.customerName}}</h6>
                             </figcaption>
                         </figure>
                     </td>
+                    <td>
+                        <figure class="media">
+                            <figcaption class="media-body">
+                                <h6 class="title text-truncate">{{data.payment_customer.address}}</h6>
+                            </figcaption>
+                        </figure>
+                    </td>
+                    <td>
+                        <figure class="media">
+                            <figcaption class="media-body">
+                                <h6 class="title text-truncate">{{data.payment_customer.contactNo}}</h6>
+                            </figcaption>
+                        </figure>
+                    </td>
+                    <td>
+                        <figure class="media">
+                            <figcaption class="media-body">
+                                <h6 class="title text-truncate">{{data.payment_customer.balance}}</h6>
+                            </figcaption>
+                        </figure>
+                    </td>
+                    <td>
+                        <figure class="media">
+                            <figcaption class="media-body">
+                                <h6 class="title text-truncate">{{data.payment_customer.company}}</h6>
+                            </figcaption>
+                        </figure>
+                    </td>
+                    <td>
+                        <figure class="media">
+                            <figcaption class="media-body">
+                                <h6 class="title text-truncate" *ngIf="data.givenType ==='Q'">Cheaque</h6>
+                                <h6 class="title text-truncate" *ngIf="data.givenType ==='C'">Cash</h6>
+                                <h6 class="title text-truncate" *ngIf="data.givenType ==='T'">Transfer</h6>
+
+                            </figcaption>
+                        </figure>
+                    </td>
+                    <td>
+                        <figure class="media">
+                            <figcaption class="media-body">
+                                <h6 class="title text-truncate">{{data.detail}}</h6>
+                            </figcaption>
+                        </figure>
+                    </td>
+                    <td>
+                        <figure class="media">
+                            <figcaption class="media-body">
+                                <h6 class="title text-truncate">{{data.amount}}</h6>
+                            </figcaption>
+                        </figure>
+                    </td> 
+                     <td>
+                        <figure class="media">
+                            <figcaption class="media-body">
+                                <h6 class="title text-truncate">{{data.timecreated | date : 'mediumDate'}}</h6>
+                            </figcaption>
+                        </figure>
+                    </td>
+                    <!-- <td>
+                        <figure class="media">
+                            <figcaption class="media-body">
+                                <h6 class="title text-truncate" *ngIf="data.isCredit === true">Credit</h6>
+                                <h6 class="title text-truncate" *ngIf="data.isCredit === false">Debit</h6>
+                            </figcaption>
+                        </figure>
+                    </td> -->
+                    <!-- <td>
+                        <figure class="media">
+                            <figcaption class="media-body">
+                                <h6 class="title text-truncate" *ngIf="data.isCustomer === true">Customer</h6>
+                                <h6 class="title text-truncate" *ngIf="data.isCustomer === false">Distributor</h6>
+                            </figcaption>
+                        </figure>
+                    </td> -->
                 </tr>
             </tbody>
         </table>

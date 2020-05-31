@@ -2,8 +2,8 @@
     <app-page-header [heading]="'Deliverable Product'" [icon]="'fa-bar-chart-o'"></app-page-header>
      
     <div class="row product-form-1">
-     <div class="col-lg-4 offset-lg-7 d-flex mb-3">
-        <button  class="btnSubmit" [routerLink]="['create']"> Register Deliverable Product </button>
+     <div class="col-lg-7 offset-lg-4 d-flex mb-3">
+        <button  class="btnSubmit" [routerLink]="['create']"> Deliverable Product </button>
      </div>
     </div>
     
@@ -12,8 +12,10 @@
             <table class="table table-hover shopping-cart-wrap">
                 <thead class="text-muted">
                     <tr>
-                        <th scope="col" class="text-dark">Product</th>
-                        <th scope="col" width="200" class="text-right">Action</th>
+                        <th scope="col" class="text-dark">Product ID</th>
+                        <th scope="col" class="text-dark">Product Name</th>
+                        <th scope="col" class="text-dark">Created Product Date</th>
+                        <th scope="col" width="200" class="text-right text-dark">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -21,7 +23,23 @@
                         <td>
                             <figure class="media">
                                 <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.id}} </h6>
+
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
                                     <h6 class="title text-truncate">{{data.productName}} </h6>
+
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.timecreated | date : 'mediumDate'}} </h6>
 
                                 </figcaption>
                             </figure>

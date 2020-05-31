@@ -27,6 +27,8 @@ export class CreateProductsComponent implements OnInit {
   showHide: Boolean;
   flag: Boolean = true;
   unitName: string;
+  typeOfProduct: any;
+
   constructor(
     private fb: FormBuilder, 
     private toast:ToasterService, 
@@ -44,15 +46,6 @@ export class CreateProductsComponent implements OnInit {
     this.initForm();
     this.typeBased();
     this.unitBased();
-  }
-
-
-  selectInput(event: any) {
-    if (event.value === "Drum" || event.value === "Bag") {
-      this.showHide = true;
-    } else {
-      this.showHide = false;
-    }
   }
 
   /**
@@ -104,6 +97,9 @@ totalQuantity() {
    if(this.kg !== undefined) {
     this.total =  this.bulk * this.kg;
    }
+}
+typelist(event: any){
+  this.typeOfProduct = event.value;
 }
 
 QuantityUnit(event: any) {

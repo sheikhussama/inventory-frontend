@@ -12,13 +12,24 @@
             <table class="table table-hover shopping-cart-wrap">
                 <thead class="text-muted">
                     <tr>
-                        <th scope="col"  width="200" class="text-dark">Username</th>
-                        <th scope="col"  width="200" class="text-dark">Quantity</th>
-                        <th scope="col"  class="text-right">Action</th>
+                        <th scope="col"   class="text-dark">User ID</th>
+                        <th scope="col"   class="text-dark">Username</th>
+                        <th scope="col"   class="text-dark">Role</th>
+                        <th scope="col"   class="text-dark">Status</th>
+                        <th scope="col"   class="text-dark">Created Date</th>
                     </tr>
                 </thead>
                 <tbody *ngFor= "let data of users" >
-                    <tr>
+                    <tr *ngFor= "let user of data.user_usersignup">
+                        <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <dl class="param param-inline small">
+                                        <dd>{{data.id}}</dd>
+                                    </dl>
+                                </figcaption>
+                            </figure>
+                        </td>
                         <td>
                             <figure class="media">
                                 <figcaption class="media-body">
@@ -31,30 +42,31 @@
                         <td>
                             <figure class="media">
                                 <figcaption class="media-body">
-                                    <!-- <h6 class="title text-truncate">{{data.price}}</h6> -->
+                                    <h6 class="title text-truncate">{{user.role}}</h6>
                                 </figcaption>
                             </figure>
                         </td>
                         <td>
                             <figure class="media">
                                 <figcaption class="media-body">
-                                    <!-- <h6 class="title text-truncate">Bulk Quantity {{data.bulkQuantity}}</h6> -->
-                                    <dl class="param param-inline small">
-                                        <!-- <dt>Quantity In Kg: </dt> -->
-                                        <!-- <dd>{{data.QuantityInKg}} Kg </dd> -->
-                                    </dl>
-                                    <dl class="param param-inline small">
-                                        <!-- <dt>Quantity In Unit: </dt> -->
-                                        <!-- <dd>{{data.perUnitQuantity}} unit </dd> -->
-                                    </dl>
+                                    <h6 class="title text-truncate text-success" *ngIf="user.isactive === true">Active</h6>
+                                    <h6 class="title text-truncate text-danger" *ngIf="user.isactive === false">D-Active</h6>
+
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{user.timecreated | date : 'mediumDate'}}</h6>
                                 </figcaption>
                             </figure>
                         </td>
                         <td class="text-right">
                             <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"
                                 data-original-title="Save to Wishlist"> <i class="fa fa-pencil"
-                                    aria-hidden="true" [routerLink]="['/isactive-user']"></i></button>
-                            <button href="" class="btn btn-outline-danger" > <i class="fa fa-trash"></i></button>
+                                    aria-hidden="true" (click)="showForm()"></i></button>
+                            <button href="" class="btn btn-outline-danger" (click)="deleteUser(user)" > <i class="fa fa-trash"></i></button>
                         </td>
                     </tr>
                    
@@ -65,7 +77,7 @@
     
     </div>
      
-    <div class="row mt-2" *ngIf="users[0]?.user_usersignup?.length === 0">
+    <div class="row mt-2" *ngIf="users?.length === 0">
         <div class="col-lg-6 offset-lg-4">
          <h4 class="text-danger">
            User Sign Up Record Not Found
@@ -73,3 +85,6 @@
         </div>
       </div>
 </div>
+
+
+<app-active-users></app-active-users>

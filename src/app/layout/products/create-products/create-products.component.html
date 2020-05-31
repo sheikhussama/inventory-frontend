@@ -4,12 +4,22 @@
 <div class="container register-form">
     <div class="form">
         <div class="note">
-            <p>{{buttonText ? 'Update': 'Register'}} Raw Products</p>
+            <p>{{buttonText ? 'Update': 'Raw'}} Products</p>
         </div>
 
         <form class="form-content" [formGroup]="productForm" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="col-md-4">
+                    <label for=""> DCNO: </label>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control"
+                         placeholder="Dc No" value="" formControlName="DcNo" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for=""> Product Name: </label>
+
                     <div class="form-group">
                         <input type="text" class="form-control" 
                          placeholder="Product Name" value="" formControlName="productName" />
@@ -17,15 +27,11 @@
                 </div>
                 
                 <div class="col-md-4">
-                    <div class="form-group">
-                        <input type="text" class="form-control"
-                         placeholder="Dc No" value="" formControlName="DcNo" />
-                    </div>
-                </div>
-                <div class="col-md-4">
+                    <label for=""> Select Type: </label>
                     <div class="form-group">
                         <ng-select *ngIf="flag" placeholder="Type" 
-                        [items]="type" class="" formControlName="type" bindLabel="value" 
+                          [items]="type" class="" formControlName="type" bindLabel="value" 
+                           (change)="typelist($event)"
                           bindValue="id">
                         </ng-select>
                     </div>
@@ -35,6 +41,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
+                        <label for=""> Bulk Quantity {{typeOfProduct}}: </label>
                         <input
                          class="form-control"
                           placeholder="Enter Bulk Quantity" 
@@ -47,6 +54,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
+                        <label for=""> {{typeOfProduct}} Quantity In Kg: </label>
                         <input type="text" class="form-control"
                          placeholder="Quantity In Kg"
                          type="number"
@@ -57,10 +65,16 @@
                 </div>
                 <div class="col-md-4">
                 
-                     <label for="" class="font-Size25"> <strong> {{total}} Kg </strong></label>
+                     <label for="" class=""> {{typeOfProduct}} {{total}} Kg </label>
+                     <input type="text" disabled class="form-control"
+                     placeholder="{{typeOfProduct}} {{total}} Kg"
+                     type="number"
 
+                     value=""/>
                 </div>
                 <div class="col-md-6">
+                    <label for=""> {{typeOfProduct}} Unit: </label>
+
                     <div class="form-group">
                         <ng-select *ngIf="flag" placeholder="Unit" formControlName="unit"
                          [items]="unit" class="" bindLabel="value" bindValue="id"
@@ -68,13 +82,18 @@
                         </ng-select>
                     </div>
                 </div>             
-                <div class="col-md-6 font-Size25">
-                   <label for=""> <strong>{{totalUnit}} {{unitName}} </strong></label>
+                <div class="col-md-6">
+                   <label for="">  {{typeOfProduct}} {{totalUnit}} {{unitName}}</label>
+                   <input type="text" disabled class="form-control"
+                   placeholder="{{typeOfProduct}} {{totalUnit}} {{unitName}}"
+                   type="number"
+
+                   value=""/>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <button type="submit" class="btnSubmit">{{buttonText ? 'Update': 'Register'}}</button>
+                    <button type="submit" class="btnSubmit">{{buttonText ? 'Update': 'Raw'}}</button>
                 </div>
             </div>
         </form>

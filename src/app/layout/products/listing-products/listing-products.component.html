@@ -2,10 +2,10 @@
     <app-page-header [heading]="'Raw Products Listing'" [icon]="'fa-bar-chart-o'"></app-page-header>
      
     <div class="row">
-     <div class="col-lg-4 offset-lg-7 d-flex mb-3">
-        <button  class="btnSubmit px-3 py-3 mr-1" [routerLink]="['create']"> Register Raw Product </button>
-        <button  class="btnSubmit px-3 py-3 mr-1" [routerLink]="['endProduct']"> Deliverable  Products</button>
-        <button  class="btnSubmit px-3 py-3" [routerLink]="['raw']">Finish Goods</button>
+     <div class="col-lg-8 offset-lg-2 d-flex mb-3 ">
+        <button  class="btnSubmit mr-1" [routerLink]="['create']"> Raw Products </button>
+        <button  class="btnSubmit mr-1" [routerLink]="['endProduct']"> Deliverable  Products</button>
+        <button  class="btnSubmit" [routerLink]="['raw']">Finish Goods</button>
      </div>
     </div>
     
@@ -14,9 +14,14 @@
             <table class="table table-hover shopping-cart-wrap">
                 <thead class="text-muted">
                     <tr>
-                        <th scope="col" class="text-dark">Product</th>
-                        <th scope="col" width="200" class="text-dark">Quantity</th>
-                        <th scope="col" width="200" class="text-right">Action</th>
+                        <th scope="col" class="text-dark text-truncate">Product ID</th>
+                        <th scope="col" class="text-dark text-truncate">Product Name</th>
+                        <th scope="col" class="text-dark text-truncate">DcNo</th>
+                        <th scope="col"  class="text-dark text-truncate">Bulk Quantity</th>
+                        <th scope="col"  class="text-dark text-truncate">Quantity in Kg</th>
+                        <th scope="col"  class="text-dark text-truncate">Quantity in Unit</th>
+                        <th scope="col"  class="text-dark text-truncate">Created Product Date</th>
+                        <th scope="col"  class="text-dark text-right text-truncate">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,11 +29,7 @@
                         <td>
                             <figure class="media">
                                 <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.productName}} </h6>
-                                    <dl class="param param-inline small">
-                                        <dt>DC NO: </dt>
-                                        <dd>{{data.DcNo}}</dd>
-                                    </dl>
+                                    <h6 class="title text-truncate">{{data.id}} </h6>
                                 </figcaption>
                             </figure>
                         </td>
@@ -36,19 +37,47 @@
 
                             <figure class="media">
                                 <figcaption class="media-body">
-                                    <h6 class="title text-truncate">Bulk Quantity {{data.bulkQuantity}}</h6>
-                                    <dl class="param param-inline small">
-                                        <dt>Quantity In Kg: </dt>
-                                        <dd>{{data.QuantityInKg}} Kg </dd>
-                                    </dl>
-                                    <dl class="param param-inline small">
-                                        <dt>Quantity In Unit: </dt>
-                                        <dd>{{data.QuantityInUnit}} unit </dd>
-                                    </dl>
+                                    <h6 class="title text-truncate">{{data.productName}} </h6>
                                 </figcaption>
                             </figure>
                         </td>
+                        <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.DcNo}} </h6>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
 
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.bulkQuantity}} </h6>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.QuantityInKg}} Kg </h6>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.QuantityInUnit}} Unit </h6>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.timecreated | date : 'mediumDate'}} </h6>
+                                </figcaption>
+                            </figure>
+                        </td>
                         <td class="text-right">
                             <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"
                                 data-original-title="Save to Wishlist"> <i class="fa fa-pencil"

@@ -1,7 +1,7 @@
 <div class="container-fluid register-form">
     <div class="form">
         <div class="note">
-            <p> Finish Goods Filter</p>
+            <p> Finish Goods History</p>
         </div>
 
         <form class="form-content" [formGroup]="finishGoodsFilterForm" (ngSubmit)="onSubmit()">
@@ -33,9 +33,9 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <Label> <strong> Enter Raw Material Product</strong></Label>
+                        <Label class="text-truncate"> <strong>Raw Material Product</strong></Label>
 
-                        <ng-select *ngIf="flag" placeholder="Enter Raw Material Product" formControlName="productId"
+                        <ng-select *ngIf="flag" placeholder="Raw Material Product" formControlName="productId"
                         [items]="rawMaterial" class="" bindLabel="productName" bindValue="id"
                         >
                        </ng-select>
@@ -62,14 +62,19 @@
     </div>
 </div>
 
-
 <div class="container" *ngIf="finishGoodsFilter">
     <div class="card">
         <table class="table table-hover shopping-cart-wrap">
             <thead class="text-muted">
                 <tr>
-                    <th scope="col" class="text-dark">DC N0</th>
-                    <th scope="col"  width="200" class="text-dark">Quantity</th>
+                    <th scope="col" class="text-dark text-truncate">Finish Goods Purchase ID</th>
+                    <th scope="col" class="text-dark text-truncate">Product Finish Goods Purchase</th>
+                    <th scope="col" class="text-dark text-truncate">Finish Goods Purchase Customer</th>
+                    <th scope="col"  class="text-dark text-truncate">DC NO</th>
+                    <th scope="col" class="text-dark text-truncate">Quantity</th>
+                    <th scope="col" class="text-dark text-truncate">Price</th>                        
+                    <th scope="col" class="text-dark text-truncate">Payment Status</th>
+                    <th scope="col" class="text-dark text-truncate">Created Date</th>
                 </tr>
             </thead>
             <tbody *ngFor="let data of finishGoodsFilter; let i = index">
@@ -77,10 +82,28 @@
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <dl class="param param-inline small">
-                                    <dt>DC NO: </dt>
-                                    <dd>{{data.DcNo}}</dd>
-                                </dl>
+                                <h6 class="title text-truncate">{{data.id}}</h6>
+                            </figcaption>
+                        </figure>
+                    </td>
+                    <td>
+                        <figure class="media">
+                            <figcaption class="media-body">
+                                <h6 class="title text-truncate">{{data.product_rawpurchase.productName}}</h6>
+                            </figcaption>
+                        </figure>
+                    </td>
+                    <td>
+                        <figure class="media">
+                            <figcaption class="media-body">
+                                <h6 class="title text-truncate">{{data.rawpurchase_customer.customerName}}</h6>
+                            </figcaption>
+                        </figure>
+                    </td>
+                    <td>
+                        <figure class="media">
+                            <figcaption class="media-body">
+                                <h6 class="title text-truncate">{{data.DcNo}}</h6>
                             </figcaption>
                         </figure>
                     </td>
@@ -91,6 +114,30 @@
                             </figcaption>
                         </figure>
                     </td>
+                    <td>
+                        <figure class="media">
+                            <figcaption class="media-body">
+                                <h6 class="title text-truncate">{{data.price}}</h6>
+                            </figcaption>
+                        </figure>
+                    </td>
+                    <td>
+                        <figure class="media">
+                            <figcaption class="media-body">
+                                <h6 class="title text-truncate" *ngIf="data.isPaid === false"><i class="fa fa-times text-danger" aria-hidden="true"></i></h6>
+                                <h6 class="title text-truncate" *ngIf="data.isPaid === true"><i class="fa fa-check text-success" aria-hidden="true"></i>
+                                </h6>
+                            </figcaption>
+                        </figure>
+                    </td>
+                    <td>
+                        <figure class="media">
+                            <figcaption class="media-body">
+                                <h6 class="title text-truncate">{{data.timecreated | date : 'mediumDate'}}</h6>
+                            </figcaption>
+                        </figure>
+                    </td>
+                    
                 </tr>
             </tbody>
         </table>

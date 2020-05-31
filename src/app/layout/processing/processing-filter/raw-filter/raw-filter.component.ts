@@ -43,17 +43,15 @@ export class RawFilterComponent implements OnInit {
   getMaterial() {
     this.materialService.getMaterial().subscribe((response) => {
       this.rawMat = response.results;
-      console.log(this.rawMat);
     });
   }
 
   getsale() {
     this.saleService.getFinalSale().subscribe((response) => {
       this.sale = response.results;
-      console.log(this.sale);
     });
   }
-
+ 
 
   onSubmit() {
     const data = this.finishGoodForm.value;

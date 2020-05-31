@@ -3,7 +3,7 @@
 
     <div class="row product-form-1">
         <div class="col-lg-4 offset-lg-9 mb-3">
-            <button class="btnSubmit" [routerLink]="['create']"> Create Raw Materials </button>
+            <button class="btnSubmit" [routerLink]="['create']"> Register Finish Goods</button>
         </div>
     </div>  
 
@@ -12,13 +12,22 @@
             <table class="table table-hover shopping-cart-wrap">
                 <thead class="text-muted">
                     <tr>
-                        <th scope="col" class="text-dark">Product</th>
+                        <th scope="col" class="text-dark">Product ID</th>
+                        <th scope="col" class="text-dark">Product Name</th>
                         <th scope="col" width="200" class="text-dark">Quantity</th>
+                        <!-- <th scope="col" class="text-dark">Created Date</th> -->
                         <th scope="col" width="200" class="text-right">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let data of rawMaterial; let i = index">
+                        <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.id}} </h6>
+                                </figcaption>
+                            </figure>
+                        </td>
                         <td>
                             <figure class="media">
                                 <figcaption class="media-body">
@@ -35,7 +44,15 @@
                                 </figcaption>
                             </figure>
                         </td>
+                        <!-- <td>
 
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.timecreated | date : 'mediumDate'}}</h6>
+
+                                </figcaption>
+                            </figure>
+                        </td> -->
                         <td class="text-right">
                             <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"
                             data-original-title="Save to Wishlist"> <i class="fa fa-pencil"

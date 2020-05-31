@@ -13,18 +13,19 @@
             <table class="table table-hover shopping-cart-wrap">
                 <thead class="text-muted">
                     <tr>
-                        <th scope="col" width="200" class="text-dark">SR#</th>
-                        <th scope="col" width="200" class="text-dark">Master Cartoon</th>
-                        <th scope="col" width="200" class="text-dark">Dozen Boxes</th>
-                        <th scope="col" width="200" class="text-dark">Packing Capacity</th>
-                        <th scope="col" width="200" class="text-dark">Packing Unit</th>
-                        <th scope="col" width="200" class="text-dark">Packing Type</th>
-                        <th scope="col" width="200" class="text-dark">Packing Type Quantity</th>
-                        <th scope="col" width="200" class="text-dark">Total Quantity in Unit</th>
-                        <th scope="col" width="200" class="text-dark">Total Quantity in Liters</th>
-                        <th scope="col" width="200" class="text-dark">Total Quantity in Kg</th>
-                        <th scope="col" width="200" class="text-dark">Price</th>
-                        <th scope="col" width="200" class="text-dark">Actions</th>
+                        <th scope="col" width="200" class="text-dark text-truncate">SR#</th>
+                        <th scope="col" width="200" class="text-dark text-truncate">Master Cartoon</th>
+                        <th scope="col" width="200" class="text-dark text-truncate">Dozen Boxes</th>
+                        <th scope="col" width="200" class="text-dark text-truncate">Packing Capacity</th>
+                        <th scope="col" width="200" class="text-dark text-truncate">Packing Unit</th>
+                        <th scope="col" width="200" class="text-dark text-truncate">Packing Type</th>
+                        <th scope="col" width="200" class="text-dark text-truncate">Packing Type Quantity</th>
+                        <th scope="col" width="200" class="text-dark text-truncate">Total Quantity in Unit</th>
+                        <th scope="col" width="200" class="text-dark text-truncate">Total Quantity in Liters</th>
+                        <th scope="col" width="200" class="text-dark text-truncate">Total Quantity in Kg</th>
+                        <th scope="col" width="200" class="text-dark text-truncate">Price</th>
+                        <th scope="col" width="200" class="text-dark text-truncate">Sale Status</th>
+                        <th scope="col" width="200" class="text-dark text-truncate">Actions</th>
                     </tr>
                 </thead>
                 <tbody *ngFor="let data of sale; let i = index">
@@ -108,6 +109,15 @@
                             <figure class="media">
                                 <figcaption class="media-body">
                                     <h6 class="title text-truncate">{{data.price}}</h6>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate text-primary" *ngIf="data.isSold === false">Pending</h6>
+                                    <h6 class="title text-truncate text-success" *ngIf="data.isSold === true">Delivered</h6>
+
                                 </figcaption>
                             </figure>
                         </td>

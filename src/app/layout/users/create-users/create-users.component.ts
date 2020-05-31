@@ -13,6 +13,7 @@ export class CreateUsersComponent implements OnInit {
   usersForm: FormGroup;
   roleType: any;
   checkRole: any;
+  username: any;
 
   constructor(private fb: FormBuilder,
     private toast: ToasterService,
@@ -54,6 +55,18 @@ export class CreateUsersComponent implements OnInit {
 
     }
   }
+
+  checkUsername(event: any){
+    this.username = event.srcElement.value;
+    this.userService.checkUsername(this.username).subscribe((response: any) => { 
+      if(response.Res === false) {
+      this.toast.pop('success', 'Success!', 'User is not Exist.');
+      }
+      else if(response.Res === true) {
+      this.toast.pop('error', 'Error!', 'User is Already Exist.')
+      }
+    });
+   }
 
   onSubmit() {
     const data = this.usersForm.value;

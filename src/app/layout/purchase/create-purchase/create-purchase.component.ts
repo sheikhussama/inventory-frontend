@@ -30,6 +30,9 @@ export class CreatePurchaseComponent implements OnInit {
   totalUnit:any = "Quantity In Unit"
   showHide: Boolean;
   unitName: string;
+  typeOfRawPurchase: any;
+  perKgPrices: any;
+  totalPrice: any = "Total Price";
 
   constructor(
     private fb: FormBuilder, 
@@ -54,6 +57,11 @@ export class CreatePurchaseComponent implements OnInit {
     this.getClient();
   }
 
+  perKgPrice(event: any){
+   this.perKgPrices = event.srcElement.value;
+   this.totalQuantity();
+
+  }
 
   bulkQuantity(event: any){
     this.bulk = event.srcElement.value;
@@ -75,18 +83,21 @@ export class CreatePurchaseComponent implements OnInit {
   totalQuantity() {
      if(this.kg !== undefined) {
       this.total =  +this.bulk * +this.kg;
-      console.log(this.total);
+      this.totalPrice = +this.perKgPrices * +this.total
      }
   }
   
   QuantityUnit(event: any) {
     if(event.value === "L"){
       this.totalUnit = this.total * 1.2;
+      this.totalPrice = +this.perKgPrices *  +this.totalUnit
       this.unitName = "Ltr" 
     }
     if(event.value === "G"){
       this.totalUnit = this.total * 1000;
       this.unitName = "Gram" 
+      this.totalPrice = +this.perKgPrices *  +this.totalUnit
+
     }
   }
 
@@ -129,9 +140,10 @@ export class CreatePurchaseComponent implements OnInit {
       QuantityInKg: ['', [Validators.required]],
       unit: [null, [Validators.required]],
       perUnitQuantity: ['', [Validators.required]],
-      price: ['', [Validators.required]],
+      perKgPrice: ['', [Validators.required]],
       productId: [null, [Validators.required]],
       distibutorId: [null, [Validators.required]],
+      price: ['', [Validators.required]],
   });
 }
 
@@ -141,7 +153,7 @@ onSubmit() {
   data.QuantityInKg = parseInt(this.total);
   data.perUnitQuantity = parseInt(this.totalUnit);
   data.user = this.userID.user_id;
-
+  data.totalPrice = parseInt( this.totalPrice);
   if (data.id > 0) {
     this.purchaseService.updatePurchase(data, data.id).subscribe((response: any) => {
       this.toast.pop('success', 'Success!', 'Purchase has been Updated.');
@@ -159,15 +171,12 @@ getProduct() {
   this.productService.getProducts().subscribe((response) => {
     this.product = response.results;
   });
-}  
-
-
-callCompleted() {
-  this.purchaseForm.reset();
-  this.router.navigate(['/purchase']);
-      this.flag = false;
-    setTimeout(() => {this.flag = true;})
+} 
+ 
+typeChange(event: any){
+this.typeOfRawPurchase = event.value;
 }
+
 
 typeBased() {
   this.type = [
@@ -181,6 +190,14 @@ typeBased() {
      }
   ]
 }
+
+callCompleted() {
+  this.purchaseForm.reset();
+  this.router.navigate(['/purchase']);
+      this.flag = false;
+    setTimeout(() => {this.flag = true;})
+}
+
 
 unitBased() {
   this.unit = [

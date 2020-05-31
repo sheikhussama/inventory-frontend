@@ -1,7 +1,7 @@
 <div class="container-fluid register-form">
     <div class="form">
         <div class="note">
-            <p> Sale History</p>
+            <p> Finish Good History</p>
         </div>
 
         <form class="form-content" [formGroup]="finishGoodForm" (ngSubmit)="onSubmit()">
@@ -46,7 +46,7 @@
                         <Label> <strong>Select Sale</strong></Label>
 
                         <ng-select placeholder="Select Sale" formControlName="saleId"
-                        [items]="sale" class="" bindLabel="productId" bindValue="productId"
+                        [items]="sale" class="" bindLabel="finalSale_product.productName" bindValue="id"
                         >
                        </ng-select>
                     </div>

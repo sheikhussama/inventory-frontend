@@ -1,13 +1,10 @@
-      <app-page-header [heading]="'Purchase Filter'" [icon]="'fa-bar-chart-o'"></app-page-header>
+<app-page-header [heading]="'Purchase Filter'" [icon]="'fa-bar-chart-o'"></app-page-header>
      
     <div class="row">
-     <div class="col-lg-4 offset-lg-7 d-flex mb-3">
-        <button  class="btnSubmit px-4 py-4 mr-1" [routerLink]="['rawPurchse']"> Raw Purchase Filter </button>
-        <button  class="btnSubmit px-4 py-4" [routerLink]="['finishGoodFilter']"> Finish Goods Filter </button>
-
+     <div class="col-lg-6 offset-lg-3 d-flex mb-3">
+        <button  class="btnSubmit mr-1" [routerLink]="['rawPurchse']"> Raw Purchase Filter </button>
+        <button  class="btnSubmit " [routerLink]="['finishGoodFilter']"> Finish Goods Filter </button>
      </div>
     </div>
-
-
 
 <router-outlet></router-outlet>

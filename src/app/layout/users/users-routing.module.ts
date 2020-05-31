@@ -12,9 +12,6 @@ const routes: Routes = [
           children: [
           {path: '', component: ListingUsersComponent},
           {path: 'create', component: CreateUsersComponent},
-          {path: 'active-user', component: ActiveUsersComponent},
-          {path: 'delete-user', component: DeleteUsersComponent},
-
         ]
       }
 ];

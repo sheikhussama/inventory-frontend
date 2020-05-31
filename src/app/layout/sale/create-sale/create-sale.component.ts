@@ -3,9 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { SaleService } from '../../../core/services/sale.services';
 import { ToasterService } from 'angular2-toaster';
 import { Router, ActivatedRoute } from '@angular/router';
-import { EndProductService } from '../../../core/services/end-product.services';
-import { ClientService } from '../../../core/services/client.services';
-import { RawMaterialService } from '../../../core/services/materials.services';
+
 declare const $: any
 
 @Component({

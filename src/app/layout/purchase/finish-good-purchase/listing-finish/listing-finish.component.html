@@ -2,7 +2,7 @@
     <app-page-header [heading]="'Finish Goods Purchase'" [icon]="'fa-bar-chart-o'"></app-page-header>
      
     <div class="row">
-     <div class="col-lg-4 offset-lg-8 d-flex  mb-3">
+     <div class="col-lg-6 offset-lg-4 d-flex  mb-3">
         <button  class="btnSubmit px-4 py-4 mr-1" [routerLink]="['create']"> Register Finish Goods Purchase </button>
      </div>
     </div>
@@ -12,10 +12,15 @@
             <table class="table table-hover shopping-cart-wrap">
                 <thead class="text-muted">
                     <tr>
-                        <th scope="col" class="text-dark">DC No</th>
-                        <th scope="col"  width="200" class="text-dark">Quantity</th>
-                        <th scope="col" width="200" class="text-dark">Price</th>
-                        <th scope="col" class="text-right">Action</th>
+                        <th scope="col" class="text-dark text-truncate">Finish Goods Purchase ID</th>
+                        <th scope="col" class="text-dark text-truncate">Product Finish Goods Purchase</th>
+                        <th scope="col" class="text-dark text-truncate">Finish Goods Purchase Customer</th>
+                        <th scope="col"  class="text-dark text-truncate">DC NO</th>
+                        <th scope="col" class="text-dark text-truncate">Quantity</th>
+                        <th scope="col" class="text-dark text-truncate">Price</th>                        
+                        <th scope="col" class="text-dark text-truncate">Payment Status</th>
+                        <th scope="col" class="text-dark text-truncate">Created Date</th>
+                         <th scope="col" class="text-right">Action</th>
                     </tr>
                 </thead>
                 <tbody *ngFor="let data of finishGoods; let i = index">
@@ -23,10 +28,28 @@
                         <td>
                             <figure class="media">
                                 <figcaption class="media-body">
-                                    <dl class="param param-inline small">
-                                        <dt>DC NO: </dt>
-                                        <dd>{{data.DcNo}}</dd>
-                                    </dl>
+                                    <h6 class="title text-truncate">{{data.id}}</h6>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.product_rawpurchase.productName}}</h6>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.rawpurchase_customer.customerName}}</h6>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.DcNo}}</h6>
                                 </figcaption>
                             </figure>
                         </td>
@@ -44,11 +67,27 @@
                                 </figcaption>
                             </figure>
                         </td>
+                        <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate" *ngIf="data.isPaid === false"><i class="fa fa-times text-danger" aria-hidden="true"></i></h6>
+                                    <h6 class="title text-truncate" *ngIf="data.isPaid === true"><i class="fa fa-check text-success" aria-hidden="true"></i>
+                                    </h6>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.timecreated | date : 'mediumDate'}}</h6>
+                                </figcaption>
+                            </figure>
+                        </td>
                         <td class="text-right">
                             <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"
                                 data-original-title="Save to Wishlist"> <i class="fa fa-pencil"
-                                    aria-hidden="true" (click)="updatefinishGoods(data)"></i></button>
-                            <button href="" class="btn btn-outline-danger" (click)="deletefinishGoods(data)"> <i class="fa fa-trash"></i></button>
+                                    aria-hidden="true" (click)="updatePurchase(data)"></i></button>
+                            <button href="" class="btn btn-outline-danger" (click)="deletePurchase(data)"> <i class="fa fa-trash"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -57,5 +96,4 @@
 
     
     </div>
-
 </div>

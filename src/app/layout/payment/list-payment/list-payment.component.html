@@ -2,7 +2,7 @@
     <app-page-header [heading]="'Payment'" [icon]="'fa-bar-chart-o'"></app-page-header>
      
     <div class="row product-form-1">
-     <div class="col-lg-4 offset-lg-8 mb-3">
+     <div class="col-lg-6 offset-lg-4 mb-3">
         <button  class="btnSubmit" [routerLink]="['create']"> Create Payments </button>
      </div>
     </div>
@@ -12,13 +12,18 @@
             <table class="table table-hover shopping-cart-wrap">
                 <thead class="text-muted">
                     <tr>
-                        <th scope="col" width="200"class="text-dark">Payment Customer</th>
-                        <th scope="col" width="200" class="text-dark">Amount</th>
-                        <th scope="col" width="200" class="text-dark">Type</th>
-                        <th scope="col" width="200" class="text-dark">Detail</th>
-                        <th scope="col" width="200" class="text-dark">Balanced Account</th>
-                        <th scope="col" width="200" class="text-dark">Distributors</th>
-                        <th scope="col" width="200" class="text-dark text-right">Actions</th>
+                        <th scope="col" width=""class="text-dark text-truncate">Payment ID</th>
+                        <th scope="col" width=""class="text-dark text-truncate">Customer Name</th>
+                        <th scope="col" width=""class="text-dark text-truncate">Customer Address</th>
+                        <th scope="col" width=""class="text-dark text-truncate">Contact No</th>
+                        <th scope="col" width=""class="text-dark text-truncate">Opening Balance</th>
+                        <th scope="col" width=""class="text-dark text-truncate">Company Name</th>
+                        <th scope="col" width="" class="text-dark text-truncate ">Type</th>
+                        <th scope="col" width="" class="text-dark text-truncate">Detail</th>
+                        <th scope="col" width="" class="text-dark text-truncate">Amount</th>
+
+                        <th scope="col" width="" class="text-dark text-truncate">Created Date</th>
+                        <th scope="col" width="" class="text-dark text-right text-truncate">Actions</th>
 
                     </tr>
                 </thead>
@@ -27,34 +32,42 @@
                         <td>
                             <figure class="media">
                                 <figcaption class="media-body">
-                                    <h6 class="title text-truncate">Payment Customer</h6>
-                                    <dl class="param param-inline small">
-                                        <dt>Customer Name:</dt>
-                                        <dd>{{data.payment_customer.customerName}}</dd>
-                                    </dl>
-                                    <dl class="param param-inline small">
-                                        <dt>Company Name:</dt>
-                                        <dd>{{data.payment_customer.company}}</dd>
-                                    </dl>
-                                    <dl class="param param-inline small">
-                                        <dt>Address:</dt>
-                                        <dd>{{data.payment_customer.address}}</dd>
-                                    </dl>
-                                    <dl class="param param-inline small">
-                                        <dt>Contact No:</dt>
-                                        <dd>{{data.payment_customer.contactNo}}</dd>
-                                    </dl>
-                                    <dl class="param param-inline small">
-                                        <dt>Balance:</dt>
-                                        <dd>{{data.payment_customer.balance}}</dd>
-                                    </dl>
+                                    <h6 class="title text-truncate">{{data.id}}</h6>
                                 </figcaption>
                             </figure>
                         </td>
                         <td>
                             <figure class="media">
                                 <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.amount}}</h6>
+                                    <h6 class="title text-truncate">{{data.payment_customer.customerName}}</h6>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.payment_customer.address}}</h6>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.payment_customer.contactNo}}</h6>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.payment_customer.balance}}</h6>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.payment_customer.company}}</h6>
                                 </figcaption>
                             </figure>
                         </td>
@@ -71,26 +84,40 @@
                         <td>
                             <figure class="media">
                                 <figcaption class="media-body">
-                                    <h6 class="title text-truncate">Detail {{data.detail}}</h6>
+                                    <h6 class="title text-truncate">{{data.detail}}</h6>
                                 </figcaption>
                             </figure>
                         </td>
                         <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.amount}}</h6>
+                                </figcaption>
+                            </figure>
+                        </td> 
+                         <td>
+                            <figure class="media">
+                                <figcaption class="media-body">
+                                    <h6 class="title text-truncate">{{data.timecreated | date : 'mediumDate'}}</h6>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <!-- <td>
                             <figure class="media">
                                 <figcaption class="media-body">
                                     <h6 class="title text-truncate" *ngIf="data.isCredit === true">Credit</h6>
                                     <h6 class="title text-truncate" *ngIf="data.isCredit === false">Debit</h6>
                                 </figcaption>
                             </figure>
-                        </td>
-                        <td>
+                        </td> -->
+                        <!-- <td>
                             <figure class="media">
                                 <figcaption class="media-body">
                                     <h6 class="title text-truncate" *ngIf="data.isCustomer === true">Customer</h6>
                                     <h6 class="title text-truncate" *ngIf="data.isCustomer === false">Distributor</h6>
                                 </figcaption>
                             </figure>
-                        </td>
+                        </td> -->
                         <td class="text-right">
                             <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"
                                 data-original-title="Save to Wishlist"> <i class="fa fa-pencil"
