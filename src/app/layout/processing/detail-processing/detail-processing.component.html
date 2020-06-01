@@ -129,12 +129,12 @@
             <!-- Reciepe -->
 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="mt-2 mb-2">
-                        <label for="" class="headings"> <strong>Recipe</strong></label>
+                        <label for="" class="headings"> {{buttonText ? 'Update': 'Register'}} Raw Material</label>
                     </div>
                 </div>
-                <div class="col-sm-8 mt-3">
+                <div class="col-sm-4 mt-3">
                     <p class="pull-right">
                         <i class="fa fa-plus-circle text-success fontSize40 cusrsor-pointer" (click)="addRecipe()"></i>
                     </p>
@@ -176,12 +176,12 @@
             <!-- Raw -->
 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="mt-2 mb-2">
-                        <label for="" class="headings"> <strong>Raw</strong></label>
+                        <label for="" class="headings"> {{buttonText ? 'Update': 'Register'}} Finish Goods </label>
                     </div>
                 </div>
-                <div class="col-sm-8 mt-3">
+                <div class="col-sm-4 mt-3">
                     <p class="pull-right">
                         <i class="fa fa-plus-circle text-success fontSize40 cusrsor-pointer" (click)="addRaw()"></i>
                     </p>

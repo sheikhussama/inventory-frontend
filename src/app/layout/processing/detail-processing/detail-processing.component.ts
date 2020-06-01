@@ -23,6 +23,8 @@ export class DetailProcessingComponent implements OnInit {
   rawMaterial: any;
   userID: any;
   unit: any;
+  buttonText: Boolean;
+  rawRecipeDetail: any;
 
   constructor(
     private toast: ToasterService,
@@ -42,10 +44,11 @@ export class DetailProcessingComponent implements OnInit {
     this.getMaterial();
     this.userID = JSON.parse(localStorage.getItem('profileDetail'));
     this.route.paramMap.subscribe((params) => {
-      if (this.router.url.includes('detail')) {
+      if ((this.router.url).includes('detail') || (this.router.url).includes('update')) {
         if (params.has('id')) {
           this.processingID = params.get('id');
           this.viewProcessing();
+          this.updateFlowInit(params);
 
         } else {
           this.toast.pop('error', 'Opps!', 'Invalid request params');
@@ -55,11 +58,35 @@ export class DetailProcessingComponent implements OnInit {
     });
   }
 
+  /**
+   * Update flow init
+   * @param params
+   */
+  updateFlowInit(params: any) {
+    if (params.has('id')) {
+      this.processingID = params.get('id');
+      console.log(this.processingID)
+      this.viewRawRecipeDetail();
+      this.buttonText = true;
+    } else {
+      this.buttonText = false;
+      this.toast.pop('error', 'Opps!', 'Invalid request params');
+      this.router.navigate(['/dashboard']);
+    }
+  }
+
 
   initForm() {
     this.processingForm = this.fb.group({
       raw: this.fb.array([this.rawItem()]),
       recipie: this.fb.array([this.receipeItem()])
+    });
+  }
+
+  viewRawRecipeDetail() {
+    this.processingService.viewRawRecipeDetail(this.processingID).subscribe((response) => {
+      this.rawRecipeDetail = response;
+      console.log(this.rawRecipeDetail);
     });
   }
 

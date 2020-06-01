@@ -115,16 +115,21 @@
                         <td>
                             <figure class="media">
                                 <figcaption class="media-body">
-                                    <h6 class="title text-truncate text-primary" *ngIf="data.isSold === false">Pending</h6>
-                                    <h6 class="title text-truncate text-success" *ngIf="data.isSold === true">Delivered</h6>
-    
+                                    <h6 class="title text-truncate text-primary" *ngIf="data.isSold === false">Pending
+                                    </h6>
+                                    <h6 class="title text-truncate text-success" *ngIf="data.isSold === true">Delivered
+                                    </h6>
+
                                 </figcaption>
                             </figure>
                         </td>
                         <td class="text-dark">
                             <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"
-                                data-original-title="Save to Wishlist"> <i class="fa fa-eye" aria-hidden="true"
+                                data-original-title="Save to Wishlist"> <i class="fa fa-plus" aria-hidden="true"
                                     (click)="viewProcessingDetail(data.id)"></i></button>
+                            <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"
+                                data-original-title="Save to Wishlist"> <i class="fa fa-pencil" aria-hidden="true"
+                                    (click)="updateRawRecipe(data.id)"></i></button>
                         </td>
                     </tr>
                 </tbody>
