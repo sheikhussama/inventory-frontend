@@ -6,10 +6,11 @@ import { SharedModule } from '../../../shared/shared.module';
 import { PaymentFilterRoutingModule } from './payment-filter-routing.module';
 import { PaymentFilterComponent } from './payment-filter.component';
 import { PaymentDetailFilterComponent } from './payment-detail-filter/payment-detail-filter.component';
+import { CustomerLedgerComponent } from './customer-ledger/customer-ledger.component';
 
 
 @NgModule({
     imports: [CommonModule, SharedModule, PaymentFilterRoutingModule, PageHeaderModule, NgbModule],
-    declarations: [PaymentFilterComponent,PaymentDetailFilterComponent]
+    declarations: [PaymentFilterComponent,PaymentDetailFilterComponent, CustomerLedgerComponent]
 })
 export class PaymentFilterModule {}

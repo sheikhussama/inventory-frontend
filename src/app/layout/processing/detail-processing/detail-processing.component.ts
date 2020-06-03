@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ToasterService } from 'angular2-toaster';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import { EndProductService } from '../../../core/services/end-product.services';
 import { RawMaterialService } from '../../../core/services/materials.services';
 import { SaleService } from '../../../core/services/sale.services';
 import { ProcessingService } from '../../../core/services/processing.service';
+import { ProductService } from '../../../core/services/products.services';
 
 @Component({
   selector: 'app-detail-processing',
@@ -21,10 +21,12 @@ export class DetailProcessingComponent implements OnInit {
   clientDetail: any;
   flag: Boolean = true;
   rawMaterial: any;
-  userID: any;
+  user: any;
   unit: any;
   buttonText: Boolean;
   rawRecipeDetail: any;
+  userID: any;
+  productID: any;
 
   constructor(
     private toast: ToasterService,
@@ -32,28 +34,32 @@ export class DetailProcessingComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private saleService: SaleService,
-    private endProductService: EndProductService,
+    private productService: ProductService,
     private materialService: RawMaterialService,
     private processingService: ProcessingService
   ) { }
 
   ngOnInit(): void {
-    this.initForm();
+
     this.getEndProduct();
     this.unitBased();
     this.getMaterial();
-    this.userID = JSON.parse(localStorage.getItem('profileDetail'));
+    this.user = JSON.parse(localStorage.getItem('profileDetail'));
+    this.userID = this.user.user_id;
+    console.log(this.userID);
     this.route.paramMap.subscribe((params) => {
-      if ((this.router.url).includes('detail') || (this.router.url).includes('update')) {
+      if ((this.router.url).includes('detail')) {
         if (params.has('id')) {
           this.processingID = params.get('id');
           this.viewProcessing();
-          this.updateFlowInit(params);
-
+          this.initForm();
         } else {
           this.toast.pop('error', 'Opps!', 'Invalid request params');
           this.router.navigate(['/dashboard/processing']);
         }
+      } else if ((this.router.url).includes('update')) {
+        this.updateFlowInit(params);
+        this.initForm();
       }
     });
   }
@@ -65,7 +71,6 @@ export class DetailProcessingComponent implements OnInit {
   updateFlowInit(params: any) {
     if (params.has('id')) {
       this.processingID = params.get('id');
-      console.log(this.processingID)
       this.viewRawRecipeDetail();
       this.buttonText = true;
     } else {
@@ -76,6 +81,12 @@ export class DetailProcessingComponent implements OnInit {
   }
 
 
+  viewProcessing() {
+    this.saleService.viewFinalSale(this.processingID).subscribe((response) => {
+      this.processing = response;
+    });
+  }
+
   initForm() {
     this.processingForm = this.fb.group({
       raw: this.fb.array([this.rawItem()]),
@@ -83,33 +94,60 @@ export class DetailProcessingComponent implements OnInit {
     });
   }
 
+
+  rawItem(): FormGroup {
+    return this.fb.group({
+      rawQuantity: ['', Validators.required],
+      saleId: this.processingID ? this.processingID : null,
+      ProductId: [null, Validators.required],
+      user: this.userID ? this.userID : this.userID
+    });
+  }
+
+  receipeItem(): FormGroup {
+    return this.fb.group({
+      recipieQuantity: [null, Validators.required],
+      unit: null,
+      saleId: this.processingID ? this.processingID : this.processingID,
+      ProductId: [null, Validators.required],
+      user: this.userID ? this.userID : this.userID
+    });
+  }
+
+
   viewRawRecipeDetail() {
     this.processingService.viewRawRecipeDetail(this.processingID).subscribe((response) => {
       this.rawRecipeDetail = response;
-      console.log(this.rawRecipeDetail);
+      this.preFilledForm(this.rawRecipeDetail);
     });
   }
 
-  viewProcessing() {
-    this.saleService.viewFinalSale(this.processingID).subscribe((response) => {
-      this.processing = response;
-    });
-  }
 
   onSubmit() {
     const data = this.processingForm.value;
-    console.log(data);
-    this.processingService.storeRecipe(data.recipie).subscribe((response: any) => {
-      this.toast.pop('success', 'Success!', 'Recipe has been Created.');
-      this.callCompleted();
-    });
-    this.processingService.storeRaw(data.raw).subscribe((response: any) => {
-      this.toast.pop('success', 'Success!', 'Raw has been Created.');
-      this.callCompleted();
-    });
+    if ((this.router.url).includes('detail')) {
+      this.processingService.storeRecipe(data.recipie).subscribe((response: any) => {
+        this.toast.pop('success', 'Success!', 'Raw Material has been Created.');
+        this.callCompleted();
+      });
+      this.processingService.storeRaw(data.raw).subscribe((response: any) => {
+        this.toast.pop('success', 'Success!', 'Finish Goods has been Updated.');
+        this.callCompleted();
+      });
+    }
+    else if ((this.router.url).includes('uodate')) {
+      this.processingService.updateRawMaterial(data.recipie,this.processingID).subscribe((response: any) => {
+        this.toast.pop('success', 'Success!', 'Raw Material has been Created.');
+        this.callCompleted();
+      });
+      this.processingService.updateFinishGoods(data.raw, this.processingID).subscribe((response: any) => {
+        this.toast.pop('success', 'Success!', 'Finish Goods has been Updated.');
+        this.callCompleted();
+      });
+    }
   }
 
-  callCompleted(){
+  callCompleted() {
     this.processingForm.reset();
   }
 
@@ -128,24 +166,6 @@ export class DetailProcessingComponent implements OnInit {
     this.recipie.removeAt(index);
   }
 
-  rawItem(): FormGroup {
-    return this.fb.group({
-      rawQuantity: ['', Validators.required],
-      saleId: [ this.processingID, Validators.required],
-      ProductId: [null, Validators.required],
-      user: this.userID
-    });
-  }
-
-  receipeItem(): FormGroup {
-    return this.fb.group({
-      recipieQuantity: [null, Validators.required],
-      unit: null,
-      saleId: [ this.processingID, Validators.required],
-      ProductId: [null, Validators.required],
-      user: this.userID
-    });
-  }
 
   unitBased() {
     this.unit = [
@@ -161,7 +181,7 @@ export class DetailProcessingComponent implements OnInit {
   }
 
   getEndProduct() {
-    this.endProductService.getEndProducts().subscribe((response) => {
+    this.productService.getProducts().subscribe((response) => {
       this.endProduct = response.results;
     });
   }
@@ -172,13 +192,23 @@ export class DetailProcessingComponent implements OnInit {
     });
   }
 
-
-
   get raw() {
     return this.processingForm.get('raw') as FormArray;
   }
   get recipie() {
     return this.processingForm.get('recipie') as FormArray;
+  }
+
+  preFilledForm(viewDetail: any) {
+    let controlRaw = <FormArray>this.processingForm.controls.raw;
+    viewDetail.sale_rawrecipie.forEach(x => {
+      controlRaw.push(this.fb.group(x));
+    })
+    let controlRecipie = <FormArray>this.processingForm.controls.recipie;
+    viewDetail.sale_recipie.forEach(x => {
+      console.log(x)
+      controlRecipie.push(this.fb.group(x));
+    })
   }
 
 }

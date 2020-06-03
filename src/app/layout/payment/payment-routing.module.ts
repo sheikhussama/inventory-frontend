@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PaymentComponent } from './payment.component';
 import { ListPaymentComponent } from './list-payment/list-payment.component';
 import { CreatePaymentComponent } from './create-payment/create-payment.component';
+import { CustomerLedgerComponent } from './payment-filter/customer-ledger/customer-ledger.component';
 
 const routes: Routes = [
     {

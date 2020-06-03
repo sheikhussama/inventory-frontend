@@ -29,5 +29,9 @@ export class ClientService {
   viewClient(id :any ): Observable<any> {
     return this.http.get<any>(environment.endPoint + 'Client/' + id);
   }
+
+   customerLedger(id :any): Observable<any> {
+    return this.http.post<any>(environment.endPoint + 'PaymentDetailFilter/CustomerLedger/', id);
+  }
   
 }

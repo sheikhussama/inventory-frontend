@@ -5,10 +5,11 @@ import { PageHeaderModule } from '../../.././shared/modules/page-header/page-hea
 import { SaleFilterComponent } from './sale-filter.component';
 import { SaleHistoryComponent } from './sale-history/sale-history.component';
 import { SaleFilterRoutingModule } from './sale-history-routing.module';
+import { SalePendingOrdersComponent } from './sale-pending-orders/sale-pending-orders.component';
 
 
 @NgModule({
     imports: [CommonModule, SharedModule, SaleFilterRoutingModule, PageHeaderModule],
-    declarations: [SaleFilterComponent, SaleHistoryComponent]
+    declarations: [SaleFilterComponent, SaleHistoryComponent, SalePendingOrdersComponent]
 })
 export class SaleFilterModule { }

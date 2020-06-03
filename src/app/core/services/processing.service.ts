@@ -34,4 +34,14 @@ export class ProcessingService {
     return this.http.post(environment.endPoint + 'SaleDetail/RecipieDetailFilter/', data);
   }
 
+  // Update
+
+  updateFinishGoods(data: any ,id: any) {
+    return this.http.put(environment.endPoint + 'FinishGoodsUpdate/' + id + '/', data);
+  }
+
+  updateRawMaterial(data: any , id: any) {
+    return this.http.put(environment.endPoint + 'RawMaterialUpdate/' + id + '/', data);
+  }
+
 }

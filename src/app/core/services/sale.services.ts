@@ -55,4 +55,12 @@ export class SaleService {
     saleHistory(data: any) {
       return this.http.post(environment.endPoint + 'SaleDetail/SaleFilter/', data);
     }
+
+    salePendingOrders(data: any) {
+      return this.http.post(environment.endPoint + 'SaleDetail/PendingOrders/', data);
+    }
+
+    changeOrderStatus(id: any) {
+      return this.http.get(environment.endPoint + 'SaleDetail/' + id + '/GetSaleDetailRecipie/changeOrderStatus/');
+    }
 }
