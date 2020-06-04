@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PageHeaderModule } from '../../../shared/modules/page-header/page-header.module';
 import { SharedModule } from '../../../shared/shared.module';
 import { PaymentFilterRoutingModule } from './payment-filter-routing.module';
@@ -10,7 +9,7 @@ import { CustomerLedgerComponent } from './customer-ledger/customer-ledger.compo
 
 
 @NgModule({
-    imports: [CommonModule, SharedModule, PaymentFilterRoutingModule, PageHeaderModule, NgbModule],
+    imports: [CommonModule, SharedModule, PaymentFilterRoutingModule, PageHeaderModule],
     declarations: [PaymentFilterComponent,PaymentDetailFilterComponent, CustomerLedgerComponent]
 })
 export class PaymentFilterModule {}

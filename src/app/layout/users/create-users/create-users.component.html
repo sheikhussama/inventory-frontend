@@ -18,6 +18,11 @@
                             value=""
                             (change)="checkUsername($event)"
                         />
+                        <div *ngIf="usernames?.invalid && (usernames.dirty || usernames.touched)" class="validation-error text-danger">
+                            <div *ngIf="usernames.errors.required || usernames.errors?.invalid">
+                                Select a valid Username
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -29,6 +34,11 @@
                             placeholder="abc@gmail.com"
                             value=""
                         />
+                        <div *ngIf="email?.invalid && (email.dirty || email.touched)" class="validation-error text-danger">
+                            <div *ngIf="email.errors.required || email.errors?.invalid">
+                                Select a valid Email
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -40,6 +50,11 @@
                         placeholder="Password"
                         value=""
                     />
+                    <div *ngIf="password?.invalid && (password.dirty || password.touched)" class="validation-error text-danger">
+                        <div *ngIf="password.errors.required || password.errors?.invalid">
+                            Select a valid Password
+                        </div>
+                    </div>
                     </div>
                 </div>
                 <div class="col-md-3">

@@ -7,10 +7,9 @@ import { PageHeaderModule } from '../../shared/modules/page-header/page-header.m
 import { ListingUsersComponent } from './listing-users/listing-users.component';
 import { CreateUsersComponent } from './create-users/create-users.component';
 import { ActiveUsersComponent } from './active-users/active-users.component';
-import { DeleteUsersComponent } from './delete-users/delete-users.component';
 
 @NgModule({
     imports: [CommonModule,SharedModule, PageHeaderModule, UserRoutingModule],
-    declarations: [UsersComponent , ListingUsersComponent, CreateUsersComponent, ActiveUsersComponent, DeleteUsersComponent]
+    declarations: [UsersComponent , ListingUsersComponent, CreateUsersComponent, ActiveUsersComponent]
 })
 export class UsersModule {}

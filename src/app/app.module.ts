@@ -6,7 +6,6 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LanguageTranslationModule } from './shared/modules/language-translation/language-translation.module';
 import { SharedModule } from './shared/shared.module';
 import { ToasterModule } from 'angular2-toaster';
 import { AuthGuard } from './core/auth-guard';
@@ -19,7 +18,6 @@ import { CookieService } from 'ngx-cookie-service';
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        LanguageTranslationModule,
         AppRoutingModule,
         SharedModule,
         ToasterModule.forRoot(),

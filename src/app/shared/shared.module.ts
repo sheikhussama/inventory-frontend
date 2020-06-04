@@ -3,12 +3,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { MainbuttonsComponent } from './modules/mainbuttons/mainbuttons.component';
 
 
 @NgModule({
-  declarations: [
-  MainbuttonsComponent],
+  declarations: [],
   imports: [
     RouterModule,
     CommonModule,

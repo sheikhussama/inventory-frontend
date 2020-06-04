@@ -27,7 +27,7 @@ export class CreateUsersComponent implements OnInit {
   initForm() {
     this.usersForm = this.fb.group({
       username: ['', [Validators.required]],
-      email: [null, [Validators.required]],
+      email: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
   }
@@ -87,6 +87,13 @@ export class CreateUsersComponent implements OnInit {
     this.usersForm.reset();
   }
 
-
-
+  get usernames() {
+    return this.usersForm.get('username');
+  }
+  get password() {
+    return this.usersForm.get('password');
+  } 
+  get email() {
+    return this.usersForm.get('email');
+  }
 }
