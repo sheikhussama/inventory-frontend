@@ -44,8 +44,8 @@ import { AuthService } from '../services/auth.services';
             switch ((<HttpErrorResponse>error).status) {
               case 400:
                 return this.handle400Error(error);
-                case 401:
-                return this.handle401Error(error);
+                case 500:
+                return this.handle500Error(error);
               default:
                 return this.validationFailed(error);
             }
@@ -56,29 +56,23 @@ import { AuthService } from '../services/auth.services';
     }
   
 
-    handle401Error(error){
-        if (error.status === 401) {
-            // auto logout if 401 response returned from api
-            this.authenticationService.logout();
-            // location.reload(true);
-        }
-        return observableThrowError(error);
+    handle500Error(error){
+      this.toaster.pop('error', 'Sorry for inconvience, server not responding', '');
+      return observableThrowError(error);
     }
 
     validationFailed(error) {
-      this.toaster.pop('error', 'Opps!', error.error.message);
-      return observableThrowError(error);
+      if (error.status !== 200) {
+        this.toaster.pop('error', 'Sorry', 'Something went wrong');
+        return observableThrowError(error);
+    }
+    return observableThrowError(null);
     }
   
     handle400Error(error) {
-      if (
-        error &&
-        error.status === 400 &&
-        error.error &&
-        error.error.error === 'invalid_grant'
-      ) {
-        // If we get a 400 and the error message is 'invalid_grant', the token is no
-        return this.logout();
+      const err = error.error.error;
+      if (error.status === 400) {
+          this.toaster.pop('error','Error!', 'Somethingh you Could not Properly Added');
       }
       return observableThrowError(error);
     }

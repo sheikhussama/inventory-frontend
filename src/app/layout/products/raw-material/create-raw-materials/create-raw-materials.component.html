@@ -14,6 +14,11 @@
                         <input type="text" class="form-control"
                          placeholder="Product Name" value=""
                          formControlName="productName" />
+                         <div *ngIf="productName?.invalid && (productName.dirty || productName.touched)" class="validation-error text-danger">
+                            <div *ngIf="productName.errors.required || productName.errors?.invalid">
+                                Select a valid Product Name
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -23,6 +28,11 @@
                         placeholder="Quantity"
                          value=""
                          formControlName="Quantity" />
+                         <div *ngIf="Quantity?.invalid && (Quantity.dirty || Quantity.touched)" class="validation-error text-danger">
+                            <div *ngIf="Quantity.errors.required || Quantity.errors?.invalid">
+                                Select a valid Quantity
+                            </div>
+                        </div>
                     </div>
                 </div>
 

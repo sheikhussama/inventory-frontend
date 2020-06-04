@@ -125,7 +125,7 @@
 <div class="container-fluid register-form">
     <div class="form">
 
-        <form class="form-content" [formGroup]="processingForm">
+        <form class="form-content" [formGroup]="processingForm" (ngSubmit)="onSubmit()" >
             <!-- Reciepe -->
 
             <div class="row">
@@ -162,7 +162,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <ng-select *ngIf="flag" placeholder="Select Unit Type" formControlName="unit" [items]="unit"
-                                bindValue="id" bindLabel="value">
+                                bindValue="value" bindLabel="value">
                             </ng-select>
                         </div>
                     </div>
@@ -214,7 +214,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <button type="submit" class="btnSubmit" (click)="onSubmit()" >{{buttonText ? 'Update': 'Register'}}</button>
+                    <button type="submit" class="btnSubmit" >{{buttonText ? 'Update': 'Register'}}</button>
                 </div>
             </div>
         </form>

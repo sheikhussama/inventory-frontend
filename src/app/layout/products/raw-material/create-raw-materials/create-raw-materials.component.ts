@@ -13,13 +13,13 @@ export class CreateRawMaterialsComponent implements OnInit {
 
   materialForm: FormGroup;
   userID: any;
-  materialID: any; 
-  materialDetail: any; 
+  materialID: any;
+  materialDetail: any;
   buttonText: Boolean;
 
   constructor(
-    private fb: FormBuilder, 
-    private toast:ToasterService, 
+    private fb: FormBuilder,
+    private toast: ToasterService,
     private rawMaterialService: RawMaterialService,
     private router: Router,
     private route: ActivatedRoute) { }
@@ -55,7 +55,7 @@ export class CreateRawMaterialsComponent implements OnInit {
   viewMaterial() {
     this.rawMaterialService.viewMaterial(this.materialID).subscribe((response) => {
       this.materialDetail = response;
-        this.preFilledForm(this.materialDetail);
+      this.preFilledForm(this.materialDetail);
     });
   }
 
@@ -64,34 +64,41 @@ export class CreateRawMaterialsComponent implements OnInit {
       id: this.materialID ? this.materialID : '', // to handle update flow only for class.
       productName: ['', [Validators.required]],
       Quantity: ['', [Validators.required]],
-  });
-}
-
-onSubmit() {
-  const data = this.materialForm.value;
-  data.user = this.userID.user_id;
-  if (data.id > 0) {
-    this.rawMaterialService.updateMaterial(data, data.id).subscribe((response: any) => {
-      this.toast.pop('success', 'Success!', 'Raw Material has been Updated.');
-      this.callCompleted();
-    });
-  } else {
-    this.rawMaterialService.storeMaterial(data).subscribe((response: any) => {
-      this.toast.pop('success', 'Success!', 'Raw Material has been Created.');
-      this.callCompleted();
     });
   }
-}
+
+  onSubmit() {
+    const data = this.materialForm.value;
+    data.user = this.userID.user_id;
+    if (data.id > 0) {
+      this.rawMaterialService.updateMaterial(data, data.id).subscribe((response: any) => {
+        this.toast.pop('success', 'Success!', 'Raw Material has been Updated.');
+        this.callCompleted();
+      });
+    } else {
+      this.rawMaterialService.storeMaterial(data).subscribe((response: any) => {
+        this.toast.pop('success', 'Success!', 'Raw Material has been Created.');
+        this.callCompleted();
+      });
+    }
+  }
 
 
-callCompleted() {
-  this.materialForm.reset();
-  this.router.navigate(['/products/raw']);
-}
+  callCompleted() {
+    this.materialForm.reset();
+    this.router.navigate(['/products/raw']);
+  }
 
-preFilledForm(raw: any) {
-  this.materialForm.get('productName').setValue(raw.productName);
-  this.materialForm.get('Quantity').setValue(raw.Quantity);
-}
+  preFilledForm(raw: any) {
+    this.materialForm.get('productName').setValue(raw.productName);
+    this.materialForm.get('Quantity').setValue(raw.Quantity);
+  }
 
+
+  get productName() {
+    return this.materialForm.get('productName');
+  }
+  get Quantity() {
+    return this.materialForm.get('Quantity');
+  }
 }

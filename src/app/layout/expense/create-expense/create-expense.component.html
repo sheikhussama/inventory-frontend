@@ -10,26 +10,46 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" formControlName="purpose" class="form-control" placeholder="Enter Purpose" value="" />
+                        <input type="text" formControlName="purpose" class="form-control" placeholder="Enter Purpose"
+                            value="" />
+                        <div *ngIf="purpose?.invalid && (purpose.dirty || purpose.touched)"
+                            class="validation-error text-danger">
+                            <div *ngIf="purpose.errors.required || purpose.errors?.invalid">
+                                Enter a valid Purpose
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" class="form-control" formControlName="amount" placeholder="Enter Amount" value="" />
-                   </div>
+                        <input type="text" class="form-control" formControlName="amount" placeholder="Enter Amount"
+                            value="" />
+                        <div *ngIf="amount?.invalid && (amount.dirty || amount.touched)"
+                            class="validation-error text-danger">
+                            <div *ngIf="amount.errors.required || amount.errors?.invalid">
+                                Enter a valid Amount
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" class="form-control" formControlName="reference" placeholder="Enter Reference" value="" />
-
+                        <input type="text" class="form-control" formControlName="reference"
+                            placeholder="Enter Reference" value="" />
+                        <div *ngIf="reference?.invalid && (reference.dirty || reference.touched)"
+                            class="validation-error text-danger">
+                            <div *ngIf="reference.errors.required || reference.errors?.invalid">
+                                Enter a valid Reference
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <button type="submit" class="btnSubmit">{{buttonText ? 'Update': 'Create'}}</button>
+                    <button type="submit" class="btnSubmit" [disabled]="!expenseForm?.valid">{{buttonText ? 'Update': 'Create'}}</button>
                 </div>
             </div>
         </form>

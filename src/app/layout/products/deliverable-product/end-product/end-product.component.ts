@@ -102,4 +102,8 @@ callCompleted() {
 preFilledForm(endProduct: any) {
   this.endProductForm.get('productName').setValue(endProduct.productName);
 }
+
+get productName() {
+  return this.endProductForm.get('productName');
+}
 }

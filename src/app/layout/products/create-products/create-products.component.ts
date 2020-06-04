@@ -84,7 +84,7 @@ export class CreateProductsComponent implements OnInit {
   });
 }
 
-bulkQuantity(event: any){
+bulkQuantitys(event: any){
   this.bulk = event.srcElement.value;
   this.totalQuantity();
 }
@@ -176,4 +176,25 @@ callCompleted() {
     this.productForm.get('QuantityInKg').setValue(product.QuantityInKg);
   }
 
+  get productName() {
+    return this.productForm.get('productName');
+  }
+  get DcNo() {
+    return this.productForm.get('DcNo');
+  }
+  get bulkQuantity() {
+    return this.productForm.get('bulkQuantity');
+  }
+  get types() {
+    return this.productForm.get('type');
+  }
+  get units() {
+    return this.productForm.get('unit');
+  }
+  // get QuantityInUnit() {
+  //   return this.productForm.get('QuantityInUnit');
+  // }
+  // get QuantityInKgs() {
+  //   return this.productForm.get('QuantityInKg');
+  // }
 }

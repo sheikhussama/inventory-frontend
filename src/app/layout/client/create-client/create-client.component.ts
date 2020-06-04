@@ -126,4 +126,28 @@ callCompleted() {
     this.clientForm.get('isCredit').setValue(client.isCredit);
   }
 
+  get customerName() {
+    return this.clientForm.get('customerName');
+  }
+  get company() {
+    return this.clientForm.get('company');
+  }
+  get address() {
+    return this.clientForm.get('address');
+  }
+  get contactNo() {
+    return this.clientForm.get('contactNo');
+  }
+  get nicNo() {
+    return this.clientForm.get('nicNo');
+  }
+  get balance() {
+    return this.clientForm.get('balance');
+  }
+  get detail() {
+    return this.clientForm.get('detail');
+  }
+  get isCredit() {
+    return this.clientForm.get('isCredit');
+  }
 }

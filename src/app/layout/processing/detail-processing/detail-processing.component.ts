@@ -27,6 +27,8 @@ export class DetailProcessingComponent implements OnInit {
   rawRecipeDetail: any;
   userID: any;
   productID: any;
+  productRawRecipie: any;
+  rawQuantity: any;
 
   constructor(
     private toast: ToasterService,
@@ -46,7 +48,6 @@ export class DetailProcessingComponent implements OnInit {
     this.getMaterial();
     this.user = JSON.parse(localStorage.getItem('profileDetail'));
     this.userID = this.user.user_id;
-    console.log(this.userID);
     this.route.paramMap.subscribe((params) => {
       if ((this.router.url).includes('detail')) {
         if (params.has('id')) {
@@ -131,19 +132,20 @@ export class DetailProcessingComponent implements OnInit {
         this.callCompleted();
       });
       this.processingService.storeRaw(data.raw).subscribe((response: any) => {
-        this.toast.pop('success', 'Success!', 'Finish Goods has been Updated.');
+        this.toast.pop('success', 'Success!', 'Finish Goods has been Created.');
         this.callCompleted();
       });
     }
-    else if ((this.router.url).includes('uodate')) {
-      this.processingService.updateRawMaterial(data.recipie,this.processingID).subscribe((response: any) => {
-        this.toast.pop('success', 'Success!', 'Raw Material has been Created.');
-        this.callCompleted();
-      });
-      this.processingService.updateFinishGoods(data.raw, this.processingID).subscribe((response: any) => {
+    else if ((this.router.url).includes('update')) {
+      this.processingService.updateFinishGoods(data.raw).subscribe((response: any) => {
         this.toast.pop('success', 'Success!', 'Finish Goods has been Updated.');
         this.callCompleted();
       });
+      this.processingService.updateRawMaterial(data.recipie).subscribe((response: any) => {
+        this.toast.pop('success', 'Success!', 'Raw Material has been Updated.');
+        this.callCompleted();
+      });
+
     }
   }
 
@@ -171,11 +173,11 @@ export class DetailProcessingComponent implements OnInit {
     this.unit = [
       {
         id: '1',
-        value: 'L',
+        value: 'LTR',
       },
       {
         id: '2',
-        value: 'G',
+        value: 'GRAMS',
       }
     ]
   }
@@ -201,14 +203,25 @@ export class DetailProcessingComponent implements OnInit {
 
   preFilledForm(viewDetail: any) {
     let controlRaw = <FormArray>this.processingForm.controls.raw;
-    viewDetail.sale_rawrecipie.forEach(x => {
-      controlRaw.push(this.fb.group(x));
-    })
+    viewDetail.sale_rawrecipie.forEach((x: any, index: any) => {
+      controlRaw.push(this.fb.group({
+        rawQuantity: x.rawQuantity,
+        ProductId: x.product_rawrecipie.id,
+        user: x.user,
+        saleId: x.saleId
+      }));
+    });
+
     let controlRecipie = <FormArray>this.processingForm.controls.recipie;
     viewDetail.sale_recipie.forEach(x => {
-      console.log(x)
-      controlRecipie.push(this.fb.group(x));
-    })
+      controlRecipie.push(this.fb.group({
+        recipieQuantity: x.recipieQuantity,
+        ProductId: x.product_recipie.id,
+        user: x.user,
+        saleId: x.saleId,
+        unit: x.unit
+      }));
+    });
   }
 
 }

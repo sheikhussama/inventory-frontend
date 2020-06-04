@@ -11,48 +11,61 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <input type="text" class="form-control" formControlName="amount" placeholder="Enter Amount" />
+                        <div *ngIf="amount?.invalid && (amount.dirty || amount.touched)"
+                        class="validation-error text-danger">
+                        <div *ngIf="amount.errors.required || amount.errors?.invalid">
+                            Enter a valid Amount
+                        </div>
+                    </div>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <ng-select
-                            placeholder="Given Type"
-                            formControlName="givenType"
-                            [items]="type"
-                            class=""
-                            bindLabel="value"
-                            bindValue="id"
-                        >
+                        <ng-select placeholder="Given Type" formControlName="givenType" [items]="type" class=""
+                            bindLabel="value" bindValue="id">
+
                         </ng-select>
+                        <div *ngIf="givenType?.invalid && (givenType.dirty || givenType.touched)"
+                            class="validation-error text-danger">
+                            <div *ngIf="givenType.errors.required || givenType.errors?.invalid">
+                                Select a valid Cash Type
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <ng-select
-                            placeholder="Select Distributor"
-                            [items]="clientDetail"
-                            class=""
-                            formControlName="distibutorId"
-                            bindLabel="customerName"
-                            bindValue="id"
-                        >
+                        <ng-select placeholder="Select Distributor" [items]="clientDetail" class=""
+                            formControlName="distibutorId" bindLabel="customerName" bindValue="id">
                         </ng-select>
+                        <div *ngIf="distibutorId?.invalid && (distibutorId.dirty || distibutorId.touched)"
+                            class="validation-error text-danger">
+                            <div *ngIf="distibutorId.errors.required || distibutorId.errors?.invalid">
+                                Select a valid Client
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6 form-group mt-2">
                     <div class="form-check-inline">
-                        <label class="customradio"
-                            ><span class="radiotextsty">Customer</span>
+                        <label class="customradio"><span class="radiotextsty">Customer</span>
                             <input type="radio" value="true" formControlName="isCustomer" name="isCustomer" />
                             <span class="checkmark"></span>
                         </label>
-                        <label class="customradio ml-2"
-                            ><span class="radiotextsty">Distributor</span>
-                            <input type="radio" value="false"name="isCustomer" formControlName="isCustomer" />
+                        <label class="customradio ml-2"><span class="radiotextsty">Distributor</span>
+                            <input type="radio" value="false" name="isCustomer" formControlName="isCustomer" />
                             <span class="checkmark"></span>
                         </label>
+
+
+                    </div>
+                    <div *ngIf="isCustomer?.invalid && (isCustomer.dirty || isCustomer.touched)"
+                        class="validation-error text-danger">
+                        <div *ngIf="isCustomer.errors.required || isCustomer.errors?.invalid">
+                            Select a valid Customer or Distributor
+                        </div>
                     </div>
                 </div>
             </div>
@@ -72,23 +85,22 @@
                         </label>
                     </div>
                 </div> -->
-              
+
             </div>
 
             <div class="row">
-                <textarea
-                    name=""
-                    formControlName="detail"
-                    placeholder="Enter Detail"
-                    id=""
-                    cols="50"
-                    rows="5"
-                    class="ml-3"
-                ></textarea>
+                <textarea name="" formControlName="detail" placeholder="Enter Detail" id="" cols="50" rows="5"
+                    class="ml-3"></textarea>
+                <div *ngIf="detail?.invalid && (detail.dirty || detail.touched)" class="validation-error text-danger">
+                    <div *ngIf="detail.errors.required || detail.errors?.invalid">
+                        Select a valid Customer or Distributor
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-4 offset-lg-3">
-                    <button type="submit" class="btnSubmit mt-2">{{ buttonText ? 'Update' : 'Register' }}</button>
+                    <button type="submit" class="btnSubmit mt-2"
+                       >{{ buttonText ? 'Update' : 'Register' }}</button>
                 </div>
             </div>
         </form>

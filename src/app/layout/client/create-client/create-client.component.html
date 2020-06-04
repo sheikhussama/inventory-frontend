@@ -11,37 +11,27 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" 
-                         class="form-control"
-                         placeholder="Enter Customer Name" 
-                         formControlName="customerName"
-                         value="" />
+                        <input type="text" class="form-control" placeholder="Enter Customer Name"
+                            formControlName="customerName" value="" />
+                        <div *ngIf="customerName?.invalid && (customerName.dirty || customerName.touched)"
+                            class="validation-error text-danger">
+                            <div *ngIf="customerName.errors.required || customerName.errors?.invalid">
+                                Enter a valid Customer Name
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" class="form-control"
-                        placeholder="Enter Company" value="" 
-                        formControlName="company"
-                        />
-                    </div>
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="text" class="form-control"
-                         placeholder="Wnter Address" value=""
-                         formControlName="address" />
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="text" formControlName="contactNo"
-                         class="form-control" placeholder="Enter Contact No" value="" />
+                        <input type="text" class="form-control" placeholder="Enter Company" value=""
+                            formControlName="company" />
+                        <div *ngIf="company?.invalid && (company.dirty || company.touched)"
+                            class="validation-error text-danger">
+                            <div *ngIf="company.errors.required || company.errors?.invalid">
+                                Enter a valid Company
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -49,16 +39,27 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" class="form-control"
-                         placeholder="Enter CNIC NO" formControlName="nicNo" value="" />
+                        <input type="text" class="form-control" placeholder="Wnter Address" value=""
+                            formControlName="address" />
+                        <div *ngIf="address?.invalid && (address.dirty || address.touched)"
+                            class="validation-error text-danger">
+                            <div *ngIf="address.errors.required || address.errors?.invalid">
+                                Enter a valid Address
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" class="form-control" 
-                        placeholder="Enter Balance" formControlName="balance"
-                        value="" />
+                        <input type="text" formControlName="contactNo" class="form-control"
+                            placeholder="Enter Contact No" value="" />
+                        <div *ngIf="contactNo?.invalid && (contactNo.dirty || contactNo.touched)"
+                            class="validation-error text-danger">
+                            <div *ngIf="contactNo.errors.required || contactNo.errors?.invalid">
+                                Enter a valid Contact No
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -66,33 +67,73 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <textarea name="" id="" cols="50"
-                         rows="5"
-                          placeholder="Enter Detail" 
-                          formControlName="detail" ></textarea> </div>
+                        <input type="text" class="form-control" placeholder="Enter CNIC NO" formControlName="nicNo"
+                            value="" />
+                        <div *ngIf="nicNo?.invalid && (nicNo.dirty || nicNo.touched)"
+                            class="validation-error text-danger">
+                            <div *ngIf="nicNo.errors.required || nicNo.errors?.invalid">
+                                Enter a valid CNIC
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Enter Balance" formControlName="balance"
+                            value="" />
+                        <div *ngIf="balance?.invalid && (balance.dirty || balance.touched)"
+                            class="validation-error text-danger">
+                            <div *ngIf="balance.errors.required || balance.errors?.invalid">
+                                Enter a valid Balance
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <textarea name="" id="" cols="50" rows="5" placeholder="Enter Detail"
+                            formControlName="detail"></textarea>
+                        <div *ngIf="detail?.invalid && (detail.dirty || detail.touched)"
+                            class="validation-error text-danger">
+                            <div *ngIf="detail.errors.required || detail.errors?.invalid">
+                                Enter a valid Balance
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="col-md-6 form-group">
                         <div class="form-check-inline">
-      
-                          <label class="customradio"><span class="radiotextsty">Credit</span>
-                            <input type="radio" name="isCredit" formControlName="isCredit" checked="isCredit" value="true">
-                            <span class="checkmark"></span>
-                          </label>        
-                          <label class="customradio"><span class="radiotextsty">Debit</span>
-                            <input type="radio" name="isCredit" formControlName="isCredit" checked="isCredit" value="false">
-                            <span class="checkmark"></span>
-                          </label>
-      
-                      </div>
-                </div>
+
+                            <label class="customradio"><span class="radiotextsty">Credit</span>
+                                <input type="radio" name="isCredit" formControlName="isCredit" checked="isCredit"
+                                    value="true">
+                                <span class="checkmark"></span>
+                            </label>        
+                            <label class="customradio"><span class="radiotextsty">Debit</span>
+                                <input type="radio" name="isCredit" formControlName="isCredit" checked="isCredit"
+                                    value="false">
+                                <span class="checkmark"></span>
+                            </label>
+                            <div *ngIf="isCredit?.invalid && (isCredit.dirty || isCredit.touched)"
+                                class="validation-error text-danger">
+                                <div *ngIf="isCredit.errors.required || isCredit.errors?.invalid">
+                                    Enter a valid Balance
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <button type="submit" class="btnSubmit">{{buttonText ? 'Update': 'Create'}}</button>
+                    <button type="submit" class="btnSubmit" [disabled]="!clientForm?.valid">{{buttonText ? 'Update': 'Create'}}</button>
 
                 </div>
             </div>

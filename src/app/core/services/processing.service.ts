@@ -36,12 +36,12 @@ export class ProcessingService {
 
   // Update
 
-  updateFinishGoods(data: any ,id: any) {
-    return this.http.put(environment.endPoint + 'FinishGoodsUpdate/' + id + '/', data);
+  updateFinishGoods(data: any) {
+    return this.http.post(environment.endPoint + 'FinishGoodsUpdate/', data);
   }
 
-  updateRawMaterial(data: any , id: any) {
-    return this.http.put(environment.endPoint + 'RawMaterialUpdate/' + id + '/', data);
+  updateRawMaterial(data: any) {
+    return this.http.post(environment.endPoint + 'RawMaterialUpdate/', data);
   }
 
 }

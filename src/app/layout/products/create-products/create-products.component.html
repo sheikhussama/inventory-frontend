@@ -15,6 +15,11 @@
                     <div class="form-group">
                         <input type="text" class="form-control"
                          placeholder="Dc No" value="" formControlName="DcNo" />
+                         <div *ngIf="DcNo?.invalid && (DcNo.dirty || DcNo.touched)" class="validation-error text-danger">
+                            <div *ngIf="DcNo.errors.required || DcNo.errors?.invalid">
+                                Select a valid DC No
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -23,6 +28,11 @@
                     <div class="form-group">
                         <input type="text" class="form-control" 
                          placeholder="Product Name" value="" formControlName="productName" />
+                         <div *ngIf="productName?.invalid && (DcNo.dirty || productName.touched)" class="validation-error text-danger">
+                            <div *ngIf="productName.errors.required || productName.errors?.invalid">
+                                Select a valid Product Name
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -34,6 +44,11 @@
                            (change)="typelist($event)"
                           bindValue="id">
                         </ng-select>
+                        <div *ngIf="types?.invalid && (types.dirty || types.touched)" class="validation-error text-danger">
+                            <div *ngIf="types.errors.required || types.errors?.invalid">
+                                Select a valid Type
+                            </div>
+                        </div>
                     </div>
                 </div>
               
@@ -45,11 +60,16 @@
                         <input
                          class="form-control"
                           placeholder="Enter Bulk Quantity" 
-                          (change)="bulkQuantity($event)" 
+                          (change)="bulkQuantitys($event)" 
                           type="number"
                           formControlName="bulkQuantity" 
                           value=""
                            />
+                           <div *ngIf="bulkQuantity?.invalid && (bulkQuantity.dirty || bulkQuantity.touched)" class="validation-error text-danger">
+                            <div *ngIf="bulkQuantity.errors.required || bulkQuantity.errors?.invalid">
+                                Select a valid Bulk Quantity
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -59,8 +79,8 @@
                          placeholder="Quantity In Kg"
                          type="number"
                          (change)="QuantityInKg($event)"
-
                          value=""/>
+                      
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -80,6 +100,11 @@
                          [items]="unit" class="" bindLabel="value" bindValue="id"
                          (change)="QuantityUnit($event)" >
                         </ng-select>
+                        <div *ngIf="units?.invalid && (units.dirty || units.touched)" class="validation-error text-danger">
+                            <div *ngIf="units.errors.required || units.errors?.invalid">
+                                Select a valid Units
+                            </div>
+                        </div>
                     </div>
                 </div>             
                 <div class="col-md-6">
@@ -87,7 +112,6 @@
                    <input type="text" disabled class="form-control"
                    placeholder="{{typeOfProduct}} {{totalUnit}} {{unitName}}"
                    type="number"
-
                    value=""/>
                 </div>
             </div>

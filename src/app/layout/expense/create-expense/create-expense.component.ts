@@ -10,16 +10,16 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./create-expense.component.css']
 })
 export class CreateExpenseComponent implements OnInit {
-   
+
   expenseForm: FormGroup;
   userID: any;
-  expenseID: any; 
-  expenseDetail: any; 
+  expenseID: any;
+  expenseDetail: any;
   buttonText: Boolean;
 
   constructor(
-    private fb: FormBuilder, 
-    private toast:ToasterService, 
+    private fb: FormBuilder,
+    private toast: ToasterService,
     private expenseService: ExpenseService,
     private router: Router,
     private route: ActivatedRoute) { }
@@ -54,7 +54,7 @@ export class CreateExpenseComponent implements OnInit {
   viewExpense() {
     this.expenseService.viewExpense(this.expenseID).subscribe((response) => {
       this.expenseDetail = response;
-        this.preFilledForm(this.expenseDetail);
+      this.preFilledForm(this.expenseDetail);
     });
   }
 
@@ -64,36 +64,46 @@ export class CreateExpenseComponent implements OnInit {
       purpose: ['', [Validators.required]],
       amount: ['', [Validators.required]],
       reference: ['', [Validators.required]],
-  });
-}
-
-
-
-
-onSubmit() {
-  const data = this.expenseForm.value;
-  data.user = this.userID.user_id;
-  if (data.id > 0) {
-    this.expenseService.updateExpense(data, data.id).subscribe((response: any) => {
-      this.toast.pop('success', 'Success!', 'Expense has been Updated.');
-      this.callCompleted();
-    });
-  } else {
-    this.expenseService.storeExpense(data).subscribe((response: any) => {
-      this.toast.pop('success', 'Success!', 'Expense has been Created.');
-      this.callCompleted();
     });
   }
-}
 
-callCompleted() {
-  this.expenseForm.reset();
-  this.router.navigate(['/expense']);
-}
 
-preFilledForm(expense: any) {
-  this.expenseForm.get('purpose').setValue(expense.purpose);
-  this.expenseForm.get('amount').setValue(expense.amount);
-  this.expenseForm.get('reference').setValue(expense.reference);
-}
+
+
+  onSubmit() {
+    const data = this.expenseForm.value;
+    data.user = this.userID.user_id;
+    if (data.id > 0) {
+      this.expenseService.updateExpense(data, data.id).subscribe((response: any) => {
+        this.toast.pop('success', 'Success!', 'Expense has been Updated.');
+        this.callCompleted();
+      });
+    } else {
+      this.expenseService.storeExpense(data).subscribe((response: any) => {
+        this.toast.pop('success', 'Success!', 'Expense has been Created.');
+        this.callCompleted();
+      });
+    }
+  }
+
+  callCompleted() {
+    this.expenseForm.reset();
+    this.router.navigate(['/expense']);
+  }
+
+  preFilledForm(expense: any) {
+    this.expenseForm.get('purpose').setValue(expense.purpose);
+    this.expenseForm.get('amount').setValue(expense.amount);
+    this.expenseForm.get('reference').setValue(expense.reference);
+  }
+
+  get purpose() {
+    return this.expenseForm.get('purpose');
+  }
+  get amount() {
+    return this.expenseForm.get('amount');
+  }
+  get reference() {
+    return this.expenseForm.get('reference');
+  }
 }

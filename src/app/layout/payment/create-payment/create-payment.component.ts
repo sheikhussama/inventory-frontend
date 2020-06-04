@@ -14,15 +14,15 @@ export class CreatePaymentComponent implements OnInit {
 
   paymentForm: FormGroup;
   userID: any;
-  paymentID: any; 
-  paymentDetail: any; 
+  paymentID: any;
+  paymentDetail: any;
   buttonText: Boolean;
   type: any;
   clientDetail: any[] = [];
 
   constructor(
-    private fb: FormBuilder, 
-    private toast:ToasterService, 
+    private fb: FormBuilder,
+    private toast: ToasterService,
     private paymentService: PaymentService,
     private router: Router,
     private route: ActivatedRoute,
@@ -36,33 +36,33 @@ export class CreatePaymentComponent implements OnInit {
     });
     this.userID = JSON.parse(localStorage.getItem('profileDetail'));
     this.initForm();
-    this.givenType();
+    this.givenTypes();
     this.getClient();
   }
 
 
-givenType() {
-  this.type = [
-     { 
-       id : "C",
-       value: "Cash"
+  givenTypes() {
+    this.type = [
+      {
+        id: "C",
+        value: "Cash"
       },
-      { 
-        id : "Q",
+      {
+        id: "Q",
         value: "Cheaque"
-       },
-       { 
-        id : "T",
+      },
+      {
+        id: "T",
         value: "Transfer"
-       },
-  ]
-}
+      },
+    ]
+  }
 
-getClient() {
-  this.clientService.getClient().subscribe((response) => {
-    this.clientDetail = response.results;
- });
-} 
+  getClient() {
+    this.clientService.getClient().subscribe((response) => {
+      this.clientDetail = response.results;
+    });
+  }
 
   /**
    * Update flow init
@@ -83,7 +83,7 @@ getClient() {
   viewPayment() {
     this.paymentService.viewPayments(this.paymentID).subscribe((response) => {
       this.paymentDetail = response;
-        this.preFilledForm(this.paymentDetail);
+      this.preFilledForm(this.paymentDetail);
     });
   }
 
@@ -96,37 +96,56 @@ getClient() {
       givenType: [null, [Validators.required]],
       amount: ['', [Validators.required]],
       distibutorId: [null, [Validators.required]]
-  });
-}
-
-onSubmit() {
-  const data = this.paymentForm.value;
-  data.user = this.userID.user_id;
-  if (data.id > 0) {
-    this.paymentService.updatePayments(data, data.id).subscribe((response: any) => {
-      this.toast.pop('success', 'Success!', 'Payment has been Updated.');
-      this.callCompleted();
-    });
-  } else {
-    this.paymentService.storePayments(data).subscribe((response: any) => {
-      this.toast.pop('success', 'Success!', 'Payment has been Created.');
-      this.callCompleted();
     });
   }
-}
+
+  onSubmit() {
+    const data = this.paymentForm.value;
+    data.user = this.userID.user_id;
+    if (data.id > 0) {
+      this.paymentService.updatePayments(data, data.id).subscribe((response: any) => {
+        this.toast.pop('success', 'Success!', 'Payment has been Updated.');
+        this.callCompleted();
+      });
+    } else {
+      this.paymentService.storePayments(data).subscribe((response: any) => {
+        this.toast.pop('success', 'Success!', 'Payment has been Created.');
+        this.callCompleted();
+      });
+    }
+  }
 
 
-callCompleted() {
-  this.paymentForm.reset();
-  this.router.navigate(['/payment']);
-}
+  callCompleted() {
+    this.paymentForm.reset();
+    this.router.navigate(['/payment']);
+  }
 
-preFilledForm(payment: any) {
-  this.paymentForm.get('amount').setValue(payment.amount);
-  this.paymentForm.get('givenType').setValue(payment.givenType);
-  this.paymentForm.get('isCredit').setValue(payment.isCredit);
-  this.paymentForm.get('distibutorId').setValue(payment.distibutorId);
-  this.paymentForm.get('isCustomer').setValue(payment.isCustomer);
-  this.paymentForm.get('detail').setValue(payment.detail);
- }
+  preFilledForm(payment: any) {
+    this.paymentForm.get('amount').setValue(payment.amount);
+    this.paymentForm.get('givenType').setValue(payment.givenType);
+    this.paymentForm.get('isCredit').setValue(payment.isCredit);
+    this.paymentForm.get('distibutorId').setValue(payment.distibutorId);
+    this.paymentForm.get('isCustomer').setValue(payment.isCustomer);
+    this.paymentForm.get('detail').setValue(payment.detail);
+  }
+
+  get amount() {
+    return this.paymentForm.get('amount');
+  }
+  get givenType() {
+    return this.paymentForm.get('givenType');
+  }
+  get isCredit() {
+    return this.paymentForm.get('isCredit');
+  }
+  get distibutorId() {
+    return this.paymentForm.get('distibutorId');
+  }
+  get isCustomer() {
+    return this.paymentForm.get('isCustomer');
+  }
+  get detail() {
+    return this.paymentForm.get('detail');
+  }
 }
