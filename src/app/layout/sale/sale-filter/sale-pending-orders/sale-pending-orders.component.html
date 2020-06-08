@@ -35,117 +35,93 @@
 
 
 <div class="container" *ngIf="pendingOrders">
-    <div class="card">
-        <table class="table table-hover shopping-cart-wrap">
+    <div class="table-responsive">
+        <table class="table table-striped d-table text-center table-stats">
             <thead class="text-muted">
-                <tr>
-                    <th scope="col" width="200" class="text-dark text-truncate">Sale ID</th>
-                    <th scope="col" width="200" class="text-dark text-truncate">Master Cartoon</th>
-                    <th scope="col" width="200" class="text-dark text-truncate">Dozen Boxes</th>
-                    <th scope="col" width="200" class="text-dark text-truncate">Packing Capacity</th>
-                    <th scope="col" width="200" class="text-dark text-truncate">Packing Unit</th>
-                    <th scope="col" width="200" class="text-dark text-truncate">Packing Type</th>
-                    <th scope="col" width="200" class="text-dark text-truncate">Packing Type Quantity</th>
-                    <th scope="col" width="200" class="text-dark text-truncate">Total Quantity in Unit</th>
-                    <th scope="col" width="200" class="text-dark text-truncate">Total Quantity in Liters</th>
-                    <th scope="col" width="200" class="text-dark text-truncate">Total Quantity in Kg</th>
-                    <th scope="col" width="200" class="text-dark text-truncate">Price</th>
-                    <th scope="col" width="200" class="text-dark text-truncate">Sale Status</th>
-                    <th scope="col" width="200" class="text-dark text-truncate">Actions</th>
+                <tr class="red">
+                    <th scope="col"  class="text-center text-dark text-truncate">Sale ID</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Master Cartoon</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Dozen Boxes</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Packing Capacity</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Packing Unit</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Packing Type</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Packing Type Quantity</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Total Quantity in Unit</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Total Quantity in Liters</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Total Quantity in Kg</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Price</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Sale Status</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Actions</th>
                 </tr>
             </thead>
             <tbody *ngFor="let data of pendingOrders; let i = index">
                 <tr>
                     <td>
-                        <figure class="media">
-                            <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{i+1}}</h6>
-                            </figcaption>
-                        </figure>
+                       
+                                <h6 class="title text-truncate text-center">{{i+1}}</h6>
+                          
                     </td>
                     <td>
-                        <figure class="media">
-                            <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.masterCartoons}}</h6>
-                            </figcaption>
-                        </figure>
+                       
+                                <h6 class="title text-truncate text-center">{{data.masterCartoons}}</h6>
+                          
                     </td>
                     <td>
-                        <figure class="media">
-                            <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.dozenBoxes}}</h6>
+                       
+                                <h6 class="title text-truncate text-center">{{data.dozenBoxes}}</h6>
 
-                            </figcaption>
-                        </figure>
+                          
                     </td>
                     <td>
-                        <figure class="media">
-                            <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.packingCapacity}}</h6>
-                            </figcaption>
-                        </figure>
+                       
+                                <h6 class="title text-truncate text-center">{{data.packingCapacity}}</h6>
+                          
                     </td>
                     <td>
-                        <figure class="media">
-                            <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.packingUnit}}</h6>
-                            </figcaption>
-                        </figure>
+                       
+                                <h6 class="title text-truncate text-center">{{data.packingUnit}}</h6>
+                          
                     </td>
                     <td>
-                        <figure class="media">
-                            <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.packingType}}</h6>
-                            </figcaption>
-                        </figure>
+                       
+                                <h6 class="title text-truncate text-center">{{data.packingType}}</h6>
+                          
                     </td>
 
                     <td>
-                        <figure class="media">
-                            <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.packingTypeQuanitity}} {{data.packingType}}
+                       
+                                <h6 class="title text-truncate text-center">{{data.packingTypeQuanitity}} {{data.packingType}}
                                 </h6>
 
-                            </figcaption>
-                        </figure>
+                          
                     </td>
                     <td>
-                        <figure class="media">
-                            <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.totalQuantityinPackingUnit}}
+                       
+                                <h6 class="title text-truncate text-center">{{data.totalQuantityinPackingUnit}}
                                     {{data.packingUnit}}</h6>
-                            </figcaption>
-                        </figure>
+                          
                     </td>
                     <td>
-                        <figure class="media">
-                            <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.totalQuantityinLiters}} LTR</h6>
-                            </figcaption>
-                        </figure>
+                       
+                                <h6 class="title text-truncate text-center">{{data.totalQuantityinLiters}} LTR</h6>
+                          
                     </td>
                     <td>
-                        <figure class="media">
-                            <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.totalQuantityinKg}} KG</h6>
-                            </figcaption>
-                        </figure>
+                       
+                                <h6 class="title text-truncate text-center">{{data.totalQuantityinKg}} KG</h6>
+                          
                     </td>
                     <td>
-                        <figure class="media">
-                            <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.price}}</h6>
-                            </figcaption>
-                        </figure>
+                       
+                                <h6 class="title text-truncate text-center">{{data.price}}</h6>
+                          
                     </td>
                     <td>
-                        <figure class="media">
-                            <figcaption class="media-body">
+                       
                                 <h6 class="title text-truncate text-primary" *ngIf="data.isSold === false">Pending</h6>
                                 <h6 class="title text-truncate text-success" *ngIf="data.isSold === true">Delivered</h6>
 
-                            </figcaption>
-                        </figure>
+                          
                     </td>
                     <td>
                         <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"

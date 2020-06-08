@@ -55,7 +55,7 @@ export class RawFilterComponent implements OnInit {
 
   onSubmit() {
     const data = this.finishGoodForm.value;
-    this.processingService.filterRaw(data).subscribe((response: any) => {
+    this.processingService.filterRawFinishGoods(data).subscribe((response: any) => {
       this.finishGoodDetail = response;
       console.log(this.finishGoodDetail)
       this.toast.pop('success', 'Success!', 'Finish Good History Search is Completed.');

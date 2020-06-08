@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare const $: any;
 
 @Component({
     selector: 'app-root',
@@ -8,5 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
     constructor() {}
 
-    ngOnInit() {}
+    ngOnInit() {
+
+    }
 }

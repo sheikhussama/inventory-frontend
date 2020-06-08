@@ -8,10 +8,10 @@
     </div>
     
     <div class="container">
-        <div class="card">
-            <table class="table table-hover shopping-cart-wrap">
+        <div class="table-responsive" id="style-1">
+            <table class="table table-striped d-table text-center table-stats">
                 <thead class="text-muted">
-                    <tr>
+                    <tr class="red">
                         <th scope="col" class="text-dark">Purpose</th>
                         <th scope="col" width="200" class="text-dark">Amount</th>
                         <th scope="col" width="200" class="text-dark">Reference</th>
@@ -22,35 +22,27 @@
                 <tbody>
                     <tr *ngFor="let data of expense; let i = index">
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.purpose}} </h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.purpose}} </h6>
+                         
                         </td>
                         <td>
 
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.amount}}</h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.amount}}</h6>
+                         
                         </td>
                         <td>
 
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.reference}}</h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.reference}}</h6>
+                         
                         </td>
                         <td>
 
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.timecreated | date : 'mediumDate'}}</h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>
+                         
                         </td>
                         <td class="text-right">
                             <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"

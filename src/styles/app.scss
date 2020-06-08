@@ -28,3 +28,106 @@
 .cursor-pointer {
     cursor: pointer;
 }
+
+body {
+        background-color: #f8f8f8 !important;
+}
+
+.card {
+    overflow-y: scroll !important;
+    overflow-x: scroll;
+   }
+
+.table-responsive{
+  overflow-y: scroll;
+  height: 60vh;
+
+}
+.table-stats {
+  border: none;
+  white-space: nowrap;
+  .stats-without-footer {
+    tr {
+      &:last-child {
+        background: #28a745;
+        td {
+          border: none;
+          border: none;
+          &:first-child {
+            border-radius: 0px 0px 0px 10px;
+          }
+          &:last-child {
+            border-radius: 0px 0px 10px 0px;
+          }
+        }
+      }
+    }
+  }
+  thead {
+    tr {
+      th {
+        background: #28a745;
+        border: none;
+        border-bottom: 1px solid #dee2e6;
+        &:first-child {
+          border-radius: 10px 0px 0px 0px;
+        }
+        &:last-child {
+          border-radius: 0px 10px 0px 0px;
+        }
+      }
+    }
+  }
+  tbody {
+    tr {
+      td {
+        border-bottom: 1px solid #dee2e6;
+        &:first-child {
+          border-left: 1px solid #f1f1f1;
+        }
+        &:last-child {
+          border-right: 2px solid #f1f1f1;
+        }
+      }
+    }
+  }
+  tfoot {
+    tr {
+      td {
+        background: #222;
+        border: none;
+        &:first-child {
+          border-radius: 0px 0px 0px 10px;
+        }
+        &:last-child {
+          border-radius: 0px 0px 10px 0px;
+        }
+      }
+      td.border-radius-none {
+        border-radius: 0px !important;
+        border-bottom: 1px solid #333;
+      }
+    }
+  }
+}
+
+
+#style-1::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}

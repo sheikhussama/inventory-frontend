@@ -8,59 +8,49 @@
     </div>
 
     <div class="container">
-        <div class="card">
-            <table class="table table-hover shopping-cart-wrap">
+        <div class="table-responsive"  id="style-1">
+            <table class="table table-striped d-table text-center table-stats">
                 <thead class="text-muted">
-                    <tr>
-                        <th scope="col"   class="text-dark">User ID</th>
-                        <th scope="col"   class="text-dark">Username</th>
-                        <th scope="col"   class="text-dark">Role</th>
-                        <th scope="col"   class="text-dark">Status</th>
-                        <th scope="col"   class="text-dark">Created Date</th>
+                    <tr class="red">
+                        <th scope="col"   class="text-center text-dark">User ID</th>
+                        <th scope="col"   class="text-center text-dark">Username</th>
+                        <th scope="col"   class="text-center text-dark">Role</th>
+                        <th scope="col"   class="text-center text-dark">Status</th>
+                        <th scope="col"   class="text-center text-dark">Created Date</th>
                     </tr>
                 </thead>
                 <tbody *ngFor= "let data of users" >
                     <tr *ngFor= "let user of data.user_usersignup">
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
+                        
                                     <dl class="param param-inline small">
                                         <dd>{{data.id}}</dd>
                                     </dl>
-                                </figcaption>
-                            </figure>
+                         
                         </td>
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
+                        
                                     <dl class="param param-inline small">
                                         <dd>{{data.username}}</dd>
                                     </dl>
-                                </figcaption>
-                            </figure>
+                         
                         </td>
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{user.role}}</h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{user.role}}</h6>
+                         
                         </td>
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
+                        
                                     <h6 class="title text-truncate text-success" *ngIf="user.isactive === true">Active</h6>
                                     <h6 class="title text-truncate text-danger" *ngIf="user.isactive === false">D-Active</h6>
 
-                                </figcaption>
-                            </figure>
+                         
                         </td>
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{user.timecreated | date : 'mediumDate'}}</h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{user.timecreated | date : 'mediumDate'}}</h6>
+                         
                         </td>
                         <td class="text-right">
                             <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"

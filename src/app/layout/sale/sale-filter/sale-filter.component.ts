@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ToasterService } from 'angular2-toaster';
-import { RawMaterialService } from '../../../core/services/materials.services';
-import { ClientService } from '../../../core/services/client.services';
-import { SaleService } from '../../../core/services/sale.services';
+
+declare const $: any;
 
 @Component({
   selector: 'app-sale-filter',
@@ -14,7 +11,12 @@ export class SaleFilterComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
+    $(document).ready(function(){
+      $('div button').click(function(){
+        $('button').removeClass("active");
+        $(this).addClass("active");
+    });
+    });
   }
 
 

@@ -25,7 +25,8 @@ export class SalePendingOrdersComponent implements OnInit {
   initForm() {
     this.orderPendingForm = this.fb.group({
       startDate: ['', [Validators.required]],
-      endDate: ['', [Validators.required]]
+      endDate: ['', [Validators.required]],
+      type : [false, [Validators.required]]
   });
 }
 

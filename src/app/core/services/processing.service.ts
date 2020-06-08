@@ -33,7 +33,9 @@ export class ProcessingService {
   filterRaw(data: any) {
     return this.http.post(environment.endPoint + 'SaleDetail/RecipieDetailFilter/', data);
   }
-
+  filterRawFinishGoods(data: any) {
+    return this.http.post(environment.endPoint + 'SaleDetail/RawRecipieDetailFilter/', data);
+  }
   // Update
 
   updateFinishGoods(data: any) {

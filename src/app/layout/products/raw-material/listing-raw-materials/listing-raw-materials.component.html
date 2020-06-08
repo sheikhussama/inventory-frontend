@@ -8,10 +8,10 @@
     </div>  
 
     <div class="container">
-        <div class="card">
-            <table class="table table-hover shopping-cart-wrap">
+        <div class="table-responsive"  id="style-1">
+            <table class="table table-striped d-table text-center table-stats">
                 <thead class="text-muted">
-                    <tr>
+                    <tr class="red">
                         <th scope="col" class="text-dark">Product ID</th>
                         <th scope="col" class="text-dark">Product Name</th>
                         <th scope="col" width="200" class="text-dark">Quantity</th>
@@ -22,36 +22,28 @@
                 <tbody>
                     <tr *ngFor="let data of rawMaterial; let i = index">
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.id}} </h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.id}} </h6>
+                         
                         </td>
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.productName}} </h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.productName}} </h6>
+                         
                         </td>
                         <td>
 
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.Quantity}}</h6>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.Quantity}}</h6>
 
-                                </figcaption>
-                            </figure>
+                         
                         </td>
                         <!-- <td>
 
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.timecreated | date : 'mediumDate'}}</h6>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>
 
-                                </figcaption>
-                            </figure>
+                         
                         </td> -->
                         <td class="text-right">
                             <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"

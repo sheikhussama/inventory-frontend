@@ -61,10 +61,10 @@
     </div>
 </div>
 <div class="container" *ngIf="paymentDetailFilter">
-    <div class="card">
-        <table class="table table-hover shopping-cart-wrap">
+    <div class="table-responsive"  id="style-1">
+        <table class="table table-striped d-table text-center table-stats">
             <thead class="text-muted">
-                <tr>
+                <tr class="red">
                     <th scope="col" width=""class="text-dark text-truncate">Payment ID</th>
                     <th scope="col" width=""class="text-dark text-truncate">Customer Name</th>
                     <th scope="col" width=""class="text-dark text-truncate">Customer Address</th>
@@ -82,42 +82,42 @@
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.id}}</h6>
+                                <h6 class="title text-truncate text-center">{{data.id}}</h6>
                             </figcaption>
                         </figure>
                     </td>
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.payment_customer.customerName}}</h6>
+                                <h6 class="title text-truncate text-center">{{data.payment_customer.customerName}}</h6>
                             </figcaption>
                         </figure>
                     </td>
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.payment_customer.address}}</h6>
+                                <h6 class="title text-truncate text-center">{{data.payment_customer.address}}</h6>
                             </figcaption>
                         </figure>
                     </td>
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.payment_customer.contactNo}}</h6>
+                                <h6 class="title text-truncate text-center">{{data.payment_customer.contactNo}}</h6>
                             </figcaption>
                         </figure>
                     </td>
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.payment_customer.balance}}</h6>
+                                <h6 class="title text-truncate text-center">{{data.payment_customer.balance}}</h6>
                             </figcaption>
                         </figure>
                     </td>
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.payment_customer.company}}</h6>
+                                <h6 class="title text-truncate text-center">{{data.payment_customer.company}}</h6>
                             </figcaption>
                         </figure>
                     </td>
@@ -134,21 +134,21 @@
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.detail}}</h6>
+                                <h6 class="title text-truncate text-center">{{data.detail}}</h6>
                             </figcaption>
                         </figure>
                     </td>
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.amount}}</h6>
+                                <h6 class="title text-truncate text-center">{{data.amount}}</h6>
                             </figcaption>
                         </figure>
                     </td> 
                      <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.timecreated | date : 'mediumDate'}}</h6>
+                                <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>
                             </figcaption>
                         </figure>
                     </td>

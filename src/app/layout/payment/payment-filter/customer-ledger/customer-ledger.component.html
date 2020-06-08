@@ -4,8 +4,8 @@
             <p>Customer Ledger</p>
         </div>
 
-        <div class="form-content">
-            <div class="row">
+        <div class="form-content mb-4">
+            <div class="row mb-4">
 
                 <div class="col-md-4 offset-lg-4">
                     <div class="form-group">
@@ -25,10 +25,10 @@
 
 
 <div class="container" *ngIf="clientDetail">
-    <div class="card">
-        <table class="table table-hover shopping-cart-wrap">
+    <div class="table-responsive"  id="style-1">
+        <table class="table table-striped d-table text-center table-stats">
             <thead class="text-muted">
-                <tr>
+                <tr class="red">
                     <th scope="col" width=""class="text-dark text-truncate">Finish Goods Purchase Amount</th>
                     <th scope="col" width=""class="text-dark text-truncate">Raw Product Purchase Amount</th>
                     <th scope="col" width=""class="text-dark text-truncate">Sale Amount</th>
@@ -43,42 +43,42 @@
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{clientDetail?.Finish_Goods_Purchase_Amount}}</h6>
+                                <h6 class="title text-truncate text-center">{{clientDetail?.Finish_Goods_Purchase_Amount}}</h6>
                             </figcaption>
                         </figure>
                     </td>
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{clientDetail?.Raw_Product_Purchase_Amount}}</h6>
+                                <h6 class="title text-truncate text-center">{{clientDetail?.Raw_Product_Purchase_Amount}}</h6>
                             </figcaption>
                         </figure>
                     </td>
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{clientDetail?.Sale_Amount}}</h6>
+                                <h6 class="title text-truncate text-center">{{clientDetail?.Sale_Amount}}</h6>
                             </figcaption>
                         </figure>
                     </td>
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{clientDetail?.Credit_Amount}}</h6>
+                                <h6 class="title text-truncate text-center">{{clientDetail?.Credit_Amount}}</h6>
                             </figcaption>
                         </figure>
                     </td>
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{clientDetail?.Debit_Amount}}</h6>
+                                <h6 class="title text-truncate text-center">{{clientDetail?.Debit_Amount}}</h6>
                             </figcaption>
                         </figure>
                     </td>
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{clientDetail?.Opening_Balance}}</h6>
+                                <h6 class="title text-truncate text-center">{{clientDetail?.Opening_Balance}}</h6>
                             </figcaption>
                         </figure>
                     </td>

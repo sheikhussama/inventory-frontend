@@ -65,103 +65,81 @@
 </div>
 
     <div class="container" *ngIf="rawPurchaseFilter">
-        <div class="card">
-            <table class="table table-hover shopping-cart-wrap">
+        <div class="table-responsive"  id="style-1">
+            <table class="table table-striped d-table text-center table-stats">
                 <thead class="text-muted">
-                    <tr>
-                        <th scope="col" class="text-dark text-truncate">Purchase ID</th>
-                        <th scope="col" class="text-dark text-truncate">Product Purchase</th>
-                        <th scope="col" class="text-dark text-truncate">Purchase Customer</th>
+                    <tr class="red">
+                        <th scope="col" class="text-dark text-center text-truncate">Purchase ID</th>
+                        <th scope="col" class="text-dark text-center text-truncate">Product Purchase</th>
+                        <th scope="col" class="text-dark text-center text-truncate">Purchase Customer</th>
                         <th scope="col"  class="text-dark text-truncate">DC NO</th>
-                        <th scope="col" class="text-dark text-truncate">Bulk Quantity</th>
-                        <th scope="col" class="text-dark text-truncate">Per Kg Price</th>
-                        <th scope="col" class="text-dark text-truncate">Quantity In Kg</th>
-                        <th scope="col" class="text-dark text-truncate">Per Unit Quantity: </th>
-                        <th scope="col" class="text-dark text-truncate">Total Price</th>
-                        <th scope="col" class="text-dark text-truncate">Payment Status</th>
-                        <th scope="col" class="text-dark text-truncate">Created Date</th>
+                        <th scope="col" class="text-dark text-center text-truncate">Bulk Quantity</th>
+                        <th scope="col" class="text-dark text-center text-truncate">Per Kg Price</th>
+                        <th scope="col" class="text-dark text-center text-truncate">Quantity In Kg</th>
+                        <th scope="col" class="text-dark text-center text-truncate">Per Unit Quantity: </th>
+                        <th scope="col" class="text-dark text-center text-truncate">Total Price</th>
+                        <th scope="col" class="text-dark text-center text-truncate">Payment Status</th>
+                        <th scope="col" class="text-dark text-center text-truncate">Created Date</th>
                     </tr>
                 </thead>
                 <tbody *ngFor="let data of rawPurchaseFilter; let i = index">
                     <tr>
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.id}}</h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.id}}</h6>
+                         
                         </td>
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.product_purchase.productName}}</h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.product_purchase.productName}}</h6>
+                         
                         </td>
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.purchase_customer.customerName}}</h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.purchase_customer.customerName}}</h6>
+                         
                         </td>
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.DcNo}}</h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.DcNo}}</h6>
+                         
                         </td>
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.bulkQuantity}}</h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.bulkQuantity}}</h6>
+                         
                         </td>
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.perKgPrice}}</h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.perKgPrice}}</h6>
+                         
                         </td>
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.QuantityInKg}} Kg</h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.QuantityInKg}} Kg</h6>
+                         
                         </td>
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.perUnitQuantity}} Unit</h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.perUnitQuantity}} Unit</h6>
+                         
                         </td>
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.totalPrice}}</h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.totalPrice}}</h6>
+                         
                         </td>
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
+                        
                                     <h6 class="title text-truncate" *ngIf="data.isPaid === false"><i class="fa fa-times text-danger" aria-hidden="true"></i></h6>
                                     <h6 class="title text-truncate" *ngIf="data.isPaid === true"><i class="fa fa-check text-success" aria-hidden="true"></i>
                                     </h6>
-                                </figcaption>
-                            </figure>
+                         
                         </td>
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.timecreated | date : 'mediumDate'}}</h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>
+                         
                         </td>
                     
                     </tr>

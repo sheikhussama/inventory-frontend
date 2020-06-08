@@ -63,18 +63,18 @@
 </div>
 
 <div class="container" *ngIf="finishGoodsFilter">
-    <div class="card">
-        <table class="table table-hover shopping-cart-wrap">
+    <div class="table-responsive"  id="style-1">
+        <table class="table table-striped d-table text-center table-stats">
             <thead class="text-muted">
-                <tr>
-                    <th scope="col" class="text-dark text-truncate">Finish Goods Purchase ID</th>
-                    <th scope="col" class="text-dark text-truncate">Product Finish Goods Purchase</th>
-                    <th scope="col" class="text-dark text-truncate">Finish Goods Purchase Customer</th>
+                <tr class="red">
+                    <th scope="col" class="text-dark text-center text-truncate">Finish Goods Purchase ID</th>
+                    <th scope="col" class="text-dark text-center text-truncate">Product Finish Goods Purchase</th>
+                    <th scope="col" class="text-dark text-center text-truncate">Finish Goods Purchase Customer</th>
                     <th scope="col"  class="text-dark text-truncate">DC NO</th>
-                    <th scope="col" class="text-dark text-truncate">Quantity</th>
-                    <th scope="col" class="text-dark text-truncate">Price</th>                        
-                    <th scope="col" class="text-dark text-truncate">Payment Status</th>
-                    <th scope="col" class="text-dark text-truncate">Created Date</th>
+                    <th scope="col" class="text-dark text-center text-truncate">Quantity</th>
+                    <th scope="col" class="text-dark text-center text-truncate">Price</th>                        
+                    <th scope="col" class="text-dark text-center text-truncate">Payment Status</th>
+                    <th scope="col" class="text-dark text-center text-truncate">Created Date</th>
                 </tr>
             </thead>
             <tbody *ngFor="let data of finishGoodsFilter; let i = index">
@@ -82,42 +82,42 @@
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.id}}</h6>
+                                <h6 class="title text-truncate text-center">{{data.id}}</h6>
                             </figcaption>
                         </figure>
                     </td>
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.product_rawpurchase.productName}}</h6>
+                                <h6 class="title text-truncate text-center">{{data.product_rawpurchase.productName}}</h6>
                             </figcaption>
                         </figure>
                     </td>
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.rawpurchase_customer.customerName}}</h6>
+                                <h6 class="title text-truncate text-center">{{data.rawpurchase_customer.customerName}}</h6>
                             </figcaption>
                         </figure>
                     </td>
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.DcNo}}</h6>
+                                <h6 class="title text-truncate text-center">{{data.DcNo}}</h6>
                             </figcaption>
                         </figure>
                     </td>
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.Quantity}}</h6>
+                                <h6 class="title text-truncate text-center">{{data.Quantity}}</h6>
                             </figcaption>
                         </figure>
                     </td>
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.price}}</h6>
+                                <h6 class="title text-truncate text-center">{{data.price}}</h6>
                             </figcaption>
                         </figure>
                     </td>
@@ -133,7 +133,7 @@
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{data.timecreated | date : 'mediumDate'}}</h6>
+                                <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>
                             </figcaption>
                         </figure>
                     </td>

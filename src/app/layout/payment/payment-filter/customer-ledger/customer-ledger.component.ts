@@ -5,7 +5,7 @@ import { ToasterService } from 'angular2-toaster';
 @Component({
   selector: 'app-customer-ledger',
   templateUrl: './customer-ledger.component.html',
-  styleUrls: ['./customer-ledger.component.css']
+  styleUrls: ['./customer-ledger.component.scss']
 })
 export class CustomerLedgerComponent implements OnInit {
   

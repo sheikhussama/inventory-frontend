@@ -143,7 +143,6 @@ export class CreatePurchaseComponent implements OnInit {
       perKgPrice: ['', [Validators.required]],
       productId: [null, [Validators.required]],
       distibutorId: [null, [Validators.required]],
-      price: ['', [Validators.required]],
     });
   }
 
@@ -233,7 +232,7 @@ export class CreatePurchaseComponent implements OnInit {
     this.purchaseForm.get('QuantityInKg').setValue(purchase.QuantityInKg);
     this.purchaseForm.get('unit').setValue(purchase.unit);
     this.purchaseForm.get('perUnitQuantity').setValue(purchase.perUnitQuantity);
-    this.purchaseForm.get('price').setValue(purchase.price);
+    // this.purchaseForm.get('price').setValue(purchase.price);
     this.purchaseForm.get('distibutorId').setValue(purchase.distibutorId);
     this.purchaseForm.get('productId').setValue(purchase.productId);
     this.purchaseForm.get('perKgPrice').setValue(purchase.perKgPrice);
@@ -249,9 +248,9 @@ export class CreatePurchaseComponent implements OnInit {
   get bulkQuantity() {
     return this.purchaseForm.get('bulkQuantity');
   }
-  get price() {
-    return this.purchaseForm.get('price');
-  }
+  // get price() {
+  //   return this.purchaseForm.get('price');
+  // }
   get distibutorId() {
     return this.purchaseForm.get('distibutorId');
   }

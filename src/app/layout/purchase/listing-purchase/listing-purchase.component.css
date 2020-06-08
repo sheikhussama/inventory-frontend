@@ -3,3 +3,6 @@
     overflow-x: scroll;
    }
    
+   body{
+       overflow: hidden !important;
+   }

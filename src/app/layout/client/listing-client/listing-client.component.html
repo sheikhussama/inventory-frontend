@@ -8,78 +8,64 @@
     </div>
 
     <div class="container">
-        <div class="card">
-            <table class="table table-hover shopping-cart-wrap">
+        <div class="table-responsive" id="style-1">
+            <table class="table table-striped d-table text-center table-stats">
                 <thead class="text-muted">
-                    <tr>
-                        <th scope="col" class="text-dark text-truncate">Customer ID</th>
-                        <th scope="col" class="text-dark text-truncate">Customer Name</th>
-                        <th scope="col" class="text-dark text-truncate">Customer CNIC</th>
-                        <th scope="col" class="text-dark text-truncate">Contact No</th>
-                        <th scope="col" class="text-dark text-truncate">Opening Balance</th>
-                        <th scope="col" class="text-dark text-truncate">Company Name </th>
-                        <th scope="col" class="text-dark text-truncate">Created Date</th>
+                    <tr class="red">
+                        <th scope="col" class="text-dark text-center text-truncate">Customer ID</th>
+                        <th scope="col" class="text-dark text-center text-truncate">Customer Name</th>
+                        <th scope="col" class="text-dark text-center text-truncate">Customer CNIC</th>
+                        <th scope="col" class="text-dark text-center text-truncate">Contact No</th>
+                        <th scope="col" class="text-dark text-center text-truncate">Opening Balance</th>
+                        <th scope="col" class="text-dark text-center text-truncate">Company Name </th>
+                        <th scope="col" class="text-dark text-center text-truncate">Created Date</th>
                         <th scope="col" class="text-dark">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let data of clientDetail; let i = index">
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.id}} </h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.id}} </h6>
+                         
                         </td>
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.customerName}} </h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.customerName}} </h6>
+                         
                         </td>
                         <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.nicNo}} </h6>
-                                </figcaption>
-                            </figure>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.nicNo}} </h6>
+                         
                         </td>
                         <td>
 
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.contactNo}}</h6>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.contactNo}}</h6>
 
-                                </figcaption>
-                            </figure>
+                         
                         </td>
                         <td>
 
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.balance}}</h6>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.balance}}</h6>
 
-                                </figcaption>
-                            </figure>
+                         
                         </td>
                         <td>
 
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.company}}</h6>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.company}}</h6>
 
-                                </figcaption>
-                            </figure>
+                         
                         </td>
                         <td>
 
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{data.timecreated | date : 'mediumDate'}}</h6>
+                        
+                                    <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>
 
-                                </figcaption>
-                            </figure>
+                         
                         </td>
                         <td class="text-right">
                             <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"

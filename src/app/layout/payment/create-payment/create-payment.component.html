@@ -22,7 +22,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <ng-select placeholder="Given Type" formControlName="givenType" [items]="type" class=""
+                        <ng-select placeholder="Balance Type" formControlName="givenType" [items]="type" class=""
                             bindLabel="value" bindValue="id">
 
                         </ng-select>
@@ -37,7 +37,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <ng-select placeholder="Select Distributor" [items]="clientDetail" class=""
+                        <ng-select placeholder="Select Client" [items]="clientDetail" class=""
                             formControlName="distibutorId" bindLabel="customerName" bindValue="id">
                         </ng-select>
                         <div *ngIf="distibutorId?.invalid && (distibutorId.dirty || distibutorId.touched)"
@@ -48,44 +48,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 form-group mt-2">
+                <div class="col-md-6 form-group">
                     <div class="form-check-inline">
-                        <label class="customradio"><span class="radiotextsty">Customer</span>
-                            <input type="radio" value="true" formControlName="isCustomer" name="isCustomer" />
+
+                        <label class="customradio"><span class="radiotextsty text-truncate">Credit (Recieve)</span>
+                            <input type="radio" name="isCredit" formControlName="isCredit" checked="isCredit"
+                                value="true">
+                            <span class="checkmark"></span>
+                        </label>        
+                        <label class="customradio"><span class="radiotextsty text-truncate">Debit (Pay)</span>
+                            <input type="radio" name="isCredit" formControlName="isCredit" checked="isCredit"
+                                value="false">
                             <span class="checkmark"></span>
                         </label>
-                        <label class="customradio ml-2"><span class="radiotextsty">Distributor</span>
-                            <input type="radio" value="false" name="isCustomer" formControlName="isCustomer" />
-                            <span class="checkmark"></span>
-                        </label>
-
-
-                    </div>
-                    <div *ngIf="isCustomer?.invalid && (isCustomer.dirty || isCustomer.touched)"
-                        class="validation-error text-danger">
-                        <div *ngIf="isCustomer.errors.required || isCustomer.errors?.invalid">
-                            Select a valid Customer or Distributor
-                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <!-- <div class="col-md-6 form-group">
-                    <div class="form-check-inline">
-                        <label class="customradio"
-                            ><span class="radiotextsty">Credit</span>
-                            <input type="radio" value="true" formControlName="isCredit" name="isCredit" />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="customradio ml-2"
-                            ><span class="radiotextsty">Debit</span>
-                            <input type="radio" value="false" formControlName="isCredit" name="isCredit" />
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                </div> -->
-
             </div>
 
             <div class="row">
