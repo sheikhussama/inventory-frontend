@@ -61,3 +61,114 @@
         </form>
     </div>
 </div>
+
+
+<div class="container" *ngIf="recipeDetail">
+    <div class="table-responsive"  id="style-1">
+        <table class="table table-striped d-table text-center table-stats">
+            <thead class="text-muted">
+                <tr class="red">
+                    <th scope="col" width="100" class="text-dark text-truncate">Finish Good ID </th>
+                    <th scope="col" width="200" class="text-dark text-truncate">Customer Name</th>
+                    <th scope="col" width="200" class="text-dark text-truncate">Product Name</th>
+                    <th scope="col" width="100" class="text-dark text-truncate">Master Cartoon</th>
+                    <th scope="col" width="100" class="text-dark text-truncate">Dozen Boxes</th>
+                    <th scope="col" width="100" class="text-dark text-truncate">Packing Capacity</th>
+                    <th scope="col" width="100" class="text-dark text-truncate">Packing Unit</th>
+                    <th scope="col" width="100" class="text-dark text-truncate">Packing Type</th>
+                    <th scope="col" width="100" class="text-dark text-truncate">Packing Type Quantity</th>
+                    <th scope="col" width="100" class="text-dark text-truncate">Total Quantity in Unit</th>
+                    <th scope="col" width="100" class="text-dark text-truncate">Total Quantity in Liters</th>
+                    <th scope="col" width="100" class="text-dark text-truncate">Total Quantity in Kg</th>
+                    <th scope="col" width="100" class="text-dark text-truncate">Price</th>
+                    <th scope="col" width="100" class="text-dark text-truncate">Processing Status</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let data of recipeDetail; let i = index">
+                <tr>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.sale_recipie.id}}</h6>
+                     
+                    </td>
+                    <td>
+
+                        <h6 class="title text-truncate text-center">{{data.sale_recipie.finalSale_customer.customerName}}</h6>
+
+                    </td>
+                    <td>
+
+                        <h6 class="title text-truncate text-center">{{data.sale_recipie.finalSale_product.productName}}</h6>
+
+                    </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.sale_recipie.masterCartoons}}</h6>
+                     
+                    </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.sale_recipie.dozenBoxes}}</h6>
+
+                     
+                    </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.sale_recipie.packingCapacity}}</h6>
+                     
+                    </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.sale_recipie.packingUnit}}</h6>
+                     
+                    </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.sale_recipie.packingType}}</h6>
+                     
+                    </td>
+
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.sale_recipie.packingTypeQuanitity}} {{data.packingType}}
+                                </h6>
+
+                     
+                    </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.sale_recipie.totalQuantityinPackingUnit}}
+                                    {{data.sale_recipie.packingUnit}}</h6>
+                     
+                    </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.sale_recipie.totalQuantityinLiters}} LTR</h6>
+                     
+                    </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.sale_recipie.totalQuantityinKg}} KG</h6>
+                     
+                    </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.sale_recipie.price}}</h6>
+                     
+                    </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-primary" *ngIf="data.sale_recipie.isSold === false">Pending
+                                </h6>
+                                <h6 class="title text-truncate text-success" *ngIf="data.sale_recipie.isSold === true">Delivered
+                                </h6>
+
+                     
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div> <!-- card.// -->
+
+
+</div>

@@ -35,8 +35,8 @@ export class RawFilterComponent implements OnInit {
     this.finishGoodForm = this.fb.group({
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
-      productId: [null, [Validators.required]],
-      saleId: [null, [Validators.required]],
+      productId: ['', [Validators.required]],
+      saleId: ['', [Validators.required]],
     });
   }
 

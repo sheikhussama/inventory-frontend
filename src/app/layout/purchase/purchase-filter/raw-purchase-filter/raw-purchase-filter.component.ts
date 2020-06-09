@@ -37,8 +37,8 @@ export class RawPurchaseFilterComponent implements OnInit {
     this.rawPurchaseFilterForm = this.fb.group({
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
-      productId: [null, [Validators.required]],
-      distibutorId: [null, [Validators.required]],
+      productId: ['', [Validators.required]],
+      distibutorId: ['', [Validators.required]],
   });
 }
 

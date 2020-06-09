@@ -64,93 +64,113 @@
 
 
 <div class="container" *ngIf="saleHistory">
-    <div class="table-responsive"  id="style-1">
+    <div class="table-responsive" id="style-1">
         <table class="table table-striped d-table text-center table-stats">
             <thead class="text-muted">
                 <tr class="red">
-                    <th scope="col" class="text-center text-dark text-center text-truncate">Sale ID</th>
-                    <th scope="col" class="text-center text-dark text-center text-truncate">Master Cartoon</th>
-                    <th scope="col" class="text-center text-dark text-center text-truncate">Dozen Boxes</th>
-                    <th scope="col" class="text-center text-dark text-center text-truncate">Packing Capacity</th>
-                    <th scope="col" class="text-center text-dark text-center text-truncate">Packing Unit</th>
-                    <th scope="col" class="text-center text-dark text-center text-truncate">Packing Type</th>
-                    <th scope="col" class="text-center text-dark text-center text-truncate">Packing Type Quantity</th>
-                    <th scope="col" class="text-center text-dark text-center text-truncate">Total Quantity in Unit</th>
-                    <th scope="col" class="text-center text-dark text-center text-truncate">Total Quantity in Liters</th>
-                    <th scope="col" class="text-center text-dark text-center text-truncate">Total Quantity in Kg</th>
-                    <th scope="col" class="text-center text-dark text-center text-truncate">Price</th>
-                    <th scope="col" class="text-center text-dark text-center text-truncate">Sale Status</th>
-                    <th scope="col" class="text-center text-dark text-center text-truncate">Actions</th>
+                    <th scope="col" width="200" class="text-dark text-truncate">Sale ID#</th>
+                    <th scope="col" width="200" class="text-dark text-truncate">Customer Name</th>
+                    <th scope="col" width="200" class="text-dark text-truncate">Product Name</th>
+                    <th scope="col" width="200" class="text-dark text-truncate">Master Cartoon</th>
+                    <th scope="col" width="200" class="text-dark text-truncate">Dozen Boxes</th>
+                    <th scope="col" width="200" class="text-dark text-truncate">Packing Capacity</th>
+                    <th scope="col" width="200" class="text-dark text-truncate">Packing Unit</th>
+                    <th scope="col" width="200" class="text-dark text-truncate">Packing Type</th>
+                    <th scope="col" width="200" class="text-dark text-truncate">Packing Type Quantity</th>
+                    <th scope="col" width="200" class="text-dark text-truncate">Total Quantity in Unit</th>
+                    <th scope="col" width="200" class="text-dark text-truncate">Total Quantity in Liters</th>
+                    <th scope="col" width="200" class="text-dark text-truncate">Total Quantity in Kg</th>
+                    <th scope="col" width="200" class="text-dark text-truncate">Price</th>
+                    <th scope="col" width="200" class="text-dark text-truncate">Sale Status</th>
+                    <th scope="col" width="200" class="text-dark text-truncate">Actions</th>
                 </tr>
             </thead>
             <tbody *ngFor="let data of saleHistory; let i = index">
                 <tr>
                     <td>
-                     
-                                <h6 class="title text-truncate text-center">{{i+1}}</h6>
-                           
-                    </td>
-                    <td>
-                     
-                                <h6 class="title text-truncate text-center">{{data.masterCartoons}}</h6>
-                           
-                    </td>
-                    <td>
-                     
-                                <h6 class="title text-truncate text-center">{{data.dozenBoxes}}</h6>
 
-                           
+                        <h6 class="title text-truncate text-center">{{data.id}}</h6>
+
                     </td>
                     <td>
-                     
-                                <h6 class="title text-truncate text-center">{{data.packingCapacity}}</h6>
-                           
+
+                        <h6 class="title text-truncate text-center">{{data.finalSale_customer.customerName}}</h6>
+
                     </td>
                     <td>
-                     
-                                <h6 class="title text-truncate text-center">{{data.packingUnit}}</h6>
-                           
+
+                        <h6 class="title text-truncate text-center">{{data.finalSale_product.productName}}</h6>
+
                     </td>
                     <td>
-                     
-                                <h6 class="title text-truncate text-center">{{data.packingType}}</h6>
-                           
+
+                        <h6 class="title text-truncate text-center">{{data.masterCartoons}}</h6>
+
+                    </td>
+                    <td>
+
+                        <h6 class="title text-truncate text-center">{{data.dozenBoxes}}</h6>
+
+
+                    </td>
+                    <td>
+
+                        <h6 class="title text-truncate text-center">{{data.packingCapacity}}</h6>
+
+                    </td>
+                    <td>
+
+                        <h6 class="title text-truncate text-center">{{data.packingUnit}}</h6>
+
+                    </td>
+                    <td>
+
+                        <h6 class="title text-truncate text-center">{{data.packingType}}</h6>
+
                     </td>
 
                     <td>
-                     
-                                <h6 class="title text-truncate text-center">{{data.packingTypeQuanitity}} {{data.packingType}}
-                                </h6>
 
-                           
-                    </td>
-                    <td>
-                     
-                                <h6 class="title text-truncate text-center">{{data.totalQuantityinPackingUnit}}
-                                    {{data.packingUnit}}</h6>
-                           
-                    </td>
-                    <td>
-                     
-                                <h6 class="title text-truncate text-center">{{data.totalQuantityinLiters}} LTR</h6>
-                           
-                    </td>
-                    <td>
-                     
-                                <h6 class="title text-truncate text-center">{{data.totalQuantityinKg}} KG</h6>
-                           
-                    </td>
-                    <td>
-                     
-                                <h6 class="title text-truncate text-center">{{data.price}}</h6>
-                           
-                    </td>
-                    <td>
-                     
-                                <h6 class="title text-truncate text-primary" *ngIf="data.isSold === false">Pending</h6>
-                                <h6 class="title text-truncate text-success" *ngIf="data.isSold === true">Delivered</h6>
+                        <h6 class="title text-truncate text-center">{{data.packingTypeQuanitity}}
+                            {{data.packingType}}
+                        </h6>
 
-                           
+
+                    </td>
+                    <td>
+
+                        <h6 class="title text-truncate text-center">{{data.totalQuantityinPackingUnit}}
+                            {{data.packingUnit}}</h6>
+
+                    </td>
+                    <td>
+
+                        <h6 class="title text-truncate text-center">{{data.totalQuantityinLiters}} LTR</h6>
+
+                    </td>
+                    <td>
+
+                        <h6 class="title text-truncate text-center">{{data.totalQuantityinKg}} KG</h6>
+
+                    </td>
+                    <td>
+
+                        <h6 class="title text-truncate text-center">{{data.price}}</h6>
+
+                    </td>
+                    <td>
+
+                        <h6 class="title text-truncate text-primary" *ngIf="data.isSold === false">Pending</h6>
+                        <h6 class="title text-truncate text-success" *ngIf="data.isSold === true">Delivered</h6>
+
+
+                    </td>
+                    <td class="text-dark">
+                        <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"
+                            data-original-title="Save to Wishlist"> <i class="fa fa-pencil" aria-hidden="true"
+                                (click)="updateSale(data)"></i></button>
+                        <button href="" class="btn btn-outline-danger" (click)="deleteSale(data)"> <i
+                                class="fa fa-trash"></i></button>
                     </td>
                 </tr>
             </tbody>

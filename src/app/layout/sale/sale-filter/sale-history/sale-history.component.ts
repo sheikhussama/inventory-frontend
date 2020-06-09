@@ -37,8 +37,8 @@ export class SaleHistoryComponent implements OnInit {
     this.saleHistoryForm = this.fb.group({
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
-      productId: [null, [Validators.required]],
-      customerId: [null, [Validators.required]],
+      productId: ['', [Validators.required]],
+      customerId: ['', [Validators.required]],
   });
 }
 

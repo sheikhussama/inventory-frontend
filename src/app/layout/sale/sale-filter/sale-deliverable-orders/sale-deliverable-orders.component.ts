@@ -41,7 +41,6 @@ export class SaleDeliverableOrdersComponent implements OnInit {
     const DeliveredOrder = this.orderDeliveredForm.value;
     this.saleService.salePendingOrders(DeliveredOrder).subscribe(response =>{
       this.DeliveredOrders = response;
-      console.log(this.DeliveredOrders);
         this.toast.pop('success', 'Success!', 'Delivered Order Search is Completed.');
         this.callCompleted();
       },

@@ -35,22 +35,20 @@ export class RecipeFilterComponent implements OnInit {
     this.recipeForm = this.fb.group({
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
-      productId: [null, [Validators.required]],
-      saleId: [null, [Validators.required]],
+      productId: ['', [Validators.required]],
+      saleId: ['', [Validators.required]],
   });
 }
 
   getProduct() {
     this.productService.getProducts().subscribe((response) => {
       this.products = response.results;
-      console.log(this.products)
     });
   }  
 
   getsale() {
     this.saleService.getFinalSale().subscribe((response) => {
       this.sale = response.results;
-      console.log(this.sale);
     });
   }
 
@@ -58,7 +56,6 @@ export class RecipeFilterComponent implements OnInit {
     const data = this.recipeForm.value;  
       this.processingService.filterRaw(data).subscribe((response: any) => {
         this.recipeDetail = response;
-        console.log(this.recipeDetail)
         this.toast.pop('success', 'Success!', 'Raw Product History Search is Completed.');
         this.callCompleted();
       },
