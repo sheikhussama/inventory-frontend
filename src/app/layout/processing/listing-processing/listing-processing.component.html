@@ -14,6 +14,8 @@
                 <thead class="text-muted">
                     <tr class="red">
                         <th scope="col" width="100" class="text-dark text-truncate">Processing ID </th>
+                        <th scope="col" width="200" class="text-dark text-truncate">Customer Name</th>
+                        <th scope="col" width="200" class="text-dark text-truncate">Product Name</th>
                         <th scope="col" width="100" class="text-dark text-truncate">Master Cartoon</th>
                         <th scope="col" width="100" class="text-dark text-truncate">Dozen Boxes</th>
                         <th scope="col" width="100" class="text-dark text-truncate">Packing Capacity</th>
@@ -32,8 +34,18 @@
                     <tr>
                         <td>
                         
-                                    <h6 class="title text-truncate text-center">{{i+1}}</h6>
+                                    <h6 class="title text-truncate text-center">{{data.id}}</h6>
                          
+                        </td>
+                        <td>
+
+                            <h6 class="title text-truncate text-center">{{data.finalSale_customer.customerName}}</h6>
+
+                        </td>
+                        <td>
+
+                            <h6 class="title text-truncate text-center">{{data.finalSale_product.productName}}</h6>
+
                         </td>
                         <td>
                         

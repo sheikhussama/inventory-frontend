@@ -5,6 +5,8 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { SaleService } from '../../../core/services/sale.services';
 import { ToasterService } from 'angular2-toaster';
 
+declare const $: any;
+
 @Component({
   selector: 'app-others',
   templateUrl: './others.component.html',
@@ -150,7 +152,13 @@ export class OthersComponent implements OnInit {
 
   callCompleted() {
     this.saleForm.reset();
+    this.hideForm();
   }
+
+
+  hideForm(){
+    $("#others").modal('hide')
+   }
 
   preFilledForm(saleDetail: any) {
     this.saleForm.get('masterCartoons').setValue(saleDetail.masterCartoons);

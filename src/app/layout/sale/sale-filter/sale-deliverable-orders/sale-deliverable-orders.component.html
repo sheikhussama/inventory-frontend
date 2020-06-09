@@ -1,0 +1,138 @@
+<div class="container-fluid register-form">
+    <div class="form">
+        <div class="note">
+            <p> Delivered Orders</p>
+        </div>
+
+        <form class="form-content" [formGroup]="orderDeliveredForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <Label> <strong> Start Date</strong></Label>
+                        <input type="date" class="form-control" formControlName="startDate"
+                            placeholder="Enter Start Date" value="" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <Label> <strong> End Date</strong></Label>
+
+                        <input type="date" class="form-control" formControlName="endDate" placeholder="Enter End Date"
+                            value="" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <button type="submit" class="btnSubmit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<div class="container" *ngIf="DeliveredOrders">
+    <div class="table-responsive">
+        <table class="table table-striped d-table text-center table-stats">
+            <thead class="text-muted">
+                <tr class="red">
+                    <th scope="col"  class="text-center text-dark text-truncate">Sale ID</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Master Cartoon</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Dozen Boxes</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Packing Capacity</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Packing Unit</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Packing Type</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Packing Type Quantity</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Total Quantity in Unit</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Total Quantity in Liters</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Total Quantity in Kg</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Price</th>
+                    <th scope="col"  class="text-center text-dark text-truncate">Sale Status</th>
+                    <!-- <th scope="col"  class="text-center text-dark text-truncate">Actions</th> -->
+                </tr>
+            </thead>
+            <tbody *ngFor="let data of DeliveredOrders; let i = index">
+                <tr>
+                    <td>
+                       
+                                <h6 class="title text-truncate text-center">{{i+1}}</h6>
+                          
+                    </td>
+                    <td>
+                       
+                                <h6 class="title text-truncate text-center">{{data.masterCartoons}}</h6>
+                          
+                    </td>
+                    <td>
+                       
+                                <h6 class="title text-truncate text-center">{{data.dozenBoxes}}</h6>
+
+                          
+                    </td>
+                    <td>
+                       
+                                <h6 class="title text-truncate text-center">{{data.packingCapacity}}</h6>
+                          
+                    </td>
+                    <td>
+                       
+                                <h6 class="title text-truncate text-center">{{data.packingUnit}}</h6>
+                          
+                    </td>
+                    <td>
+                       
+                                <h6 class="title text-truncate text-center">{{data.packingType}}</h6>
+                          
+                    </td>
+
+                    <td>
+                       
+                                <h6 class="title text-truncate text-center">{{data.packingTypeQuanitity}} {{data.packingType}}
+                                </h6>
+
+                          
+                    </td>
+                    <td>
+                       
+                                <h6 class="title text-truncate text-center">{{data.totalQuantityinPackingUnit}}
+                                    {{data.packingUnit}}</h6>
+                          
+                    </td>
+                    <td>
+                       
+                                <h6 class="title text-truncate text-center">{{data.totalQuantityinLiters}} LTR</h6>
+                          
+                    </td>
+                    <td>
+                       
+                                <h6 class="title text-truncate text-center">{{data.totalQuantityinKg}} KG</h6>
+                          
+                    </td>
+                    <td>
+                       
+                                <h6 class="title text-truncate text-center">{{data.price}}</h6>
+                          
+                    </td>
+                    <td>
+                       
+                                <h6 class="title text-truncate text-primary" *ngIf="data.isSold === false">Pending</h6>
+                                <h6 class="title text-truncate text-success" *ngIf="data.isSold === true">Delivered</h6>
+
+                          
+                    </td>
+                    <!-- <td>
+                        <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"
+                                data-original-title="Save to Wishlist"> <i class="fa fa-check" aria-hidden="true"
+                                    (click)="getCheckOrder(data.id)"></i></button>
+
+                    </td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</div>

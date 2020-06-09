@@ -5,6 +5,8 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { SaleService } from '../../../core/services/sale.services';
 import { ToasterService } from 'angular2-toaster';
 
+declare const $:any;
+
 @Component({
   selector: 'app-salt-seed',
   templateUrl: './salt-seed.component.html',
@@ -167,7 +169,13 @@ export class SaltSeedComponent implements OnInit {
 
   callCompleted() {
     this.saleForm.reset();
+    this.hideForm();
   }
+
+
+  hideForm(){
+    $("#salt-seed").modal('hide')
+   }
 
   preFilledForm(saleDetail: any) {
     this.saleForm.get('masterCartoons').setValue(saleDetail.masterCartoons);

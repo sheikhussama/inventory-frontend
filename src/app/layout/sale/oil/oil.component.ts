@@ -5,6 +5,8 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { SaleService } from '../../../core/services/sale.services';
 import { ToasterService } from 'angular2-toaster';
 
+declare const $: any;
+
 @Component({
   selector: 'app-oil',
   templateUrl: './oil.component.html',
@@ -22,6 +24,7 @@ export class OilComponent implements OnInit {
   totalDoxens: any;
   packingTypeQuantity: any;
   totalQuantityUnit: any;
+
   totalQuantityLiters: any;
   totalQuantityKG: any;
   userID: any;
@@ -185,7 +188,11 @@ export class OilComponent implements OnInit {
 
   callCompleted() {
     this.saleForm.reset();
-
+    this.hideForm()
+  }
+ 
+  hideForm(){
+   $("#oil").modal('hide')
   }
 
   preFilledForm(saleDetail: any) {

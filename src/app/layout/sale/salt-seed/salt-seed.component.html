@@ -4,7 +4,7 @@
         <div class="modal-content">
 
             <div class="note">
-                <h4 class="modal-title text-uppercase mt-3"> {{ buttonText ? 'Update' : 'Register' }}Salt N Seed</h4>
+                <h4 class="modal-title text-uppercase mt-3"> {{ buttonText ? 'Update' : 'Register' }} Salt N Seed</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <form [formGroup]="saleForm" (ngSubmit)="onSubmit()">
@@ -83,7 +83,7 @@
                                         <div class="form-group">
                                             <label> <strong>Packing Type Quantity: </strong> </label>
                                             <input type="text" class="form-control" formControlName="packingTypeQuanitity" disabled
-                                                placeholder="{{packingTypeQuantity}} {{packingOfType}}" value="" />
+                                                placeholder="{{packingTypeQuantity | number: '3.2-5'}} {{packingOfType}}" value="" />
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@
                                     <div class="form-group">
                                         <label> <strong> Total Quantity in Packing Unit: </strong> </label>
                                         <input type="text" class="form-control" disabled
-                                            placeholder="{{totalQuantityUnit}} GMS" formControlName="totalQuantityinPackingUnit" value="" />
+                                            placeholder="{{totalQuantityUnit | number: '3.2-5'}} GMS" formControlName="totalQuantityinPackingUnit" value="" />
                                     </div>
                                 </div>
 
@@ -103,7 +103,7 @@
                                     <div class="form-group">
                                         <label> <strong> Total Quantity in Kg: </strong> </label>
                                         <input type="text" class="form-control" disabled
-                                            placeholder="{{totalQuantityKG}} KG" formControlName="totalQuantityinKg" value="" />
+                                            placeholder="{{totalQuantityKG | number: '3.2-5'}} KG" formControlName="totalQuantityinKg" value="" />
                                     </div>
                                 </div>
 
