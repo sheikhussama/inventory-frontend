@@ -88,12 +88,12 @@ export class CreatePurchaseComponent implements OnInit {
   }
 
   QuantityUnit(event: any) {
-    if (event.value === "L") {
+    if (event.value === "LTR") {
       this.totalUnit = this.total * 1.2;
       this.totalPrice = +this.perKgPrices * +this.totalUnit
       this.unitName = "Ltr"
     }
-    if (event.value === "G") {
+    if (event.value === "GRAM") {
       this.totalUnit = this.total * 1000;
       this.unitName = "Gram"
       this.totalPrice = +this.perKgPrices * +this.totalUnit
@@ -201,12 +201,12 @@ export class CreatePurchaseComponent implements OnInit {
   unitBased() {
     this.unit = [
       {
-        id: '1',
-        value: 'L',
+        id: 'LTR',
+        value: 'LTR',
       },
       {
-        id: '2',
-        value: 'G',
+        id: 'GRAM',
+        value: 'GRAM',
       }
     ]
   }

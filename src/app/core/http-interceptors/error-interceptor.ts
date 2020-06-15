@@ -70,9 +70,10 @@ import { AuthService } from '../services/auth.services';
     }
   
     handle400Error(error) {
+      console.log(error);
       const err = error.error.error;
       if (error.status === 400) {
-          this.toaster.pop('error','Error!', 'Somethingh you Could not Properly Added');
+          this.toaster.pop('error','Error!', error.error.Msg);
       }
       return observableThrowError(error);
     }

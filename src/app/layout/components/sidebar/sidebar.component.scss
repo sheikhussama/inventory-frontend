@@ -26,9 +26,9 @@ $active-green: #28a745;
             background: $topnav-background-color;
             border: 0;
             border-radius: 0;
-            color: #999;
+            color: #222;
             text-decoration: none;
-
+            font-weight: bold;
             .fa {
                 margin-right: 10px;
             }
@@ -36,7 +36,7 @@ $active-green: #28a745;
 
         a:hover {
             background: darken($topnav-background-color, 5%);
-            color: #fff;
+            color: #222;
         }
 
         a.router-link-active {
@@ -213,4 +213,9 @@ $active-green: #28a745;
     span {
         display: none;
     }
+}
+
+
+.dropdown-item{
+    font-weight: bold !important;
 }

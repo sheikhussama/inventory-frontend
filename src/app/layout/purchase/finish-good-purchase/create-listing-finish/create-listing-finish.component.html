@@ -1,36 +1,43 @@
-<app-page-header [heading]="'Register Finish Goods Purchase'" [icon]="'fa-bar-chart-o'"></app-page-header>
+<app-page-header [heading]="'Finish Goods Purchase'" [icon]="'fa-bar-chart-o'"></app-page-header>
 
 <div class="container register-form">
     <div class="form">
         <div class="note">
-            <p>{{ buttonText ? 'Update' : 'Register' }} Finish Goods Purchase</p>
+            <p>Finish Goods Purchase</p>
         </div>
 
         <form class="form-content" [formGroup]="finishGoodsForm" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input
-                            type="text"
-                            formControlName="DcNo"
-                            class="form-control"
-                            placeholder="Enter DC No"
-                            value=""
-                        />
+                        <ng-select
+                            *ngIf="flag"
+                            placeholder="Select Client"
+                            [items]="clientDetail"
+                            class=""
+                            formControlName="distibutorId"
+                            bindLabel="customerName"
+                            bindValue="id"
+                        >
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <ng-select
+                            *ngIf="flag"
+                            placeholder="Select Product"
+                            [items]="rawMaterial"
+                            class=""
+                            formControlName="productId"
+                            bindLabel="productName"
+                            bindValue="id"
+                        >
+                        </ng-select>
                     </div>
                 </div>
 
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input
-                            type="number"
-                            class="form-control"
-                            formControlName="Quantity"
-                            placeholder="Enter Quantity"
-                            value=""
-                        />
-                    </div>
-                </div>
+              
             </div>
             <div class="row">
                 <div class="col-md-4">
@@ -46,30 +53,25 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <ng-select
-                            *ngIf="flag"
-                            placeholder="Select Distibutor"
-                            [items]="clientDetail"
-                            class=""
-                            formControlName="distibutorId"
-                            bindLabel="customerName"
-                            bindValue="id"
-                        >
-                        </ng-select>
+                        <input
+                            type="text"
+                            formControlName="DcNo"
+                            class="form-control"
+                            placeholder="Enter DC No"
+                            value=""
+                        />
                     </div>
                 </div>
+
                 <div class="col-md-4">
                     <div class="form-group">
-                        <ng-select
-                            *ngIf="flag"
-                            placeholder="Select Unit"
-                            [items]="rawMaterial"
-                            class=""
-                            formControlName="productId"
-                            bindLabel="productName"
-                            bindValue="id"
-                        >
-                        </ng-select>
+                        <input
+                            type="number"
+                            class="form-control"
+                            formControlName="Quantity"
+                            placeholder="Enter Quantity"
+                            value=""
+                        />
                     </div>
                 </div>
             </div>
