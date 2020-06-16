@@ -40,7 +40,9 @@ var {
     border: none;
     cursor: pointer;
 }
-
+.btnSubmit:disabled {
+   opacity: 0.2;
+  }
 .product-form-1 .btnSubmit {
     font-weight: 600;
     color: #fff;

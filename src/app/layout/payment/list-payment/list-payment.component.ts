@@ -11,6 +11,7 @@ import { ToasterService } from 'angular2-toaster';
 export class ListPaymentComponent implements OnInit {
   
   purchase: any [] = [];
+  config: any;
 
   constructor(
     private router: Router,
@@ -19,6 +20,10 @@ export class ListPaymentComponent implements OnInit {
 
   ngOnInit(){
     this.getPayment();
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1
+    };
   }
 
   getPayment() {
@@ -27,6 +32,10 @@ export class ListPaymentComponent implements OnInit {
     });
   }  
 
+  pageChanged(event:any){
+    this.config.currentPage = event;
+  }
+  
   updatePayment(payment: any){
     this.router.navigate(['/payment/update', payment.id]);
   }

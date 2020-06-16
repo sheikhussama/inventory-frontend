@@ -16,6 +16,7 @@ export class RecipeFilterComponent implements OnInit {
    products: any [] = [];
    recipeDetail: any;
    sale: any[] = []; 
+   config: any;
 
    constructor(
     private fb: FormBuilder, 
@@ -29,6 +30,10 @@ export class RecipeFilterComponent implements OnInit {
     this.initForm();
     this.getProduct(); 
     this.getsale();
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1
+    };
   }
 
   initForm() {
@@ -45,7 +50,9 @@ export class RecipeFilterComponent implements OnInit {
       this.products = response.results;
     });
   }  
-
+  pageChanged(event:any){
+    this.config.currentPage = event;
+  }
   getsale() {
     this.saleService.getFinalSale().subscribe((response) => {
       this.sale = response.results;

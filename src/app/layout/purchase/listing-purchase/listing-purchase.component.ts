@@ -11,6 +11,7 @@ import { PurchaseService } from '../../../core/services/purchase.services';
 export class ListingPurchaseComponent implements OnInit {
    
   purchase: any[] = []; 
+  config: any;
 
   constructor(private router: Router,
     private toast: ToasterService, 
@@ -18,6 +19,10 @@ export class ListingPurchaseComponent implements OnInit {
 
   ngOnInit() {
     this.getPurchase();
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1
+    };
   }
 
   getPurchase() {
@@ -25,7 +30,9 @@ export class ListingPurchaseComponent implements OnInit {
         this.purchase = response.results;
       });
     }
-
+    pageChanged(event:any){
+      this.config.currentPage = event;
+    }
     
     updatePurchase(purchase: any){
       this.router.navigate(['/purchase/update', purchase.id]);

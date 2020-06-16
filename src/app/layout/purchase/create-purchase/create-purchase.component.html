@@ -13,6 +13,12 @@
                     <div class="form-group">
                         <input type="text" formControlName="DcNo" class="form-control" placeholder="Enter DC NO"
                             value="" />
+                            <div *ngIf="DcNo?.invalid && (DcNo.dirty || DcNo.touched)"
+                            class="validation-error text-danger">
+                            <div *ngIf="DcNo.errors.required || DcNo.errors?.invalid">
+                                Enter a valid Dc No
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -22,6 +28,12 @@
                         <ng-select *ngIf="flag" placeholder="Select Product" [items]="product" class=""
                             formControlName="productId" bindLabel="productName" bindValue="id">
                         </ng-select>
+                        <div *ngIf="productId?.invalid && (productId.dirty || productId.touched)"
+                        class="validation-error text-danger">
+                        <div *ngIf="productId.errors.required || productId.errors?.invalid">
+                            Enter a valid Product
+                        </div>
+                    </div>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -31,6 +43,12 @@
                         <ng-select *ngIf="flag" placeholder="Select Client" [items]="clientDetail" class=""
                             formControlName="distibutorId" bindLabel="customerName" bindValue="id">
                         </ng-select>
+                        <div *ngIf="distibutorId?.invalid && (distibutorId.dirty || distibutorId.touched)"
+                        class="validation-error text-danger">
+                        <div *ngIf="distibutorId.errors.required || distibutorId.errors?.invalid">
+                            Enter a valid Client
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -42,6 +60,12 @@
                         <ng-select *ngIf="flag" placeholder="Type" [items]="type" class="" formControlName="type"
                             bindLabel="value" bindValue="id" (change)="typeChange($event)">
                         </ng-select>
+                        <div *ngIf="type?.invalid && (type.dirty || type.touched)"
+                        class="validation-error text-danger">
+                        <div *ngIf="type.errors.required || type.errors?.invalid">
+                            Enter a valid Type
+                        </div>
+                    </div>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -51,6 +75,12 @@
                     <div class="form-group">
                         <input (change)="bulkQuantitys($event)" type="number" class="form-control"
                             formControlName="bulkQuantity" placeholder="Enter Bulk Quantity" value="" />
+                            <div *ngIf="bulkQuantity?.invalid && (bulkQuantity.dirty || bulkQuantity.touched)"
+                            class="validation-error text-danger">
+                            <div *ngIf="bulkQuantity.errors.required || bulkQuantity.errors?.invalid">
+                                Enter a valid BulkQuantity
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -72,6 +102,7 @@
                     <div class="form-group">
                         <input type="number" (change)="QuantityInKg($event)" class="form-control"
                             placeholder="QuantityInKg" value="" />
+            
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -90,6 +121,12 @@
                         <ng-select *ngIf="flag" placeholder="Select Unit" [items]="unit" class=""
                             (change)="QuantityUnit($event)" formControlName="unit" bindLabel="value" bindValue="id">
                         </ng-select>
+                        <div *ngIf="unit?.invalid && (unit.dirty || unit.touched)"
+                        class="validation-error text-danger">
+                        <div *ngIf="unit.errors.required || unit.errors?.invalid">
+                            Enter a valid Unit
+                        </div>
+                    </div>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -122,7 +159,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <button type="submit" class="btnSubmit">{{ buttonText ? 'Update' : 'Register' }}</button>
+                    <button type="submit" class="btnSubmit" [disabled]="!purchaseForm?.valid">{{ buttonText ? 'Update' : 'Register' }}</button>
                 </div>
             </div>
         </form>

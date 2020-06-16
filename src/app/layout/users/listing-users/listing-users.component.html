@@ -17,6 +17,8 @@
                         <th scope="col"   class="text-center text-dark">Role</th>
                         <th scope="col"   class="text-center text-dark">Status</th>
                         <th scope="col"   class="text-center text-dark">Created Date</th>
+                        <th scope="col"   class="text-center text-dark">Action</th>
+
                     </tr>
                 </thead>
                 <tbody *ngFor= "let data of users" >
@@ -62,19 +64,30 @@
                    
                 </tbody>
             </table>
+
+            <div class="row mt-2" *ngIf="users?.length === 0">
+                <div class="col-lg-6 offset-lg-4">
+                 <h4 class="text-danger">
+                   User Sign Up Record Not Found
+                 </h4>
+                </div>
+              </div>
         </div> <!-- card.// -->
 
     
     </div>
      
-    <div class="row mt-2" *ngIf="users?.length === 0">
-        <div class="col-lg-6 offset-lg-4">
-         <h4 class="text-danger">
-           User Sign Up Record Not Found
-         </h4>
-        </div>
-      </div>
+
 </div>
 
 
 <app-active-users></app-active-users>
+
+
+<!-- <div class="row margin-pagination mt-1">
+    <div class="col-lg-6 offset-lg-2">
+      <div class="d-flex justify-content-around">
+       <pagination-controls  (pageChange)="pageChanged($event)"></pagination-controls>
+      </div>
+    </div>
+</div> -->

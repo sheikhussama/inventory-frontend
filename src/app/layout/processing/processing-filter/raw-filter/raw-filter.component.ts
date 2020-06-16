@@ -16,7 +16,8 @@ export class RawFilterComponent implements OnInit {
   rawMat: any[] = [];
   finishGoodDetail: any;
   sale: any[] = [];
-  
+  config: any;
+
   constructor(
     private fb: FormBuilder,
     private toast: ToasterService,
@@ -29,6 +30,10 @@ export class RawFilterComponent implements OnInit {
     this.initForm();
     this.getMaterial();
     this.getsale();
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1
+    };
   }
 
   initForm() {
@@ -45,7 +50,9 @@ export class RawFilterComponent implements OnInit {
       this.rawMat = response.results;
     });
   }
-
+  pageChanged(event:any){
+    this.config.currentPage = event;
+  }
   getsale() {
     this.saleService.getFinalSale().subscribe((response) => {
       this.sale = response.results;
@@ -57,7 +64,6 @@ export class RawFilterComponent implements OnInit {
     const data = this.finishGoodForm.value;
     this.processingService.filterRawFinishGoods(data).subscribe((response: any) => {
       this.finishGoodDetail = response;
-      console.log(this.finishGoodDetail)
       this.toast.pop('success', 'Success!', 'Finish Good History Search is Completed.');
       this.callCompleted();
     },

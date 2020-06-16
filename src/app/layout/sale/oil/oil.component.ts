@@ -208,7 +208,18 @@ export class OilComponent implements OnInit {
     this.saleForm.get('totalQuantityinLiters').setValue(saleDetail.totalQuantityinLiters);
     this.saleForm.get('totalQuantityinPackingUnit').setValue(saleDetail.totalQuantityinPackingUnit);
     this.saleForm.get('customerId').setValue(saleDetail.customerId);
-
-
   }
+
+  get productId() {
+    return this.saleForm.get('productId');
+  }
+  get customerId() {
+    return this.saleForm.get('customerId');
+  } 
+   get masterCartoons() {
+    return this.saleForm.get('masterCartoons');
+  }
+  get price() {
+    return this.saleForm.get('price');
+  }  
 }

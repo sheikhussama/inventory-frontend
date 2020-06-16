@@ -26,7 +26,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6 offset-md-4">
-                    <button type="submit" class="btnSubmit ml-3">{{buttonText ? 'Update': 'Register'}}</button>
+                    <button type="submit" class="btnSubmit ml-3" [disabled]="!endProductForm?.valid">{{buttonText ? 'Update': 'Register'}}</button>
 
                 </div>
             </div>

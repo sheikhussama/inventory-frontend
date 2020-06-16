@@ -11,6 +11,7 @@ import { SaleService } from '../../../core/services/sale.services';
 export class ListingProcessingComponent implements OnInit {
 
   sale: any[] = [];
+  config: any;
 
   constructor(private router: Router,
     private toast: ToasterService,
@@ -18,12 +19,20 @@ export class ListingProcessingComponent implements OnInit {
 
   ngOnInit() {
     this.getsale();
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1
+    };
   }
 
   getsale() {
     this.saleService.getFinalSale().subscribe((response) => {
       this.sale = response.results;
     });
+  }
+
+  pageChanged(event:any){
+    this.config.currentPage = event;
   }
 
   viewProcessingDetail(id: any){

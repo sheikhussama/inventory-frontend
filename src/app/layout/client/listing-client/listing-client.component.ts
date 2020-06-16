@@ -11,12 +11,17 @@ import { ToasterService } from 'angular2-toaster';
 export class ListingClientComponent implements OnInit {
 
   clientDetail: any[] = [];
+  config: any;
 
   constructor(private router: Router,
     private toast: ToasterService,private clientService: ClientService) { }
 
   ngOnInit(){
     this.getClient();
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1
+    };
   }
 
   getClient() {
@@ -25,6 +30,9 @@ export class ListingClientComponent implements OnInit {
    });
   } 
    
+  pageChanged(event:any){
+    this.config.currentPage = event;
+  }
   updateclient(client: any){
     this.router.navigate(['/client/update', client.id]);
   }

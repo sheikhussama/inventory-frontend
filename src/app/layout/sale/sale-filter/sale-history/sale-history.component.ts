@@ -19,6 +19,7 @@ export class SaleHistoryComponent implements OnInit {
   clientDetail: any[] = [];
   flag: Boolean = true;
   saleHistory: any;
+  config: any;
 
   constructor(
     private fb: FormBuilder, 
@@ -31,6 +32,10 @@ export class SaleHistoryComponent implements OnInit {
     this.initForm();
     this.getClient();
     this.endProduct();
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1
+    };
   }
 
   initForm() {
@@ -47,7 +52,9 @@ endProduct() {
     this.endProducts = response.results;
   });
 }
-
+pageChanged(event:any){
+  this.config.currentPage = event;
+}
 getClient() {
   this.clientService.getClient().subscribe((response) => {
     this.clientDetail = response.results;

@@ -12,6 +12,7 @@ export class ListingFinishComponent implements OnInit {
 
     
   finishGoods: any[] = []; 
+  config: any;
 
   constructor(private router: Router,
     private toast: ToasterService, 
@@ -19,6 +20,10 @@ export class ListingFinishComponent implements OnInit {
 
   ngOnInit() {
     this.getfinishGoods();
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1
+    };
   }
 
   getfinishGoods() {
@@ -27,7 +32,9 @@ export class ListingFinishComponent implements OnInit {
       });
     }
 
-    
+    pageChanged(event:any){
+      this.config.currentPage = event;
+    }
     updatefinishGoods(finishGoods: any){
       this.router.navigate(['/purchase/finishGoods/update', finishGoods.id]);
     }

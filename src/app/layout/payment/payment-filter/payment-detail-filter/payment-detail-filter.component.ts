@@ -17,6 +17,7 @@ export class PaymentDetailFilterComponent implements OnInit {
   paymentDetailFilter: any;
   products: any[] = []; 
   blance: any;
+  config: any;
 
   constructor(
     private fb: FormBuilder, 
@@ -28,6 +29,10 @@ export class PaymentDetailFilterComponent implements OnInit {
     this.initForm();
     this.getClient();
     this.getBlance();
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1
+    };
   }
 
   initForm() {
@@ -56,7 +61,9 @@ getClient() {
     this.clientDetail = response.results;
  });
 } 
-
+pageChanged(event:any){
+  this.config.currentPage = event;
+}
 onSubmit() {
   const data = this.paymentDetailFilterForm.value;  
     this.paymentDetailFilterService.paymentDetailFilter(data).subscribe((response: any) => {

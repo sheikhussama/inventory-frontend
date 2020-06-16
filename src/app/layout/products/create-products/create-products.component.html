@@ -85,12 +85,17 @@
                 </div>
                 <div class="col-md-4">
                 
-                     <label for="" class=""> {{typeOfProduct}} {{total}} Kg </label>
+                     <label for="" class=""> {{typeOfProduct}} {{total | number}} Quantity Kg </label>
                      <input type="text" disabled class="form-control"
-                     placeholder="{{typeOfProduct}} {{total}} Kg"
+                     placeholder="{{typeOfProduct}} {{total | number}} Kg"
                      type="number"
 
                      value=""/>
+                     <!-- <div *ngIf="QuantityInKgs?.invalid && (QuantityInKgs.dirty || QuantityInKgs.touched)" class="validation-error text-danger">
+                        <div *ngIf="QuantityInKgs.errors.required || QuantityInKgs.errors?.invalid">
+                            Select a valid Quantity Kg
+                        </div>
+                    </div> -->
                 </div>
                 <div class="col-md-6">
                     <label for=""> {{typeOfProduct}} Unit: </label>
@@ -100,24 +105,29 @@
                          [items]="unit" class="" bindLabel="value" bindValue="id"
                          (change)="QuantityUnit($event)" >
                         </ng-select>
-                        <div *ngIf="units?.invalid && (units.dirty || units.touched)" class="validation-error text-danger">
+                        <!-- <div *ngIf="units?.invalid && (units.dirty || units.touched)" class="validation-error text-danger">
                             <div *ngIf="units.errors.required || units.errors?.invalid">
                                 Select a valid Units
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>             
                 <div class="col-md-6">
-                   <label for="">  {{typeOfProduct}} {{totalUnit}} {{unitName}}</label>
-                   <input type="text" disabled class="form-control"
-                   placeholder="{{typeOfProduct}} {{totalUnit}} {{unitName}}"
+                   <label for="">  {{typeOfProduct}} {{totalUnit | number}} Quantity in {{unitName}}</label>
+                   <input type="text"   disabled class="form-control"
+                   placeholder="{{typeOfProduct}} {{totalUnit | number}} {{unitName}}"
                    type="number"
                    value=""/>
+                   <!-- <div *ngIf="QuantityInUnit?.invalid && (QuantityInUnit.dirty || QuantityInUnit.touched)" class="validation-error text-danger">
+                    <div *ngIf="QuantityInUnit.errors.required || QuantityInUnit.errors?.invalid">
+                        Select a valid Quantity Unit
+                    </div>
+                </div> -->
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <button type="submit" class="btnSubmit">{{buttonText ? 'Update': 'Raw'}}</button>
+                    <button type="submit" class="btnSubmit" [disabled]="!productForm?.valid">{{buttonText ? 'Update': 'Register'}}</button>
                 </div>
             </div>
         </form>

@@ -11,12 +11,17 @@ import { EndProductService } from '../../../../core/services/end-product.service
 export class ListingEndProductComponent implements OnInit {
 
   endProduct: any[] = []; 
-  
+  config: any;
+
   constructor(private router: Router,
     private toast: ToasterService, private endProductService: EndProductService) { }
 
   ngOnInit() {
     this.getEndProduct();
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1
+    };
    }
 
 
@@ -30,7 +35,9 @@ export class ListingEndProductComponent implements OnInit {
     this.router.navigate(['/products/endProduct/update', product.id]);
   }
 
-
+  pageChanged(event:any){
+    this.config.currentPage = event;
+  }
   deleteProduct(product: any) {
     this.endProductService.deleteEndProducts(product.id)
       .subscribe(

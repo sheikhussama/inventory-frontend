@@ -11,6 +11,7 @@ import { ToasterService } from 'angular2-toaster';
 export class SaleDeliverableOrdersComponent implements OnInit {
   orderDeliveredForm: FormGroup;
   DeliveredOrders: any;
+  config: any;
 
   constructor(private fb: FormBuilder,
     private saleService: SaleService,
@@ -18,6 +19,10 @@ export class SaleDeliverableOrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1
+    };
   }
   
 
@@ -35,7 +40,9 @@ export class SaleDeliverableOrdersComponent implements OnInit {
     })
   }
  
-
+  pageChanged(event:any){
+    this.config.currentPage = event;
+  }
 
   onSubmit() {
     const DeliveredOrder = this.orderDeliveredForm.value;

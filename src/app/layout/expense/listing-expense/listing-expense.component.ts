@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class ListingExpenseComponent implements OnInit {
   
   expense: any[] = []; 
+  config: any;
 
   constructor(private router: Router,
     private toast: ToasterService, 
@@ -18,6 +19,10 @@ export class ListingExpenseComponent implements OnInit {
 
   ngOnInit() {
     this.getExpense();
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1
+    };
   }
 
   getExpense() {
@@ -26,6 +31,9 @@ export class ListingExpenseComponent implements OnInit {
       });
     }
 
+    pageChanged(event:any){
+      this.config.currentPage = event;
+    }
     updateExpense(expense: any){
       this.router.navigate(['/expense/update', expense.id]);
     }

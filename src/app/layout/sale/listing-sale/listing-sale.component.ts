@@ -11,6 +11,7 @@ import { SaleService } from '../../../core/services/sale.services';
 export class ListingSaleComponent implements OnInit {
 
   sale: any[] = []; 
+  config: any;
 
   constructor(private router: Router,
     private toast: ToasterService, 
@@ -18,6 +19,10 @@ export class ListingSaleComponent implements OnInit {
 
   ngOnInit() {
     this.getsale();
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1
+    };
   }
 
   getsale() {
@@ -25,7 +30,9 @@ export class ListingSaleComponent implements OnInit {
         this.sale = response.results;
       });
     }
-
+    pageChanged(event:any){
+      this.config.currentPage = event;
+    }
     
     updateSale(sale: any){
       this.router.navigate(['/sale/update', sale.id]);

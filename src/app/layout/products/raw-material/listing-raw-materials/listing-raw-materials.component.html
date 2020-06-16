@@ -20,7 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let data of rawMaterial; let i = index">
+                    <tr *ngFor="let data of rawMaterial | paginate: config; let i = index">
                         <td>
                         
                                     <h6 class="title text-truncate text-center">{{data.id}} </h6>
@@ -54,9 +54,28 @@
                     </tr>
                 </tbody>
             </table>
+
+            <div *ngIf="rawMaterial.length === 0">
+                <div class="row">
+                  <div class="col-lg-6 offset-lg-4">
+                       <h2 class="text-danger"> Record Not Found</h2>
+                  </div>
+                </div>
+             </div>
+            
         </div> <!-- card.// -->
 
 
     </div>
 
+</div>
+
+
+
+<div class="row margin-pagination mt-1">
+    <div class="col-lg-6 offset-lg-2">
+      <div class="d-flex justify-content-around">
+       <pagination-controls  (pageChange)="pageChanged($event)"></pagination-controls>
+      </div>
+    </div>
 </div>

@@ -22,8 +22,8 @@ export class CreateProductsComponent implements OnInit {
   bulk:any;
   kg: any;
   calUnit: any;
-  total: any = "Total Quantity";
-  totalUnit:any = "Quantity In Unit"
+  total: any ;
+  totalUnit:any;
   showHide: Boolean;
   flag: Boolean = true;
   unitName: string;
@@ -78,9 +78,7 @@ export class CreateProductsComponent implements OnInit {
       DcNo: ['', [Validators.required]],
       bulkQuantity: ['', [Validators.required]],
       type: [null, [Validators.required]],
-      QuantityInKg: ['', [Validators.required]],
       unit: [null, [Validators.required]],
-      QuantityInUnit: ['', [Validators.required]],
   });
 }
 
@@ -103,11 +101,11 @@ typelist(event: any){
 }
 
 QuantityUnit(event: any) {
-  if(event.value === "L"){
+  if(event.value === "Ltr"){
     this.totalUnit = this.total * 1.11;
     this.unitName = 'Ltr'
   }
-  if(event.value === "G"){
+  if(event.value === "Gram"){
     this.unitName = 'Gram'
     this.totalUnit = this.total * 1000;
   }
@@ -155,12 +153,12 @@ callCompleted() {
   unitBased() {
     this.unit = [
        {
-        id: '1',
-        value: 'L',
+        id: 'Ltr',
+        value: 'Ltr',
        },
        {
-        id: '2',
-        value: 'G',
+        id: 'Gram',
+        value: 'Gram',
        }
     ]
   }
@@ -191,10 +189,10 @@ callCompleted() {
   get units() {
     return this.productForm.get('unit');
   }
-  // get QuantityInUnit() {
-  //   return this.productForm.get('QuantityInUnit');
-  // }
-  // get QuantityInKgs() {
-  //   return this.productForm.get('QuantityInKg');
-  // }
+  get QuantityInUnit() {
+    return this.productForm.get('QuantityInUnit');
+  }
+  get QuantityInKgs() {
+    return this.productForm.get('QuantityInKg');
+  }
 }

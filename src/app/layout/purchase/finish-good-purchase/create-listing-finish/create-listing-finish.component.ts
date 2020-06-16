@@ -119,4 +119,24 @@ preFilledForm(finishGoods: any) {
   this.finishGoodsForm.get('distibutorId').setValue(finishGoods.distibutorId);
 
 }
+
+
+get DcNo() {
+  return this.finishGoodsForm.get('DcNo');
+}
+get Quantity() {
+  return this.finishGoodsForm.get('Quantity');
+}
+get price() {
+  return this.finishGoodsForm.get('price');
+}
+get bulkQuantity() {
+  return this.finishGoodsForm.get('bulkQuantity');
+}
+get distibutorId() {
+  return this.finishGoodsForm.get('distibutorId');
+}
+get productId() {
+  return this.finishGoodsForm.get('productId');
+}
 }

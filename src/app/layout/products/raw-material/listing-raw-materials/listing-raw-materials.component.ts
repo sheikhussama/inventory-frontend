@@ -11,6 +11,7 @@ import { ToasterService } from 'angular2-toaster';
 export class ListingRawMaterialsComponent implements OnInit {
    
    rawMaterial: any[] = [];
+   config: any;
 
   constructor(private router: Router,
     private materialService: RawMaterialService,
@@ -18,6 +19,10 @@ export class ListingRawMaterialsComponent implements OnInit {
 
   ngOnInit(){
     this.getMaterial();
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1
+    };
   }
 
   getMaterial() {
@@ -29,7 +34,9 @@ export class ListingRawMaterialsComponent implements OnInit {
   updateProduct(raw: any){
     this.router.navigate(['/products/raw/update', raw.id]);
   }
-
+  pageChanged(event:any){
+    this.config.currentPage = event;
+  }
   deleteMaterial(material: any) {
     this.materialService.deleteMaterial(material.id)
       .subscribe(

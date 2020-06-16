@@ -131,3 +131,8 @@ body {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: #555;
 }
+
+.ngx-pagination .current {
+  background: #343a40 !important;
+  border-radius: 5rem !important;
+}

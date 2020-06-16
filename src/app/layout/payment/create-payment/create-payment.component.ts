@@ -92,7 +92,6 @@ export class CreatePaymentComponent implements OnInit {
       id: this.paymentID ? this.paymentID : '', // to handle update flow only for class.
       detail: ['', [Validators.required]],
       isCredit: ['', [Validators.required]],
-      isCustomer: ['', [Validators.required]],
       givenType: [null, [Validators.required]],
       amount: ['', [Validators.required]],
       distibutorId: [null, [Validators.required]]

@@ -39,7 +39,7 @@
             </div>
             <div class="row">
               <div class="col-lg-4">
-                <button type="submit" class="btnSubmit">{{buttonText ? 'Update': 'Register'}}</button>
+                <button type="submit" class="btnSubmit" [disabled]="!materialForm?.valid">{{buttonText ? 'Update': 'Register'}}</button>
               </div>
             </div>
         </form>

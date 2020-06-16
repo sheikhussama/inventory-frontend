@@ -20,6 +20,12 @@
                             bindValue="id"
                         >
                         </ng-select>
+                        <div *ngIf="distibutorId?.invalid && (distibutorId.dirty || distibutorId.touched)"
+                        class="validation-error text-danger">
+                        <div *ngIf="distibutorId.errors.required || distibutorId.errors?.invalid">
+                            Enter a valid Client
+                        </div>
+                    </div>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -34,6 +40,12 @@
                             bindValue="id"
                         >
                         </ng-select>
+                        <div *ngIf="productId?.invalid && (productId.dirty || productId.touched)"
+                        class="validation-error text-danger">
+                        <div *ngIf="productId.errors.required || productId.errors?.invalid">
+                            Enter a valid Product
+                        </div>
+                    </div>
                     </div>
                 </div>
 
@@ -49,6 +61,12 @@
                             placeholder="Enter Price"
                             value=""
                         />
+                        <div *ngIf="price?.invalid && (price.dirty || price.touched)"
+                        class="validation-error text-danger">
+                        <div *ngIf="price.errors.required || price.errors?.invalid">
+                            Enter a valid Price
+                        </div>
+                    </div>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -60,6 +78,12 @@
                             placeholder="Enter DC No"
                             value=""
                         />
+                        <div *ngIf="DcNo?.invalid && (DcNo.dirty || DcNo.touched)"
+                        class="validation-error text-danger">
+                        <div *ngIf="DcNo.errors.required || DcNo.errors?.invalid">
+                            Enter a valid DcNo
+                        </div>
+                    </div>
                     </div>
                 </div>
 
@@ -72,13 +96,19 @@
                             placeholder="Enter Quantity"
                             value=""
                         />
+                        <div *ngIf="Quantity?.invalid && (Quantity.dirty || Quantity.touched)"
+                        class="validation-error text-danger">
+                        <div *ngIf="Quantity.errors.required || Quantity.errors?.invalid">
+                            Enter a valid Quantity
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-4">
-                    <button type="submit" class="btnSubmit">{{ buttonText ? 'Update' : 'Create' }}</button>
+                    <button type="submit" class="btnSubmit" [disabled]="!finishGoodsForm?.valid">{{ buttonText ? 'Update' : 'Create' }}</button>
                 </div>
             </div>
         </form>

@@ -19,6 +19,7 @@ export class RawPurchaseFilterComponent implements OnInit {
   flag: Boolean = true;
   rawPurchaseFilter: any;
   products: any[] = []; 
+  config: any;
 
   constructor(
     private fb: FormBuilder, 
@@ -31,6 +32,10 @@ export class RawPurchaseFilterComponent implements OnInit {
     this.initForm();
     this.getClient();
     this.getProduct();
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1
+    };
   }
 
   initForm() {
@@ -67,7 +72,9 @@ onSubmit() {
       }
     }));
 }
-
+pageChanged(event:any){
+  this.config.currentPage = event;
+}
 callCompleted() {
   this.rawPurchaseFilterForm.reset();
 }

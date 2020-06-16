@@ -30,7 +30,7 @@
                         <th scope="col" width="200" class="text-dark text-truncate">Actions</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let data of sale; let i = index">
+                <tbody *ngFor="let data of sale | paginate: config; let i = index">
                     <tr>
                         <td>
 
@@ -120,9 +120,26 @@
                     </tr>
                 </tbody>
             </table>
+
+            <div *ngIf="sale.length === 0">
+                <div class="row">
+                  <div class="col-lg-6 offset-lg-4">
+                       <h2 class="text-danger"> Record Not Found</h2>
+                  </div>
+                </div>
+             </div>
         </div> <!-- card.// -->
 
 
     </div>
 
+</div>
+
+
+<div class="row margin-pagination mt-1">
+    <div class="col-lg-6 offset-lg-2">
+      <div class="d-flex justify-content-around">
+       <pagination-controls  (pageChange)="pageChanged($event)"></pagination-controls>
+      </div>
+    </div>
 </div>

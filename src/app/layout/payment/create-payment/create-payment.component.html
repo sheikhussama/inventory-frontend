@@ -61,6 +61,11 @@
                                 value="false">
                             <span class="checkmark"></span>
                         </label>
+                        <div *ngIf="isCredit?.invalid && (isCredit.dirty || isCredit.touched)" class="validation-error text-danger">
+                            <div *ngIf="isCredit.errors.required || isCredit.errors?.invalid">
+                                Must Check with Debit or Credit
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -76,7 +81,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 offset-lg-3">
-                    <button type="submit" class="btnSubmit mt-2"
+                    <button type="submit" class="btnSubmit mt-2" [disabled]="!paymentForm?.valid"
                        >{{ buttonText ? 'Update' : 'Register' }}</button>
                 </div>
             </div>

@@ -137,9 +137,7 @@ export class CreatePurchaseComponent implements OnInit {
       DcNo: ['', [Validators.required]],
       type: [null, [Validators.required]],
       bulkQuantity: ['', [Validators.required]],
-      QuantityInKg: ['', [Validators.required]],
       unit: [null, [Validators.required]],
-      perUnitQuantity: ['', [Validators.required]],
       perKgPrice: ['', [Validators.required]],
       productId: [null, [Validators.required]],
       distibutorId: [null, [Validators.required]],
@@ -248,10 +246,10 @@ export class CreatePurchaseComponent implements OnInit {
   get bulkQuantity() {
     return this.purchaseForm.get('bulkQuantity');
   }
-  // get price() {
-  //   return this.purchaseForm.get('price');
-  // }
   get distibutorId() {
     return this.purchaseForm.get('distibutorId');
+  }
+  get productId() {
+    return this.purchaseForm.get('productId');
   }
 }

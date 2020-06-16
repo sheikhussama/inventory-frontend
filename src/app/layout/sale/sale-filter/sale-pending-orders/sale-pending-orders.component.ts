@@ -12,6 +12,7 @@ export class SalePendingOrdersComponent implements OnInit {
   
   orderPendingForm: FormGroup;
   pendingOrders: any;
+  config: any;
 
   constructor(private fb: FormBuilder,
     private saleService: SaleService,
@@ -19,6 +20,10 @@ export class SalePendingOrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1
+    };
   }
   
 
@@ -36,7 +41,9 @@ export class SalePendingOrdersComponent implements OnInit {
     })
   }
  
-
+  pageChanged(event:any){
+    this.config.currentPage = event;
+  }
 
   onSubmit() {
     const pendingOrder = this.orderPendingForm.value;

@@ -19,6 +19,7 @@ export class FinishGoodsFilterComponent implements OnInit {
   clientDetail: any[] = [];
   flag: Boolean = true;
   finishGoodsFilter: any;
+  config: any;
 
   constructor(
     private fb: FormBuilder, 
@@ -31,7 +32,10 @@ export class FinishGoodsFilterComponent implements OnInit {
     this.initForm();
     this.getMaterial();
     this.getClient();
-
+    this.config = {
+      itemsPerPage: 10,
+      currentPage: 1
+    };
   }
 
   initForm() {
@@ -55,7 +59,9 @@ getClient() {
 
  });
 } 
-
+pageChanged(event:any){
+  this.config.currentPage = event;
+}
 onSubmit() {
   const data = this.finishGoodsFilterForm.value;  
     this.finishGoodsFilterService.purchasefinishGoodsFilter(data).subscribe((response: any) => {

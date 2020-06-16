@@ -73,7 +73,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <button type="submit" class="btnSubmit">Register</button>
+                    <button type="submit" class="btnSubmit" [disabled]="!usersForm?.valid">Register</button>
                 </div>
             </div>
         </form>

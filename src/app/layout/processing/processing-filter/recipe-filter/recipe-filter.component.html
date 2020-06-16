@@ -84,7 +84,7 @@
                     <th scope="col" width="100" class="text-dark text-truncate">Processing Status</th>
                 </tr>
             </thead>
-            <tbody *ngFor="let data of recipeDetail; let i = index">
+            <tbody *ngFor="let data of recipeDetail | paginate: config; let i = index">
                 <tr>
                     <td>
                     
@@ -171,4 +171,13 @@
     </div> <!-- card.// -->
 
 
+</div>
+
+
+<div class="row margin-pagination mt-1">
+    <div class="col-lg-6 offset-lg-2">
+      <div class="d-flex justify-content-around">
+       <pagination-controls  (pageChange)="pageChanged($event)"></pagination-controls>
+      </div>
+    </div>
 </div>
