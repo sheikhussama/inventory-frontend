@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PaymentService } from '../../../core/services/payment.services';
 import { Router } from '@angular/router';
 import { ToasterService } from 'angular2-toaster';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-list-payment',
@@ -40,20 +41,37 @@ export class ListPaymentComponent implements OnInit {
     this.router.navigate(['/payment/update', payment.id]);
   }
 
+
+
   deletePayment(payment: any) {
-    this.paymentService.deletePayments(payment.id)
-      .subscribe(
-        (response: any) => {
-          const index = this.purchase.indexOf(payment, 0);
-          if (index > -1) {
-            this.purchase.splice(index, 1);
-            this.getPayment();
-            this.toast.pop('success', 'Your Payment Delete is not recover');
-          }
-          else {
-            this.toast.pop('error', 'Your Payment is safe!');
-          }
-        });
+    Swal.fire({
+      title: '<i class="fa fa-trash" aria-hidden="true"></i>',
+      text: 'Are you sure you want to delete?',
+      showCancelButton: true,
+      icon: 'warning',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    })
+      .then((result) => {
+        if (result.value) {
+            this.paymentService.deletePayments(payment.id)
+            .subscribe(
+              (response: any) => {
+                const index = this.purchase.indexOf(payment, 0);
+                if (index > -1) {
+                  this.purchase.splice(index, 1);
+                  this.getPayment();
+                  Swal.fire(
+                    'Payment is Deleted!',
+                    'success'
+                  )
+                }
+              });
+        } else {
+          Swal.fire('Your Payment is safe!');
+        }
+      });
   }
 
 }

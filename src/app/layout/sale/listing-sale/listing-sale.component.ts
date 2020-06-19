@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToasterService } from 'angular2-toaster';
 import { SaleService } from '../../../core/services/sale.services';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-listing-sale',
@@ -37,21 +38,36 @@ export class ListingSaleComponent implements OnInit {
     updateSale(sale: any){
       this.router.navigate(['/sale/update', sale.id]);
     }
-
+    
     deleteSale(sale: any) {
-      this.saleService.deleteFinalSale(sale.id)
-        .subscribe(
-          (response: any) => {
-            const index = this.sale.indexOf(sale, 0);
-            if (index > -1) {
-              this.sale.splice(index, 1);
-              this.getsale();
-              this.toast.pop('success', 'Your Sale delete is not recover');
-            }
-            else {
-              this.toast.pop('error', 'Your Sale is safe!');
-            }
-          });
+      Swal.fire({
+        title: '<i class="fa fa-trash" aria-hidden="true"></i>',
+        text: 'Are you sure you want to delete?',
+        showCancelButton: true,
+        icon: 'warning',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      })
+        .then((result) => {
+          if (result.value) {
+              this.saleService.deleteFinalSale(sale.id)
+              .subscribe(
+                (response: any) => {
+                  const index = this.sale.indexOf(sale, 0);
+                  if (index > -1) {
+                    this.sale.splice(index, 1);
+                    this.getsale();
+                    Swal.fire(
+                      'Sale is Deleted!',
+                      'success'
+                    )
+                  }
+                });
+          } else {
+            Swal.fire('Your Sale is safe!');
+          }
+        });
     }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToasterService } from 'angular2-toaster';
 import { Router } from '@angular/router';
 import { FinishGoodsService } from '../../../../core/services/finish-goods.services';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-listing-finish',
@@ -40,19 +41,34 @@ export class ListingFinishComponent implements OnInit {
     }
 
     deletefinishGoods(finishGoods: any) {
-      this.finishGoodsService.deletefinishGoods(finishGoods.id)
-        .subscribe(
-          (response: any) => {
-            const index = this.finishGoods.indexOf(finishGoods, 0);
-            if (index > -1) {
-              this.finishGoods.splice(index, 1);
-              this.getfinishGoods();
-              this.toast.pop('success', 'Your FinishGoods delete is not recover');
-            }
-            else {
-              this.toast.pop('error', 'Your FinishGoods is safe!');
-            }
-          });
+      Swal.fire({
+        title: '<i class="fa fa-trash" aria-hidden="true"></i>',
+        text: 'Are you sure you want to delete?',
+        showCancelButton: true,
+        icon: 'warning',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      })
+        .then((result) => {
+          if (result.value) {
+              this.finishGoodsService.deletefinishGoods(finishGoods.id)
+              .subscribe(
+                (response: any) => {
+                  const index = this.finishGoods.indexOf(finishGoods, 0);
+                  if (index > -1) {
+                    this.finishGoods.splice(index, 1);
+                  this.getfinishGoods();
+                    Swal.fire(
+                      'FinishGoods is Deleted!',
+                      'success'
+                    )
+                  }
+                });
+          } else {
+            Swal.fire('Your FinishGoods is safe!');
+          }
+        });
     }
 
 }

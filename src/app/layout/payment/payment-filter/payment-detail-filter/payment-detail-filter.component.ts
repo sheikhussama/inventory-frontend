@@ -70,12 +70,7 @@ onSubmit() {
       this.paymentDetailFilter = response;
       this.toast.pop('success', 'Success!', 'Payment Detail Search is Completed.');
       this.callCompleted();
-    }, 
-    (error => {
-      if(error.status === 400) {
-        this.toast.pop('error', 'Error!', 'Record not Found');
-      }
-    }));
+    });
 }
 
 callCompleted() {

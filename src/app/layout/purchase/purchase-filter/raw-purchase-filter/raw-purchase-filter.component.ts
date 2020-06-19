@@ -65,12 +65,7 @@ onSubmit() {
       this.rawPurchaseFilter = response;
       this.toast.pop('success', 'Success!', 'Raw Purchase Search is Completed.');
       this.callCompleted();
-    }, 
-    (error => {
-      if(error.status === 400) {
-        this.toast.pop('error', 'Error!', 'Record not Found');
-      }
-    }));
+    });
 }
 pageChanged(event:any){
   this.config.currentPage = event;

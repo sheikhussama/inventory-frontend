@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../core/services/users.services';
 import { ToasterService } from 'angular2-toaster';
+import Swal from 'sweetalert2'
 
 declare const $: any;
 
@@ -11,12 +12,12 @@ declare const $: any;
 })
 export class ListingUsersComponent implements OnInit {
 
-  users:any;
+  users: any;
 
   constructor(private toast: ToasterService, private usersService: UserService) { }
 
   ngOnInit(): void {
-   this.getUsers();
+    this.getUsers();
   }
 
   getUsers() {
@@ -25,28 +26,40 @@ export class ListingUsersComponent implements OnInit {
     });
   }
 
-  showForm(){
+  showForm() {
     $("#update-form").modal()
   }
 
+
   deleteUser(user: any) {
-    this.usersService.deleteUser(user.id)
-      .subscribe(
-        (response: any) => {
-          const index = this.users.indexOf(user, 0);
-          if (index > -1) {
-            this.users.splice(index, 1);
-            this.getUsers();
-            this.toast.pop('success', 'User is delete Not recover');
-          }
-          else {
-            this.toast.pop('error', 'User is safe!');
-          }
-        },
-        (error) => {
-          if(error.status === 400) {
-            this.toast.pop('error', 'Error!','Invalid Info');
-          }
-  });
+    Swal.fire({
+      title: '<i class="fa fa-trash" aria-hidden="true"></i>',
+      text: 'Are you sure you want to delete?',
+      showCancelButton: true,
+      icon: 'warning',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    })
+      .then((result) => {
+        if (result.value) {
+          this.usersService.deleteUser(user.id)
+            .subscribe(
+              (response: any) => {
+                const index = this.users.indexOf(user, 0);
+                if (index > -1) {
+                  this.users.splice(index, 1);
+                  this.getUsers();
+                  Swal.fire(
+                    'Sale is Deleted!',
+                    'success'
+                  )
+                }
+              });
+        } else {
+          Swal.fire('Your Sale is safe!');
+        }
+      },
+      );
   }
 }

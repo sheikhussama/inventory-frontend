@@ -83,20 +83,20 @@ export class CreatePurchaseComponent implements OnInit {
   totalQuantity() {
     if (this.kg !== undefined) {
       this.total = +this.bulk * +this.kg;
-      this.totalPrice = +this.perKgPrices * +this.total
+      this.totalPrice = +this.perKgPrices * +this.total;
     }
   }
 
   QuantityUnit(event: any) {
     if (event.value === "LTR") {
       this.totalUnit = this.total * 1.2;
-      this.totalPrice = +this.perKgPrices * +this.totalUnit
+      // this.totalPrice = +this.perKgPrices * +this.totalUnit
       this.unitName = "Ltr"
     }
     if (event.value === "GRAM") {
       this.totalUnit = this.total * 1000;
       this.unitName = "Gram"
-      this.totalPrice = +this.perKgPrices * +this.totalUnit
+      // this.totalPrice = +this.perKgPrices * +this.totalUnit
 
     }
   }

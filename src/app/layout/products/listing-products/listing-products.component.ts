@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../core/services/products.services';
 import { Router } from '@angular/router';
 import { ToasterService } from 'angular2-toaster';
+import Swal from 'sweetalert2'
 
 declare const $: any;
 
@@ -42,19 +43,33 @@ export class ListingProductsComponent implements OnInit {
   }
 
   deleteProduct(product: any) {
-    this.productService.deleteProducts(product.id)
-      .subscribe(
-        (response: any) => {
-          const index = this.products.indexOf(product, 0);
-          if (index > -1) {
-            this.products.splice(index, 1);
-            this.getProduct();
-            this.toast.pop('success', 'Your Product delete is not recover');
-          }
-          else {
-            this.toast.pop('error', 'Your Product is safe!');
-          }
-        });
+    Swal.fire({
+      title: '<i class="fa fa-trash" aria-hidden="true"></i>',
+      text: 'Are you sure you want to delete?',
+      showCancelButton: true,
+      icon: 'warning',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    })
+      .then((result) => {
+        if (result.value) {
+            this.productService.deleteProducts(product.id)
+            .subscribe(
+              (response: any) => {
+                const index = this.products.indexOf(product, 0);
+                if (index > -1) {
+                  this.products.splice(index, 1);
+                  this.getProduct();
+                  Swal.fire(
+                    'Product is Deleted!',
+                    'success'
+                  )
+                }
+              });
+        } else {
+          Swal.fire('Your Product is safe!');
+        }
+      });
   }
-
 }
