@@ -10,18 +10,19 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./create-client.component.css']
 })
 export class CreateClientComponent implements OnInit {
-  
+
   role: any;
   clientForm: FormGroup;
   userID: any;
-  clientID: any; 
-  clientDetail: any; 
+  clientID: any;
+  clientDetail: any;
   buttonText: Boolean;
   flag: Boolean = true;
+  currencyList: any;
 
   constructor(
-    private fb: FormBuilder, 
-    private toast:ToasterService, 
+    private fb: FormBuilder,
+    private toast: ToasterService,
     private clientService: ClientService,
     private router: Router,
     private route: ActivatedRoute) { }
@@ -34,6 +35,7 @@ export class CreateClientComponent implements OnInit {
     });
     this.userID = JSON.parse(localStorage.getItem('profileDetail'));
     this.initForm();
+    this.selectCurenccy();
   }
 
 
@@ -56,8 +58,20 @@ export class CreateClientComponent implements OnInit {
   viewClient() {
     this.clientService.viewClient(this.clientID).subscribe((response) => {
       this.clientDetail = response;
-        this.preFilledForm(this.clientDetail);
+      this.preFilledForm(this.clientDetail);
     });
+  }
+
+  selectCurenccy() {
+    this.currencyList = [{
+      value: '$'
+    },
+    {
+      value: 'PKR'
+    }, {
+      value: '€'
+    }
+    ]
   }
 
 
@@ -72,45 +86,46 @@ export class CreateClientComponent implements OnInit {
       balance: ['', [Validators.required]],
       detail: ['', [Validators.required]],
       isCredit: ['', [Validators.required]],
-  });
-}
-
-
-onSubmit() {
-  const data = this.clientForm.value;
-  data.user = this.userID.user_id;
-
-  if (data.id > 0) {
-    this.clientService.updateClient(data, data.id).subscribe((response: any) => {
-      this.toast.pop('success', 'Success!', 'Client has been Updated.');
-      this.callCompleted();
-    });
-  } else {
-    this.clientService.storeClient(data).subscribe((response: any) => {
-      this.toast.pop('success', 'Success!', 'Client has been Created.');
-      this.callCompleted();
+      currencytype: [null, [Validators.required]]
     });
   }
-}
 
 
-callCompleted() {
-  this.clientForm.reset();
-  this.router.navigate(['/client']);
-      this.flag = false;
-    setTimeout(() => {this.flag = true;})
-}
+  onSubmit() {
+    const data = this.clientForm.value;
+    data.user = this.userID.user_id;
+
+    if (data.id > 0) {
+      this.clientService.updateClient(data, data.id).subscribe((response: any) => {
+        this.toast.pop('success', 'Success!', 'Client has been Updated.');
+        this.callCompleted();
+      });
+    } else {
+      this.clientService.storeClient(data).subscribe((response: any) => {
+        this.toast.pop('success', 'Success!', 'Client has been Created.');
+        this.callCompleted();
+      });
+    }
+  }
+
+
+  callCompleted() {
+    this.clientForm.reset();
+    this.router.navigate(['/client']);
+    this.flag = false;
+    setTimeout(() => { this.flag = true; })
+  }
 
   roleBased() {
     this.role = [
-       {
+      {
         id: 'D',
         value: 'Distributor'
-       },
-       {
+      },
+      {
         id: 'C',
         value: 'Customer'
-       }
+      }
     ]
   }
 
@@ -149,5 +164,8 @@ callCompleted() {
   }
   get isCredit() {
     return this.clientForm.get('isCredit');
+  }
+  get currencytype() {
+    return this.clientForm.get('currencytype');
   }
 }

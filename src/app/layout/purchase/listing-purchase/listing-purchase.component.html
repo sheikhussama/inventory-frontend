@@ -19,6 +19,7 @@
                         <th scope="col" class="text-dark text-center text-truncate">Purchaser</th>
                         <th scope="col"  class="text-dark text-truncate">DC NO</th>
                         <th scope="col" class="text-dark text-center text-truncate">Bulk Quantity</th>
+                        <th scope="col" class="text-dark text-center text-truncate">CurrencyType</th>
                         <th scope="col" class="text-dark text-center text-truncate">Per Kg Price</th>
                         <th scope="col" class="text-dark text-center text-truncate">Quantity In Kg</th>
                         <th scope="col" class="text-dark text-center text-truncate">Per Unit Quantity</th>
@@ -55,6 +56,11 @@
                                     <h6 class="title text-truncate text-center">{{data.bulkQuantity}}</h6>
                          
                         </td>
+                        <td>
+                        
+                            <h6 class="title text-truncate text-center">{{data.purchase_customer.currencyType}}</h6>
+                 
+                </td>
                         <td>
                         
                                     <h6 class="title text-truncate text-center">{{data.perKgPrice}}</h6>

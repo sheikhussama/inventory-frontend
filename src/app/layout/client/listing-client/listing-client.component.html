@@ -16,6 +16,7 @@
                         <th scope="col" class="text-dark text-center text-truncate">Customer Name</th>
                         <th scope="col" class="text-dark text-center text-truncate">Customer CNIC</th>
                         <th scope="col" class="text-dark text-center text-truncate">Contact No</th>
+                        <th scope="col" class="text-dark text-center text-truncate">Currency Type</th>
                         <th scope="col" class="text-dark text-center text-truncate">Opening Balance</th>
                         <th scope="col" class="text-dark text-center text-truncate">Company Name </th>
                         <th scope="col" class="text-dark text-center text-truncate">Created Date</th>
@@ -25,75 +26,83 @@
                 <tbody>
                     <tr *ngFor="let data of clientDetail | paginate: config; let i = index">
                         <td>
-                        
-                                    <h6 class="title text-truncate text-center">{{data.id}} </h6>
-                         
-                        </td>
-                        <td>
-                        
-                                    <h6 class="title text-truncate text-center">{{data.customerName}} </h6>
-                         
-                        </td>
-                        <td>
-                        
-                                    <h6 class="title text-truncate text-center">{{data.nicNo}} </h6>
-                         
+
+                            <h6 class="title text-truncate text-center">{{data.id}} </h6>
+
                         </td>
                         <td>
 
-                        
-                                    <h6 class="title text-truncate text-center">{{data.contactNo}}</h6>
+                            <h6 class="title text-truncate text-center">{{data.customerName}} </h6>
 
-                         
                         </td>
                         <td>
 
-                        
-                                    <h6 class="title text-truncate text-center">{{data.balance}}</h6>
+                            <h6 class="title text-truncate text-center">{{data.nicNo}} </h6>
 
-                         
                         </td>
                         <td>
 
-                        
-                                    <h6 class="title text-truncate text-center">{{data.company}}</h6>
 
-                         
+                            <h6 class="title text-truncate text-center">{{data.contactNo}}</h6>
+
+
                         </td>
                         <td>
 
-                        
-                                    <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>
 
-                         
+                            <h6 class="title text-truncate text-center">{{data.currencyType}}</h6>
+
+
+                        </td>
+                        <td>
+
+
+                            <h6 class="title text-truncate text-center">{{data.balance}}</h6>
+
+
+                        </td>
+                        <td>
+
+
+                            <h6 class="title text-truncate text-center">{{data.company}}</h6>
+
+
+                        </td>
+                        <td>
+
+
+                            <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>
+
+
                         </td>
                         <td class="text-right">
                             <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"
-                                data-original-title="Save to Wishlist"> <i class="fa fa-pencil"
-                                    aria-hidden="true" (click)="updateclient(data)"></i></button>
-                            <button href="" class="btn btn-outline-danger" (click)="deleteclient(data)"> <i class="fa fa-trash"></i></button>
+                                data-original-title="Save to Wishlist"> <i class="fa fa-pencil" aria-hidden="true"
+                                    (click)="updateclient(data)"></i></button>
+                            <button href="" class="btn btn-outline-danger" (click)="deleteclient(data)"> <i
+                                    class="fa fa-trash"></i></button>
                         </td>
 
-                        
-           
+
+
                     </tr>
                 </tbody>
             </table>
             <div *ngIf="clientDetail.length === 0">
                 <div class="row">
-                  <div class="col-lg-6 offset-lg-4">
-                       <h2 class="text-danger"> Record Not Found</h2>
-                  </div>
+                    <div class="col-lg-6 offset-lg-4">
+                        <h2 class="text-danger"> Record Not Found</h2>
+                    </div>
                 </div>
-             </div>
+            </div>
         </div> <!-- card.// -->
     </div>
 </div>
 
 <div class="row margin-pagination mt-1">
     <div class="col-lg-6 offset-lg-2">
-      <div class="d-flex justify-content-around">
-       <pagination-controls  (pageChange)="pageChanged($event)"></pagination-controls>
-      </div>
+        <div class="d-flex justify-content-around">
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+        </div>
     </div>
 </div>

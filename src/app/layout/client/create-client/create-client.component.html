@@ -65,7 +65,7 @@
 
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Enter CNIC NO" formControlName="nicNo"
                             value="" />
@@ -77,10 +77,9 @@
                         </div> -->
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Enter NTN"
-                            value="" />
+                        <input type="text" class="form-control" placeholder="Enter NTN" value="" />
                         <!-- <div *ngIf="nicNo?.invalid && (nicNo.dirty || nicNo.touched)"
                             class="validation-error text-danger">
                             <div *ngIf="nicNo.errors.required || nicNo.errors?.invalid">
@@ -89,7 +88,25 @@
                         </div> -->
                     </div>
                 </div>
-                <div class="col-md-4">
+              
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+      
+                        <ng-select placeholder="Select Currency" [items]="currencyList" class=""
+                            formControlName="currencytype" bindLabel="value" bindValue="value">
+                        </ng-select>
+                          <div *ngIf="currencytype?.invalid && (currencytype.dirty || currencytype.touched)"
+                            class="validation-error text-danger">
+                            <div *ngIf="currencytype.errors.required || currencytype.errors?.invalid">
+                                Enter a Currency type 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Opening Balance" formControlName="balance"
                             value="" />
@@ -101,7 +118,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -132,7 +148,8 @@
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <button type="submit" class="btnSubmit" [disabled]="!clientForm?.valid">{{buttonText ? 'Update': 'Create'}}</button>
+                    <button type="submit" class="btnSubmit"
+                        [disabled]="!clientForm?.valid">{{buttonText ? 'Update': 'Create'}}</button>
 
                 </div>
             </div>
