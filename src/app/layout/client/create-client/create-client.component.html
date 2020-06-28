@@ -96,11 +96,11 @@
                     <div class="form-group">
       
                         <ng-select placeholder="Select Currency" [items]="currencyList" class=""
-                            formControlName="currencytype" bindLabel="value" bindValue="value">
+                            formControlName="currencyType" bindLabel="value" bindValue="value">
                         </ng-select>
-                          <div *ngIf="currencytype?.invalid && (currencytype.dirty || currencytype.touched)"
+                          <div *ngIf="currencyType?.invalid && (currencyType.dirty || currencyType.touched)"
                             class="validation-error text-danger">
-                            <div *ngIf="currencytype.errors.required || currencytype.errors?.invalid">
+                            <div *ngIf="currencyType.errors.required || currencyType.errors?.invalid">
                                 Enter a Currency type 
                             </div>
                         </div>

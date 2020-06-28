@@ -86,7 +86,7 @@ export class CreateClientComponent implements OnInit {
       balance: ['', [Validators.required]],
       detail: ['', [Validators.required]],
       isCredit: ['', [Validators.required]],
-      currencytype: [null, [Validators.required]]
+      currencyType: [null, [Validators.required]]
     });
   }
 
