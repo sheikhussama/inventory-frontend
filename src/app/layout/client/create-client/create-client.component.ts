@@ -165,7 +165,7 @@ export class CreateClientComponent implements OnInit {
   get isCredit() {
     return this.clientForm.get('isCredit');
   }
-  get currencytype() {
-    return this.clientForm.get('currencytype');
+  get currencyType() {
+    return this.clientForm.get('currencyType');
   }
 }
