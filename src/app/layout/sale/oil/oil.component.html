@@ -29,7 +29,8 @@
                                         <div class="form-group">
                                             <label> <strong> Select Customer: </strong> </label>
                                             <ng-select formControlName="customerId" placeholder="Select Customer"
-                                                [items]="clients" bindLabel="customerName" bindValue="id">
+                                                [items]="clients" bindLabel="customerName" bindValue="id"
+                                                (change)="currencyType($event)">
                                             </ng-select>
                                         </div>
                                     </div>
@@ -123,7 +124,7 @@
 
                             </div>
                             <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="col-lg-4 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label> <strong> Total Quantity in Kg: </strong> </label>
                                         <input formControlName="totalQuantityinKg" type="text" class="form-control"
@@ -136,6 +137,15 @@
                                             <label> <strong> Price: </strong> </label>
                                             <input formControlName="price" type="text" class="form-control"
                                                 placeholder="Price" value="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label> <strong> CurrencyType: </strong> </label>
+                                            <input disabled type="text" class="form-control"
+                                                placeholder="{{currencyValue}}" value="" />
                                         </div>
                                     </div>
                                 </div>

@@ -24,6 +24,7 @@ export class OilComponent implements OnInit {
   totalDoxens: any;
   packingTypeQuantity: any;
   totalQuantityUnit: any;
+  currencyValue: any;
 
   totalQuantityLiters: any;
   totalQuantityKG: any;
@@ -113,6 +114,10 @@ export class OilComponent implements OnInit {
     });
   }
 
+  currencyType($event: any){
+      this.currencyValue = $event.currencyType;
+  }
+
   client() {
     this.clientService.getClient().subscribe((response) => {
       this.clients = response.results;
@@ -151,7 +156,7 @@ export class OilComponent implements OnInit {
   }
 
   totalQuantityInPackingUnit() {
-    this.totalQuantityUnit = this.packingTypeQuantity * this.totalDoxens;
+    this.totalQuantityUnit = this.packingTypeQuantity * this.packingCapaciyValue;
     this.totalQuantityInPackingLiters();
   }
 
