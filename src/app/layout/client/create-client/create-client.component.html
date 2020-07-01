@@ -37,7 +37,7 @@
 
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Enter Address" value=""
                             formControlName="address" />
@@ -50,7 +50,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
                         <input type="text" formControlName="contactNo" class="form-control"
                             placeholder="Enter Contact No" value="" />
@@ -62,13 +62,10 @@
                         </div>
                     </div>
                 </div>
-
-            </div>
-            <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Enter CNIC NO" formControlName="nicNo"
-                            value="" />
+                        <input type="text" class="form-control" placeholder="Enter CNIC NO & NTN"
+                            formControlName="nicNo" value="" />
                         <!-- <div *ngIf="nicNo?.invalid && (nicNo.dirty || nicNo.touched)"
                             class="validation-error text-danger">
                             <div *ngIf="nicNo.errors.required || nicNo.errors?.invalid">
@@ -77,31 +74,20 @@
                         </div> -->
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Enter NTN" value="" />
-                        <!-- <div *ngIf="nicNo?.invalid && (nicNo.dirty || nicNo.touched)"
-                            class="validation-error text-danger">
-                            <div *ngIf="nicNo.errors.required || nicNo.errors?.invalid">
-                                Enter a valid CNIC
-                            </div>
-                        </div> -->
-                    </div>
-                </div>
-              
 
             </div>
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-      
+
                         <ng-select placeholder="Select Currency" [items]="currencyList" class=""
                             formControlName="currencyType" bindLabel="value" bindValue="value">
                         </ng-select>
-                          <div *ngIf="currencyType?.invalid && (currencyType.dirty || currencyType.touched)"
+                        <div *ngIf="currencyType?.invalid && (currencyType.dirty || currencyType.touched)"
                             class="validation-error text-danger">
                             <div *ngIf="currencyType.errors.required || currencyType.errors?.invalid">
-                                Enter a Currency type 
+                                Enter a Currency type
                             </div>
                         </div>
                     </div>

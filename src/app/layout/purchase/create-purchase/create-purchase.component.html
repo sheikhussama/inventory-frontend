@@ -41,7 +41,8 @@
 
                     <div class="form-group">
                         <ng-select *ngIf="flag" placeholder="Select Client" [items]="clientDetail" class=""
-                            formControlName="distibutorId" bindLabel="customerName" bindValue="id">
+                            formControlName="distibutorId" bindLabel="customerName" bindValue="id"
+                            (change)="currencyType($event)">
                         </ng-select>
                         <div *ngIf="distibutorId?.invalid && (distibutorId.dirty || distibutorId.touched)"
                         class="validation-error text-danger">
@@ -70,7 +71,7 @@
                 </div>
                 <div class="col-md-4">
 
-                    <label for="">Bulk Quantity</label>
+                    <label for=""> Bulk Quantity {{typeOfRawPurchase}}  </label>
 
                     <div class="form-group">
                         <input (change)="bulkQuantitys($event)" type="number" class="form-control"
@@ -78,25 +79,12 @@
                             <div *ngIf="bulkQuantity?.invalid && (bulkQuantity.dirty || bulkQuantity.touched)"
                             class="validation-error text-danger">
                             <div *ngIf="bulkQuantity.errors.required || bulkQuantity.errors?.invalid">
-                                Enter a valid BulkQuantity
+                                Enter a valid Bulk Quantity
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-4">
-                    <label for="">Per Kg Price</label>
-
-                    <div class="form-group">
-                        <input type="number" formControlName="perKgPrice" (change)="perKgPrice($event)" class="form-control"
-                            placeholder="Per Kg Price" value="" />
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col-md-3">
                     <label for="">Quantity In Kg</label>
 
                     <div class="form-group">
@@ -105,7 +93,10 @@
             
                     </div>
                 </div>
-                <div class="col-md-3">
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
                     <label for="" class="">
                         Total Quantity Kg
                     </label>
@@ -114,7 +105,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="">Select Unit</label>
 
                     <div class="form-group">
@@ -129,7 +120,7 @@
                     </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="" class="">
                         Total Quantity In Unit
                     </label>
@@ -140,6 +131,24 @@
 
             </div>
             <div class="row">
+                
+                <div class="col-md-4">
+                    <label for="">Per Kg Price</label>
+
+                    <div class="form-group">
+                        <input type="number" formControlName="perKgPrice" (change)="perKgPrice($event)" class="form-control"
+                            placeholder="Per Kg Price" value="" />
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label> CurrencyType: </label>
+                            <input disabled type="text" class="form-control"
+                                placeholder="{{currencyValue}}" value="" />
+                        </div>
+                    </div>
+                </div>
              <div class="col-md-4">
                 <label for="" class="">
                     Total Price
@@ -157,8 +166,8 @@
                 </div>
              </div> -->
             </div>
-            <div class="row">
-                <div class="col-lg-4">
+            <div class="row mt-2">
+                <div class="col-lg-4 offset-lg-5">
                     <button type="submit" class="btnSubmit" [disabled]="!purchaseForm?.valid">{{ buttonText ? 'Update' : 'Register' }}</button>
                 </div>
             </div>

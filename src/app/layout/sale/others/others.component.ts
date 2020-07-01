@@ -23,6 +23,7 @@ export class OthersComponent implements OnInit {
   saleForm: FormGroup;
   @Input() saleDetail: any;
   @Input('buttonText') buttonText: Boolean;
+  currencyValue: any;
 
   constructor(private endProductService: EndProductService,
     private clientService: ClientService, private fb: FormBuilder,
@@ -86,6 +87,9 @@ export class OthersComponent implements OnInit {
     ]
   }
 
+  currencyType($event: any){
+    this.currencyValue = $event.currencyType;
+}
   packingUnit() {
     this.unit = [
       {

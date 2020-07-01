@@ -21,6 +21,7 @@ export class CreateListingFinishComponent implements OnInit {
   clientDetail: any[] = [];
   rawMaterial: any[] = [];
   flag: Boolean = true;
+  currencyValue: any;
 
   constructor(
     private fb: FormBuilder, 
@@ -59,6 +60,10 @@ export class CreateListingFinishComponent implements OnInit {
     }
   }
 
+  
+  currencyType($event: any){
+    this.currencyValue = $event.currencyType;
+}
 
   viewfinishGoods() {
     this.finishGoodsService.viewfinishGoods(this.finishGoodsID).subscribe((response) => {

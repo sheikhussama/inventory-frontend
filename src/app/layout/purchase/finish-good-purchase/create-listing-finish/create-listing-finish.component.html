@@ -8,28 +8,28 @@
 
         <form class="form-content" [formGroup]="finishGoodsForm" (ngSubmit)="onSubmit()">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
-                        <ng-select
-                            *ngIf="flag"
-                            placeholder="Select Client"
-                            [items]="clientDetail"
-                            class=""
-                            formControlName="distibutorId"
-                            bindLabel="customerName"
-                            bindValue="id"
-                        >
-                        </ng-select>
-                        <div *ngIf="distibutorId?.invalid && (distibutorId.dirty || distibutorId.touched)"
+                        <label for=""> DC NO </label>
+                        <input
+                            type="text"
+                            formControlName="DcNo"
+                            class="form-control"
+                            placeholder="Enter DC No"
+                            value=""
+                        />
+                        <div *ngIf="DcNo?.invalid && (DcNo.dirty || DcNo.touched)"
                         class="validation-error text-danger">
-                        <div *ngIf="distibutorId.errors.required || distibutorId.errors?.invalid">
-                            Enter a valid Client
+                        <div *ngIf="DcNo.errors.required || DcNo.errors?.invalid">
+                            Enter a valid Dc No
                         </div>
                     </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
+                        <label for="">Select Product </label>
+
                         <ng-select
                             *ngIf="flag"
                             placeholder="Select Product"
@@ -48,47 +48,10 @@
                     </div>
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="">Enter Quantity</label>
 
-              
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <input
-                            type="number"
-                            class="form-control"
-                            formControlName="price"
-                            placeholder="Enter Price"
-                            value=""
-                        />
-                        <div *ngIf="price?.invalid && (price.dirty || price.touched)"
-                        class="validation-error text-danger">
-                        <div *ngIf="price.errors.required || price.errors?.invalid">
-                            Enter a valid Price
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <input
-                            type="text"
-                            formControlName="DcNo"
-                            class="form-control"
-                            placeholder="Enter DC No"
-                            value=""
-                        />
-                        <div *ngIf="DcNo?.invalid && (DcNo.dirty || DcNo.touched)"
-                        class="validation-error text-danger">
-                        <div *ngIf="DcNo.errors.required || DcNo.errors?.invalid">
-                            Enter a valid DcNo
-                        </div>
-                    </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="form-group">
                         <input
                             type="number"
                             class="form-control"
@@ -104,11 +67,72 @@
                     </div>
                     </div>
                 </div>
+              
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label for="">Select Client</label>
+
+                        <ng-select
+                            *ngIf="flag"
+                            placeholder="Select Client"
+                            [items]="clientDetail"
+                            class=""
+                            formControlName="distibutorId"
+                            bindLabel="customerName"
+                            bindValue="id"
+                            (change)="currencyType($event)"
+                        >
+                        </ng-select>
+                        <div *ngIf="distibutorId?.invalid && (distibutorId.dirty || distibutorId.touched)"
+                        class="validation-error text-danger">
+                        <div *ngIf="distibutorId.errors.required || distibutorId.errors?.invalid">
+                            Enter a valid Client
+                        </div>
+                    </div>
+                    </div>
+    
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="">Enter Price</label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            formControlName="price"
+                            placeholder="Enter Price"
+                            value=""
+                        />
+                        <div *ngIf="price?.invalid && (price.dirty || price.touched)"
+                        class="validation-error text-danger">
+                        <div *ngIf="price.errors.required || price.errors?.invalid">
+                            Enter a valid Price
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="">Currency Type</label>
+                        <input
+                            disabled
+                            type="text"
+                            class="form-control"
+                            placeholder="{{currencyValue}}"
+                            value=""
+                        />
+                
+                    </div>
+                </div>
+
             </div>
 
             <div class="row">
                 <div class="col-lg-4">
-                    <button type="submit" class="btnSubmit" [disabled]="!finishGoodsForm?.valid">{{ buttonText ? 'Update' : 'Create' }}</button>
+                    <button type="submit" class="btnSubmit" [disabled]="!finishGoodsForm?.valid">{{ buttonText ? 'Update' : 'Register' }}</button>
                 </div>
             </div>
         </form>

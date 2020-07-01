@@ -136,3 +136,7 @@ body {
   background: #343a40 !important;
   border-radius: 5rem !important;
 }
+.form-control:disabled {
+  font-weight: bolder;
+  color: black;
+}

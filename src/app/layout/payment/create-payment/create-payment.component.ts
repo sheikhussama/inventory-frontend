@@ -19,6 +19,7 @@ export class CreatePaymentComponent implements OnInit {
   buttonText: Boolean;
   type: any;
   clientDetail: any[] = [];
+  currencyValue: any;
 
   constructor(
     private fb: FormBuilder,
@@ -40,7 +41,9 @@ export class CreatePaymentComponent implements OnInit {
     this.getClient();
   }
 
-
+  currencyType($event: any){
+    this.currencyValue = $event.currencyType;
+}
   givenTypes() {
     this.type = [
       {

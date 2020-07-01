@@ -10,18 +10,23 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" class="form-control" formControlName="amount" placeholder="Enter Amount" />
-                        <div *ngIf="amount?.invalid && (amount.dirty || amount.touched)"
-                        class="validation-error text-danger">
-                        <div *ngIf="amount.errors.required || amount.errors?.invalid">
-                            Enter a valid Amount
+                        <label for=""> Select Client</label>
+                        <ng-select placeholder="Select Client" [items]="clientDetail" class=""
+                            formControlName="distibutorId" bindLabel="customerName" bindValue="id"
+                            (change)="currencyType($event)">
+                        </ng-select>
+                        <div *ngIf="distibutorId?.invalid && (distibutorId.dirty || distibutorId.touched)"
+                            class="validation-error text-danger">
+                            <div *ngIf="distibutorId.errors.required || distibutorId.errors?.invalid">
+                                Select a valid Client
+                            </div>
                         </div>
                     </div>
-                    </div>
                 </div>
-
                 <div class="col-md-6">
                     <div class="form-group">
+                        <label for=""> Select Balance Type</label>
+
                         <ng-select placeholder="Balance Type" formControlName="givenType" [items]="type" class=""
                             bindLabel="value" bindValue="id">
 
@@ -35,22 +40,32 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+
+            </div>
+            <div class="row">
+                <div class="col-md-3">
                     <div class="form-group">
-                        <ng-select placeholder="Select Client" [items]="clientDetail" class=""
-                            formControlName="distibutorId" bindLabel="customerName" bindValue="id">
-                        </ng-select>
-                        <div *ngIf="distibutorId?.invalid && (distibutorId.dirty || distibutorId.touched)"
+                        <label for=""> Enter Amount</label>
+
+                        <input type="text" class="form-control" formControlName="amount" placeholder="Enter Amount" />
+                        <div *ngIf="amount?.invalid && (amount.dirty || amount.touched)"
                             class="validation-error text-danger">
-                            <div *ngIf="distibutorId.errors.required || distibutorId.errors?.invalid">
-                                Select a valid Client
+                            <div *ngIf="amount.errors.required || amount.errors?.invalid">
+                                Enter a valid Amount
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 form-group">
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label> Currency Type:  </label>
+                            <input disabled type="text" class="form-control" placeholder="{{currencyValue}}" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 form-group margin-top">
                     <div class="form-check-inline">
-
                         <label class="customradio"><span class="radiotextsty text-truncate">Credit (Recieve)</span>
                             <input type="radio" name="isCredit" formControlName="isCredit" checked="isCredit"
                                 value="true">
@@ -61,7 +76,8 @@
                                 value="false">
                             <span class="checkmark"></span>
                         </label>
-                        <div *ngIf="isCredit?.invalid && (isCredit.dirty || isCredit.touched)" class="validation-error text-danger">
+                        <div *ngIf="isCredit?.invalid && (isCredit.dirty || isCredit.touched)"
+                            class="validation-error text-danger">
                             <div *ngIf="isCredit.errors.required || isCredit.errors?.invalid">
                                 Must Check with Debit or Credit
                             </div>
@@ -69,20 +85,21 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <textarea name="" formControlName="detail" placeholder="Enter Detail" id="" cols="50" rows="5"
                     class="ml-3"></textarea>
-                <div *ngIf="detail?.invalid && (detail.dirty || detail.touched)" class="validation-error text-danger">
+                <div *ngIf="detail?.invalid && (detail.dirty || detail.touched)"
+                    class="validation-error text-danger">
                     <div *ngIf="detail.errors.required || detail.errors?.invalid">
                         Select a valid Customer or Distributor
                     </div>
                 </div>
+               
             </div>
             <div class="row">
                 <div class="col-lg-4 offset-lg-3">
-                    <button type="submit" class="btnSubmit mt-2" [disabled]="!paymentForm?.valid"
-                       >{{ buttonText ? 'Update' : 'Register' }}</button>
+                    <button type="submit" class="btnSubmit mt-2"
+                        [disabled]="!paymentForm?.valid">{{ buttonText ? 'Update' : 'Register' }}</button>
                 </div>
             </div>
         </form>

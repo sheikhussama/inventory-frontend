@@ -29,6 +29,7 @@ export class SaltSeedComponent implements OnInit {
   totalQuantityKG: any;
   packingOfType :any;
   userID: any;
+  currencyValue: any;
   
   @Input() saleDetail: any;
   @Input('buttonText') buttonText: Boolean;
@@ -172,7 +173,9 @@ export class SaltSeedComponent implements OnInit {
     this.hideForm();
   }
 
-
+  currencyType($event: any){
+    this.currencyValue = $event.currencyType;
+}
   hideForm(){
     $("#salt-seed").modal('hide')
    }

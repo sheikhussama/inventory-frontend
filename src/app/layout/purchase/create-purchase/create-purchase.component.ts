@@ -33,6 +33,7 @@ export class CreatePurchaseComponent implements OnInit {
   typeOfRawPurchase: any;
   perKgPrices: any;
   totalPrice: any = "Total Price";
+  currencyValue: any;
 
   constructor(
     private fb: FormBuilder,
@@ -129,6 +130,11 @@ export class CreatePurchaseComponent implements OnInit {
       this.preFilledForm(this.purchaseDetail);
     });
   }
+
+  currencyType($event: any){
+    this.currencyValue = $event.currencyType;
+    console.log(this.currencyValue);
+}
 
 
   initForm() {
