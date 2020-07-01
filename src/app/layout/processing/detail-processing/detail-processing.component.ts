@@ -29,6 +29,16 @@ export class DetailProcessingComponent implements OnInit {
   productID: any;
   productRawRecipie: any;
   rawQuantity: any;
+  QuantityUnit: any;
+  QuantityUnitKg: any;
+  recipeList: any;
+  rawList:any;
+  productName: any;
+  listOfUnit: any;
+  recipieShow: Boolean;
+  rawShow: Boolean;
+  recipieQuantity: any;
+  rawQuantitys: any;
 
   constructor(
     private toast: ToasterService,
@@ -95,6 +105,12 @@ export class DetailProcessingComponent implements OnInit {
     });
   }
 
+  unitType($event: any){
+    this.productName = $event.productName;
+    this.QuantityUnit = $event.QuantityInUnit;
+    this.QuantityUnitKg = $event.QuantityInKg;
+    console.log(this.productName);
+  }
 
   rawItem(): FormGroup {
     return this.fb.group({
@@ -115,6 +131,9 @@ export class DetailProcessingComponent implements OnInit {
     });
   }
 
+  listUnit($event: any){
+   this.listOfUnit = $event.value
+}
 
   viewRawRecipeDetail() {
     this.processingService.viewRawRecipeDetail(this.processingID).subscribe((response) => {
@@ -192,6 +211,23 @@ export class DetailProcessingComponent implements OnInit {
     this.materialService.getMaterial().subscribe((response) => {
       this.rawMaterial = response.results;
     });
+  }
+
+  recipieType($event: any){
+    this.recipieShow = true;
+    this.recipeList = $event.value;
+    this.recipieQuantity = $event.value.recipieQuantity;
+    this.toast.pop('success', 'Success!', 'Add Raw Material');
+
+  }
+
+  
+  rawType($event: any){
+    this.rawShow = true;
+    this.rawList = $event.value;
+    this.rawQuantitys = $event.value.rawQuantity;
+    this.toast.pop('success', 'Success!', 'Add Finish Goods');
+
   }
 
   get raw() {

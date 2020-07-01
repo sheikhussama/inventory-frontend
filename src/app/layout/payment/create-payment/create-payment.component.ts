@@ -66,6 +66,8 @@ export class CreatePaymentComponent implements OnInit {
       this.clientDetail = response.results;
     });
   }
+  
+
 
   /**
    * Update flow init

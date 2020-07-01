@@ -146,6 +146,27 @@
                 <div class="row" [formGroupName]="i">
                     <div class="col-md-3">
                         <div class="form-group">
+                            <label for=""> Select Raw Product</label>
+                            <ng-select *ngIf="flag" placeholder="Select Raw Product" formControlName="ProductId"
+                                [items]="endProduct" bindValue="id" bindLabel="productName" (change)="unitType($event)">
+                            </ng-select>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <label for="" class="ml-2"> Kg </label>
+                            <input disabled class="form-control" placeholder="{{QuantityUnitKg}}">
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <label for=""> Unit</label>
+                            <input disabled class="form-control" placeholder="{{QuantityUnit}}">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for=""> Enter Quantity</label>
                             <input type="text" formControlName="recipieQuantity" class="form-control"
                                 placeholder="Quantity" value="" />
                         </div>
@@ -153,16 +174,9 @@
 
                     <div class="col-md-3">
                         <div class="form-group">
-
-                            <ng-select *ngIf="flag" placeholder="Select End Product" formControlName="ProductId"
-                                [items]="endProduct" bindValue="id" bindLabel="productName">
-                            </ng-select>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
+                            <label for=""> Select Unit Type</label>
                             <ng-select *ngIf="flag" placeholder="Select Unit Type" formControlName="unit" [items]="unit"
-                                bindValue="value" bindLabel="value">
+                                bindValue="value" bindLabel="value" (change)="listUnit($event)">
                             </ng-select>
                         </div>
                     </div>
@@ -171,7 +185,7 @@
                             class="fa fa-minus-circle text-danger fontSize40 cusrsor-pointer"></i>
                     </div>
                 </div>
-
+                <i class="fa fa-plus text-success fontSize40 cusrsor-pointer" (click)="recipieType(item)"></i>
             </div>
             <!-- Raw -->
 
@@ -193,23 +207,26 @@
                 <div class="row" [formGroupName]="i">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <input type="text" formControlName="rawQuantity" class="form-control" placeholder="Quantity"
-                                value="" />
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group">
+                            <label for=""> Select Raw Material</label>
                             <ng-select *ngIf="flag" placeholder="Select Raw Material" class=""
                                 formControlName="ProductId" [items]="rawMaterial" bindValue="id"
-                                bindLabel="productName">
+                                bindLabel="productName" (change)="unitType($event)">
                             </ng-select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for=""> Enter Quantity</label>
+
+                            <input type="text" formControlName="rawQuantity" class="form-control" placeholder="Quantity"
+                                value="" />
                         </div>
                     </div>
 
                     <div class="col-sm-4">
                         <i (click)="removeRaw(i)" class="fa fa-minus-circle text-danger fontSize40 cusrsor-pointer"></i>
                     </div>
+                    <i class="fa fa-plus text-success fontSize40 cusrsor-pointer" (click)="rawType(item)"></i>
                 </div>
             </div>
             <div class="row">
@@ -219,4 +236,68 @@
             </div>
         </form>
     </div>
+</div>
+
+<div class="container" *ngIf="recipieShow">
+     <label for=""> <strong>Raw Material</strong></label>
+    <div class="table-responsive" id="style-1">
+        <table class="table table-striped d-table text-center table-stats">
+            <thead class="text-muted">
+                <tr class="red">
+                    <th scope="col" class="text-dark">Product Name</th>
+                    <th scope="col" width="200" class="text-dark">KG</th>
+                    <th scope="col" width="200" class="text-dark">Unit</th>
+                    <th scope="col" width="200" class="text-dark">Quantity</th>
+                    <th scope="col" width="200" class="text-dark text-right">Unit Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                                <h6 class="title text-truncate text-center">{{productName}} </h6>
+                    </td>
+                    <td>
+                                <h6 class="title text-truncate text-center">{{QuantityUnitKg}}</h6>
+                    </td>
+                    <td>
+                                <h6 class="title text-truncate text-center">{{QuantityUnit}}</h6>
+                    </td>
+                    <td>
+                        <h6 class="title text-truncate text-center">{{recipieQuantity}}</h6>
+            </td>
+                    <td>
+                        <h6 class="title text-truncate text-center">{{listOfUnit}}</h6>
+            </td>
+                </tr>
+            </tbody>
+        </table>
+    </div> <!-- card.// -->
+</div>
+
+
+<div class="container" *ngIf="rawShow">
+    <label for=""> <strong>Finish Goods</strong></label>
+   <div class="table-responsive" id="style-1">
+       <table class="table table-striped d-table text-center table-stats">
+           <thead class="text-muted">
+               <tr class="red">
+                   <th scope="col" class="text-dark">Product Name</th>
+                   <th scope="col" width="200" class="text-dark">Quantity</th>
+               </tr>
+           </thead>
+           <tbody>
+               <tr>
+                   <td>
+                               <h6 class="title text-truncate text-center">{{productName}} </h6>
+                   </td>
+               
+                
+                   <td>
+                       <h6 class="title text-truncate text-center">{{rawQuantitys}}</h6>
+                   </td>
+            
+               </tr>
+           </tbody>
+       </table>
+   </div> <!-- card.// -->
 </div>

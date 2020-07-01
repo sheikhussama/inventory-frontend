@@ -18,3 +18,11 @@
     font-size: 40px;
 
 }
+.card {
+    overflow: hidden;
+}
+
+.table-responsive {
+    overflow-y: scroll;
+    height: 20vh;
+}
