@@ -10,6 +10,7 @@ const routes: Routes = [
           {path: '', component: ListingProcessingComponent},
           {path: 'detail/:id', component: DetailProcessingComponent},
           {path: 'update/:id', component: DetailProcessingComponent},
+          {path: 'show/:id', component: DetailProcessingComponent},
           { path: 'processingFilter', loadChildren: () => import('./processing-filter/processing-filter.module').then((m) => m.ProcessingFilterModule) },
         ]
       }

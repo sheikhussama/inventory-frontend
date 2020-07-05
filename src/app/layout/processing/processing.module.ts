@@ -9,6 +9,7 @@ import { ListingProcessingComponent } from './listing-processing/listing-process
 import { DetailProcessingComponent } from './detail-processing/detail-processing.component';
 import { ProcessingFilterComponent } from './processing-filter/processing-filter.component';
 import { UpdateRecipeeRawComponent } from './update-recipee-raw/update-recipee-raw.component';
+import { ShowProcessingComponent } from './show-processing/show-processing.component';
 
 @NgModule({
     imports: [CommonModule,SharedModule, ProcessingRoutingModule, PageHeaderModule],
@@ -16,7 +17,8 @@ import { UpdateRecipeeRawComponent } from './update-recipee-raw/update-recipee-r
         ProcessingComponent,
         ListingProcessingComponent,
         DetailProcessingComponent,
-        UpdateRecipeeRawComponent   
+        UpdateRecipeeRawComponent,
+        ShowProcessingComponent   
    ]
 })
 export class ProcessingModule {}

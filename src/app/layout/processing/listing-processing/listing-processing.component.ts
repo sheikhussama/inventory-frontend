@@ -40,8 +40,11 @@ export class ListingProcessingComponent implements OnInit {
 
   }
   
+  showRawRecipe(id: any){
+    this.router.navigate(['/processing/show', id]);
+  }
+  
   updateRawRecipe(id: any){
     this.router.navigate(['/processing/update', id]);
-
   }
 }

@@ -39,7 +39,11 @@ export class DetailProcessingComponent implements OnInit {
   rawShow: Boolean;
   recipieQuantity: any;
   rawQuantitys: any;
-
+  recipeDataList: any[] = [];
+  rawDataList: any[] = [];
+  hideShow:Boolean;
+  onlyShow: Boolean;
+  showData:any;
   constructor(
     private toast: ToasterService,
     private router: Router,
@@ -63,14 +67,26 @@ export class DetailProcessingComponent implements OnInit {
         if (params.has('id')) {
           this.processingID = params.get('id');
           this.viewProcessing();
+          this.hideShow = true;
+          this.onlyShow = false;
           this.initForm();
         } else {
           this.toast.pop('error', 'Opps!', 'Invalid request params');
           this.router.navigate(['/dashboard/processing']);
         }
       } else if ((this.router.url).includes('update')) {
+        this.processingID = params.get('id');
+        this.viewRawRecipeDetail();
         this.updateFlowInit(params);
+        this.hideShow = true;
+        this.onlyShow = false;
         this.initForm();
+      }
+      else if ((this.router.url).includes('show')){
+        this.processingID = params.get('id');
+        this.hideShow = false;
+        this.onlyShow = true;
+        this.showProcessing();
       }
     });
   }
@@ -105,11 +121,17 @@ export class DetailProcessingComponent implements OnInit {
     });
   }
 
+  showProcessing(){
+    this.processingService.viewRawRecipeDetail(this.processingID).subscribe((response) => {
+      this.processing = response;
+      console.log()
+    });
+  }
+
   unitType($event: any){
     this.productName = $event.productName;
     this.QuantityUnit = $event.QuantityInUnit;
     this.QuantityUnitKg = $event.QuantityInKg;
-    console.log(this.productName);
   }
 
   rawItem(): FormGroup {
@@ -137,8 +159,8 @@ export class DetailProcessingComponent implements OnInit {
 
   viewRawRecipeDetail() {
     this.processingService.viewRawRecipeDetail(this.processingID).subscribe((response) => {
-      this.rawRecipeDetail = response;
-      this.preFilledForm(this.rawRecipeDetail);
+      this.processing = response;
+      this.preFilledForm( this.processing);
     });
   }
 
@@ -217,8 +239,15 @@ export class DetailProcessingComponent implements OnInit {
     this.recipieShow = true;
     this.recipeList = $event.value;
     this.recipieQuantity = $event.value.recipieQuantity;
-    this.toast.pop('success', 'Success!', 'Add Raw Material');
-
+    this.toast.pop('success', 'Success!', 'Add Raw Material')
+     
+    this.recipeDataList.push({
+      productName: this.productName,
+      QuantityUnitKg: this.QuantityUnitKg,
+      QuantityUnit: this.QuantityUnit,
+      recipieQuantity: this.recipieQuantity,
+      listOfUnit: this.listOfUnit
+    });
   }
 
   
@@ -227,7 +256,10 @@ export class DetailProcessingComponent implements OnInit {
     this.rawList = $event.value;
     this.rawQuantitys = $event.value.rawQuantity;
     this.toast.pop('success', 'Success!', 'Add Finish Goods');
-
+    this.rawDataList.push({
+      productName: this.productName,
+      rawQuantitys:  this.rawQuantitys,
+    });
   }
 
   get raw() {

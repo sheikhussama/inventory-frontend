@@ -23,6 +23,5 @@
 }
 
 .table-responsive {
-    overflow-y: scroll;
-    height: 20vh;
+    overflow-y: hidden;
 }

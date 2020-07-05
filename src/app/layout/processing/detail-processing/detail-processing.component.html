@@ -122,10 +122,10 @@
 
 
 
-<div class="container-fluid register-form">
+<div *ngIf="hideShow" class="container-fluid register-form">
     <div class="form">
 
-        <form class="form-content" [formGroup]="processingForm" (ngSubmit)="onSubmit()" >
+        <form class="form-content" [formGroup]="processingForm" (ngSubmit)="onSubmit()">
             <!-- Reciepe -->
 
             <div class="row">
@@ -209,8 +209,8 @@
                         <div class="form-group">
                             <label for=""> Select Raw Material</label>
                             <ng-select *ngIf="flag" placeholder="Select Raw Material" class=""
-                                formControlName="ProductId" [items]="rawMaterial" bindValue="id"
-                                bindLabel="productName" (change)="unitType($event)">
+                                formControlName="ProductId" [items]="rawMaterial" bindValue="id" bindLabel="productName"
+                                (change)="unitType($event)">
                             </ng-select>
                         </div>
                     </div>
@@ -231,15 +231,15 @@
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <button type="submit" class="btnSubmit" >{{buttonText ? 'Update': 'Register'}}</button>
+                    <button type="submit" class="btnSubmit">{{buttonText ? 'Update': 'Register'}}</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
 
-<div class="container" *ngIf="recipieShow">
-     <label for=""> <strong>Raw Material</strong></label>
+<div class="container" *ngIf="recipeDataList.length > 0 && hideShow && onlyShow">
+    <label for=""> <strong>Raw Material</strong></label>
     <div class="table-responsive" id="style-1">
         <table class="table table-striped d-table text-center table-stats">
             <thead class="text-muted">
@@ -251,23 +251,23 @@
                     <th scope="col" width="200" class="text-dark text-right">Unit Type</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody *ngFor="let data of recipeDataList">
                 <tr>
                     <td>
-                                <h6 class="title text-truncate text-center">{{productName}} </h6>
+                        <h6 class="title text-truncate text-center">{{data.productName}} </h6>
                     </td>
                     <td>
-                                <h6 class="title text-truncate text-center">{{QuantityUnitKg}}</h6>
+                        <h6 class="title text-truncate text-center">{{data.QuantityUnitKg}}</h6>
                     </td>
                     <td>
-                                <h6 class="title text-truncate text-center">{{QuantityUnit}}</h6>
+                        <h6 class="title text-truncate text-center">{{data.QuantityUnit}}</h6>
                     </td>
                     <td>
-                        <h6 class="title text-truncate text-center">{{recipieQuantity}}</h6>
-            </td>
+                        <h6 class="title text-truncate text-center">{{data.recipieQuantity}}</h6>
+                    </td>
                     <td>
-                        <h6 class="title text-truncate text-center">{{listOfUnit}}</h6>
-            </td>
+                        <h6 class="title text-truncate text-center">{{data.listOfUnit}}</h6>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -275,29 +275,198 @@
 </div>
 
 
-<div class="container" *ngIf="rawShow">
+<div class="container" *ngIf="rawDataList.length > 0 && hideShow && onlyShow">
     <label for=""> <strong>Finish Goods</strong></label>
-   <div class="table-responsive" id="style-1">
-       <table class="table table-striped d-table text-center table-stats">
-           <thead class="text-muted">
-               <tr class="red">
-                   <th scope="col" class="text-dark">Product Name</th>
-                   <th scope="col" width="200" class="text-dark">Quantity</th>
-               </tr>
-           </thead>
-           <tbody>
-               <tr>
-                   <td>
-                               <h6 class="title text-truncate text-center">{{productName}} </h6>
-                   </td>
-               
-                
-                   <td>
-                       <h6 class="title text-truncate text-center">{{rawQuantitys}}</h6>
-                   </td>
-            
-               </tr>
-           </tbody>
-       </table>
-   </div> <!-- card.// -->
+    <div class="table-responsive" id="style-1">
+        <table class="table table-striped d-table text-center table-stats">
+            <thead class="text-muted">
+                <tr class="red">
+                    <th scope="col" class="text-dark">Product Name</th>
+                    <th scope="col" width="200" class="text-dark">Quantity</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let data of rawDataList">
+                <tr>
+                    <td>
+                        <h6 class="title text-truncate text-center">{{productName}} </h6>
+                    </td>
+
+
+                    <td>
+                        <h6 class="title text-truncate text-center">{{rawQuantitys}}</h6>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div> <!-- card.// -->
+</div>
+
+
+<div *ngIf="onlyShow" class="container">
+    <h1>Raw Material</h1>
+    <div class="table-responsive"  id="style-1">
+        <table class="table table-striped d-table text-center table-stats">
+            <thead class="text-muted">
+                <tr class="red">
+                    <th scope="col" class="text-dark text-center text-truncate">Raw Material ID</th>
+                    <th scope="col" class="text-dark text-center text-truncate">Product Name</th>
+                    <th scope="col" class="text-dark text-center text-truncate">DC NO</th>
+                    <th scope="col"  class="text-dark text-truncate">Quantity In Kg </th>
+                    <th scope="col" class="text-dark text-center text-truncate">Quantity In Unit</th>
+                    <th scope="col" class="text-dark text-center text-truncate">Bulk Quantity</th>
+                    <th scope="col" class="text-dark text-center text-truncate">Unit</th>
+                    <th scope="col" class="text-dark text-center text-truncate">Raw Quantity</th>
+                    <th scope="col" class="text-dark text-center text-truncate">Time Created</th>
+
+                </tr>
+            </thead>
+            <tbody *ngFor="let data of  processing?.sale_rawrecipie; let i = index">
+                <tr>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.id}}</h6>
+                     
+                    </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.product_rawrecipie.productName}}</h6>
+                     
+                    </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.product_rawrecipie.DcNo}}</h6>
+                     
+                    </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.product_rawrecipie.QuantityInKg}}</h6>
+                     
+                    </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.product_rawrecipie.QuantityInUnit}}</h6>
+                     
+                    </td>
+                    <td>
+                    
+                        <h6 class="title text-truncate text-center">{{data.product_rawrecipie.bulkQuantity}}</h6>
+             
+            </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.product_rawrecipie.unit}}</h6>
+                     
+                    </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.rawQuantity}}</h6>
+                     
+                    </td>
+
+                 
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>
+                     
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+        <div *ngIf="processing?.sale_rawrecipie?.length === 0">
+            <div class="row">
+              <div class="col-lg-6 offset-lg-4">
+                   <h2 class="text-danger"> Record Not Found</h2>
+              </div>
+            </div>
+         </div>
+    </div> <!-- card.// -->
+
+
+</div>
+
+<div *ngIf="onlyShow" class="container">
+    <h1>Finish Goodss</h1>
+    <div class="table-responsive"  id="style-1">
+        <table class="table table-striped d-table text-center table-stats">
+            <thead class="text-muted">
+                <tr class="red">
+                    <th scope="col" class="text-dark text-center text-truncate">Finish Goods ID</th>
+                    <th scope="col" class="text-dark text-center text-truncate">Product Name</th>
+                    <th scope="col" class="text-dark text-center text-truncate">DC NO</th>
+                    <th scope="col"  class="text-dark text-truncate">Quantity In Kg </th>
+                    <th scope="col" class="text-dark text-center text-truncate">Quantity In Unit</th>
+                    <th scope="col" class="text-dark text-center text-truncate">Bulk Quantity</th>
+                    <th scope="col" class="text-dark text-center text-truncate">Unit</th>
+                    <th scope="col" class="text-dark text-center text-truncate">Reciepe Quantity</th>
+                    <th scope="col" class="text-dark text-center text-truncate">Time Created</th>
+
+                </tr>
+            </thead>
+            <tbody *ngFor="let data of processing?.sale_recipie; let i = index">
+                <tr >
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.id}}</h6>
+                     
+                    </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.product_recipie.productName}}</h6>
+                     
+                    </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.product_recipie.DcNo}}</h6>
+                     
+                    </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.product_recipie.QuantityInKg}}</h6>
+                     
+                    </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.product_recipie.QuantityInUnit}}</h6>
+                     
+                    </td>
+                    <td>
+                    
+                        <h6 class="title text-truncate text-center">{{data.product_recipie.bulkQuantity}}</h6>
+             
+            </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.product_recipie.unit}}</h6>
+                     
+                    </td>
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.recipieQuantity}}</h6>
+                     
+                    </td>
+
+                 
+                    <td>
+                    
+                                <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>
+                     
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+        <div *ngIf="processing?.sale_recipie?.length === 0">
+            <div class="row">
+              <div class="col-lg-6 offset-lg-4">
+                   <h2 class="text-danger"> Record Not Found</h2>
+              </div>
+            </div>
+         </div>
+    </div> <!-- card.// -->
+
+
 </div>
