@@ -7,6 +7,8 @@ import { SaleService } from '../../../core/services/sale.services';
 import { ProcessingService } from '../../../core/services/processing.service';
 import { ProductService } from '../../../core/services/products.services';
 
+declare const $ :any;
+
 @Component({
   selector: 'app-detail-processing',
   templateUrl: './detail-processing.component.html',
@@ -29,8 +31,8 @@ export class DetailProcessingComponent implements OnInit {
   productID: any;
   productRawRecipie: any;
   rawQuantity: any;
-  QuantityUnit: any;
-  QuantityUnitKg: any;
+  QuantityUnit = [];
+  QuantityUnitKg = [];
   recipeList: any;
   rawList:any;
   productName: any;
@@ -50,7 +52,7 @@ export class DetailProcessingComponent implements OnInit {
   showAddOptions: Boolean;
   editOptions: Boolean;
   finishGoodproductID: any;
-
+  unitShowType: any;
   constructor(
     private toast: ToasterService,
     private router: Router,
@@ -87,6 +89,7 @@ export class DetailProcessingComponent implements OnInit {
         this.processingID = params.get('id');
         this.viewRawRecipeDetail();
         this.updateFlowInit(params);
+        // document.getElementById("row-0").style.display = "none";    
         this.hideShow = true
         this.editOptions = true;
         this.showAddOptions = false;
@@ -138,12 +141,16 @@ export class DetailProcessingComponent implements OnInit {
     });
   }
 
-  unitType($event: any){
+  unitType($event: any,index){
     this.productName = $event.productName;
-    this.QuantityUnit = $event.QuantityInUnit;
-    this.QuantityUnitKg = $event.QuantityInKg;
+    this.QuantityUnit[index] = $event.QuantityInUnit;
+    this.QuantityUnitKg[index] = $event.QuantityInKg;
     this.rawproductID = $event.id;
     this.listOfUnit = $event.unit;
+    if(this.showAddOptions){
+      this.unitShowType[index] = $event.unit
+
+    }
   }
 
   rawItem(): FormGroup {
@@ -294,6 +301,9 @@ export class DetailProcessingComponent implements OnInit {
   }
 
   preFilledForm(viewDetail: any) {
+  // document.getElementById("row-0").style.display = "none";    
+  // document.getElementById("row-raw-0").style.display = "none";    
+
     let controlRaw = <FormArray>this.processingForm.controls.raw;
     viewDetail.sale_rawrecipie.forEach((x: any, index: any) => {
       controlRaw.push(this.fb.group({

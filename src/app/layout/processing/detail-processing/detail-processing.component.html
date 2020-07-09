@@ -143,25 +143,25 @@
             </div>
 
             <div formArrayName="recipie" *ngFor="let item of recipie.controls; let i = index;">
-                <div class="row" [formGroupName]="i">
+                <div class="row" [formGroupName]="i" id="row-{{i}}">
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for=""> Select Raw Product</label>
                             <ng-select *ngIf="flag" placeholder="Select Raw Product" formControlName="ProductId"
-                                [items]="endProduct" bindValue="id" bindLabel="productName" (change)="unitType($event)">
+                                [items]="endProduct" bindValue="id" bindLabel="productName" (change)="unitType($event,i)">
                             </ng-select>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="" class="ml-2"> Kg </label>
-                            <input disabled class="form-control" placeholder="{{QuantityUnitKg}}">
+                            <input disabled class="form-control" placeholder="{{QuantityUnitKg[i]}}">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for=""> Unit</label>
-                            <input disabled class="form-control" placeholder="{{QuantityUnit}}">
+                            <input disabled class="form-control" placeholder="{{QuantityUnit[i]}}">
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -175,7 +175,10 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for=""> Unit Type</label>
-                            <input disabled class="form-control" placeholder="{{listOfUnit}}">
+                            <ng-select *ngIf="editOptions" placeholder="Select Unit Type" formControlName="unit"
+                            [items]="unit" bindValue="value" bindLabel="value"></ng-select>
+                            <input disabled class="form-control" *ngIf="showAddOptions" placeholder="{{unitShowType[i]}}">
+
                         </div>
                     </div>
                     <div class="col-md-1">
@@ -202,12 +205,12 @@
             </div>
 
             <div formArrayName="raw" *ngFor="let item of raw.controls; let i = index;">
-                <div class="row" [formGroupName]="i">
+                <div class="row" [formGroupName]="i" id="row-raw-{{i}}">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for=""> Select Finish Goods</label>
                             <ng-select *ngIf="flag" placeholder="Select Finish Goods" class=""
-                                [items]="rawMaterial" bindValue="id" bindLabel="productName"
+                                [items]="rawMaterial" bindValue="id" formControlName="ProductId" bindLabel="productName"
                                 (change)="unitFinishType($event)">
                             </ng-select>
                         </div>
