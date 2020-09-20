@@ -1,151 +1,238 @@
 <div>
-    <app-page-header [heading]="'Sale'" [icon]="'fa-bar-chart-o'"></app-page-header>
+  <app-page-header
+    [heading]="'Sale'"
+    [icon]="'fa-bar-chart-o'"
+  ></app-page-header>
 
-    <div class="row product-form-1">
-        <div class="col-lg-4 offset-lg-9 mb-3">
-            <button class="btnSubmit" [routerLink]="['create']" routerLinkActive="router-link-active"> Create Sale
-            </button>
+  <div class="row product-form-1 mb-3">
+    <div class="col-lg-3 offset-md-1">
+      <button
+        class="btnSubmit"
+        [routerLink]="['create-oil']"
+        routerLinkActive="router-link-active"
+      >
+        Oil Sale
+      </button>
+    </div>
+    <div class="col-lg-4">
+      <button
+        class="btnSubmit"
+        [routerLink]="['create-salt-seed']"
+        routerLinkActive="router-link-active"
+      >
+        Salt N Seed Sale
+      </button>
+    </div>
+    <div class="col-lg-4">
+      <button
+        class="btnSubmit"
+        [routerLink]="['create-others']"
+        routerLinkActive="router-link-active"
+      >
+        Other Sale
+      </button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="table-responsive" id="style-1">
+      <table class="table table-striped d-table text-center table-stats">
+        <thead class="text-muted">
+          <tr class="red">
+            <th scope="col" width="200" class="text-dark text-truncate">
+              Sale ID#
+            </th>
+            <th scope="col" width="200" class="text-dark text-truncate">
+              Customer Name
+            </th>
+            <th scope="col" width="200" class="text-dark text-truncate">
+              Product Name
+            </th>
+            <th scope="col" width="200" class="text-dark text-truncate">
+              Master Cartoon
+            </th>
+            <th scope="col" width="200" class="text-dark text-truncate">
+              Dozen Boxes
+            </th>
+            <th scope="col" width="200" class="text-dark text-truncate">
+              Packing Capacity
+            </th>
+            <th scope="col" width="200" class="text-dark text-truncate">
+              Packing Unit
+            </th>
+            <th scope="col" width="200" class="text-dark text-truncate">
+              Packing Type
+            </th>
+            <th scope="col" width="200" class="text-dark text-truncate">
+              Packing Type Quantity
+            </th>
+            <th scope="col" width="200" class="text-dark text-truncate">
+              Total Quantity in Unit
+            </th>
+            <th scope="col" width="200" class="text-dark text-truncate">
+              Total Quantity in Liters
+            </th>
+            <th scope="col" width="200" class="text-dark text-truncate">
+              Total Quantity in Kg
+            </th>
+            <th scope="col" width="200" class="text-dark text-truncate">
+              Currency Type
+            </th>
+            <th scope="col" width="200" class="text-dark text-truncate">
+              Price
+            </th>
+            <th scope="col" width="200" class="text-dark text-truncate">
+              Sale Status
+            </th>
+            <th scope="col" width="200" class="text-dark text-truncate">
+             Sale Category
+            </th>
+            <th scope="col" width="200" class="text-dark text-truncate">
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let data of sale | paginate: config; let i = index">
+          <tr>
+            <td>
+              <h6 class="title text-truncate text-center">{{ data.id }}</h6>
+            </td>
+            <td>
+              <h6 class="title text-truncate text-center">
+                {{ data.finalSale_customer.customerName }}
+              </h6>
+            </td>
+            <td>
+              <h6 class="title text-truncate text-center">
+                {{ data.finalSale_product.productName }}
+              </h6>
+            </td>
+            <td>
+              <h6 class="title text-truncate text-center">
+                {{ data.masterCartoons }}
+              </h6>
+            </td>
+            <td>
+              <h6 class="title text-truncate text-center">
+                {{ data.dozenBoxes }}
+              </h6>
+            </td>
+            <td>
+              <h6 class="title text-truncate text-center">
+                {{ data.packingCapacity }}
+              </h6>
+            </td>
+            <td>
+              <h6 class="title text-truncate text-center">
+                {{ data.packingUnit }}
+              </h6>
+            </td>
+            <td>
+              <h6 class="title text-truncate text-center">
+                {{ data.packingType }}
+              </h6>
+            </td>
+
+            <td>
+              <h6 class="title text-truncate text-center">
+                {{ data.packingTypeQuanitity }}
+                {{ data.packingType }}
+              </h6>
+            </td>
+            <td>
+              <h6 class="title text-truncate text-center">
+                {{ data.totalQuantityinPackingUnit }} {{ data.packingUnit }}
+              </h6>
+            </td>
+            <td>
+              <h6 class="title text-truncate text-center">
+                {{ data.totalQuantityinLiters }} LTR
+              </h6>
+            </td>
+            <td>
+              <h6 class="title text-truncate text-center">
+                {{ data.totalQuantityinKg | number }} KG
+              </h6>
+            </td>
+            <td>
+              <h6 class="title text-truncate text-center">
+                {{ data.finalSale_customer.currencyType }}
+              </h6>
+            </td>
+            <td>
+              <h6 class="title text-truncate text-center">{{ data.price }}</h6>
+            </td>
+            <td>
+              <h6
+                class="title text-truncate text-primary"
+                *ngIf="data.isSold === false"
+              >
+                Pending
+              </h6>
+              <h6
+                class="title text-truncate text-success"
+                *ngIf="data.isSold === true"
+              >
+                Delivered
+              </h6>
+            </td>
+            <td>
+              <h6 class="title text-truncate text-center"> 
+                 <strong>{{data.catagory}} Sale </strong></h6>
+            </td>
+            <td class="text-dark">
+              <button
+                *ngIf="data.catagory === 'Oil'"
+                class="btn btn-outline-success"
+                (click)="updateSale(data, 'oil')"
+              >
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </button>
+              <button
+                *ngIf="data.catagory === 'SaltSeed'"
+                (click)="updateSale(data, 'salt-seed')"
+                class="btn btn-outline-success"
+              >
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </button>
+              <button
+                *ngIf="data.catagory === 'Others'"
+                (click)="updateSale(data, 'others')"
+                class="btn btn-outline-success"
+              >
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </button>
+
+              <button
+                href=""
+                class="btn btn-outline-danger"
+                (click)="deleteSale(data)"
+              >
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="sale.length === 0">
+        <div class="row">
+          <div class="col-lg-6 offset-lg-4">
+            <h2 class="text-danger">Record Not Found</h2>
+          </div>
         </div>
-    </div>
-
-    <div class="container">
-        <div class="table-responsive" id="style-1">
-            <table class="table table-striped d-table text-center table-stats">
-                <thead class="text-muted">
-                    <tr class="red">
-                        <th scope="col" width="200" class="text-dark text-truncate">Sale ID#</th>
-                        <th scope="col" width="200" class="text-dark text-truncate">Customer Name</th>
-                        <th scope="col" width="200" class="text-dark text-truncate">Product Name</th>
-                        <th scope="col" width="200" class="text-dark text-truncate">Master Cartoon</th>
-                        <th scope="col" width="200" class="text-dark text-truncate">Dozen Boxes</th>
-                        <th scope="col" width="200" class="text-dark text-truncate">Packing Capacity</th>
-                        <th scope="col" width="200" class="text-dark text-truncate">Packing Unit</th>
-                        <th scope="col" width="200" class="text-dark text-truncate">Packing Type</th>
-                        <th scope="col" width="200" class="text-dark text-truncate">Packing Type Quantity</th>
-                        <th scope="col" width="200" class="text-dark text-truncate">Total Quantity in Unit</th>
-                        <th scope="col" width="200" class="text-dark text-truncate">Total Quantity in Liters</th>
-                        <th scope="col" width="200" class="text-dark text-truncate">Total Quantity in Kg</th>
-                        <th scope="col" width="200" class="text-dark text-truncate">Currency Type</th>
-                        <th scope="col" width="200" class="text-dark text-truncate">Price</th>
-                        <th scope="col" width="200" class="text-dark text-truncate">Sale Status</th>
-                        <th scope="col" width="200" class="text-dark text-truncate">Actions</th>
-                    </tr>
-                </thead>
-                <tbody *ngFor="let data of sale | paginate: config; let i = index">
-                    <tr>
-                        <td>
-
-                            <h6 class="title text-truncate text-center">{{data.id}}</h6>
-
-                        </td>
-                        <td>
-
-                            <h6 class="title text-truncate text-center">{{data.finalSale_customer.customerName}}</h6>
-
-                        </td>
-                        <td>
-
-                            <h6 class="title text-truncate text-center">{{data.finalSale_product.productName}}</h6>
-
-                        </td>
-                        <td>
-
-                            <h6 class="title text-truncate text-center">{{data.masterCartoons}}</h6>
-
-                        </td>
-                        <td>
-
-                            <h6 class="title text-truncate text-center">{{data.dozenBoxes}}</h6>
-
-
-                        </td>
-                        <td>
-
-                            <h6 class="title text-truncate text-center">{{data.packingCapacity}}</h6>
-
-                        </td>
-                        <td>
-
-                            <h6 class="title text-truncate text-center">{{data.packingUnit}}</h6>
-
-                        </td>
-                        <td>
-
-                            <h6 class="title text-truncate text-center">{{data.packingType}}</h6>
-
-                        </td>
-
-                        <td>
-
-                            <h6 class="title text-truncate text-center">{{data.packingTypeQuanitity}}
-                                {{data.packingType}}
-                            </h6>
-
-
-                        </td>
-                        <td>
-
-                            <h6 class="title text-truncate text-center">{{data.totalQuantityinPackingUnit}}
-                                {{data.packingUnit}}</h6>
-
-                        </td>
-                        <td>
-
-                            <h6 class="title text-truncate text-center">{{data.totalQuantityinLiters}} LTR</h6>
-
-                        </td>
-                        <td>
-
-                            <h6 class="title text-truncate text-center">{{data.totalQuantityinKg}} KG</h6>
-
-                        </td>
-                        <td>
-
-                            <h6 class="title text-truncate text-center">{{data.finalSale_customer.currencyType}}</h6>
-
-                        </td>
-                        <td>
-
-                            <h6 class="title text-truncate text-center">{{data.price}}</h6>
-
-                        </td>
-                        <td>
-
-                            <h6 class="title text-truncate text-primary" *ngIf="data.isSold === false">Pending</h6>
-                            <h6 class="title text-truncate text-success" *ngIf="data.isSold === true">Delivered</h6>
-
-
-                        </td>
-                        <td class="text-dark">
-                            <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"
-                                data-original-title="Save to Wishlist"> <i class="fa fa-pencil" aria-hidden="true"
-                                    (click)="updateSale(data)"></i></button>
-                            <button href="" class="btn btn-outline-danger" (click)="deleteSale(data)"> <i
-                                    class="fa fa-trash"></i></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div *ngIf="sale.length === 0">
-                <div class="row">
-                  <div class="col-lg-6 offset-lg-4">
-                       <h2 class="text-danger"> Record Not Found</h2>
-                  </div>
-                </div>
-             </div>
-        </div> <!-- card.// -->
-
-
-    </div>
-
-</div>
-
-
-<div class="row margin-pagination mt-1">
-    <div class="col-lg-6 offset-lg-2">
-      <div class="d-flex justify-content-around">
-       <pagination-controls  (pageChange)="pageChanged($event)"></pagination-controls>
       </div>
     </div>
+    <!-- card.// -->
+  </div>
+</div>
+
+<div class="row margin-pagination mt-1">
+  <div class="col-lg-6 offset-lg-2">
+    <div class="d-flex justify-content-around">
+      <pagination-controls
+        (pageChange)="pageChanged($event)"
+      ></pagination-controls>
+    </div>
+  </div>
 </div>

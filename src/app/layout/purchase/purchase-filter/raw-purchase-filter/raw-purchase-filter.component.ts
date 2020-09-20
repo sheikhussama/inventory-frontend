@@ -40,10 +40,10 @@ export class RawPurchaseFilterComponent implements OnInit {
 
   initForm() {
     this.rawPurchaseFilterForm = this.fb.group({
-      startDate: ['', [Validators.required]],
-      endDate: ['', [Validators.required]],
-      productId: ['', [Validators.required]],
-      distibutorId: ['', [Validators.required]],
+      startDate: ["", [Validators.required]],
+      endDate: ["", [Validators.required]],
+      productId: ["", [Validators.required]],
+      distibutorId: ["", [Validators.required]],
   });
 }
 
@@ -60,7 +60,7 @@ getClient() {
 } 
 
 onSubmit() {
-  const data = this.rawPurchaseFilterForm.value;  
+  const data = this.rawPurchaseFilterForm.value;
     this.rawPurchaseFilterService.purchaseRawFilter(data).subscribe((response: any) => {
       this.rawPurchaseFilter = response;
       this.toast.pop('success', 'Success!', 'Raw Purchase Search is Completed.');

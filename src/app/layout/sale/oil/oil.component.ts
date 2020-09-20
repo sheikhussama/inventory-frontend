@@ -4,8 +4,7 @@ import { ClientService } from '../../../core/services/client.services';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { SaleService } from '../../../core/services/sale.services';
 import { ToasterService } from 'angular2-toaster';
-
-declare const $: any;
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-oil',
@@ -29,14 +28,16 @@ export class OilComponent implements OnInit {
   totalQuantityLiters: any;
   totalQuantityKG: any;
   userID: any;
-
-  @Input() saleDetail: any;
-  @Input('buttonText') buttonText: Boolean;
+  saleID: any;
+  buttonText: Boolean;
+  saleDetail: any;
 
   constructor(private endProductService: EndProductService,
     private clientService: ClientService, private fb: FormBuilder,
     private saleService: SaleService,
     private toast: ToasterService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -48,11 +49,36 @@ export class OilComponent implements OnInit {
     this.packingType();
     this.packingUnit();
     this.userID = JSON.parse(localStorage.getItem('profileDetail'));
-    if (this.saleDetail !== undefined || this.buttonText) {
-      this.preFilledForm(this.saleDetail);
-
-    }
+    this.route.paramMap.subscribe((params) => {
+      if (this.router.url.includes('update')) {
+          this.updateFlowInit(params);
+      }
+  });
   }
+
+      /**
+     * Update flow init
+     * @param params
+     */
+    updateFlowInit(params: any) {
+      if (params.has('id')) {
+          this.saleID = params.get('id');
+          this.viewsale();
+          this.buttonText = true;
+      } else {
+          this.buttonText = false;
+          this.toast.pop('error', 'Opps!', 'Invalid request params');
+          this.router.navigate(['/dashboard/sale']);
+      }
+  }
+
+  viewsale() {
+    this.saleService.viewFinalSale(this.saleID).subscribe((response) => {
+        this.saleDetail = response;
+        this.preFilledForm(this.saleDetail);
+    });
+}
+
 
   initForm() {
     this.saleForm = this.fb.group({
@@ -61,7 +87,7 @@ export class OilComponent implements OnInit {
       packingType: [null, [Validators.required]],
       packingCapacity: [null, [Validators.required]],
       packingUnit: [null, [Validators.required]],
-      dozenBoxes: [, [Validators.required]],
+      dozenBoxes: ['', [Validators.required]],
       packingTypeQuanitity: [, [Validators.required]],
       totalQuantityinPackingUnit: [, [Validators.required]],
       totalQuantityinLiters: [, [Validators.required]],
@@ -125,7 +151,7 @@ export class OilComponent implements OnInit {
   }
 
   onChangePackingCapacity($event: any) {
-    this.packingCapaciyValue = $event.value
+    this.packingCapaciyValue = $event.value;
     this.totalDozens()
   }
 
@@ -136,7 +162,7 @@ export class OilComponent implements OnInit {
 
   totalDozens() {
     if (this.packingCapaciyValue === 30) {
-      this.totalDoxens = this.masterCartoonValue * 8
+      this.totalDoxens = +this.masterCartoonValue * 8
     }
     else if (this.packingCapaciyValue === 60) {
       this.totalDoxens = this.masterCartoonValue * 6
@@ -177,6 +203,7 @@ export class OilComponent implements OnInit {
     data.totalQuantityinKg = this.totalQuantityKG;
     data.totalQuantityinLiters = this.totalQuantityLiters;
     data.totalQuantityinPackingUnit = this.totalQuantityUnit;
+    data.catagory = "Oil";
     if (this.saleDetail !== undefined) {
       this.saleService.updateFinalSale(data, this.saleDetail.id).subscribe((response: any) => {
         this.toast.pop('success', 'Success!', 'Oil has been Updated.');
@@ -193,26 +220,24 @@ export class OilComponent implements OnInit {
 
   callCompleted() {
     this.saleForm.reset();
-    this.hideForm()
-  }
- 
-  hideForm(){
-   $("#oil").modal('hide')
+    this.router.navigate(['/sale']);
+
   }
 
   preFilledForm(saleDetail: any) {
-    this.saleForm.get('masterCartoons').setValue(saleDetail.masterCartoons);
-    this.saleForm.get('dozenBoxes').setValue(saleDetail.dozenBoxes);
-    this.saleForm.get('packingCapacity').setValue(saleDetail.packingCapacity);
-    this.saleForm.get('packingType').setValue(saleDetail.packingType);
-    this.saleForm.get('packingTypeQuanitity').setValue(saleDetail.packingTypeQuanitity);
-    this.saleForm.get('packingUnit').setValue(saleDetail.packingUnit);
-    this.saleForm.get('price').setValue(saleDetail.price);
-    this.saleForm.get('productId').setValue(saleDetail.productId);
-    this.saleForm.get('totalQuantityinKg').setValue(saleDetail.totalQuantityinKg);
-    this.saleForm.get('totalQuantityinLiters').setValue(saleDetail.totalQuantityinLiters);
-    this.saleForm.get('totalQuantityinPackingUnit').setValue(saleDetail.totalQuantityinPackingUnit);
-    this.saleForm.get('customerId').setValue(saleDetail.customerId);
+      this.saleForm.get('masterCartoons').setValue(saleDetail.masterCartoons);
+      this.saleForm.get('dozenBoxes').setValue(saleDetail.dozenBoxes);
+      this.saleForm.get('packingCapacity').setValue(saleDetail.packingCapacity);
+      this.saleForm.get('packingType').setValue(saleDetail.packingType);
+      this.saleForm.get('packingTypeQuanitity').setValue(saleDetail.packingTypeQuanitity);
+      this.saleForm.get('packingUnit').setValue(saleDetail.packingUnit);
+      this.saleForm.get('price').setValue(saleDetail.price);
+      this.saleForm.get('productId').setValue(saleDetail.productId);
+      this.saleForm.get('totalQuantityinKg').setValue(saleDetail.totalQuantityinKg);
+      this.saleForm.get('totalQuantityinLiters').setValue(saleDetail.totalQuantityinLiters);
+      this.saleForm.get('totalQuantityinPackingUnit').setValue(saleDetail.totalQuantityinPackingUnit);
+      this.saleForm.get('customerId').setValue(saleDetail.customerId);
+
   }
 
   get productId() {

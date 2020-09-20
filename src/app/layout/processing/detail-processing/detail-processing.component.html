@@ -1,473 +1,595 @@
-<app-page-header class="mt-2" [heading]="'Processing'" [icon]="'fa-bar-chart-o'"></app-page-header>
+<app-page-header
+  class="mt-2"
+  [heading]="'Processing'"
+  [icon]="'processing'"
+></app-page-header>
 
 <div class="jumbotron">
-    <div class="row mb-2">
-        <div class="col-md-3">
-            <div class="card border-dark-1 mx-sm-1 ">
-                <div class="text-dark text-center ">
-                    <label>ID</label>
-                </div>
-                <div class="text-dark text-center">
-                    <label>{{processing?.id}}</label>
-                </div>
-            </div>
+  <div class="row mb-2">
+    <div class="col-md-3">
+      <div class="card border-dark-1 mx-sm-1">
+        <div class="text-dark text-center">
+          <label>ID</label>
         </div>
-        <div class="col-md-3">
-            <div class="card border-dark-1 mx-sm-1 ">
-                <div class="text-dark text-center text-truncate">
-                    <label>Master Cartoon</label>
-                </div>
-                <div class="text-dark text-center">
-                    <label>{{processing?.masterCartoons}}</label>
-                </div>
-            </div>
+        <div class="text-dark text-center">
+          <label>{{ processing?.id }}</label>
         </div>
-        <div class="col-md-3">
-            <div class="card border-dark-1 mx-sm-1">
-                <div class="text-dark text-center text-truncate">
-                    <label>Dozen Boxes</label>
-                </div>
-                <div class="text-dark text-center">
-                    <label>{{processing?.dozenBoxes}}</label>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card border-dark-1 mx-sm-1 ">
-                <div class="text-dark text-center  text-truncate ">
-                    <label>Packing Capacity</label>
-                </div>
-                <div class="text-dark text-center">
-                    <label>{{processing?.packingCapacity}}</label>
-                </div>
-            </div>
-        </div>
-
+      </div>
     </div>
-    <div class="row mb-2">
-        <div class="col-md-3">
-            <div class="card border-dark-1 mx-sm-1 ">
-                <div class="text-dark text-center text-truncate">
-                    <label>Packing Unit</label>
-                </div>
-                <div class="text-dark text-center">
-                    <label>{{processing?.packingUnit}}</label>
-                </div>
-            </div>
+    <div class="col-md-3">
+      <div class="card border-dark-1 mx-sm-1">
+        <div class="text-dark text-center">
+          <label>Product Name</label>
         </div>
-        <div class="col-md-3">
-            <div class="card border-dark-1 mx-sm-1 ">
-                <div class="text-dark text-center text-truncate ">
-                    <label>Packing Type</label>
-                </div>
-                <div class="text-dark text-center ">
-                    <label>{{processing?.packingType}}</label>
-                </div>
-            </div>
+        <div class="text-dark text-center">
+          <label>{{ processing?.finalSale_product?.productName }}</label>
         </div>
-        <div class="col-md-3">
-            <div class="card border-dark-1 mx-sm-1 ">
-                <div class="text-dark text-center  text-truncate ">
-                    <label>Packing Type Quantity</label>
-                </div>
-                <div class="text-dark text-center">
-                    <label>{{processing?.packingTypeQuanitity}}</label>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card border-dark-1 mx-sm-1 ">
-                <div class="text-dark text-center   text-truncate">
-                    <label>Total Quantity in Unit</label>
-                </div>
-                <div class="text-dark text-center">
-                    <label>{{processing?.totalQuantityinPackingUnit}}</label>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card border-dark-1 mx-sm-1 ">
-                <div class="text-dark text-center  text-truncate ">
-                    <label>Total Quantity in Liters</label>
-                </div>
-                <div class="text-dark text-center">
-                    <label>{{processing?.totalQuantityinLiters}}</label>
-                </div>
-            </div>
+    <div class="col-md-3">
+      <div class="card border-dark-1 mx-sm-1">
+        <div class="text-dark text-center text-truncate">
+          <label>Master Cartoon</label>
         </div>
-        <div class="col-md-3">
-            <div class="card border-dark-1 mx-sm-1 ">
-                <div class="text-dark text-center  text-truncate ">
-                    <label>Total Quantity in Kg</label>
-                </div>
-                <div class="text-dark text-center">
-                    <label>{{processing?.totalQuantityinKg}}</label>
-                </div>
-            </div>
+        <div class="text-dark text-center">
+          <label>{{ processing?.masterCartoons }}</label>
         </div>
-        <div class="col-md-3">
-            <div class="card border-dark-1 mx-sm-1 ">
-                <div class="text-dark text-center   text-truncate">
-                    <label>Price</label>
-                </div>
-                <div class="text-dark text-center">
-                    <label>{{processing?.price}}</label>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="col-md-3">
+      <div class="card border-dark-1 mx-sm-1">
+        <div class="text-dark text-center text-truncate">
+          <label>Dozen Boxes</label>
+        </div>
+        <div class="text-dark text-center">
+          <label>{{ processing?.dozenBoxes }}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col-md-3">
+      <div class="card border-dark-1 mx-sm-1">
+        <div class="text-dark text-center text-truncate">
+          <label>Packing Capacity</label>
+        </div>
+        <div class="text-dark text-center">
+          <label>{{ processing?.packingCapacity }}</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card border-dark-1 mx-sm-1">
+        <div class="text-dark text-center text-truncate">
+          <label>Packing Unit</label>
+        </div>
+        <div class="text-dark text-center">
+          <label>{{ processing?.packingUnit }}</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card border-dark-1 mx-sm-1">
+        <div class="text-dark text-center text-truncate">
+          <label>Packing Type</label>
+        </div>
+        <div class="text-dark text-center">
+          <label>{{ processing?.packingType }}</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card border-dark-1 mx-sm-1">
+        <div class="text-dark text-center text-truncate">
+          <label>Packing Type Quantity</label>
+        </div>
+        <div class="text-dark text-center">
+          <label>{{ processing?.packingTypeQuanitity }}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card border-dark-1 mx-sm-1">
+        <div class="text-dark text-center text-truncate">
+          <label>Total Quantity in Unit</label>
+        </div>
+        <div class="text-dark text-center">
+          <label>{{ processing?.totalQuantityinPackingUnit }}</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card border-dark-1 mx-sm-1">
+        <div class="text-dark text-center text-truncate">
+          <label>Total Quantity in Liters</label>
+        </div>
+        <div class="text-dark text-center">
+          <label>{{ processing?.totalQuantityinLiters }}</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card border-dark-1 mx-sm-1">
+        <div class="text-dark text-center text-truncate">
+          <label>Total Quantity in Kg</label>
+        </div>
+        <div class="text-dark text-center">
+          <label>{{ processing?.totalQuantityinKg | number }}</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card border-dark-1 mx-sm-1">
+        <div class="text-dark text-center text-truncate">
+          <label>Price</label>
+        </div>
+        <div class="text-dark text-center">
+          <label>{{ processing?.price }}</label>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-
 
 <div *ngIf="hideShow" class="container-fluid register-form">
-    <div class="form">
+  <div class="form">
+    <form
+      class="form-content"
+      [formGroup]="processingForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <!-- Reciepe -->
 
-        <form class="form-content" [formGroup]="processingForm" (ngSubmit)="onSubmit()">
-            <!-- Reciepe -->
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="mt-2 mb-2">
-                        <label for="" class="headings"> {{buttonText ? 'Update': 'Register'}} Raw Material</label>
-                    </div>
-                </div>
-                <div class="col-sm-4 mt-3">
-                    <p class="pull-right">
-                        <i class="fa fa-plus-circle text-success fontSize40 cusrsor-pointer" *ngIf="editOptions" (click)="addRecipe()"></i>
-                    </p>
-                </div>
-
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mt-2 mb-2">
+            <label for="" class="headings">
+              {{ buttonText ? "Update" : "Register" }} Raw Material</label
+            >
+          </div>
+        </div>
+        <div class="col-sm-4 mt-3">
+          <p class="pull-right">
+            <i
+              class="fa fa-plus-circle text-success fontSize40 cusrsor-pointer"
+              *ngIf="editOptions"
+              (click)="addRecipe()"
+            ></i>
+          </p>
+        </div>
+      </div>
+      <div>
+        <div
+          formArrayName="recipie"
+          *ngFor="let item of recipie.controls; let i = index"
+        >
+          <div class="row" [formGroupName]="i" id="row-{{ i }}">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for=""> Select Raw Product</label>
+                <ng-select
+                  *ngIf="flag"
+                  placeholder="Select Raw Product"
+                  formControlName="ProductId"
+                  [items]="endProduct"
+                  bindValue="id"
+                  bindLabel="productName"
+                  (change)="unitType($event, i)"
+                >
+                </ng-select>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="" class="ml-2"> Kg </label>
+                <input
+                  disabled
+                  class="form-control"
+                  formControlName="QuantityUnitKg"
+                  value="{{ QuantityUnitKg[i] }}"
+                  placeholder="Kg"
+                />
+                
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for=""> Unit</label>
+                <input
+                  disabled
+                  class="form-control"
+                  formControlName="QuantityUnit"
+                  placeholder="Unit"
+                  value="{{ QuantityUnit[i] }}"
+                />
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for=""> Enter Quantity</label>
+                <input
+                  type="text"
+                  formControlName="recipieQuantity"
+                  (change)="recipieQuantityEvent($event)"
+                  class="form-control"
+                  placeholder="Quantity"
+                  value=""
+                />
+              </div>
             </div>
 
-            <div formArrayName="recipie" *ngFor="let item of recipie.controls; let i = index;">
-                <div class="row" [formGroupName]="i" id="row-{{i}}">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for=""> Select Raw Product</label>
-                            <ng-select *ngIf="flag" placeholder="Select Raw Product" formControlName="ProductId"
-                                [items]="endProduct" bindValue="id" bindLabel="productName" (change)="unitType($event,i)">
-                            </ng-select>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="" class="ml-2"> Kg </label>
-                            <input disabled class="form-control" placeholder="{{QuantityUnitKg[i]}}">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for=""> Unit</label>
-                            <input disabled class="form-control" placeholder="{{QuantityUnit[i]}}">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for=""> Enter Quantity</label>
-                            <input type="text" formControlName="recipieQuantity" (change)="recipieQuantityEvent($event)" class="form-control"
-                                placeholder="Quantity" value="" />
-                        </div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for=""> Unit Type</label>
-                            <ng-select *ngIf="editOptions" placeholder="Select Unit Type" formControlName="unit"
-                            [items]="unit" bindValue="value" bindLabel="value"></ng-select>
-                            <input disabled class="form-control" *ngIf="showAddOptions" placeholder="{{unitShowType[i]}}">
-
-                        </div>
-                    </div>
-                    <div class="col-md-1">
-                        <i (click)="removeRecipie(i)" *ngIf="editOptions"
-                            class="fa fa-minus-circle text-danger fontSize40 cusrsor-pointer"></i>
-                    </div>
-                </div>
-                <i class="fa fa-plus text-success fontSize40 cusrsor-pointer" *ngIf="showAddOptions"  (click)="recipieType(item)"></i>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for=""> Unit Type</label>
+                <ng-select
+                  *ngIf="editOptions"
+                  placeholder="Select Unit Type"
+                  formControlName="unit"
+                  [items]="unit"
+                  bindValue="value"
+                  bindLabel="value"
+                ></ng-select>
+                <!-- {{unitShowType[0]}} -->
+                <input
+                  disabled
+                  class="form-control"
+                  *ngIf="showAddOptions"
+                  placeholder="Unit Type"
+                  value="{{ listOfUnit }}"
+                />
+              </div>
             </div>
-            <!-- Raw -->
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="mt-2 mb-2">
-                        <label for="" class="headings"> {{buttonText ? 'Update': 'Register'}} Finish Goods </label>
-                    </div>
-                </div>
-                <div class="col-sm-4 mt-3">
-                    <p class="pull-right">
-                        <i class="fa fa-plus-circle text-success fontSize40 cusrsor-pointer" *ngIf="editOptions" (click)="addRaw()"></i>
-                    </p>
-                </div>
-
+            <div class="col-md-1">
+              <i
+                (click)="removeRecipie(i)"
+                *ngIf="editOptions"
+                class="fa fa-minus-circle text-danger fontSize40 cusrsor-pointer"
+              ></i>
             </div>
+          </div>
+          <i
+            class="fa fa-plus text-success fontSize40 cusrsor-pointer"
+            *ngIf="showAddOptions"
+            (click)="recipieType(item,i)"
+          ></i>
+        </div>
+      </div>
 
-            <div formArrayName="raw" *ngFor="let item of raw.controls; let i = index;">
-                <div class="row" [formGroupName]="i" id="row-raw-{{i}}">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for=""> Select Finish Goods</label>
-                            <ng-select *ngIf="flag" placeholder="Select Finish Goods" class=""
-                                [items]="rawMaterial" bindValue="id" formControlName="ProductId" bindLabel="productName"
-                                (change)="unitFinishType($event)">
-                            </ng-select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for=""> Enter Quantity</label>
+      <!-- Raw -->
 
-                            <input type="text" formControlName="rawQuantity" (change)="rawQuantityEvent($event)" class="form-control" placeholder="Quantity"
-                                value="" />
-                        </div>
-                    </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mt-2 mb-2">
+            <label for="" class="headings">
+              {{ buttonText ? "Update" : "Register" }} Finish Goods
+            </label>
+          </div>
+        </div>
+        <div class="col-sm-4 mt-3">
+          <p class="pull-right">
+            <i
+              class="fa fa-plus-circle text-success fontSize40 cusrsor-pointer"
+              *ngIf="editOptions"
+              (click)="addRaw()"
+            ></i>
+          </p>
+        </div>
+      </div>
 
-                    <div class="col-sm-4">
-                        <i (click)="removeRaw(i)" *ngIf="editOptions" class="fa fa-minus-circle text-danger fontSize40 cusrsor-pointer"></i>
-                    </div>
-                    <i class="fa fa-plus text-success fontSize40 cusrsor-pointer" *ngIf="showAddOptions" (click)="rawType(item)"></i>
-                </div>
+      <div formArrayName="raw" *ngFor="let item of raw.controls; let i = index">
+        <div class="row" [formGroupName]="i" id="row-raw-{{ i }}">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for=""> Select Finish Goods</label>
+              <ng-select
+                *ngIf="flag"
+                placeholder="Select Finish Goods"
+                class=""
+                [items]="rawMaterial"
+                bindValue="id"
+                formControlName="ProductId"
+                bindLabel="productName"
+                (change)="unitFinishType($event)"
+              >
+              </ng-select>
             </div>
-            <div class="row">
-                <div class="col-lg-4">
-                    <button type="submit" class="btnSubmit">{{buttonText ? 'Update': 'Register'}}</button>
-                </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for=""> Enter Quantity</label>
+
+              <input
+                type="text"
+                formControlName="rawQuantity"
+                (change)="rawQuantityEvent($event)"
+                class="form-control"
+                placeholder="Quantity"
+                value=""
+              />
             </div>
-        </form>
-    </div>
+          </div>
+
+          <div class="col-sm-4">
+            <i
+              (click)="removeRaw(i)"
+              *ngIf="editOptions"
+              class="fa fa-minus-circle text-danger fontSize40 cusrsor-pointer"
+            ></i>
+          </div>
+          <i
+            class="fa fa-plus text-success fontSize40 cusrsor-pointer"
+            *ngIf="showAddOptions"
+            (click)="rawType(item)"
+          ></i>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <button type="submit" class="btnSubmit">
+            {{ buttonText ? "Update" : "Register" }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 
-<div class="container rawMaterial"  *ngIf="recipeDataList.length > 0 && hideShow">
-    <label for=""> <strong>Raw Material</strong></label>
-    <div id="rawMaterial" class="table-responsive" id="style-1">
-        <table class="table table-striped d-table text-center table-stats">
-            <thead class="text-muted">
-                <tr class="red">
-                    <th scope="col" class="text-dark">Product Name</th>
-                    <th scope="col" width="200" class="text-dark">KG</th>
-                    <th scope="col" width="200" class="text-dark">Unit</th>
-                    <th scope="col" width="200" class="text-dark">Quantity</th>
-                    <th scope="col" width="200" class="text-dark">Unit Type</th>
-                </tr>
-            </thead>
-            <tbody *ngFor="let data of recipeDataList">
-                <tr>
-                    <td>
-                        <h6 class="title text-truncate text-center">{{data.productName}} </h6>
-                    </td>
-                    <td>
-                        <h6 class="title text-truncate text-center">{{data.QuantityUnitKg}}</h6>
-                    </td>
-                    <td>
-                        <h6 class="title text-truncate text-center">{{data.QuantityUnit}}</h6>
-                    </td>
-                    <td>
-                        <h6 class="title text-truncate text-center">{{data.recipieQuantity}}</h6>
-                    </td>
-                    <td>
-                        <h6 class="title text-truncate text-center">{{data.unit}}</h6>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div> <!-- card.// -->
+<div
+  class="container rawMaterial"
+  *ngIf="recipeDataList.length > 0 && hideShow"
+>
+  <label for=""> <strong>Raw Material</strong></label>
+  <div id="rawMaterial" class="table-responsive" id="style-1">
+    <table class="table table-striped d-table text-center table-stats">
+      <thead class="text-muted">
+        <tr class="red">
+          <th scope="col" class="text-dark">Product Name</th>
+          <th scope="col" width="200" class="text-dark">KG</th>
+          <th scope="col" width="200" class="text-dark">Unit</th>
+          <th scope="col" width="200" class="text-dark">Quantity</th>
+          <th scope="col" width="200" class="text-dark">Unit Type</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let data of recipeDataList">
+        <tr>
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.productName }}
+            </h6>
+          </td>
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.QuantityUnitKg }}
+            </h6>
+          </td>
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.QuantityUnit }}
+            </h6>
+          </td>
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.recipieQuantity }}
+            </h6>
+          </td>
+          <td>
+            <h6 class="title text-truncate text-center">{{ data.unit }}</h6>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- card.// -->
 </div>
-
 
 <div class="container" *ngIf="rawDataList.length > 0 && hideShow">
-    <label for=""> <strong>Finish Goods</strong></label>
-    <div class="table-responsive" id="style-1">
-        <table class="table table-striped d-table text-center table-stats">
-            <thead class="text-muted">
-                <tr class="red">
-                    <th scope="col" class="text-dark">Product Name</th>
-                    <th scope="col" width="200" class="text-dark">Quantity</th>
-                </tr>
-            </thead>
-            <tbody *ngFor="let data of rawDataList">
-                <tr>
-                    <td>
-                        <h6 class="title text-truncate text-center">{{data.productName}} </h6>
-                    </td>
+  <label for=""> <strong>Finish Goods</strong></label>
+  <div class="table-responsive" id="style-1">
+    <table class="table table-striped d-table text-center table-stats">
+      <thead class="text-muted">
+        <tr class="red">
+          <th scope="col" class="text-dark">Product Name</th>
+          <th scope="col" width="200" class="text-dark">Quantity</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let data of rawDataList">
+        <tr>
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.productName }}
+            </h6>
+          </td>
 
-
-                    <td>
-                        <h6 class="title text-truncate text-center">{{data.rawQuantity}}</h6>
-                    </td>
-
-                </tr>
-            </tbody>
-        </table>
-    </div> <!-- card.// -->
-</div>
-
-
-<div *ngIf="onlyShow" class="container">
-    <h1>Raw Material</h1>
-    <div class="table-responsive"  id="style-1">
-        <table class="table table-striped d-table text-center table-stats">
-            <thead class="text-muted">
-                <tr class="red">
-                    <th scope="col" class="text-dark text-center text-truncate">Raw Material ID</th>
-                    <th scope="col" class="text-dark text-center text-truncate">Product Name</th>
-                    <th scope="col" class="text-dark text-center text-truncate">DC NO</th>
-                    <th scope="col"  class="text-dark text-truncate">Quantity In Kg </th>
-                    <th scope="col" class="text-dark text-center text-truncate">Quantity In Unit</th>
-                    <th scope="col" class="text-dark text-center text-truncate">Bulk Quantity</th>
-                    <th scope="col" class="text-dark text-center text-truncate">Unit</th>
-                    <th scope="col" class="text-dark text-center text-truncate">Raw Quantity</th>
-                    <th scope="col" class="text-dark text-center text-truncate">Time Created</th>
-
-                </tr>
-            </thead>
-            <tbody *ngFor="let data of  processing?.sale_rawrecipie; let i = index">
-                <tr>
-                    <td>
-                    
-                                <h6 class="title text-truncate text-center">{{data.id}}</h6>
-                     
-                    </td>
-                    <td>
-                    
-                                <h6 class="title text-truncate text-center">{{data.product_rawrecipie.productName}}</h6>
-                     
-                    </td>
-                    <td>
-                    
-                                <h6 class="title text-truncate text-center">{{data.product_rawrecipie.DcNo}}</h6>
-                     
-                    </td>
-                    <td>
-                    
-                                <h6 class="title text-truncate text-center">{{data.product_rawrecipie.QuantityInKg}}</h6>
-                     
-                    </td>
-                    <td>
-                    
-                                <h6 class="title text-truncate text-center">{{data.product_rawrecipie.QuantityInUnit}}</h6>
-                     
-                    </td>
-                    <td>
-                    
-                        <h6 class="title text-truncate text-center">{{data.product_rawrecipie.bulkQuantity}}</h6>
-             
-            </td>
-                    <td>
-                    
-                                <h6 class="title text-truncate text-center">{{data.product_rawrecipie.unit}}</h6>
-                     
-                    </td>
-                    <td>
-                    
-                                <h6 class="title text-truncate text-center">{{data.rawQuantity}}</h6>
-                     
-                    </td>
-
-                 
-                    <td>
-                    
-                                <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>
-                     
-                    </td>
-
-                </tr>
-            </tbody>
-        </table>
-
-        <div *ngIf="processing?.sale_rawrecipie?.length === 0">
-            <div class="row">
-              <div class="col-lg-6 offset-lg-4">
-                   <h2 class="text-danger"> Record Not Found</h2>
-              </div>
-            </div>
-         </div>
-    </div> <!-- card.// -->
-
-
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.rawQuantity }}
+            </h6>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- card.// -->
 </div>
 
 <div *ngIf="onlyShow" class="container">
-    <h1>Finish Goods</h1>
-    <div class="table-responsive"  id="style-1">
-        <table class="table table-striped d-table text-center table-stats">
-            <thead class="text-muted">
-                <tr class="red">
-                    <th scope="col" class="text-dark text-center text-truncate">Finish Goods ID</th>
-                    <th scope="col" class="text-dark text-center text-truncate">Product Name</th>
-                    <th scope="col" class="text-dark text-center text-truncate">DC NO</th>
-                    <th scope="col"  class="text-dark text-truncate">Quantity In Kg </th>
-                    <th scope="col" class="text-dark text-center text-truncate">Quantity In Unit</th>
-                    <th scope="col" class="text-dark text-center text-truncate">Bulk Quantity</th>
-                    <th scope="col" class="text-dark text-center text-truncate">Unit</th>
-                    <th scope="col" class="text-dark text-center text-truncate">Reciepe Quantity</th>
-                    <th scope="col" class="text-dark text-center text-truncate">Time Created</th>
+  <h1>Raw Material</h1>
+  <div class="table-responsive" id="style-1">
+    <table class="table table-striped d-table text-center table-stats">
+      <thead class="text-muted">
+        <tr class="red">
+          <th scope="col" class="text-dark text-center text-truncate">
+            Raw Material ID
+          </th>
+          <th scope="col" class="text-dark text-center text-truncate">
+            Product Name
+          </th>
+          <th scope="col" class="text-dark text-center text-truncate">DC NO</th>
+          <th scope="col" class="text-dark text-truncate">Quantity In Kg</th>
+          <th scope="col" class="text-dark text-center text-truncate">
+            Quantity In Unit
+          </th>
+          <th scope="col" class="text-dark text-center text-truncate">
+            Bulk Quantity
+          </th>
+          <th scope="col" class="text-dark text-center text-truncate">Unit</th>
+          <th scope="col" class="text-dark text-center text-truncate">
+            Raw Quantity
+          </th>
+          <th scope="col" class="text-dark text-center text-truncate">
+            Time Created
+          </th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let data of processing?.sale_rawrecipie; let i = index">
+        <tr>
+          <td>
+            <h6 class="title text-truncate text-center">{{ data.id }}</h6>
+          </td>
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.product_rawrecipie.productName }}
+            </h6>
+          </td>
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.product_rawrecipie.DcNo }}
+            </h6>
+          </td>
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.product_rawrecipie.QuantityInKg }}
+            </h6>
+          </td>
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.product_rawrecipie.QuantityInUnit }}
+            </h6>
+          </td>
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.product_rawrecipie.bulkQuantity }}
+            </h6>
+          </td>
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.product_rawrecipie.unit }}
+            </h6>
+          </td>
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.rawQuantity }}
+            </h6>
+          </td>
 
-                </tr>
-            </thead>
-            <tbody *ngFor="let data of processing?.sale_recipie; let i = index">
-                <tr >
-                    <td>
-                    
-                                <h6 class="title text-truncate text-center">{{data.id}}</h6>
-                     
-                    </td>
-                    <td>
-                    
-                                <h6 class="title text-truncate text-center">{{data.product_recipie.productName}}</h6>
-                     
-                    </td>
-                    <td>
-                    
-                                <h6 class="title text-truncate text-center">{{data.product_recipie.DcNo}}</h6>
-                     
-                    </td>
-                    <td>
-                    
-                                <h6 class="title text-truncate text-center">{{data.product_recipie.QuantityInKg}}</h6>
-                     
-                    </td>
-                    <td>
-                    
-                                <h6 class="title text-truncate text-center">{{data.product_recipie.QuantityInUnit}}</h6>
-                     
-                    </td>
-                    <td>
-                    
-                        <h6 class="title text-truncate text-center">{{data.product_recipie.bulkQuantity}}</h6>
-             
-            </td>
-                    <td>
-                    
-                                <h6 class="title text-truncate text-center">{{data.product_recipie.unit}}</h6>
-                     
-                    </td>
-                    <td>
-                    
-                                <h6 class="title text-truncate text-center">{{data.recipieQuantity}}</h6>
-                     
-                    </td>
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.timecreated | date: "mediumDate" }}
+            </h6>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-                 
-                    <td>
-                    
-                                <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>
-                     
-                    </td>
+    <div *ngIf="processing?.sale_rawrecipie?.length === 0">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-4">
+          <h2 class="text-danger">Record Not Found</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- card.// -->
+</div>
 
-                </tr>
-            </tbody>
-        </table>
+<div *ngIf="onlyShow" class="container">
+  <h1>Finish Goods</h1>
+  <div class="table-responsive" id="style-1">
+    <table class="table table-striped d-table text-center table-stats">
+      <thead class="text-muted">
+        <tr class="red">
+          <th scope="col" class="text-dark text-center text-truncate">
+            Finish Goods ID
+          </th>
+          <th scope="col" class="text-dark text-center text-truncate">
+            Product Name
+          </th>
+          <th scope="col" class="text-dark text-center text-truncate">DC NO</th>
+          <th scope="col" class="text-dark text-truncate">Quantity In Kg</th>
+          <th scope="col" class="text-dark text-center text-truncate">
+            Quantity In Unit
+          </th>
+          <th scope="col" class="text-dark text-center text-truncate">
+            Bulk Quantity
+          </th>
+          <th scope="col" class="text-dark text-center text-truncate">Unit</th>
+          <th scope="col" class="text-dark text-center text-truncate">
+            Reciepe Quantity
+          </th>
+          <th scope="col" class="text-dark text-center text-truncate">
+            Time Created
+          </th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let data of processing?.sale_recipie; let i = index">
+        <tr>
+          <td>
+            <h6 class="title text-truncate text-center">{{ data.id }}</h6>
+          </td>
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.product_recipie.productName }}
+            </h6>
+          </td>
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.product_recipie.DcNo }}
+            </h6>
+          </td>
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.product_recipie.QuantityInKg }}
+            </h6>
+          </td>
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.product_recipie.QuantityInUnit }}
+            </h6>
+          </td>
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.product_recipie.bulkQuantity }}
+            </h6>
+          </td>
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.product_recipie.unit }}
+            </h6>
+          </td>
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.recipieQuantity }}
+            </h6>
+          </td>
 
-        <div *ngIf="processing?.sale_recipie?.length === 0">
-            <div class="row">
-              <div class="col-lg-6 offset-lg-4">
-                   <h2 class="text-danger"> Record Not Found</h2>
-              </div>
-            </div>
-         </div>
-    </div> <!-- card.// -->
+          <td>
+            <h6 class="title text-truncate text-center">
+              {{ data.timecreated | date: "mediumDate" }}
+            </h6>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-
+    <div *ngIf="processing?.sale_recipie?.length === 0">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-4">
+          <h2 class="text-danger">Record Not Found</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- card.// -->
 </div>

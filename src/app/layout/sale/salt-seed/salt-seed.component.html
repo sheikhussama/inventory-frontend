@@ -1,139 +1,140 @@
-<div class="modal fade " id="salt-seed" tabindex="-1" role="dialog" aria-labelledby="clubTitle" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <!-- Modal content starts here-->
-        <div class="modal-content">
+<app-page-header
+[heading]="'Sale'"
+[icon]="'sale'"
+></app-page-header>
 
-            <div class="note">
-                <h4 class="modal-title text-uppercase mt-3"> {{ buttonText ? 'Update' : 'Register' }} Salt N Seed</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <form [formGroup]="saleForm" (ngSubmit)="onSubmit()">
-                <div class="modal-body">
+<div class="card">
+    <h4 class="modal-title text-uppercase mt-3 text-center"> {{ buttonText ? 'Update' : 'Register' }} Salt N Seed</h4>
+
+    <form [formGroup]="saleForm" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            <label> <strong> Select Product: </strong> </label>
-                                            <ng-select placeholder="Select Product" formControlName="productId" [items]="endProductList"
-                                                bindLabel="productName" bindValue="id">
-                                            </ng-select>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            <label> <strong> Select Client: </strong> </label>
-                                            <ng-select placeholder="Select Customer" formControlName="customerId" [items]="clients"
-                                                bindLabel="customerName" bindValue="id"
-                                                (change)="currencyType($event)">
-                                            </ng-select>
-                                        </div>
-                                    </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label> <strong> Select Product: </strong> </label>
+                                    <ng-select placeholder="Select Product" formControlName="productId" [items]="endProductList"
+                                        bindLabel="productName" bindValue="id">
+                                    </ng-select>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label> <strong> Select Packing Unit: </strong> </label>
-                                        <ng-select placeholder="Select Packing Unit" formControlName="packingUnit" [items]="unit" bindLabel="value"
-                                            bindValue="id">
-                                        </ng-select>
-                                    </div>
 
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label> <strong> Select Client: </strong> </label>
+                                    <ng-select placeholder="Select Customer" formControlName="customerId" [items]="clients"
+                                        bindLabel="customerName" bindValue="id"
+                                        (change)="currencyType($event)">
+                                    </ng-select>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label> <strong> Select Packing Type: </strong> </label>
-                                        <ng-select placeholder="Select Packing Type" formControlName="packingType" [items]="type" bindLabel="value"
-                                            bindValue="id" (change)="onChangePackingType($event)">
-                                        </ng-select>
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label> <strong> Select Packing Unit: </strong> </label>
+                                <ng-select placeholder="Select Packing Unit"
+                                    formControlName="packingUnit" [items]="unit" bindLabel="value"
+                                    bindValue="value">
+                                </ng-select>
                             </div>
 
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label> <strong> Select Packing Capacity: </strong> </label>
-                                        <ng-select placeholder="Select Packing Capacity" formControlName="packingCapacity" [items]="capacity"
-                                            bindLabel="value" bindValue="id" (change)="onChangePackingCapacity($event)">
-                                        </ng-select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label> <strong> Master Cartoon: </strong> </label>
-                                        <input type="number" formControlName="masterCartoons" (change)="onChangeMasterCartoon($event)"
-                                            class="form-control" placeholder="Quantity" value="" />
-                                    </div>
-                                </div>
-
-
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label> <strong> Select Packing Type: </strong> </label>
+                                <ng-select placeholder="Select Packing Type" formControlName="packingType" [items]="type" bindLabel="value"
+                                    bindValue="value" (change)="onChangePackingType($event)">
+                                </ng-select>
                             </div>
+                        </div>
 
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            <label> <strong>Packing Type Quantity: </strong> </label>
-                                            <input type="text" class="form-control" formControlName="packingTypeQuanitity" disabled
-                                                placeholder="{{packingTypeQuantity}} {{packingOfType}}" value="" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label> <strong> Total Quantity in Packing Unit: </strong> </label>
-                                        <input type="text" class="form-control" disabled
-                                            placeholder="{{totalQuantityUnit }} GMS" formControlName="totalQuantityinPackingUnit" value="" />
-                                    </div>
-                                </div>
+                    </div>
 
-
-
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label> <strong> Select Packing Capacity: </strong> </label>
+                                <ng-select placeholder="Select Packing Capacity" formControlName="packingCapacity" [items]="capacity"
+                                    bindLabel="value" bindValue="id" (change)="onChangePackingCapacity($event)">
+                                </ng-select>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label> <strong> Total Quantity in Kg: </strong> </label>
-                                        <input type="text" class="form-control" disabled
-                                            placeholder="{{totalQuantityKG | number}} KG" formControlName="totalQuantityinKg" value="" />
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label> <strong> Master Cartoon: </strong> </label>
+                                <input type="number" formControlName="masterCartoons" (change)="onChangeMasterCartoon($event)"
+                                    class="form-control" placeholder="Quantity" value="" />
+                            </div>
+                        </div>
 
-                                <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            <label> <strong> Price: </strong> </label>
-                                            <input type="text" formControlName="price" class="form-control" placeholder="Price" value="" />
-                                        </div>
-                                    </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label> <strong>Packing Type Quantity: </strong> </label>
+                                    <input type="text" class="form-control" formControlName="packingTypeQuanitity" disabled
+                                        placeholder="Packing Type Quantity" value="{{packingTypeQuantity}} {{packingOfType}}" />
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            <label> <strong> CurrencyType: </strong> </label>
-                                            <input disabled type="text" class="form-control"
-                                                placeholder="{{currencyValue}}" value="" />
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label> <strong> Total Quantity in Packing Unit: </strong> </label>
+                                <input type="text" class="form-control" disabled
+                                    placeholder="Total Quantity in Packing Unit" 
+                                    formControlName="totalQuantityinPackingUnit" value="{{totalQuantityUnit }} GMS" />
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label> <strong> Total Quantity in Kg: </strong> </label>
+                                <input type="text" class="form-control" disabled
+                                    placeholder="Total Quantity in Kg" 
+                                    formControlName="totalQuantityinKg" value="{{totalQuantityKG | number}} KG" />
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label> <strong> Price: </strong> </label>
+                                    <input type="text" formControlName="price" class="form-control"
+                                     placeholder="Price" value="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label> <strong> CurrencyType: </strong> </label>
+                                    <input disabled type="text" class="form-control"
+                                        placeholder="CurrencyType" value="{{currencyValue}}" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-dark round-corner text-uppercase px-4"><small>
-                        {{ buttonText ? 'Update' : 'Register' }}</small></button>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-dark round-corner text-uppercase px-4"><small>
+                {{ buttonText ? 'Update' : 'Register' }}</small></button>
+        </div>
+    </form>
 </div>

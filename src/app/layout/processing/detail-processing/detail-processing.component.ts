@@ -53,6 +53,12 @@ export class DetailProcessingComponent implements OnInit {
   editOptions: Boolean;
   finishGoodproductID: any;
   unitShowType: any;
+  updateQuantityInKg:any;
+  updateQuantityInUnit:any;
+
+
+
+
   constructor(
     private toast: ToasterService,
     private router: Router,
@@ -80,21 +86,19 @@ export class DetailProcessingComponent implements OnInit {
           this.onlyShow = false;
           this.showAddOptions = true;
           this.editOptions = false;
-          this.initForm();
+          this.initCreateForm();
         } else {
           this.toast.pop('error', 'Opps!', 'Invalid request params');
           this.router.navigate(['/dashboard/processing']);
         }
       } else if ((this.router.url).includes('update')) {
         this.processingID = params.get('id');
-        this.viewRawRecipeDetail();
         this.updateFlowInit(params);
-        // document.getElementById("row-0").style.display = "none";    
         this.hideShow = true
         this.editOptions = true;
         this.showAddOptions = false;
         this.onlyShow = false;
-        this.initForm();
+        this.initUpdateForm();
       }
       else if ((this.router.url).includes('show')){
         this.processingID = params.get('id');
@@ -128,11 +132,21 @@ export class DetailProcessingComponent implements OnInit {
     });
   }
 
-  initForm() {
+  initCreateForm() {
     this.processingForm = this.fb.group({
       raw: this.fb.array([this.rawItem()]),
       recipie: this.fb.array([this.receipeItem()])
     });
+
+  }
+
+
+  initUpdateForm() {
+    this.processingForm = this.fb.group({
+      raw: this.fb.array([]),
+      recipie: this.fb.array([])
+    });
+
   }
 
   showProcessing(){
@@ -147,10 +161,6 @@ export class DetailProcessingComponent implements OnInit {
     this.QuantityUnitKg[index] = $event.QuantityInKg;
     this.rawproductID = $event.id;
     this.listOfUnit = $event.unit;
-    if(this.showAddOptions){
-      this.unitShowType[index] = $event.unit
-
-    }
   }
 
   rawItem(): FormGroup {
@@ -164,6 +174,8 @@ export class DetailProcessingComponent implements OnInit {
 
   receipeItem(): FormGroup {
     return this.fb.group({
+      QuantityUnitKg: [Validators.required],
+      QuantityUnit: [Validators.required],
       recipieQuantity: [null, Validators.required],
       unit: null,
       saleId: this.processingID ? this.processingID : this.processingID,
@@ -184,12 +196,12 @@ export class DetailProcessingComponent implements OnInit {
     this.recipieQValue = $event.srcElement.value
   }
 
-  recipieType($event: any){
+  recipieType($event: any , index :any){
     this.recipeDataList.push({
       ProductId:  this.rawproductID,
       productName: this.productName,
-      QuantityUnitKg: this.QuantityUnitKg,
-      QuantityUnit: this.QuantityUnit,
+      QuantityUnitKg: this.QuantityUnitKg[index],
+      QuantityUnit: this.QuantityUnit[index],
       recipieQuantity: this.recipieQValue,
       unit: this.listOfUnit,
       saleId: this.processingID ? this.processingID : this.processingID,
@@ -297,13 +309,11 @@ export class DetailProcessingComponent implements OnInit {
     return this.processingForm.get('raw') as FormArray;
   }
   get recipie() {
+    
     return this.processingForm.get('recipie') as FormArray;
   }
 
   preFilledForm(viewDetail: any) {
-  // document.getElementById("row-0").style.display = "none";    
-  // document.getElementById("row-raw-0").style.display = "none";    
-
     let controlRaw = <FormArray>this.processingForm.controls.raw;
     viewDetail.sale_rawrecipie.forEach((x: any, index: any) => {
       controlRaw.push(this.fb.group({
@@ -317,6 +327,8 @@ export class DetailProcessingComponent implements OnInit {
     let controlRecipie = <FormArray>this.processingForm.controls.recipie;
     viewDetail.sale_recipie.forEach(x => {
       controlRecipie.push(this.fb.group({
+        QuantityUnitKg: x.product_recipie.QuantityInKg,
+        QuantityUnit: x.product_recipie.QuantityInUnit,
         recipieQuantity: x.recipieQuantity,
         ProductId: x.product_recipie.id,
         user: x.user,

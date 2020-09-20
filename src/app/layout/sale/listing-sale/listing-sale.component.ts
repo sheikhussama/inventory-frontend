@@ -35,8 +35,27 @@ export class ListingSaleComponent implements OnInit {
       this.config.currentPage = event;
     }
     
-    updateSale(sale: any){
-      this.router.navigate(['/sale/update', sale.id]);
+    // updateSale(sale: any, saleCategory: any){
+    //   this.router.navigate(['/sale/update/' + saleCategory , sale.id]);
+    // }
+
+    updateSale(sale: any, saleCategory: any) {
+      Swal.fire({
+        title: '<i class="fa fa-pencil" aria-hidden="true"></i>',
+        text: 'Are you sure you want to Edit ' + saleCategory + ' Sale ?',
+        showCancelButton: true,
+        icon: 'warning',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Edit it!'
+      })
+        .then((result) => {
+          if (result.value) {
+            this.router.navigate(['/sale/update/' + saleCategory , sale.id]);
+          } else {
+            Swal.fire('Ok Next Time!');
+          }
+        });
     }
     
     deleteSale(sale: any) {
