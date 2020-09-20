@@ -55,7 +55,7 @@ export class DetailProcessingComponent implements OnInit {
   unitShowType: any;
   updateQuantityInKg:any;
   updateQuantityInUnit:any;
-
+  finishGoodsProductName: any;
 
 
 
@@ -174,8 +174,8 @@ export class DetailProcessingComponent implements OnInit {
 
   receipeItem(): FormGroup {
     return this.fb.group({
-      QuantityUnitKg: [Validators.required],
-      QuantityUnit: [Validators.required],
+      QuantityUnitKg: [''],
+      QuantityUnit: [''],
       recipieQuantity: [null, Validators.required],
       unit: null,
       saleId: this.processingID ? this.processingID : this.processingID,
@@ -212,7 +212,9 @@ export class DetailProcessingComponent implements OnInit {
   }
 
   unitFinishType($event: any){
+    this.finishGoodsProductName = $event.productName
     this.finishGoodproductID = $event.id
+  
   }
 
   rawQuantityEvent($event: any){
@@ -222,10 +224,11 @@ export class DetailProcessingComponent implements OnInit {
   
   rawType($event: any){
     this.rawShow = true;
+    console.log(this.finishGoodsProductName)
     this.toast.pop('success', 'Success!', 'Add Finish Goods');
     this.rawDataList.push({
       ProductId:  this.finishGoodproductID,
-      productName: this.productName,
+      productName: this.finishGoodsProductName,
       rawQuantity:  this.rawQValue,
       saleId: this.processingID ? this.processingID : this.processingID,
       user: this.userID ? this.userID : this.userID
