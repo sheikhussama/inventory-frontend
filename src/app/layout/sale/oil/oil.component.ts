@@ -31,6 +31,9 @@ export class OilComponent implements OnInit {
   saleID: any;
   buttonText: Boolean;
   saleDetail: any;
+  updateFields: Boolean = false;
+  createFields: Boolean = false;
+   
 
   constructor(private endProductService: EndProductService,
     private clientService: ClientService, private fb: FormBuilder,
@@ -51,7 +54,12 @@ export class OilComponent implements OnInit {
     this.userID = JSON.parse(localStorage.getItem('profileDetail'));
     this.route.paramMap.subscribe((params) => {
       if (this.router.url.includes('update')) {
+          this.updateFields = true;
+          this.createFields = false;
           this.updateFlowInit(params);
+      }
+      else {
+        this.createFields = true;
       }
   });
   }
@@ -87,12 +95,12 @@ export class OilComponent implements OnInit {
       packingType: [null, [Validators.required]],
       packingCapacity: [null, [Validators.required]],
       packingUnit: [null, [Validators.required]],
-      dozenBoxes: ['', [Validators.required]],
-      packingTypeQuanitity: [, [Validators.required]],
-      totalQuantityinPackingUnit: [, [Validators.required]],
-      totalQuantityinLiters: [, [Validators.required]],
+      dozenBoxes: [''],
+      packingTypeQuanitity: [],
+      totalQuantityinPackingUnit: [],
+      totalQuantityinLiters: [],
       price: ['', [Validators.required]],
-      totalQuantityinKg: [, [Validators.required]],
+      totalQuantityinKg: [],
       productId: [null, [Validators.required]],
       customerId: [null, [Validators.required]],
     });
@@ -218,6 +226,19 @@ export class OilComponent implements OnInit {
     }
   }
 
+
+  public findInvalidControls() {
+    const invalid = [];
+    const controls = this.saleForm.controls;
+    for (const name in controls) {
+        if (controls[name].invalid) {
+            invalid.push(name);
+            console.log(invalid);
+        }
+    }
+    return invalid;
+}
+
   callCompleted() {
     this.saleForm.reset();
     this.router.navigate(['/sale']);
@@ -251,5 +272,14 @@ export class OilComponent implements OnInit {
   }
   get price() {
     return this.saleForm.get('price');
-  }  
+  } 
+  get packingUnits() {
+    return this.saleForm.get('packingUnit');
+  }
+  get packingTypes() {
+    return this.saleForm.get('packingType');
+  }
+  get packingCapacitys(){
+    return this.saleForm.get('packingCapacity')
+  }
 }

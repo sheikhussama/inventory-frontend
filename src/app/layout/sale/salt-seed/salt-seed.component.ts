@@ -21,7 +21,7 @@ export class SaltSeedComponent implements OnInit {
   packingCapaciyValue: any;
   masterCartoonValue: any;
   totalDoxens: any;
-  packingTypeQuantity: any;
+  packingTypeQuantity: any = 'Packing Type Quantity';
   totalQuantityUnit: any;
   totalQuantityLiters: any;
   totalQuantityKG: any;
@@ -31,6 +31,8 @@ export class SaltSeedComponent implements OnInit {
   buttonText: Boolean;
   saleDetail: any;
   saleID: any;
+  updateFields: Boolean = false;
+  createFields: Boolean = false;
 
   constructor(
     private endProductService: EndProductService,
@@ -52,7 +54,12 @@ export class SaltSeedComponent implements OnInit {
     this.userID = JSON.parse(localStorage.getItem("profileDetail"));
     this.route.paramMap.subscribe((params) => {
       if (this.router.url.includes("update")) {
+        this.updateFields = true;
+        this.createFields = false;
         this.updateFlowInit(params);
+      }
+      else {
+        this.createFields = true;
       }
     });
   }
@@ -87,10 +94,10 @@ export class SaltSeedComponent implements OnInit {
       packingType: [null, [Validators.required]],
       packingCapacity: [null, [Validators.required]],
       packingUnit: [null, [Validators.required]],
-      packingTypeQuanitity: ["", [Validators.required]],
-      totalQuantityinPackingUnit: ["", [Validators.required]],
+      packingTypeQuanitity: [""],
+      totalQuantityinPackingUnit: [""],
       price: ["", [Validators.required]],
-      totalQuantityinKg: ["", [Validators.required]],
+      totalQuantityinKg: [""],
       productId: [null, [Validators.required]],
       customerId: [null, [Validators.required]],
     });
@@ -177,8 +184,7 @@ export class SaltSeedComponent implements OnInit {
     data.packingTypeQuanitity = this.packingTypeQuantity;
     data.totalQuantityinKg = this.totalQuantityKG;
     data.totalQuantityinPackingUnit = this.totalQuantityUnit;
-    data.catagory = "SaltSeed";
-
+    data.catagory = "SaltSeed";   
     if (this.saleDetail !== undefined) {
       this.saleService
         .updateFinalSale(data, this.saleDetail.id)
@@ -214,8 +220,6 @@ export class SaltSeedComponent implements OnInit {
   preFilledForm(saleDetail: any) {
     this.saleForm.get("masterCartoons").setValue(saleDetail.masterCartoons);
     this.saleForm.get("packingCapacity").setValue(saleDetail.packingCapacity);
-    console.log(saleDetail.packingType)
-
     this.saleForm.get("packingType").setValue(saleDetail.packingType);
     this.saleForm
       .get("packingTypeQuanitity")
@@ -232,4 +236,29 @@ export class SaltSeedComponent implements OnInit {
       .setValue(saleDetail.totalQuantityinPackingUnit);
     this.saleForm.get("customerId").setValue(saleDetail.customerId);
   }
+
+
+  get productId() {
+    return this.saleForm.get('productId');
+  }
+  get customerId() {
+    return this.saleForm.get('customerId');
+  } 
+   get masterCartoons() {
+    return this.saleForm.get('masterCartoons');
+  }
+  get price() {
+    return this.saleForm.get('price');
+  } 
+  get packingUnits() {
+    return this.saleForm.get('packingUnit');
+  }
+  get packingTypes() {
+    return this.saleForm.get('packingType');
+  }
+  get packingCapacitys(){
+    return this.saleForm.get('packingCapacity')
+  }
+
+
 }

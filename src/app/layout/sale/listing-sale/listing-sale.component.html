@@ -113,9 +113,11 @@
               </h6>
             </td>
             <td>
-              <h6 class="title text-truncate text-center">
+              <h6 class="title text-truncate text-center" >
                 {{ data.dozenBoxes }}
               </h6>
+
+              <h6 *ngIf="data.catagory === 'SaltSeed'"> Not Required</h6>
             </td>
             <td>
               <h6 class="title text-truncate text-center">

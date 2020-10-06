@@ -43,6 +43,9 @@ export class DetailProcessingComponent implements OnInit {
   rawQuantitys: any;
   recipeDataList: any[] = [];
   rawDataList: any[] = [];
+  recipeDataListUnique: any [] = [];
+  rawDataListUnique: any[] = [];
+
   hideShow:Boolean;
   onlyShow: Boolean;
   showData:any;
@@ -56,8 +59,7 @@ export class DetailProcessingComponent implements OnInit {
   updateQuantityInKg:any;
   updateQuantityInUnit:any;
   finishGoodsProductName: any;
-
-
+  productId: any;
 
   constructor(
     private toast: ToasterService,
@@ -155,7 +157,8 @@ export class DetailProcessingComponent implements OnInit {
     });
   }
 
-  unitType($event: any,index){
+  unitType($event: any,index: any){
+    this.productId = $event.id;
     this.productName = $event.productName;
     this.QuantityUnit[index] = $event.QuantityInUnit;
     this.QuantityUnitKg[index] = $event.QuantityInKg;
@@ -197,7 +200,7 @@ export class DetailProcessingComponent implements OnInit {
   }
 
   recipieType($event: any , index :any){
-    this.recipeDataList.push({
+    const params = {
       ProductId:  this.rawproductID,
       productName: this.productName,
       QuantityUnitKg: this.QuantityUnitKg[index],
@@ -206,8 +209,18 @@ export class DetailProcessingComponent implements OnInit {
       unit: this.listOfUnit,
       saleId: this.processingID ? this.processingID : this.processingID,
       user: this.userID ? this.userID : this.userID
+    }
+
+    this.recipeDataList.push(params);
+    const seenNames = {};
+    this.recipeDataList = this.recipeDataList.filter(function(currentObject) {
+        if (currentObject.ProductId in seenNames) {
+            return false;
+        } else {
+            seenNames[currentObject.ProductId] = true;
+            return true;
+        }
     });
-    this.toast.pop('success', 'Success!', 'Add Into Raw Material Table.');
 
   }
 
@@ -224,15 +237,27 @@ export class DetailProcessingComponent implements OnInit {
   
   rawType($event: any){
     this.rawShow = true;
-    console.log(this.finishGoodsProductName)
-    this.toast.pop('success', 'Success!', 'Add Finish Goods');
-    this.rawDataList.push({
-      ProductId:  this.finishGoodproductID,
-      productName: this.finishGoodsProductName,
-      rawQuantity:  this.rawQValue,
-      saleId: this.processingID ? this.processingID : this.processingID,
-      user: this.userID ? this.userID : this.userID
+    const params = {
+        ProductId:  this.finishGoodproductID,
+        productName: this.finishGoodsProductName,
+        rawQuantity:  this.rawQValue,
+        saleId: this.processingID ? this.processingID : this.processingID,
+        user: this.userID ? this.userID : this.userID
+    }
+    this.rawDataList.push(params);
+
+    const seenNames = {};
+    let thus = this; 
+    this.rawDataList = this.rawDataList.filter(function(currentObject) {
+        if (currentObject.ProductId in seenNames) {
+          thus.toast.pop('error', 'Error!' , 'Item Already Added') 
+            return false;
+        } else {
+            seenNames[currentObject.ProductId] = true;
+            return true;
+        }
     });
+
   }
 
 

@@ -18,6 +18,12 @@
                                     <ng-select placeholder="Select Product" formControlName="productId" [items]="endProductList"
                                         bindLabel="productName" bindValue="id">
                                     </ng-select>
+
+                                    <div *ngIf="productId?.invalid && (productId.dirty || productId.touched)" class="validation-error text-danger">
+                                        <div *ngIf="productId.errors.required || productId.errors?.invalid">
+                                            This field is required 
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -31,6 +37,11 @@
                                         bindLabel="customerName" bindValue="id"
                                         (change)="currencyType($event)">
                                     </ng-select>
+                                    <div *ngIf="customerId?.invalid && (customerId.dirty || customerId.touched)" class="validation-error text-danger">
+                                        <div *ngIf="customerId.errors.required || customerId.errors?.invalid">
+                                            This field is required 
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -40,10 +51,16 @@
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label> <strong> Select Packing Unit: </strong> </label>
-                                <ng-select placeholder="Select Packing Unit"
+
+                                <ng-select  placeholder="Select Packing Unit"
                                     formControlName="packingUnit" [items]="unit" bindLabel="value"
                                     bindValue="value">
                                 </ng-select>
+                                <div *ngIf="packingUnits?.invalid && (packingUnits.dirty || packingUnits.touched)" class="validation-error text-danger">
+                                    <div *ngIf="packingUnits.errors.required || packingUnits.errors?.invalid">
+                                        This field is required 
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
@@ -53,6 +70,11 @@
                                 <ng-select placeholder="Select Packing Type" formControlName="packingType" [items]="type" bindLabel="value"
                                     bindValue="value" (change)="onChangePackingType($event)">
                                 </ng-select>
+                                <div *ngIf="packingTypes?.invalid && (packingTypes.dirty || packingTypes.touched)" class="validation-error text-danger">
+                                    <div *ngIf="packingTypes.errors.required || packingTypes.errors?.invalid">
+                                        This field is required 
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -65,6 +87,11 @@
                                 <ng-select placeholder="Select Packing Capacity" formControlName="packingCapacity" [items]="capacity"
                                     bindLabel="value" bindValue="id" (change)="onChangePackingCapacity($event)">
                                 </ng-select>
+                                <div *ngIf="packingCapacitys?.invalid && (packingCapacitys.dirty || packingCapacitys.touched)" class="validation-error text-danger">
+                                    <div *ngIf="packingCapacitys.errors.required || packingCapacitys.errors?.invalid">
+                                        This field is required 
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
@@ -72,6 +99,11 @@
                                 <label> <strong> Master Cartoon: </strong> </label>
                                 <input type="number" formControlName="masterCartoons" (change)="onChangeMasterCartoon($event)"
                                     class="form-control" placeholder="Quantity" value="" />
+                                    <div *ngIf="masterCartoons?.invalid && (masterCartoons.dirty || masterCartoons.touched)" class="validation-error text-danger">
+                                        <div *ngIf="masterCartoons.errors.required || masterCartoons.errors?.invalid">
+                                            Enter Valid Master Cartoons
+                                        </div>
+                                    </div>
                             </div>
                         </div>
 
@@ -83,15 +115,23 @@
                             <div class="form-group">
                                 <div class="form-group">
                                     <label> <strong>Packing Type Quantity: </strong> </label>
-                                    <input type="text" class="form-control" formControlName="packingTypeQuanitity" disabled
+                                    <input *ngIf="updateFields" type="text" class="form-control" formControlName="packingTypeQuanitity" disabled
                                         placeholder="Packing Type Quantity" value="{{packingTypeQuantity}} {{packingOfType}}" />
+                                       
+                                        <input  *ngIf="createFields" type="text" class="form-control" disabled
+                                        placeholder="Packing Type Quantity" value="{{packingTypeQuantity}} {{packingOfType}}" />
+
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label> <strong> Total Quantity in Packing Unit: </strong> </label>
-                                <input type="text" class="form-control" disabled
+                                <input *ngIf="updateFields" type="text" class="form-control" disabled
+                                    placeholder="Total Quantity in Packing Unit" 
+                                    formControlName="totalQuantityinPackingUnit" value="{{totalQuantityUnit }} GMS" />
+
+                                    <input *ngIf="createFields" type="text" class="form-control" disabled
                                     placeholder="Total Quantity in Packing Unit" 
                                     formControlName="totalQuantityinPackingUnit" value="{{totalQuantityUnit }} GMS" />
                             </div>
@@ -104,7 +144,11 @@
                         <div class="col-lg-4 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label> <strong> Total Quantity in Kg: </strong> </label>
-                                <input type="text" class="form-control" disabled
+                                <input  *ngIf="updateFields" type="text" class="form-control" disabled
+                                    placeholder="Total Quantity in Kg" 
+                                    formControlName="totalQuantityinKg" value="{{totalQuantityKG | number}} KG" />
+
+                                    <input *ngIf="createFields" type="text" class="form-control" disabled
                                     placeholder="Total Quantity in Kg" 
                                     formControlName="totalQuantityinKg" value="{{totalQuantityKG | number}} KG" />
                             </div>
@@ -116,6 +160,11 @@
                                     <label> <strong> Price: </strong> </label>
                                     <input type="text" formControlName="price" class="form-control"
                                      placeholder="Price" value="" />
+                                     <div *ngIf="price?.invalid && (price.dirty || price.touched)" class="validation-error text-danger">
+                                        <div *ngIf="price.errors.required || price.errors?.invalid">
+                                            Enter Valid Price
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +182,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-dark round-corner text-uppercase px-4"><small>
+            <button [disabled]="!saleForm?.valid" type="submit" class="btn btn-dark round-corner text-uppercase px-4"><small>
                 {{ buttonText ? 'Update' : 'Register' }}</small></button>
         </div>
     </form>
