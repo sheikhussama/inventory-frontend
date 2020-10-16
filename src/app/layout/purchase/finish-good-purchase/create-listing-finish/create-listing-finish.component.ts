@@ -80,6 +80,8 @@ export class CreateListingFinishComponent implements OnInit {
       price: ['', [Validators.required]],
       productId: [null, [Validators.required]],
       distibutorId: [null, [Validators.required]],
+      currencyType: '',
+
   });
 }
 
@@ -122,6 +124,7 @@ preFilledForm(finishGoods: any) {
   this.finishGoodsForm.get('price').setValue(finishGoods.price);
   this.finishGoodsForm.get('productId').setValue(finishGoods.productId);
   this.finishGoodsForm.get('distibutorId').setValue(finishGoods.distibutorId);
+  this.finishGoodsForm.get('currencyType').setValue(finishGoods.rawpurchase_customer.currencyType);
 
 }
 

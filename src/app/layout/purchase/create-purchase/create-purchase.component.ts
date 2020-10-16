@@ -5,6 +5,7 @@ import { ToasterService } from 'angular2-toaster';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../core/services/products.services';
 import { ClientService } from '../../../core/services/client.services';
+import { Utils } from '../../../core/utils/utils';
 
 @Component({
   selector: 'app-create-purchase',
@@ -53,7 +54,7 @@ export class CreatePurchaseComponent implements OnInit {
     this.userID = JSON.parse(localStorage.getItem('profileDetail'));
     this.initForm();
     this.typeBased();
-    this.unitBased();
+    this.unit = Utils.unitBased();
     this.getProduct();
     this.getClient();
   }
@@ -133,7 +134,6 @@ export class CreatePurchaseComponent implements OnInit {
 
   currencyType($event: any){
     this.currencyValue = $event.currencyType;
-    console.log(this.currencyValue);
 }
 
 
@@ -147,6 +147,10 @@ export class CreatePurchaseComponent implements OnInit {
       perKgPrice: ['', [Validators.required]],
       productId: [null, [Validators.required]],
       distibutorId: [null, [Validators.required]],
+      QuantityInKg: [],
+      perUnitQuantity: [],
+      totalPrice: [],
+      currencyType: []
     });
   }
 
@@ -157,6 +161,7 @@ export class CreatePurchaseComponent implements OnInit {
     data.perUnitQuantity = parseInt(this.totalUnit);
     data.user = this.userID.user_id;
     data.totalPrice = parseInt(this.totalPrice);
+    data.currencyType = this.currencyValue;
     if (data.id > 0) {
       this.purchaseService.updatePurchase(data, data.id).subscribe((response: any) => {
         this.toast.pop('success', 'Success!', 'Purchase has been Updated.');
@@ -201,34 +206,6 @@ export class CreatePurchaseComponent implements OnInit {
     setTimeout(() => { this.flag = true; })
   }
 
-
-  unitBased() {
-    this.unit = [
-      {
-        id: 'LTR',
-        value: 'LTR',
-      },
-      {
-        id: 'GRAM',
-        value: 'GRAM',
-      }
-    ]
-  }
-
-  // roleBased() {
-  //   this.role = [
-  //      {
-  //       id: 'D',
-  //       value: 'Distributor'
-  //      },
-  //      {
-  //       id: 'C',
-  //       value: 'Customer'
-  //      }
-  //   ]
-  // }
-
-
   preFilledForm(purchase: any) {
     this.purchaseForm.get('DcNo').setValue(purchase.DcNo);
     this.purchaseForm.get('type').setValue(purchase.type);
@@ -236,10 +213,12 @@ export class CreatePurchaseComponent implements OnInit {
     this.purchaseForm.get('QuantityInKg').setValue(purchase.QuantityInKg);
     this.purchaseForm.get('unit').setValue(purchase.unit);
     this.purchaseForm.get('perUnitQuantity').setValue(purchase.perUnitQuantity);
-    // this.purchaseForm.get('price').setValue(purchase.price);
+    this.purchaseForm.get('totalPrice').setValue(purchase.totalPrice);
     this.purchaseForm.get('distibutorId').setValue(purchase.distibutorId);
     this.purchaseForm.get('productId').setValue(purchase.productId);
     this.purchaseForm.get('perKgPrice').setValue(purchase.perKgPrice);
+    this.purchaseForm.get('currencyType').setValue(purchase.purchase_customer.currencyType);
+
 
   }
 

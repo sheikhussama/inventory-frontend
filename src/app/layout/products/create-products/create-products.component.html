@@ -61,7 +61,7 @@
                          class="form-control"
                           placeholder="Enter Bulk Quantity" 
                           (change)="bulkQuantitys($event)" 
-                          type="number"
+                          type="text"
                           formControlName="bulkQuantity" 
                           value=""
                            />
@@ -77,7 +77,8 @@
                         <label for=""> {{typeOfProduct}} Quantity In Kg: </label>
                         <input type="text" class="form-control"
                          placeholder="Quantity In Kg"
-                         type="number"
+                         type="text"
+                         formControlName="QuantityInKg"
                          (change)="QuantityInKg($event)"
                          value=""/>
                       
@@ -85,11 +86,9 @@
                 </div>
                 <div class="col-md-4">
                 
-                     <label for="" class=""> {{typeOfProduct}} {{total | number}} Quantity Kg </label>
+                     <label for="" class=""> Total {{typeOfProduct}} {{total | number}} Quantity Kg </label>
                      <input type="text" disabled class="form-control"
                      placeholder="{{typeOfProduct}} {{total | number}} Kg"
-                     type="number"
-
                      value=""/>
                      <!-- <div *ngIf="QuantityInKgs?.invalid && (QuantityInKgs.dirty || QuantityInKgs.touched)" class="validation-error text-danger">
                         <div *ngIf="QuantityInKgs.errors.required || QuantityInKgs.errors?.invalid">
@@ -115,9 +114,11 @@
                 <div class="col-md-6">
                    <label for="">  {{typeOfProduct}} {{totalUnit | number}} Quantity in {{unitName}}</label>
                    <input type="text"   disabled class="form-control"
-                   placeholder="{{typeOfProduct}} {{totalUnit | number}} {{unitName}}"
-                   type="number"
-                   value=""/>
+                   placeholder="Quantity in Unit"
+                   type="text"
+                   formControlName="QuantityInUnit"
+                   value="{{totalUnit}}"
+                  />
                    <!-- <div *ngIf="QuantityInUnit?.invalid && (QuantityInUnit.dirty || QuantityInUnit.touched)" class="validation-error text-danger">
                     <div *ngIf="QuantityInUnit.errors.required || QuantityInUnit.errors?.invalid">
                         Select a valid Quantity Unit
