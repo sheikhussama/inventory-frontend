@@ -5,6 +5,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../core/services/auth.services';
 import { CookieService } from 'ngx-cookie-service';
 import { ToasterService } from 'angular2-toaster';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-login',
@@ -21,10 +23,12 @@ export class LoginComponent implements OnInit {
         public authService: AuthService,
         private cookie: CookieService,
         private router: Router,
-        private toast: ToasterService) {}
+        private toast: ToasterService,
+        private http: HttpClient) {}
 
     ngOnInit() {
         this.initForm();
+        this.getSearchResult();
     }
 
     initForm() {
@@ -58,6 +62,11 @@ export class LoginComponent implements OnInit {
       }
 
 
-
-
+      getSearchResult(){
+         this.http.get<any>(
+          'http://localhost:3000/search/search-result'
+        ).subscribe((response: any) => {
+          console.log(response);
+      });
+    }
 }
