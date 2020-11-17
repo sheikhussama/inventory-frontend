@@ -16,7 +16,6 @@ export class RawPurchaseFilterComponent implements OnInit {
   userID: any;
   buttonText: Boolean;
   clientDetail: any[] = [];
-  flag: Boolean = true;
   rawPurchaseFilter: any;
   products: any[] = []; 
   config: any;
@@ -61,17 +60,39 @@ getClient() {
 
 onSubmit() {
   const data = this.rawPurchaseFilterForm.value;
+  if(data.productId !== null ||  data.productId === null ) {
+    data.productId = data.productId ? data.productId : "";
+    data.distibutorId = data.distibutorId ? data.distibutorId : "";
     this.rawPurchaseFilterService.purchaseRawFilter(data).subscribe((response: any) => {
       this.rawPurchaseFilter = response;
       this.toast.pop('success', 'Success!', 'Raw Purchase Search is Completed.');
       this.callCompleted();
     });
+
+  }
+  else if ( data.distibutorId !== null || data.distibutorId === null) {
+    this.rawPurchaseFilterService.purchaseRawFilter(data).subscribe((response: any) => {
+      this.rawPurchaseFilter = response;
+      this.toast.pop('success', 'Success!', 'Raw Purchase Search is Completed.');
+      this.callCompleted();
+    });
+  }
 }
 pageChanged(event:any){
   this.config.currentPage = event;
 }
 callCompleted() {
   this.rawPurchaseFilterForm.reset();
+}
+
+changeProductEvent(event: any) {
+  this.rawPurchaseFilterForm.get('productId').setValue(event.id);
+
+}
+
+changeDistributorEvent(event: any) {
+  this.rawPurchaseFilterForm.get('distibutorId').setValue(event.id);
+
 }
 
 }

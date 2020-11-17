@@ -37,10 +37,10 @@ export class PaymentDetailFilterComponent implements OnInit {
 
   initForm() {
     this.paymentDetailFilterForm = this.fb.group({
-      startDate: ['', [Validators.required]],
-      endDate: ['', [Validators.required]],
-      isCredit: ['', [Validators.required]],
-      distibutorId: ['', [Validators.required]],
+      startDate: ["", [Validators.required]],
+      endDate: ["", [Validators.required]],
+      isCredit: ["", [Validators.required]],
+      distibutorId: ["", [Validators.required]],
   });
 }
  
@@ -65,13 +65,24 @@ pageChanged(event:any){
   this.config.currentPage = event;
 }
 onSubmit() {
-  const data = this.paymentDetailFilterForm.value;  
+  const data = this.paymentDetailFilterForm.value; 
+  if(data.distibutorId !== null ||  data.distibutorId === null ) {
+    data.distibutorId = data.distibutorId ? data.distibutorId : "";
+    data.isCredit = data.isCredit ? data.isCredit : "";
     this.paymentDetailFilterService.paymentDetailFilter(data).subscribe((response: any) => {
       this.paymentDetailFilter = response;
       this.toast.pop('success', 'Success!', 'Payment Detail Search is Completed.');
       this.callCompleted();
     });
-}
+  }
+  else if (data.isCredit !== null ||  data.isCredit === null) {
+      this.paymentDetailFilterService.paymentDetailFilter(data).subscribe((response: any) => {
+        this.paymentDetailFilter = response;
+        this.toast.pop('success', 'Success!', 'Payment Detail Search is Completed.');
+        this.callCompleted();
+      });
+    }
+  }
 
 callCompleted() {
   this.paymentDetailFilterForm.reset();

@@ -4,14 +4,24 @@
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;
             <span>{{ 'Dashboard' }}</span>
         </a>
-        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/products']" class="list-group-item">
-            <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;
-            <span>{{ 'Product' }}</span>
-        </a>
+        <div class="dropdown">
+            <a class="list-group-item dropdown-toggle" role="button"
+                id="purchase" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-th-list"></i>&nbsp;
+                <span class="mr-3 cursor-pointer">{{ 'Products' }}</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="purchase">
+                <a class="dropdown-item" [routerLink]="['/products']" > Raw Products</a>
+                <a class="dropdown-item" [routerLink]="['/products/endProduct']" > Deliverable Products</a>
+                <a class="dropdown-item" [routerLink]="['/products/raw']" > Finish Goods</a>
+            </div>
+        </div>
+
         <a [routerLinkActive]="['router-link-active']" [routerLink]="['/client']" class="list-group-item">
             <i class="fa fa-fw fa-edit"></i>&nbsp;
             <span>{{ 'Client' }}</span>
         </a>
+        
         <div class="dropdown">
             <a [routerLinkActive]="['router-link-active']" class="list-group-item dropdown-toggle" role="button"
                 id="purchase" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -19,7 +29,8 @@
                 <span class="mr-3 cursor-pointer">{{ 'Purchase' }}</span>
             </a>
             <div class="dropdown-menu" aria-labelledby="purchase">
-                <a class="dropdown-item" [routerLink]="['/purchase']">Purchase Detail</a>
+                <a class="dropdown-item" [routerLink]="['/purchase']"> Raw Material Purchase </a>
+                <a class="dropdown-item" [routerLink]="['/purchase/finishGoods']"> Finish Goods Purchase </a>
                 <a class="dropdown-item" [routerLink]="['/purchase/purchaseFilter']"> Purchase History</a>
             </div>
         </div>
@@ -28,11 +39,14 @@
             <a [routerLinkActive]="['router-link-active']" class="list-group-item dropdown-toggle" id="sale"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-file-o"></i>&nbsp;
-                <span class="mr-3 cursor-pointer">{{ 'Sale' }}</span>
+                <span class="mr-3 cursor-pointer">{{ 'Sales' }}</span>
             </a>
             <div class="dropdown-menu" aria-labelledby="sale">
-                <a class="dropdown-item" [routerLink]="['/sale']">Sale Detail</a>
-                <a class="dropdown-item" [routerLink]="['/sale/salefilter']"> Sale History</a>
+                <a class="dropdown-item" [routerLink]="['/sale']">Sale Detail </a>
+                <a class="dropdown-item" [routerLink]="['/sale/create-oil']"> Oil </a>
+                <a class="dropdown-item" [routerLink]="['/sale/create-salt-seed']"> Salt N Seed  </a>
+                <a class="dropdown-item" [routerLink]="['/sale/create-others']"> Others </a>
+
             </div>
         </div>
         <div class="dropdown">

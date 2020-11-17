@@ -63,17 +63,24 @@ pageChanged(event:any){
   this.config.currentPage = event;
 }
 onSubmit() {
-  const data = this.finishGoodsFilterForm.value;  
+  const data = this.finishGoodsFilterForm.value; 
+  if(data.productId !== null ||  data.productId === null ) {
+    data.productId = data.productId ? data.productId : "";
+    data.distibutorId = data.distibutorId ? data.distibutorId : "";
     this.finishGoodsFilterService.purchasefinishGoodsFilter(data).subscribe((response: any) => {
       this.finishGoodsFilter = response;
       this.toast.pop('success', 'Success!', 'Finish Goods Filter Search is Completed.');
       this.callCompleted();
-    },
-    (error => {
-       if(error.status === 400) {
-        this.toast.pop('error', 'Error!', 'Record Not Found');
-       }
-    }));
+    });
+  }
+  else if(data.distibutorId !== null || data.distibutorId === null){
+    this.finishGoodsFilterService.purchasefinishGoodsFilter(data).subscribe((response: any) => {
+      this.finishGoodsFilter = response;
+      this.toast.pop('success', 'Success!', 'Finish Goods Filter Search is Completed.');
+      this.callCompleted();
+    });
+  }
+
 }
 
 callCompleted() {

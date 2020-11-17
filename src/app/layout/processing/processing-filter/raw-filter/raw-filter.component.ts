@@ -62,18 +62,22 @@ export class RawFilterComponent implements OnInit {
 
   onSubmit() {
     const data = this.finishGoodForm.value;
-    this.processingService.filterRawFinishGoods(data).subscribe((response: any) => {
-      this.finishGoodDetail = response;
-      this.toast.pop('success', 'Success!', 'Finish Good History Search is Completed.');
-      this.callCompleted();
-    },
-      (error => {
-        if (error.status === 400) {
-          this.toast.pop('error', 'Error!', 'Record Not Found');
-        }
-      }));
-
-
+    if(data.productId !== null ||  data.productId === null ) {
+      data.productId = data.productId ? data.productId : "";
+      data.saleId = data.saleId ? data.saleId : "";
+      this.processingService.filterRawFinishGoods(data).subscribe((response: any) => {
+        this.finishGoodDetail = response;
+        this.toast.pop('success', 'Success!', 'Finish Good History Search is Completed.');
+        this.callCompleted();
+      });
+     }
+    else if (data.saleId !== null || data.saleId === null) {
+      this.processingService.filterRawFinishGoods(data).subscribe((response: any) => {
+        this.finishGoodDetail = response;
+        this.toast.pop('success', 'Success!', 'Finish Good History Search is Completed.');
+        this.callCompleted();
+      });
+    }
   }
   callCompleted() {
     this.finishGoodForm.reset();

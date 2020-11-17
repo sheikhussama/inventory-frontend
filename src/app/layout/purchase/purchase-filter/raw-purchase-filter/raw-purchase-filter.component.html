@@ -33,9 +33,9 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <Label> <strong> Enter Raw Product</strong></Label>
+                        <Label> <strong> Select Raw Product</strong></Label>
 
-                        <ng-select *ngIf="flag" placeholder="Enter Raw Product" formControlName="productId"
+                        <ng-select  placeholder="Select Raw Product" formControlName="productId"
                         [items]="products" class="" bindLabel="productName" bindValue="id"
                         >
                        </ng-select>
@@ -43,9 +43,9 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <Label> <strong> Enter Distributor</strong></Label>
+                        <Label> <strong> Select Distributor</strong></Label>
 
-                        <ng-select *ngIf="flag" placeholder="Enter Distributor" formControlName="distibutorId"
+                        <ng-select placeholder="Select Distributor" formControlName="distibutorId"
                         [items]="clientDetail" class="" bindLabel="customerName" bindValue="id"
                         >
                        </ng-select>
@@ -55,7 +55,7 @@
         
             <div class="row">
                 <div class="col-lg-4">
-                    <button type="submit" class="btnSubmit">Search</button>
+                    <button type="submit" class="btnSubmit" >Search</button>
                 </div>
             </div>
         </form>

@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.initForm();
-        this.getSearchResult();
     }
 
     initForm() {
@@ -60,13 +59,4 @@ export class LoginComponent implements OnInit {
       get password() {
         return this.loginForm.get('password');
       }
-
-
-      getSearchResult(){
-         this.http.get<any>(
-          'http://localhost:3000/search/search-result'
-        ).subscribe((response: any) => {
-          console.log(response);
-      });
-    }
 }
