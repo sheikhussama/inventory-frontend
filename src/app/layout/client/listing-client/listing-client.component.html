@@ -9,7 +9,7 @@
 
     <div class="container">
         <div class="table-responsive" id="style-1">
-            <table class="table table-striped d-table text-center table-stats">
+            <table class="table table-striped d-table text-center table-stats" id="pdftable" width="100%" #pdfTable>
                 <thead class="text-muted">
                     <tr class="red">
                         <th scope="col" class="text-dark text-center text-truncate">Customer ID</th>
@@ -75,7 +75,7 @@
 
 
                         </td>
-                        <td class="text-right">
+                        <td class="text-right" id="hide">
                             <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"
                                 data-original-title="Save to Wishlist"> <i class="fa fa-pencil" aria-hidden="true"
                                     (click)="updateclient(data)"></i></button>
@@ -95,6 +95,9 @@
                     </div>
                 </div>
             </div>
+
+            <button class="btn btn-dark round-corner text-uppercase px-4 mb-2" (click)="genReport()">Export
+                To PDF</button>
         </div> <!-- card.// -->
     </div>
 </div>

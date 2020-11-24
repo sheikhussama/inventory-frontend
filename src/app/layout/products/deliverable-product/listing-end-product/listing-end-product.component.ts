@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToasterService } from 'angular2-toaster';
 import { EndProductService } from '../../../../core/services/end-product.services';
 import Swal from 'sweetalert2'
+import { logoUrl } from '../../../../shared/logourl';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-listing-end-product',
@@ -13,7 +17,9 @@ export class ListingEndProductComponent implements OnInit {
 
   endProduct: any[] = []; 
   config: any;
-
+  imageUrl: any;
+  @ViewChild('pdftable', { static: false }) pdftable: ElementRef;
+  
   constructor(private router: Router,
     private toast: ToasterService, private endProductService: EndProductService) { }
 
@@ -23,6 +29,7 @@ export class ListingEndProductComponent implements OnInit {
       itemsPerPage: 10,
       currentPage: 1
     };
+    this.imageUrl = logoUrl;
    }
 
 
@@ -70,4 +77,28 @@ export class ListingEndProductComponent implements OnInit {
         }
       });
   }
+
+  genReport() {
+    var pdf = new jsPDF('l', 'pt', 'a4');
+    let pipe = new DatePipe('en-US'); // Use your own locale
+    const now = Date.now();
+    const myFormattedDate = pipe.transform(now, 'short');
+    pdf.cellInitialize();
+    pdf.setFontSize(20);
+    pdf.text('Date: ' + myFormattedDate, 349, 60);
+    pdf.text('Deliverable Report', 350, 80);
+  
+    const imgUrl = this.imageUrl.imagebase64;
+    // $(".text-right").hide();
+    pdf.addImage(imgUrl, "png", 30, 30, 70, 70);
+    pdf.autoTable({
+      html: '#pdftable',
+      theme: 'grid',
+      tableWidth: 800,
+      margin: { top: 100 },
+    }
+      );
+    pdf.save('DeliverableReport-' + myFormattedDate +'.pdf');
+  }
+
 }

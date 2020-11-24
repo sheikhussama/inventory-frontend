@@ -64,7 +64,7 @@
 
 <div class="container" *ngIf="finishGoodsFilter">
     <div class="table-responsive"  id="style-1">
-        <table class="table table-striped d-table text-center table-stats">
+        <table class="table table-striped d-table text-center table-stats" id="pdftable" width="100%" #pdfTable>
             <thead class="text-muted">
                 <tr class="red">
                     <th scope="col" class="text-dark text-center text-truncate">Finish Goods Purchase ID</th>
@@ -141,6 +141,8 @@
                 </tr>
             </tbody>
         </table>
+        <button class="btn btn-dark round-corner text-uppercase px-4 mb-2" (click)="genReport()">Export
+            To PDF</button>
     </div> <!-- card.// -->
 
 

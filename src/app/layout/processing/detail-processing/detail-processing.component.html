@@ -261,7 +261,7 @@
       >
         <label for=""> <strong>Raw Material</strong></label>
         <div id="rawMaterial" class="table-responsive" id="style-1">
-          <table class="table table-striped d-table text-center table-stats">
+          <table class="table table-striped d-table text-center table-stats" id="pdftable" width="100%" #pdfTable>
             <thead class="text-muted">
               <tr class="red">
                 <th scope="col" class="text-dark">Product Name</th>
@@ -379,7 +379,7 @@
     <div class="container" *ngIf="rawDataList.length > 0 && hideShow">
       <label for=""> <strong>Finish Goods</strong></label>
       <div class="table-responsive" id="style-1">
-        <table class="table table-striped d-table text-center table-stats">
+        <table class="table table-striped d-table text-center table-stats" id="pdftable" width="100%" #pdfTable>
           <thead class="text-muted">
             <tr class="red">
               <th scope="col" class="text-dark">Product Name</th>

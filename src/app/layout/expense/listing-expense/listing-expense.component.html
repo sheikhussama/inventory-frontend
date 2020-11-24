@@ -9,7 +9,7 @@
     
     <div class="container">
         <div class="table-responsive" id="style-1">
-            <table class="table table-striped d-table text-center table-stats">
+            <table class="table table-striped d-table text-center table-stats" id="pdftable" width="100%" #pdfTable>
                 <thead class="text-muted">
                     <tr class="red">
                         <th scope="col" class="text-dark">Purpose</th>
@@ -42,11 +42,11 @@
                                     <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>
                          
                         </td>
-                        <td class="text-right">
-                            <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"
+                        <td class="text-right" >
+                            <button title="" href=""  class="btn btn-outline-success" data-toggle="tooltip"
                                 data-original-title="Save to Wishlist"> <i class="fa fa-pencil"
                                     aria-hidden="true" (click)="updateExpense(data)"></i></button>
-                            <button href="" class="btn btn-outline-danger" (click)="deleteExpense(data)"> <i class="fa fa-trash"></i></button>
+                            <button  href="" class="btn btn-outline-danger" (click)="deleteExpense(data)"> <i class="fa fa-trash"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -59,6 +59,9 @@
                   </div>
                 </div>
              </div>
+             
+            <button class="btn btn-dark round-corner text-uppercase px-4 mb-2" (click)="genReport()">Export
+                To PDF</button>
         </div> <!-- card.// -->
     </div>
 </div>

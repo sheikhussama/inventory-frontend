@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ClientService } from '../../../core/services/client.services';
 import { Router } from '@angular/router';
 import { ToasterService } from 'angular2-toaster';
 import Swal from 'sweetalert2'
+import jsPDF from 'jspdf';
+import 'jspdf-autotable'
+import { DatePipe } from '@angular/common';
+import { logoUrl } from '../../../shared/logourl';
+declare const $: any
 
 @Component({
   selector: 'app-listing-client',
@@ -13,6 +18,9 @@ export class ListingClientComponent implements OnInit {
 
   clientDetail: any[] = [];
   config: any;
+  imageUrl: any;
+
+  @ViewChild('pdftable', { static: false }) pdftable: ElementRef;
 
   constructor(private router: Router,
     private toast: ToasterService, private clientService: ClientService) { }
@@ -23,6 +31,8 @@ export class ListingClientComponent implements OnInit {
       itemsPerPage: 10,
       currentPage: 1
     };
+    this.imageUrl = logoUrl;
+
   }
 
   getClient() {
@@ -67,6 +77,30 @@ export class ListingClientComponent implements OnInit {
           Swal.fire('Your Client is safe!');
         }
       });
+  }
+
+  genReport() {
+    var pdf = new jsPDF('l', 'pt', 'a4');
+    let pipe = new DatePipe('en-US'); // Use your own locale
+    const now = Date.now();
+    const myFormattedDate = pipe.transform(now, 'short');
+    pdf.cellInitialize();
+    pdf.setFontSize(20);
+    pdf.text('Date: ' + myFormattedDate, 349, 60);
+    pdf.text('Client Report', 350, 80);
+    // pdf.text('Roll Number: ' + this.studentWiseDetail.studentinfo.id, 348, 40);
+
+    const imgUrl = this.imageUrl.imagebase64;
+
+    pdf.addImage(imgUrl, "png", 20, 20, 70, 70);
+    pdf.autoTable({
+      html: '#pdftable',
+      theme: 'grid',
+      tableWidth: 800,
+      margin: { top: 100 }
+    });
+    // const pdfName = this.studentWiseDetail.studentinfo.st_name + 'report.pdf'
+    pdf.save('clientsReport-' + myFormattedDate +'.pdf');
   }
 
 }

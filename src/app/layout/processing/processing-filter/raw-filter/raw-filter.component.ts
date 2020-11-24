@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { ToasterService } from 'angular2-toaster';
 import { SaleService } from '../../../../core/services/sale.services';
 import { ProcessingService } from '../../../../core/services/processing.service';
 import { RawMaterialService } from '../../../../core/services/materials.services';
+import { logoUrl } from '../../../../shared/logourl';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-raw-filter',
@@ -17,7 +21,9 @@ export class RawFilterComponent implements OnInit {
   finishGoodDetail: any;
   sale: any[] = [];
   config: any;
-
+  imageUrl: any;
+  @ViewChild('pdftable', { static: false }) pdftable: ElementRef;
+  
   constructor(
     private fb: FormBuilder,
     private toast: ToasterService,
@@ -34,6 +40,7 @@ export class RawFilterComponent implements OnInit {
       itemsPerPage: 10,
       currentPage: 1
     };
+    this.imageUrl = logoUrl;
   }
 
   initForm() {
@@ -82,4 +89,27 @@ export class RawFilterComponent implements OnInit {
   callCompleted() {
     this.finishGoodForm.reset();
   }
+  genReport() {
+    var pdf = new jsPDF('l', 'pt', 'a4');
+    let pipe = new DatePipe('en-US'); // Use your own locale
+    const now = Date.now();
+    const myFormattedDate = pipe.transform(now, 'short');
+    pdf.cellInitialize();
+    pdf.setFontSize(20);
+    pdf.text('Date: ' + myFormattedDate, 349, 60);
+    pdf.text('Expense Report', 350, 80);
+  
+    const imgUrl = this.imageUrl.imagebase64;
+    // $(".text-right").hide();
+    pdf.addImage(imgUrl, "png", 30, 30, 70, 70);
+    pdf.autoTable({
+      html: '#pdftable',
+      theme: 'grid',
+      tableWidth: 800,
+      margin: { top: 100 },
+    }
+      );
+    pdf.save('FinishGoodFilterReport-' + myFormattedDate +'.pdf');
+  }
+
 }

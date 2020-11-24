@@ -9,7 +9,7 @@
     
     <div class="container">
         <div class="table-responsive"  id="style-1">
-            <table class="table table-striped d-table text-center table-stats">
+            <table class="table table-striped d-table text-center table-stats" id="pdftable" width="100%" #pdfTable>
                 <thead class="text-muted">
                     <tr class="red">
                         <th scope="col" width=""class="text-dark text-truncate">Payment ID</th>
@@ -117,6 +117,9 @@
                   </div>
                 </div>
              </div>
+
+             <button class="btn btn-dark round-corner text-uppercase px-4 mb-2" (click)="genReport()">Export
+                To PDF</button>
         </div> <!-- card.// -->
 
     

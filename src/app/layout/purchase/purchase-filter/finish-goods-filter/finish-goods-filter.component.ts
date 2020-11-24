@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { PurchaseService } from '../../../../core/services/purchase.services';
 import { ToasterService } from 'angular2-toaster';
 import { RawMaterialService } from '../../../../core/services/materials.services';
 import { ClientService } from '../../../../core/services/client.services';
+import { DatePipe } from '@angular/common';
+import { logoUrl } from '../../../../shared/logourl';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 @Component({
   selector: 'app-finish-goods-filter',
@@ -20,7 +24,9 @@ export class FinishGoodsFilterComponent implements OnInit {
   flag: Boolean = true;
   finishGoodsFilter: any;
   config: any;
-
+  imageUrl: any;
+  @ViewChild('pdftable', { static: false }) pdftable: ElementRef;
+  
   constructor(
     private fb: FormBuilder, 
     private toast:ToasterService, 
@@ -36,6 +42,7 @@ export class FinishGoodsFilterComponent implements OnInit {
       itemsPerPage: 10,
       currentPage: 1
     };
+    this.imageUrl = logoUrl;
   }
 
   initForm() {
@@ -87,4 +94,27 @@ callCompleted() {
   this.finishGoodsFilterForm.reset();
 }
 
+
+genReport() {
+  var pdf = new jsPDF('l', 'pt', 'a4');
+  let pipe = new DatePipe('en-US'); // Use your own locale
+  const now = Date.now();
+  const myFormattedDate = pipe.transform(now, 'short');
+  pdf.cellInitialize();
+  pdf.setFontSize(20);
+  pdf.text('Finish Goods Purchase Filter Report', 350, 80);
+  pdf.text('Date: ' + myFormattedDate, 349, 60);
+
+  const imgUrl = this.imageUrl.imagebase64;
+  // $(".text-right").hide();
+  pdf.addImage(imgUrl, "png", 30, 30, 70, 70);
+  pdf.autoTable({
+    html: '#pdftable',
+    theme: 'grid',
+    tableWidth: 800,
+    margin: { top: 100 },
+  }
+    );
+  pdf.save('FinishGoodsPurchaseFilterReport-' + myFormattedDate +'.pdf');
+}
 }
