@@ -9,86 +9,86 @@
     
     <div class="container">
         <div class="table-responsive"  id="style-1">
-            <table class="table table-striped d-table text-center table-stats" id="pdftable" width="100%" #pdfTable>
+            <table class="table table-striped d-table  table-stats" id="pdftable" width="100%" #pdfTable>
                 <thead class="text-muted">
                     <tr class="red">
-                        <th scope="col" class="text-dark text-center text-truncate">Purchase ID</th>
-                        <th scope="col" class="text-dark text-center text-truncate">Product Purchase</th>
-                        <th scope="col" class="text-dark text-center text-truncate">Purchaser</th>
-                        <th scope="col"  class="text-dark text-truncate">DC NO</th>
-                        <th scope="col" class="text-dark text-center text-truncate">Bulk Quantity</th>
-                        <th scope="col" class="text-dark text-center text-truncate">CurrencyType</th>
-                        <th scope="col" class="text-dark text-center text-truncate">Per Kg Price</th>
-                        <th scope="col" class="text-dark text-center text-truncate">Quantity In Kg</th>
-                        <th scope="col" class="text-dark text-center text-truncate">Per Unit Quantity</th>
-                        <th scope="col" class="text-dark text-center text-truncate">Total Price</th>
-                        <th scope="col" class="text-dark text-center text-truncate">Payment Status</th>
-                        <th scope="col" class="text-dark text-center text-truncate">Created Date</th>
-                         <th scope="col" class="text-right">Action</th>
+                        <th  class="text-dark  ">Purchase ID</th>
+                        <th  class="text-dark  ">Product Purchase</th>
+                        <th  class="text-dark  ">Purchaser</th>
+                        <th   class="text-dark ">DC NO</th>
+                        <th  class="text-dark  ">Bulk Quantity</th>
+                        <th  class="text-dark  ">CurrencyType</th>
+                        <th  class="text-dark  ">Per Kg Price</th>
+                        <th  class="text-dark  ">Quantity In Kg</th>
+                        <th  class="text-dark  ">Per Unit Quantity</th>
+                        <th  class="text-dark  ">Total Price</th>
+                        <th  class="text-dark  ">Payment Status</th>
+                        <th  class="text-dark  ">Created Date</th>
+                         <th  class="text-right">Action</th>
                     </tr>
                 </thead>
                 <tbody *ngFor="let data of purchase | paginate: config; let i = index">
                     <tr>
                         <td>
                         
-                                    <h6 class="title text-truncate text-center">{{data.id}}</h6>
+                                    <h6 class="title  ">{{data.id}}</h6>
                          
                         </td>
                         <td>
                         
-                                    <h6 class="title text-truncate text-center">{{data.product_purchase.productName}}</h6>
+                                    <h6 class="title  ">{{data.product_purchase.productName}}</h6>
                          
                         </td>
                         <td>
                         
-                                    <h6 class="title text-truncate text-center">{{data.purchase_customer.customerName}}</h6>
+                                    <h6 class="title  ">{{data.purchase_customer.customerName}}</h6>
                          
                         </td>
                         <td>
                         
-                                    <h6 class="title text-truncate text-center">{{data.DcNo}}</h6>
+                                    <h6 class="title  ">{{data.DcNo}}</h6>
                          
                         </td>
                         <td>
                         
-                                    <h6 class="title text-truncate text-center">{{data.bulkQuantity}}</h6>
+                                    <h6 class="title  ">{{data.bulkQuantity}}</h6>
                          
                         </td>
                         <td>
                         
-                            <h6 class="title text-truncate text-center">{{data.purchase_customer.currencyType}}</h6>
+                            <h6 class="title  ">{{data.purchase_customer.currencyType}}</h6>
                  
                 </td>
                         <td>
                         
-                                    <h6 class="title text-truncate text-center">{{data.perKgPrice}}</h6>
+                                    <h6 class="title  ">{{data.perKgPrice}}</h6>
                          
                         </td>
                         <td>
                         
-                                    <h6 class="title text-truncate text-center">{{data.QuantityInKg}} Kg</h6>
+                                    <h6 class="title  ">{{data.QuantityInKg}} Kg</h6>
                          
                         </td>
                         <td>
                         
-                                    <h6 class="title text-truncate text-center">{{data.perUnitQuantity}} {{data.unit}}</h6>
+                                    <h6 class="title  ">{{data.perUnitQuantity}} {{data.unit}}</h6>
                          
                         </td>
                         <td>
                         
-                                    <h6 class="title text-truncate text-center">{{data.totalPrice}}</h6>
+                                    <h6 class="title  ">{{data.totalPrice}}</h6>
                          
                         </td>
                         <td>
                         
-                                    <h6 class="title text-truncate" *ngIf="data.isPaid === false"><i class="fa fa-times text-danger" aria-hidden="true"></i></h6>
-                                    <h6 class="title text-truncate" *ngIf="data.isPaid === true"><i class="fa fa-check text-success" aria-hidden="true"></i>
+                                    <h6 class="title " *ngIf="data.isPaid === false">Not Paid</h6>
+                                    <h6 class="title " *ngIf="data.isPaid === true">Paid
                                     </h6>
                          
                         </td>
                         <td>
                         
-                                    <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>
+                                    <h6 class="title  ">{{data.timecreated | date : 'mediumDate'}}</h6>
                          
                         </td>
                         <td class="text-right">
@@ -108,11 +108,11 @@
                   </div>
                 </div>
              </div>
-             <button class="btn btn-dark round-corner text-uppercase px-4 mb-2" (click)="genReport()">Export
-                To PDF</button>
+
         </div> <!-- card.// -->
 
-    
+        <button class="btn btn-dark round-corner text-uppercase px-4 mb-2 mt-2" (click)="genReport()">Export
+            To PDF</button>
     </div>
 
 </div>

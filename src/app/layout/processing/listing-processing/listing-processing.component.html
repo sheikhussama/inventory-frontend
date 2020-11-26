@@ -128,7 +128,7 @@
             </td>
             <td>
               <h6 class="title text-truncate text-center">
-                {{ data.totalQuantityinKg }} KG
+                {{ data.totalQuantityinKg | number }} KG
               </h6>
             </td>
             <td>
@@ -193,10 +193,11 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-dark round-corner text-uppercase px-4 mb-2" (click)="genReport()">Export
-      To PDF</button>
     <!-- card.// -->
   </div>
+
+  <button class="btn btn-dark round-corner text-uppercase px-4 mb-2 mt-2" (click)="genReport()">Export
+    To PDF</button>
 </div>
 
 <div class="row margin-pagination mt-1">

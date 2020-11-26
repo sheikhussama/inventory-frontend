@@ -89,15 +89,14 @@ export class ListingRawMaterialsComponent implements OnInit {
     pdf.text('Finish Goods Report', 350, 80);
   
     const imgUrl = this.imageUrl.imagebase64;
-    // $(".text-right").hide();
-    pdf.addImage(imgUrl, "png", 30, 30, 70, 70);
-    pdf.autoTable({
-      html: '#pdftable',
+    var res = pdf.autoTableHtmlToJson(document.getElementById("pdftable"));
+    var columns = [res.columns[0], res.columns[1],res.columns[2]];
+    pdf.addImage(imgUrl, "png", 20, 20, 70, 70);
+    pdf.autoTable(columns, res.data,{
       theme: 'grid',
-      tableWidth: 800,
-      margin: { top: 100 },
-    }
-      );
+      tableWidth: 750,
+      margin: { top: 100 }
+    });
     pdf.save('FinishGoodsReport-' + myFormattedDate +'.pdf');
   }
 }

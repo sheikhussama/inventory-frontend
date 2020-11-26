@@ -90,15 +90,18 @@ export class ListingFinishComponent implements OnInit {
       pdf.text('Date: ' + myFormattedDate, 349, 60);
     
       const imgUrl = this.imageUrl.imagebase64;
-      // $(".text-right").hide();
-      pdf.addImage(imgUrl, "png", 30, 30, 70, 70);
-      pdf.autoTable({
-        html: '#pdftable',
+      var res = pdf.autoTableHtmlToJson(document.getElementById("pdftable"));
+      var columns = [
+        res.columns[0], res.columns[1],res.columns[2],
+        res.columns[3], res.columns[4],res.columns[5],
+        res.columns[6], res.columns[7],res.columns[8]
+      ];
+      pdf.addImage(imgUrl, "png", 20, 20, 70, 70);
+      pdf.autoTable(columns, res.data,{
         theme: 'grid',
-        tableWidth: 800,
-        margin: { top: 100 },
-      }
-        );
+        tableWidth: 750,
+        margin: { top: 100 }
+      });
       pdf.save('FinishGoodsPurchaseReport-' + myFormattedDate +'.pdf');
     }
 }

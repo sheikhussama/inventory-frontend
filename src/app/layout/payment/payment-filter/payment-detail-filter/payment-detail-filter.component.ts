@@ -108,15 +108,24 @@ genReport() {
   pdf.text('Expense Report', 350, 80);
 
   const imgUrl = this.imageUrl.imagebase64;
-  // $(".text-right").hide();
-  pdf.addImage(imgUrl, "png", 30, 30, 70, 70);
-  pdf.autoTable({
-    html: '#pdftable',
+  var res = pdf.autoTableHtmlToJson(document.getElementById("pdftable"));
+  var columns = [
+    res.columns[0], res.columns[1],res.columns[2],
+    res.columns[3], res.columns[4],res.columns[5],
+    res.columns[6], res.columns[7],res.columns[8],
+    res.columns[9]
+  ];
+  pdf.addImage(imgUrl, "png", 20, 20, 70, 70);
+  pdf.autoTable(columns, res.data,{
     theme: 'grid',
-    tableWidth: 800,
+    tableWidth: 750,
     margin: { top: 100 },
-  }
-    );
+    styles: {
+      fontSize: 9,
+      font: 'helvetica',
+      fontType: 'bold',
+      }
+  });
   pdf.save('PaymentsReport-' + myFormattedDate +'.pdf');
 }
 }
