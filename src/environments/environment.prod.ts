@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    endPoint: 'https://inventorydetail.herokuapp.com/',
+    endPoint: 'https://apis.sinaherbal.com/',
 };
