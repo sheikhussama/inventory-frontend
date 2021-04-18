@@ -210,7 +210,7 @@
               <div class="form-group">
                 <label for=""> Enter Quantity</label>
                 <input
-                  type="text"
+                  type="number"
                   formControlName="recipieQuantity"
                   (change)="recipieQuantityEvent($event)"
                   class="form-control"
@@ -348,7 +348,7 @@
               <label for=""> Enter Quantity</label>
 
               <input
-                type="text"
+                type="number"
                 formControlName="rawQuantity"
                 (change)="rawQuantityEvent($event)"
                 class="form-control"
@@ -406,10 +406,17 @@
       <!-- card.// -->
     </div>
     
-    <div class="row">
+    <div class="row" *ngIf="recipeDataList.length > 0 && rawDataList.length > 0 ">
       <div class="col-lg-4">
         <button type="submit" class="btnSubmit">
-          {{ buttonText ? "Update" : "Register" }}
+           Register 
+        </button>
+      </div>
+    </div>
+    <div class="row" *ngIf="updateRawMaterial.length > 0 && updateFinishGoods.length > 0 ">
+      <div class="col-lg-4">
+        <button type="submit" class="btnSubmit">
+          Update
         </button>
       </div>
     </div>

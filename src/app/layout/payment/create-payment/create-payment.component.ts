@@ -126,6 +126,7 @@ export class CreatePaymentComponent implements OnInit {
   }
 
   preFilledForm(payment: any) {
+    this.currencyValue = payment.payment_customer.currencyType
     this.paymentForm.get('amount').setValue(payment.amount);
     this.paymentForm.get('givenType').setValue(payment.givenType);
     this.paymentForm.get('isCredit').setValue(payment.isCredit);

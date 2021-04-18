@@ -187,6 +187,8 @@ export class CreateProductsComponent implements OnInit {
     this.productForm.get("unit").setValue(product.unit);
     this.productForm.get("QuantityInUnit").setValue(product.QuantityInUnit);
     this.productForm.get("QuantityInKg").setValue(product.QuantityInKg);
+    this.total = product.QuantityInKg;
+    this.totalUnit =product.QuantityInUnit
   }
 
   get productName() {

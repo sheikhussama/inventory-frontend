@@ -219,6 +219,9 @@ export class CreatePurchaseComponent implements OnInit {
     this.purchaseForm.get('perKgPrice').setValue(purchase.perKgPrice);
     this.purchaseForm.get('currencyType').setValue(purchase.purchase_customer.currencyType);
 
+    this.total = purchase.QuantityInKg;
+    this.totalUnit = purchase.perUnitQuantity;
+    this.totalPrice = purchase.totalPrice;
 
   }
 

@@ -15,7 +15,7 @@ export class PurchaseService {
   }
 
   updatePurchase(data: any ,id: any) {
-    return this.http.put<any>(environment.endPoint + 'Purchase/'+ id ,data);
+    return this.http.put<any>(environment.endPoint + 'Purchase/'+ id +'/' ,data);
   }
 
   deletePurchase(id: Number): Observable<any> {

@@ -61,6 +61,10 @@ export class DetailProcessingComponent implements OnInit {
   finishGoodsProductName: any;
   productId: any;
 
+  updateRawMaterial: any[] = [];
+  updateFinishGoods: any[] = [];
+
+
   constructor(
     private toast: ToasterService,
     private router: Router,
@@ -288,6 +292,7 @@ export class DetailProcessingComponent implements OnInit {
 
   callCompleted() {
     this.processingForm.reset();
+    this.listOfUnit = "Unit Type"
   }
 
   addRaw() {
@@ -343,6 +348,7 @@ export class DetailProcessingComponent implements OnInit {
 
   preFilledForm(viewDetail: any) {
     let controlRaw = <FormArray>this.processingForm.controls.raw;
+    this.updateRawMaterial = viewDetail.sale_rawrecipie
     viewDetail.sale_rawrecipie.forEach((x: any, index: any) => {
       controlRaw.push(this.fb.group({
         rawQuantity: x.rawQuantity,
@@ -353,6 +359,8 @@ export class DetailProcessingComponent implements OnInit {
     });
 
     let controlRecipie = <FormArray>this.processingForm.controls.recipie;
+    this.updateFinishGoods =  viewDetail.sale_recipie
+  
     viewDetail.sale_recipie.forEach(x => {
       controlRecipie.push(this.fb.group({
         QuantityUnitKg: x.product_recipie.QuantityInKg,

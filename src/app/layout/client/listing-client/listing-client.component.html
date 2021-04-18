@@ -77,8 +77,8 @@
                         </td>
                         <td class="text-right" id="hide">
                             <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"
-                                data-original-title="Save to Wishlist"> <i class="fa fa-pencil" aria-hidden="true"
-                                    (click)="updateclient(data)"></i></button>
+                                (click)="updateclient(data)" data-original-title="Save to Wishlist"> <i
+                                    class="fa fa-pencil" aria-hidden="true"></i></button>
                             <button href="" class="btn btn-outline-danger" (click)="deleteclient(data)"> <i
                                     class="fa fa-trash"></i></button>
                         </td>
@@ -98,7 +98,7 @@
         </div> <!-- card.// -->
     </div>
 
-    
+
     <button class="btn btn-dark round-corner text-uppercase px-4 mb-2 mt-2" (click)="genReport()">Export
         To PDF</button>
 </div>
