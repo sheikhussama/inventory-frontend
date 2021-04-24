@@ -58,7 +58,10 @@ export class CreateUsersComponent implements OnInit {
 
   checkUsername(event: any){
     this.username = event.srcElement.value;
-    this.userService.checkUsername(this.username).subscribe((response: any) => { 
+    const params = {
+      username: this.username
+    }
+    this.userService.checkUsername(params).subscribe((response: any) => { 
       if(response.Res === false) {
       this.toast.pop('success', 'Success!', 'User is not Exist.');
       }

@@ -23,7 +23,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" class="form-control" formControlName="amount" placeholder="Enter Amount"
+                        <input type="number" class="form-control" formControlName="amount" placeholder="Enter Amount"
                             value="" />
                         <div *ngIf="amount?.invalid && (amount.dirty || amount.touched)"
                             class="validation-error text-danger">

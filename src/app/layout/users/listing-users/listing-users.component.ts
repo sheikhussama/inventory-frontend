@@ -43,7 +43,10 @@ export class ListingUsersComponent implements OnInit {
     })
       .then((result) => {
         if (result.value) {
-          this.usersService.deleteUser(user.id)
+          const params = {
+            user_id: user.id
+          }
+          this.usersService.deleteUser(params)
             .subscribe(
               (response: any) => {
                 const index = this.users.indexOf(user, 0);

@@ -20,7 +20,7 @@ export class UserService {
   }
   
   deleteUser(id: any) {
-    return this.http.get(environment.endPoint + this.apiend + '/' + id + '/UserNameExist/DeleteUser/');
+    return this.http.post(environment.endPoint + this.apiend +'/DeleteUser/' ,id);
   }
 
   isActiveUser() {
@@ -28,7 +28,7 @@ export class UserService {
   }
 
   checkUsername(data: any) {
-    return this.http.get(environment.endPoint + this.apiend + '/' + data + '/UserNameExist/CheckUsername/');
+    return this.http.post(environment.endPoint + this.apiend + '/CheckUsername/', data);
   }
 
   changePassword(data: any) {
