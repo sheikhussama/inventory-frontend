@@ -20,7 +20,7 @@ export class UserService {
   }
   
   deleteUser(id: any) {
-    return this.http.post(environment.endPoint + this.apiend +'/DeleteUser/' ,id);
+    return this.http.post(environment.endPoint + this.apiend +'/DeleteUser/',id);
   }
 
   isActiveUser() {
