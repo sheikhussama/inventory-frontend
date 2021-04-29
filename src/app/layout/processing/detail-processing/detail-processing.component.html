@@ -406,14 +406,14 @@
       <!-- card.// -->
     </div>
     
-    <div class="row" *ngIf="recipeDataList.length > 0 && rawDataList.length > 0 ">
+    <div class="row" *ngIf="recipeDataList.length > 0 || rawDataList.length > 0 ">
       <div class="col-lg-4">
         <button type="submit" class="btnSubmit">
            Register 
         </button>
       </div>
     </div>
-    <div class="row" *ngIf="updateRawMaterial.length > 0 && updateFinishGoods.length > 0 ">
+    <div class="row" *ngIf="updateRawMaterial.length > 0 || updateFinishGoods.length > 0 ">
       <div class="col-lg-4">
         <button type="submit" class="btnSubmit">
           Update

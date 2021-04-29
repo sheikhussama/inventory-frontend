@@ -72,12 +72,12 @@ export class CreateRawMaterialsComponent implements OnInit {
     data.user = this.userID.user_id;
     if (data.id > 0) {
       this.rawMaterialService.updateMaterial(data, data.id).subscribe((response: any) => {
-        this.toast.pop('success', 'Success!', 'Raw Material has been Updated.');
+        this.toast.pop('success', 'Success!', 'Finish Goods has been Updated.');
         this.callCompleted();
       });
     } else {
       this.rawMaterialService.storeMaterial(data).subscribe((response: any) => {
-        this.toast.pop('success', 'Success!', 'Raw Material has been Created.');
+        this.toast.pop('success', 'Success!', 'Finish Goods has been Created.');
         this.callCompleted();
       });
     }
