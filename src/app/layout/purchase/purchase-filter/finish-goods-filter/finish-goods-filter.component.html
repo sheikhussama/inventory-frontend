@@ -33,9 +33,9 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <Label class="text-truncate"> <strong>Raw Material Product</strong></Label>
+                        <Label class="text-truncate"> <strong>Finish Goods Product</strong></Label>
 
-                        <ng-select *ngIf="flag" placeholder="Raw Material Product" formControlName="productId"
+                        <ng-select *ngIf="flag" placeholder="Finish Goods Product" formControlName="productId"
                         [items]="rawMaterial" class="" bindLabel="productName" bindValue="id"
                         >
                        </ng-select>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <Label> <strong>Enter Distributor</strong></Label>
+                        <Label> <strong>Select Distributor</strong></Label>
 
                         <ng-select *ngIf="flag" placeholder="Enter Distributor" formControlName="distibutorId"
                         [items]="clientDetail" class="" bindLabel="customerName" bindValue="id"
