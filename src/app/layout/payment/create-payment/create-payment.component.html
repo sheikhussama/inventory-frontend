@@ -47,7 +47,7 @@
                     <div class="form-group">
                         <label for=""> Enter Amount</label>
 
-                        <input type="text" class="form-control" formControlName="amount" placeholder="Enter Amount" />
+                        <input type="number" class="form-control" formControlName="amount" placeholder="Enter Amount" />
                         <div *ngIf="amount?.invalid && (amount.dirty || amount.touched)"
                             class="validation-error text-danger">
                             <div *ngIf="amount.errors.required || amount.errors?.invalid">

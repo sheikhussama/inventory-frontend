@@ -61,7 +61,7 @@
                          class="form-control"
                           placeholder="Enter Bulk Quantity" 
                           (change)="bulkQuantitys($event)" 
-                          type="text"
+                          type="number"
                           formControlName="bulkQuantity" 
                           value=""
                            />
@@ -77,7 +77,7 @@
                         <label for=""> {{typeOfProduct}} Quantity In Kg: </label>
                         <input type="text" class="form-control"
                          placeholder="Quantity In Kg"
-                         type="text"
+                         type="number"
                          formControlName="QuantityInKg"
                          (change)="QuantityInKg($event)"
                          value=""/>

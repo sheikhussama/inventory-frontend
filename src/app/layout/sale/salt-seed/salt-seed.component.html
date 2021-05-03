@@ -158,7 +158,7 @@
                             <div class="form-group">
                                 <div class="form-group">
                                     <label> <strong> Price: </strong> </label>
-                                    <input type="text" formControlName="price" class="form-control"
+                                    <input type="number" formControlName="price" class="form-control"
                                      placeholder="Price" value="" />
                                      <div *ngIf="price?.invalid && (price.dirty || price.touched)" class="validation-error text-danger">
                                         <div *ngIf="price.errors.required || price.errors?.invalid">
