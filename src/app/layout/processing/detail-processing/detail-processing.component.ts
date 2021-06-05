@@ -60,6 +60,13 @@ export class DetailProcessingComponent implements OnInit {
   updateQuantityInUnit:any;
   finishGoodsProductName: any;
   productId: any;
+  unitRawMat = [];
+  recipeIndex: any;
+// Raw Quantity
+
+ rawQuantityUnit: any;
+ rawQuatityInKg: any;
+ rawUnitType: any
 
   updateRawMaterial: any[] = [];
   updateFinishGoods: any[] = [];
@@ -166,8 +173,10 @@ export class DetailProcessingComponent implements OnInit {
     this.productName = $event.productName;
     this.QuantityUnit[index] = $event.QuantityInUnit;
     this.QuantityUnitKg[index] = $event.QuantityInKg;
+    this.unitRawMat[index] = $event.unit;
     this.rawproductID = $event.id;
     this.listOfUnit = $event.unit;
+    this.recipeIndex = index
   }
 
   rawItem(): FormGroup {
@@ -181,8 +190,8 @@ export class DetailProcessingComponent implements OnInit {
 
   receipeItem(): FormGroup {
     return this.fb.group({
-      QuantityUnitKg: [''],
-      QuantityUnit: [''],
+      QuantityUnitKg: [""],
+      QuantityUnit: [""],
       recipieQuantity: [null, Validators.required],
       unit: null,
       saleId: this.processingID ? this.processingID : this.processingID,
@@ -264,9 +273,26 @@ export class DetailProcessingComponent implements OnInit {
 
   }
 
-
   onSubmit() {
     const data = this.processingForm.value;
+    let controlRecipie = <FormArray>this.processingForm.controls.recipie;
+    controlRecipie.push(this.fb.group({
+      QuantityUnitKg: this.QuantityUnitKg[this.recipeIndex],
+      QuantityUnit: this.QuantityUnit[this.recipeIndex],
+      ProductId: this.productId !== null ? this.productId : "" ,
+      recipieQuantity: this.recipieQValue,
+      unit: this.listOfUnit,
+      saleId: this.processingID ? this.processingID : this.processingID,
+      user: this.userID ? this.userID : this.userID
+    }));
+    const key = 'ProductId';
+    const arrayUniqueByKey = [...new Map(controlRecipie.value.map(item =>
+      [item[key], item])).values()];
+    
+    var reciepeFiltered = arrayUniqueByKey.filter(function (el: any) {
+      return el.ProductId != null && el.QuantityUnit !== null && el.QuantityUnitKg !== null ;
+    });
+
     if ((this.router.url).includes('detail')) {
       this.processingService.storeRecipe(this.recipeDataList).subscribe((response: any) => {
         this.toast.pop('success', 'Success!', 'Raw Material has been Created.');
@@ -278,28 +304,38 @@ export class DetailProcessingComponent implements OnInit {
       });
     }
     else if ((this.router.url).includes('update')) {
-      this.processingService.updateFinishGoods(data.raw).subscribe((response: any) => {
-        this.toast.pop('success', 'Success!', 'Finish Goods has been Updated.');
-        this.callCompleted();
-      });
-      this.processingService.updateRawMaterial(data.recipie).subscribe((response: any) => {
-        this.toast.pop('success', 'Success!', 'Raw Material has been Updated.');
-        this.callCompleted();
-      });
+      if(data.raw.length === 0) {
+        this.toast.pop('error', 'Error!', 'Finish Goods Not Updated.');
+       } else {
+        this.processingService.updateFinishGoods(data.raw).subscribe((response: any) => {
+          this.toast.pop('success', 'Success!', 'Finish Goods has been Updated.');
+          this.callCompleted();
+        });
+       }
+       if(reciepeFiltered.length === 0) {
+        this.toast.pop('error', 'Error!', 'Raw Material Not Updated.');
+       } else {
+        this.processingService.updateRawMaterial(reciepeFiltered).subscribe((response: any) => {
+          this.toast.pop('success', 'Success!', 'Raw Material has been Updated.');
+          this.callCompleted();
+          window.location.reload();
+        });
+       }
+     
 
     }
   }
 
   callCompleted() {
     this.processingForm.reset();
-    this.listOfUnit = "Unit Type"
+    this.listOfUnit = "Unit Type";
   }
 
   addRaw() {
     this.raw.push(this.rawItem());
   }
 
-  addRecipe() {
+  addRecipe(index : any) {
     this.recipie.push(this.receipeItem());
   }
 
@@ -319,7 +355,7 @@ export class DetailProcessingComponent implements OnInit {
       },
       {
         id: '2',
-        value: 'GRAMS',
+        value: 'GRM',
       }
     ]
   }
@@ -360,7 +396,6 @@ export class DetailProcessingComponent implements OnInit {
 
     let controlRecipie = <FormArray>this.processingForm.controls.recipie;
     this.updateFinishGoods =  viewDetail.sale_recipie
-  
     viewDetail.sale_recipie.forEach(x => {
       controlRecipie.push(this.fb.group({
         QuantityUnitKg: x.product_recipie.QuantityInKg,

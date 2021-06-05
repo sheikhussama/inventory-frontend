@@ -169,12 +169,12 @@ export class CreateProductsComponent implements OnInit {
   unitBased() {
     this.unit = [
       {
-        id: "Ltr",
-        value: "Ltr",
+        id: "LTR",
+        value: "LTR",
       },
       {
-        id: "Gram",
-        value: "Gram",
+        id: "GRM",
+        value: "GRM",
       },
     ];
   }

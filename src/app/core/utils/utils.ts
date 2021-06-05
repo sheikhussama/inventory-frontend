@@ -24,8 +24,8 @@ export class Utils {
         value: 'LTR',
       },
       {
-        id: 'GRAM',
-        value: 'GRAM',
+        id: 'GRM',
+        value: 'GRM',
       }
     ]
     return unit

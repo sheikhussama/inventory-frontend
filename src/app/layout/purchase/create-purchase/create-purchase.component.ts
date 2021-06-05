@@ -95,7 +95,7 @@ export class CreatePurchaseComponent implements OnInit {
       // this.totalPrice = +this.perKgPrices * +this.totalUnit
       this.unitName = "Ltr"
     }
-    if (event.value === "GRAM") {
+    if (event.value === "GRM") {
       this.totalUnit = this.total * 1000;
       this.unitName = "Gram"
       // this.totalPrice = +this.perKgPrices * +this.totalUnit
