@@ -206,6 +206,35 @@
                 />
               </div>
             </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for=""> Unit Type</label>
+                <!-- <ng-select
+                  *ngIf="editOptions"
+                  placeholder="Select Unit Type"
+                  formControlName="unit"
+                  [items]="unit"
+                  bindValue="value"
+                  bindLabel="value"
+                ></ng-select> -->
+                <input
+                disabled
+                class="form-control"
+                *ngIf="editOptions"
+                formControlName="unit"
+                placeholder="Unit Type"
+                value="{{ listOfUnit }}"
+              />
+                <!-- {{unitShowType[0]}} -->
+                <input
+                  disabled
+                  class="form-control"
+                  *ngIf="showAddOptions"
+                  placeholder="Unit Type"
+                  value="{{ listOfUnit }}"
+                />
+              </div>
+            </div>
             <div class="col-md-3">
               <div class="form-group">
                 <label for=""> Enter Quantity</label>
@@ -220,27 +249,7 @@
               </div>
             </div>
 
-            <div class="col-md-2">
-              <div class="form-group">
-                <label for=""> Unit Type</label>
-                <ng-select
-                  *ngIf="editOptions"
-                  placeholder="Select Unit Type"
-                  formControlName="unit"
-                  [items]="unit"
-                  bindValue="value"
-                  bindLabel="value"
-                ></ng-select>
-                <!-- {{unitShowType[0]}} -->
-                <input
-                  disabled
-                  class="form-control"
-                  *ngIf="showAddOptions"
-                  placeholder="Unit Type"
-                  value="{{ listOfUnit }}"
-                />
-              </div>
-            </div>
+          
             <div class="col-md-1">
               <i
                 (click)="removeRecipie(i)"

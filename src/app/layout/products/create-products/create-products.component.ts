@@ -113,12 +113,12 @@ export class CreateProductsComponent implements OnInit {
   }
 
   QuantityUnit(event: any) {
-    if (event.value === "Ltr") {
+    if (event.value === "LTR") {
       this.totalUnit = this.total * 1.11;
-      this.unitName = "Ltr";
+      this.unitName = "LTR";
     }
-    if (event.value === "Gram") {
-      this.unitName = "Gram";
+    if (event.value === "GRM") {
+      this.unitName = "GRM";
       this.totalUnit = this.total * 1000;
     }
   }

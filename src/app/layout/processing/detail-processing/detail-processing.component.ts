@@ -293,6 +293,9 @@ export class DetailProcessingComponent implements OnInit {
       return el.ProductId != null && el.QuantityUnit !== null && el.QuantityUnitKg !== null ;
     });
 
+    var finishGoodsFiltered = data.raw.filter(function (el: any) {
+      return el.ProductId != null && el.rawQuantity !== null;
+    });
     if ((this.router.url).includes('detail')) {
       this.processingService.storeRecipe(this.recipeDataList).subscribe((response: any) => {
         this.toast.pop('success', 'Success!', 'Raw Material has been Created.');
@@ -304,11 +307,12 @@ export class DetailProcessingComponent implements OnInit {
       });
     }
     else if ((this.router.url).includes('update')) {
-      if(data.raw.length === 0) {
+      if(finishGoodsFiltered.length === 0) {
         this.toast.pop('error', 'Error!', 'Finish Goods Not Updated.');
        } else {
-        this.processingService.updateFinishGoods(data.raw).subscribe((response: any) => {
+        this.processingService.updateFinishGoods(finishGoodsFiltered).subscribe((response: any) => {
           this.toast.pop('success', 'Success!', 'Finish Goods has been Updated.');
+          this.router.navigate(["/processing"])
           this.callCompleted();
         });
        }
@@ -318,7 +322,8 @@ export class DetailProcessingComponent implements OnInit {
         this.processingService.updateRawMaterial(reciepeFiltered).subscribe((response: any) => {
           this.toast.pop('success', 'Success!', 'Raw Material has been Updated.');
           this.callCompleted();
-          window.location.reload();
+          this.router.navigate(["/processing"])
+          // window.location.reload();
         });
        }
      
