@@ -25,7 +25,20 @@
 
 
 <div class="container" *ngIf="clientDetail">
-    <div class="table-responsive"  id="style-1">
+
+    <div class="row">
+        <div class="col-lg-6 col-12">
+         <label for=""> <strong>Payable Amount:</strong>  {{clientDetail?.PayableAmount}}</label>
+
+        </div>
+        <div class="col-lg-6 col-12">
+          <label for=""> <strong>Receivable Amount:</strong> {{clientDetail?.ReceiveableAmount}} </label>
+        </div>
+    </div>
+
+
+
+    <!-- <div class="table-responsive"  id="style-1">
         <table class="table table-striped d-table text-center table-stats" id="pdftable" width="100%" #pdfTable>
             <thead class="text-muted">
                 <tr class="red">
@@ -93,7 +106,7 @@
             </tbody>
         </table>
 
-    </div> <!-- card.// -->
+    </div> card.// -->
 
     <button class="btn btn-dark round-corner text-uppercase px-4 mb-2 mt-2" (click)="genReport()">Export
         To PDF</button>

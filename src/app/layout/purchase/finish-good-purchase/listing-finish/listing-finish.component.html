@@ -19,7 +19,7 @@
                         <th  class="text-dark text-center text-truncate">Quantity</th>
                         <th  class="text-dark text-center text-truncate">Currency Type</th>
                         <th  class="text-dark text-center text-truncate">Price</th>                        
-                        <th  class="text-dark text-center text-truncate">Payment Status</th>
+                        <!-- <th  class="text-dark text-center text-truncate">Payment Status</th> -->
                         <th  class="text-dark text-center text-truncate">Created Date</th>
                          <th  class="text-right">Action</th>
                     </tr>
@@ -61,13 +61,13 @@
                                     <h6 class="title text-truncate text-center">{{data.price}}</h6>
                          
                         </td>
-                        <td>
+                        <!-- <td>
                         
                                     <h6 class="title text-truncate" *ngIf="data.isPaid === false">Not Paid</h6>
                                     <h6 class="title text-truncate" *ngIf="data.isPaid === true">Paid
                                     </h6>
                          
-                        </td>
+                        </td> -->
                         <td>
                         
                                     <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>

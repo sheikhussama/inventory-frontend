@@ -22,7 +22,7 @@
                         <th  class="text-dark  ">Quantity In Kg</th>
                         <th  class="text-dark  ">Per Unit Quantity</th>
                         <th  class="text-dark  ">Total Price</th>
-                        <th  class="text-dark  ">Payment Status</th>
+                        <!-- <th  class="text-dark  ">Payment Status</th> -->
                         <th  class="text-dark  ">Created Date</th>
                          <th  class="text-right">Action</th>
                     </tr>
@@ -79,13 +79,13 @@
                                     <h6 class="title  ">{{data.totalPrice}}</h6>
                          
                         </td>
-                        <td>
+                        <!-- <td>
                         
                                     <h6 class="title " *ngIf="data.isPaid === false">Not Paid</h6>
                                     <h6 class="title " *ngIf="data.isPaid === true">Paid
                                     </h6>
                          
-                        </td>
+                        </td> -->
                         <td>
                         
                                     <h6 class="title  ">{{data.timecreated | date : 'mediumDate'}}</h6>
