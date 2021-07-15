@@ -36,7 +36,7 @@ export class ListingFinishComponent implements OnInit {
 
   getfinishGoods() {
       this.finishGoodsService.getfinishGoods().subscribe((response) => {
-        this.finishGoods = response.results;
+        this.finishGoods = response;
       });
     }
 

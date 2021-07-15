@@ -63,7 +63,7 @@ export class CreatePaymentComponent implements OnInit {
 
   getClient() {
     this.clientService.getClient().subscribe((response) => {
-      this.clientDetail = response.results;
+      this.clientDetail = response;
     });
   }
   

@@ -35,7 +35,7 @@ export class ListingRawMaterialsComponent implements OnInit {
 
   getMaterial() {
     this.materialService.getMaterial().subscribe((response) => {
-      this.rawMaterial = response.results;
+      this.rawMaterial = response
     });
   }  
 

@@ -40,7 +40,7 @@ export class ListingPurchaseComponent implements OnInit {
 
   getPurchase() {
       this.purchaseService.getPurchase().subscribe((response) => {
-        this.purchase = response.results;
+        this.purchase = response;
       });
     }
     pageChanged(event:any){

@@ -56,13 +56,13 @@ export class RawPurchaseFilterComponent implements OnInit {
 
 getProduct() {
   this.productService.getProducts().subscribe((response) => {
-    this.products = response.results;
+    this.products = response;
   });
 }  
 
 getClient() {
   this.clientService.getClient().subscribe((response) => {
-    this.clientDetail = response.results;
+    this.clientDetail = response;
  });
 } 
 

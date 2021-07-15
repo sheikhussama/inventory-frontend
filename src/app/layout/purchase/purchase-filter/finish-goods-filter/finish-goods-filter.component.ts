@@ -56,13 +56,13 @@ export class FinishGoodsFilterComponent implements OnInit {
 
 getMaterial() {
   this.materialService.getMaterial().subscribe((response) => {
-    this.rawMaterial = response.results;
+    this.rawMaterial = response;
   });
 }  
 
 getClient() {
   this.clientService.getClient().subscribe((response) => {
-    this.clientDetail = response.results;
+    this.clientDetail = response;
 
  });
 } 

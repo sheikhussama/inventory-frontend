@@ -144,7 +144,7 @@ export class OilComponent implements OnInit {
 
   endProduct() {
     this.endProductService.getEndProducts().subscribe((response) => {
-      this.endProductList = response.results;
+      this.endProductList = response;
     });
   }
 
@@ -154,7 +154,7 @@ export class OilComponent implements OnInit {
 
   client() {
     this.clientService.getClient().subscribe((response) => {
-      this.clients = response.results;
+      this.clients = response;
     });
   }
 

@@ -35,7 +35,7 @@ export class ListingProcessingComponent implements OnInit {
 
   getsale() {
     this.saleService.getFinalSale().subscribe((response) => {
-      this.sale = response.results;
+      this.sale = response;
     });
   }
 

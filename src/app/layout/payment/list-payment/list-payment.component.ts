@@ -39,7 +39,7 @@ export class ListPaymentComponent implements OnInit {
 
   getPayment() {
     this.paymentService.getPayments().subscribe((response) => {
-      this.purchase = response.results;
+      this.purchase = response;
     });
   }  
 

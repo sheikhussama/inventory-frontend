@@ -29,7 +29,7 @@ export class CustomerLedgerComponent implements OnInit {
 
    getClient(){
     this.clientService.getClient().subscribe(response =>{
-        this.client = response.results;
+        this.client = response;
     })
   }
 

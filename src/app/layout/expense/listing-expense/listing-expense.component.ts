@@ -37,7 +37,7 @@ export class ListingExpenseComponent implements OnInit {
 
   getExpense() {
       this.expenseService.getExpense().subscribe((response) => {
-        this.expense = response.results;
+        this.expense = response;
       });
     }
 

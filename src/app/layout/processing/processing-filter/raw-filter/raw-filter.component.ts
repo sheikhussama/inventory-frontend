@@ -54,7 +54,7 @@ export class RawFilterComponent implements OnInit {
 
   getMaterial() {
     this.materialService.getMaterial().subscribe((response) => {
-      this.rawMat = response.results;
+      this.rawMat = response;
     });
   }
   pageChanged(event:any){
@@ -62,7 +62,7 @@ export class RawFilterComponent implements OnInit {
   }
   getsale() {
     this.saleService.getFinalSale().subscribe((response) => {
-      this.sale = response.results;
+      this.sale = response;
     });
   }
  

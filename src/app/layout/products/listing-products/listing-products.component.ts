@@ -20,7 +20,9 @@ export class ListingProductsComponent implements OnInit {
   config: any;
   imageUrl: any;
   @ViewChild('pdftable', { static: false }) pdftable: ElementRef;
-  
+  p: number = 1;
+  collection = [];
+
   constructor(private router: Router,
     private toast: ToasterService, private productService: ProductService) { }
 
@@ -31,12 +33,15 @@ export class ListingProductsComponent implements OnInit {
       currentPage: 1
     };
     this.imageUrl = logoUrl;
+    for (let i = 1; i <= 100; i++) {
+      this.collection.push(`item ${i}`);
+    }
    }
 
 
   getProduct() {
     this.productService.getProducts().subscribe((response) => {
-      this.products = response.results;
+      this.products = response;
       // $('#spin').hide();
     });
   }  

@@ -35,7 +35,7 @@ export class ListingEndProductComponent implements OnInit {
 
   getEndProduct() {
     this.endProductService.getEndProducts().subscribe((response) => {
-      this.endProduct = response.results;
+      this.endProduct = response;
       });
   }  
 

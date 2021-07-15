@@ -121,7 +121,7 @@ export class CreatePurchaseComponent implements OnInit {
 
   getClient() {
     this.clientService.getClient().subscribe((response) => {
-      this.clientDetail = response.results;
+      this.clientDetail = response;
     });
   }
 
@@ -177,7 +177,7 @@ export class CreatePurchaseComponent implements OnInit {
 
   getProduct() {
     this.productService.getProducts().subscribe((response) => {
-      this.product = response.results;
+      this.product = response;
     });
   }
 

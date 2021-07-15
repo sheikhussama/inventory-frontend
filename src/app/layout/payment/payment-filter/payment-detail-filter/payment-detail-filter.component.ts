@@ -67,7 +67,7 @@ getBlance(){
 }
 getClient() {
   this.clientService.getClient().subscribe((response) => {
-    this.clientDetail = response.results;
+    this.clientDetail = response;
  });
 } 
 pageChanged(event:any){

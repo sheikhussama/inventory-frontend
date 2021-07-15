@@ -367,13 +367,13 @@ export class DetailProcessingComponent implements OnInit {
 
   getEndProduct() {
     this.productService.getProducts().subscribe((response) => {
-      this.endProduct = response.results;
+      this.endProduct = response;
     });
   }
 
   getMaterial() {
     this.materialService.getMaterial().subscribe((response) => {
-      this.rawMaterial = response.results;
+      this.rawMaterial = response;
     });
   }
 

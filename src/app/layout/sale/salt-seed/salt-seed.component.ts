@@ -140,13 +140,13 @@ export class SaltSeedComponent implements OnInit {
 
   endProduct() {
     this.endProductService.getEndProducts().subscribe((response) => {
-      this.endProductList = response.results;
+      this.endProductList = response;
     });
   }
 
   client() {
     this.clientService.getClient().subscribe((response) => {
-      this.clients = response.results;
+      this.clients = response;
     });
   }
 

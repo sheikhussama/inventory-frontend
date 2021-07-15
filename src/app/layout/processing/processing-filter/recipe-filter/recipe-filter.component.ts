@@ -55,7 +55,7 @@ export class RecipeFilterComponent implements OnInit {
 
   getProduct() {
     this.productService.getProducts().subscribe((response) => {
-      this.products = response.results;
+      this.products = response;
     });
   }  
   pageChanged(event:any){
@@ -63,7 +63,7 @@ export class RecipeFilterComponent implements OnInit {
   }
   getsale() {
     this.saleService.getFinalSale().subscribe((response) => {
-      this.sale = response.results;
+      this.sale = response;
     });
   }
 
