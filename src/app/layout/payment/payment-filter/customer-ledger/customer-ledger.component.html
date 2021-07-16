@@ -28,11 +28,11 @@
 
     <div class="row">
         <div class="col-lg-6 col-12">
-         <label for=""> <strong>Payable Amount:</strong>  {{clientDetail?.PayableAmount}}</label>
+         <label for=""> <strong>Payable Amount:</strong>  {{clientDetail?.PayableAmount}} {{currencyType}}</label>
 
         </div>
         <div class="col-lg-6 col-12">
-          <label for=""> <strong>Receivable Amount:</strong> {{clientDetail?.ReceiveableAmount}} </label>
+          <label for=""> <strong>Receivable Amount:</strong> {{clientDetail?.ReceiveableAmount}} {{currencyType}} </label>
         </div>
     </div>
 
@@ -108,6 +108,6 @@
 
     </div> card.// -->
 
-    <button class="btn btn-dark round-corner text-uppercase px-4 mb-2 mt-2" (click)="genReport()">Export
-        To PDF</button>
+    <!-- <button class="btn btn-dark round-corner text-uppercase px-4 mb-2 mt-2" (click)="genReport()">Export
+        To PDF</button> -->
 </div>

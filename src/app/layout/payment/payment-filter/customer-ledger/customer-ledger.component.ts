@@ -17,6 +17,7 @@ export class CustomerLedgerComponent implements OnInit {
   client: any;
   clientDetail: any;
   imageUrl: any;
+  currencyType: any;
   @ViewChild('pdftable', { static: false }) pdftable: ElementRef;
   
   constructor(private toast: ToasterService, private clientService: ClientService ,) { }
@@ -34,6 +35,7 @@ export class CustomerLedgerComponent implements OnInit {
   }
 
   selectClient(event: any){
+   this.currencyType = event.currencyType
    this.getCustomerLedger(event.id);
   }
 
