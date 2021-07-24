@@ -22,7 +22,8 @@
           <label>Product Name</label>
         </div>
         <div class="text-dark text-center">
-          <label>{{ processing?.finalSale_product?.productName }}</label>
+          <label *ngIf="showAddOptions">{{ processing?.finalSale_product?.productName }}</label>
+          <label *ngIf="editOptions || onlyShow">{{ processing?.productId?.productName }}</label>
         </div>
       </div>
     </div>
