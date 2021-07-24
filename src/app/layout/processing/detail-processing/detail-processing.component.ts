@@ -223,17 +223,21 @@ export class DetailProcessingComponent implements OnInit {
       saleId: this.processingID ? this.processingID : this.processingID,
       user: this.userID ? this.userID : this.userID
     }
-
-    this.recipeDataList.push(params);
-    const seenNames = {};
-    this.recipeDataList = this.recipeDataList.filter(function(currentObject) {
-        if (currentObject.ProductId in seenNames) {
-            return false;
-        } else {
-            seenNames[currentObject.ProductId] = true;
-            return true;
-        }
-    });
+    if(this.productName !== undefined && this.recipieQValue !== undefined ) {
+      this.recipeDataList.push(params);
+      this.listOfUnit = "";
+      this.processingForm.reset();
+      const seenNames = {};
+      this.recipeDataList = this.recipeDataList.filter(function(currentObject) {
+          if (currentObject.ProductId in seenNames) {
+              return false;
+          } else {
+              seenNames[currentObject.ProductId] = true;
+              return true;
+          }
+      });
+    }
+    
 
   }
 
@@ -257,19 +261,23 @@ export class DetailProcessingComponent implements OnInit {
         saleId: this.processingID ? this.processingID : this.processingID,
         user: this.userID ? this.userID : this.userID
     }
-    this.rawDataList.push(params);
+    if(this.finishGoodsProductName !== undefined && this.rawQValue !== undefined) {
+      this.rawDataList.push(params);
+      this.processingForm.reset()
+      const seenNames = {};
+      let thus = this; 
+      this.rawDataList = this.rawDataList.filter(function(currentObject) {
+          if (currentObject.ProductId in seenNames) {
+            thus.toast.pop('error', 'Error!' , 'Item Already Added') 
+              return false;
+          } else {
+              seenNames[currentObject.ProductId] = true;
+              return true;
+          }
+      });
+    }
 
-    const seenNames = {};
-    let thus = this; 
-    this.rawDataList = this.rawDataList.filter(function(currentObject) {
-        if (currentObject.ProductId in seenNames) {
-          thus.toast.pop('error', 'Error!' , 'Item Already Added') 
-            return false;
-        } else {
-            seenNames[currentObject.ProductId] = true;
-            return true;
-        }
-    });
+
 
   }
 

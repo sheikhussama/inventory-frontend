@@ -431,5 +431,79 @@
     </div>
     </form>
   </div>
+
+ 
+
 </div>
 
+<div id="rawMaterial" class="table-responsive" id="style-1" *ngIf="onlyShow">
+  <h1 for=""> <strong>Raw Material</strong></h1>
+  <table class="table table-striped d-table text-center table-stats" id="pdftable" width="100%" #pdfTable>
+    <thead class="text-muted">
+      <tr class="red">
+        <th scope="col" class="text-dark">Product Name</th>
+        <th scope="col" width="200" class="text-dark">KG</th>
+        <th scope="col" width="200" class="text-dark">Unit</th>
+        <th scope="col" width="200" class="text-dark">Quantity</th>
+        <th scope="col" width="200" class="text-dark">Unit Type</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let data of processing?.sale_recipie">
+      <tr>
+        <td>
+          <h6 class="title text-truncate text-center">
+            {{ data.product_recipie.productName }}
+          </h6>
+        </td>
+        <td>
+          <h6 class="title text-truncate text-center">
+            {{ data.product_recipie.QuantityInKg }}
+          </h6>
+        </td>
+        <td>
+          <h6 class="title text-truncate text-center">
+            {{ data.product_recipie.QuantityInUnit }}
+          </h6>
+        </td>
+        <td>
+          <h6 class="title text-truncate text-center">
+            {{ data.recipieQuantity }}
+          </h6>
+        </td>
+        <td>
+          <h6 class="title text-truncate text-center">{{ data.product_recipie.unit }}</h6>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container mt-5" *ngIf="onlyShow">
+  <h1 for=""> <strong>Finish Goods</strong></h1>
+  <div class="table-responsive" id="style-1">
+    <table class="table table-striped d-table text-center table-stats" id="pdftable" width="100%" #pdfTable>
+      <thead class="text-muted">
+        <tr class="red">
+          <th scope="col" class="text-dark">Product Name</th>
+          <th scope="col" class="text-dark" >Quantity</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let data of processing?.sale_rawrecipie">
+        <tr>
+          <td>
+            <h6 class="title text-truncate">
+              {{ data.product_rawrecipie.productName }}
+            </h6>
+          </td>
+
+          <td>
+            <h6 class="title text-truncate">
+              {{ data.rawQuantity }}
+            </h6>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- card.// -->
+</div>
