@@ -307,10 +307,12 @@ export class DetailProcessingComponent implements OnInit {
     if ((this.router.url).includes('detail')) {
       this.processingService.storeRecipe(this.recipeDataList).subscribe((response: any) => {
         this.toast.pop('success', 'Success!', 'Raw Material has been Created.');
+        this.router.navigate(["/processing"])
         this.callCompleted();
       });
       this.processingService.storeRaw(this.rawDataList).subscribe((response: any) => {
         this.toast.pop('success', 'Success!', 'Finish Goods has been Created.');
+        this.router.navigate(["/processing"])
         this.callCompleted();
       });
     }
