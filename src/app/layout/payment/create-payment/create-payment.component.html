@@ -88,14 +88,15 @@
             <div class="row">
                 <textarea name="" formControlName="detail" placeholder="Enter Detail" id="" cols="50" rows="5"
                     class="ml-3"></textarea>
-                <div *ngIf="detail?.invalid && (detail.dirty || detail.touched)"
-                    class="validation-error text-danger">
-                    <div *ngIf="detail.errors.required || detail.errors?.invalid">
-                        Select a valid Customer or Distributor
-                    </div>
-                </div>
+                
                
             </div>
+            <div *ngIf="detail?.invalid && (detail.dirty || detail.touched)"
+                    class="validation-error text-danger">
+                    <div *ngIf="detail.errors.required || detail.errors?.invalid">
+                        Enter Detail
+                    </div>
+                </div>
             <div class="row">
                 <div class="col-lg-4 offset-lg-3">
                     <button type="submit" class="btnSubmit mt-2"

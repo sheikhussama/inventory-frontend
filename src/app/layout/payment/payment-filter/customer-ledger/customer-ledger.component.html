@@ -10,8 +10,8 @@
                 <div class="col-md-4 offset-lg-4">
                     <div class="form-group">
                         <label for=""> <strong> Select Client</strong> </label>
-                        <ng-select placeholder="Client" [items]="client" class="" bindLabel="customerName" bindValue="id"
-                        (change)="selectClient($event)">
+                        <ng-select placeholder="Client" [items]="client" class="" bindLabel="customerName"
+                            bindValue="id" (change)="selectClient($event)">
                         </ng-select>
                     </div>
                 </div>
@@ -27,87 +27,700 @@
 <div class="container" *ngIf="clientDetail">
 
     <div class="row">
-        <div class="col-lg-6 col-12">
-         <label for=""> <strong>Payable Amount:</strong>  {{clientDetail?.PayableAmount}} {{currencyType}}</label>
+        <div class="col-lg-4 col-12">
+            <label for=""> <strong>Payable Amount:</strong> {{clientDetail?.PayableAmount}} {{currencyType}}</label>
 
         </div>
-        <div class="col-lg-6 col-12">
-          <label for=""> <strong>Receivable Amount:</strong> {{clientDetail?.ReceiveableAmount}} {{currencyType}} </label>
+        <div class="col-lg-4 col-12">
+            <label for=""> <strong>Receivable Amount:</strong> {{clientDetail?.ReceiveableAmount}} {{currencyType}}
+            </label>
+        </div>
+        <div class="col-lg-4 col-12">
+            <label for=""> <strong>Sale Amount:</strong> {{clientDetail?.SaleAmount}} {{currencyType}}
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-12">
+            <label for=""> <strong>Credit Amount:</strong> {{clientDetail?.CreditAmount}} {{currencyType}}</label>
+
+        </div>
+        <div class="col-lg-4 col-12">
+            <label for=""> <strong>Debit Amount:</strong> {{clientDetail?.DebitAmount}} {{currencyType}}
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-12">
+            <label for=""> <strong>Opening Balance:</strong> {{clientDetail?.OpeningBalance}}</label>
+
+        </div>
+        <div class="col-lg-4 col-12">
+            <label for=""> <strong>Opening Balance Status:</strong> {{clientDetail?.OpeningBalanceStatus === true ? "Credit(Receive)" : "Debit(Pay)" }}
+            </label>
+        </div>
+    </div>
+
+    <div class="table-responsive" id="style-1" *ngIf="clientDetail.RawPaurchaseDetail.length > 0">
+        <h2 class="mt-3 mb-3"> <strong> Raw Material Purchase</strong> </h2>
+
+        <table class="table table-striped d-table  table-stats" id="pdftable" width="100%" #pdfTable>
+            <thead class="text-muted">
+                <tr class="red">
+                    <th class="text-dark  ">Purchase ID</th>
+                    <th class="text-dark  ">Product Purchase</th>
+                    <th class="text-dark  ">Purchaser</th>
+                    <th class="text-dark ">DC NO</th>
+                    <th class="text-dark  ">Bulk Quantity</th>
+                    <th class="text-dark  ">CurrencyType</th>
+                    <th class="text-dark  ">Per Kg Price</th>
+                    <th class="text-dark  ">Quantity In Kg</th>
+                    <th class="text-dark  ">Per Unit Quantity</th>
+                    <th class="text-dark  ">Total Price</th>
+                    <!-- <th  class="text-dark  ">Payment Status</th> -->
+                    <th class="text-dark  ">Created Date</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let data of clientDetail.RawPaurchaseDetail | paginate: { id: 'pagination1',
+            itemsPerPage: config.itemsPerPage,
+            currentPage: config.currentPage,
+            totalItems: clientDetail.RawPaurchaseDetail.length }">
+                <tr>
+                    <td>
+
+                        <h6 class="title  ">{{data.id}}</h6>
+
+                    </td>
+                    <td>
+
+                        <h6 class="title  ">{{data.product_purchase.productName}}</h6>
+
+                    </td>
+                    <td>
+
+                        <h6 class="title  ">{{data.purchase_customer.customerName}}</h6>
+
+                    </td>
+                    <td>
+
+                        <h6 class="title  ">{{data.DcNo}}</h6>
+
+                    </td>
+                    <td>
+
+                        <h6 class="title  ">{{data.bulkQuantity}}</h6>
+
+                    </td>
+                    <td>
+
+                        <h6 class="title  ">{{data.purchase_customer.currencyType}}</h6>
+
+                    </td>
+                    <td>
+
+                        <h6 class="title  ">{{data.perKgPrice}}</h6>
+
+                    </td>
+                    <td>
+
+                        <h6 class="title  ">{{data.QuantityInKg}} Kg</h6>
+
+                    </td>
+                    <td>
+
+                        <h6 class="title  ">{{data.perUnitQuantity}} {{data.unit}}</h6>
+
+                    </td>
+                    <td>
+
+                        <h6 class="title  ">{{data.totalPrice}}</h6>
+
+                    </td>
+                    <!-- <td>
+                    
+                                <h6 class="title " *ngIf="data.isPaid === false">Not Paid</h6>
+                                <h6 class="title " *ngIf="data.isPaid === true">Paid
+                                </h6>
+                     
+                    </td> -->
+                    <td>
+
+                        <h6 class="title  ">{{data.timecreated | date : 'mediumDate'}}</h6>
+
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+        <div *ngIf="clientDetail.RawPaurchaseDetail.length === 0">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-4">
+                    <h2 class="text-danger"> Record Not Found</h2>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div *ngIf="clientDetail.RawPaurchaseDetail.length > 0">
+        <button 
+            class="btn btn-dark round-corner text-uppercase px-4 mb-2 mt-2" (click)="genRawReport()">Export
+            To PDF</button>
+        <div class="row margin-pagination mt-1">
+            <div class="col-lg-6 offset-lg-2">
+              <div class="d-flex justify-content-around">
+               <pagination-controls id="pagination1"  (pageChange)="pageChanged($event)"></pagination-controls>
+              </div>
+            </div>
         </div>
     </div>
 
 
 
-    <!-- <div class="table-responsive"  id="style-1">
-        <table class="table table-striped d-table text-center table-stats" id="pdftable" width="100%" #pdfTable>
-            <thead class="text-muted">
-                <tr class="red">
-                    <th scope="col" width=""class="text-dark text-truncate">Finish Goods Purchase Amount</th>
-                    <th scope="col" width=""class="text-dark text-truncate">Raw Product Purchase Amount</th>
-                    <th scope="col" width=""class="text-dark text-truncate">Sale Amount</th>
-                    <th scope="col" width=""class="text-dark text-truncate">Credit Amount</th>
-                    <th scope="col" width=""class="text-dark text-truncate">Debit Amount</th>
-                    <th scope="col" width="" class="text-dark text-truncate">Opening Balance</th>
-                    <th scope="col" width=""class="text-dark text-truncate">Balance</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <figure class="media">
-                            <figcaption class="media-body">
-                                <h6 class="title text-truncate text-center">{{clientDetail?.Finish_Goods_Purchase_Amount}}</h6>
-                            </figcaption>
-                        </figure>
-                    </td>
-                    <td>
-                        <figure class="media">
-                            <figcaption class="media-body">
-                                <h6 class="title text-truncate text-center">{{clientDetail?.Raw_Product_Purchase_Amount}}</h6>
-                            </figcaption>
-                        </figure>
-                    </td>
-                    <td>
-                        <figure class="media">
-                            <figcaption class="media-body">
-                                <h6 class="title text-truncate text-center">{{clientDetail?.Sale_Amount}}</h6>
-                            </figcaption>
-                        </figure>
-                    </td>
-                    <td>
-                        <figure class="media">
-                            <figcaption class="media-body">
-                                <h6 class="title text-truncate text-center">{{clientDetail?.Credit_Amount}}</h6>
-                            </figcaption>
-                        </figure>
-                    </td>
-                    <td>
-                        <figure class="media">
-                            <figcaption class="media-body">
-                                <h6 class="title text-truncate text-center">{{clientDetail?.Debit_Amount}}</h6>
-                            </figcaption>
-                        </figure>
-                    </td>
-                    <td>
-                        <figure class="media">
-                            <figcaption class="media-body">
-                                <h6 class="title text-truncate text-center">{{clientDetail?.Opening_Balance}}</h6>
-                            </figcaption>
-                        </figure>
-                    </td>
-                    <td>
-                        <figure class="media">
-                            <figcaption class="media-body">
-                                <h5 class="title text-truncate"> <strong> {{clientDetail?.Balance}}  </strong></h5>
-                            </figcaption>
-                        </figure>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="container" *ngIf="clientDetail.FinishGoodsPurchaseDetail.length > 0">
+        <div class="table-responsive" id="style-1">
+            <h2 class="mt-3 mb-3"> <strong> Finish Good Purchase</strong> </h2>
 
-    </div> card.// -->
+            <table class="table table-striped d-table text-center table-stats" id="pdftableFinish" width="100%"
+                #pdfTable>
+                <thead class="text-muted">
+                    <tr class="red">
+                        <th class="text-dark text-center text-truncate">Finish Goods Purchase ID</th>
+                        <th class="text-dark text-center text-truncate">Product Finish Goods Purchase</th>
+                        <th class="text-dark text-center text-truncate">Finish Goods Purchase Customer</th>
+                        <th class="text-dark text-truncate">DC NO</th>
+                        <th class="text-dark text-center text-truncate">Quantity</th>
+                        <th class="text-dark text-center text-truncate">Currency Type</th>
+                        <th class="text-dark text-center text-truncate">Price</th>
+                        <!-- <th  class="text-dark text-center text-truncate">Payment Status</th> -->
+                        <th class="text-dark text-center text-truncate">Created Date</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let data of clientDetail.FinishGoodsPurchaseDetail |  paginate: { id: 'pagination2',
+                itemsPerPage: finishGoodsConfig.itemsPerPage,
+                currentPage: finishGoodsConfig.currentPage,
+                totalItems: clientDetail.FinishGoodsPurchaseDetail.length }">
+                    <tr>
+                        <td>
 
-    <!-- <button class="btn btn-dark round-corner text-uppercase px-4 mb-2 mt-2" (click)="genReport()">Export
-        To PDF</button> -->
+                            <h6 class="title text-truncate text-center">{{data.id}}</h6>
+
+                        </td>
+                        <td>
+
+                            <h6 class="title text-truncate text-center">{{data.product_rawpurchase.productName}}</h6>
+
+                        </td>
+                        <td>
+
+                            <h6 class="title text-truncate text-center">{{data.rawpurchase_customer.customerName}}</h6>
+
+                        </td>
+                        <td>
+
+                            <h6 class="title text-truncate text-center">{{data.DcNo}}</h6>
+
+                        </td>
+                        <td>
+
+                            <h6 class="title text-truncate text-center">{{data.Quantity}}</h6>
+
+                        </td>
+                        <td>
+
+                            <h6 class="title text-truncate text-center">{{data.rawpurchase_customer.currencyType}}</h6>
+
+                        </td>
+                        <td>
+
+                            <h6 class="title text-truncate text-center">{{data.price}}</h6>
+
+                        </td>
+                        <!-- <td>
+                            
+                                        <h6 class="title text-truncate" *ngIf="data.isPaid === false">Not Paid</h6>
+                                        <h6 class="title text-truncate" *ngIf="data.isPaid === true">Paid
+                                        </h6>
+                             
+                            </td> -->
+                        <td>
+
+                            <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>
+
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+            <div *ngIf="clientDetail.FinishGoodsPurchaseDetail.length === 0">
+                <div class="row">
+                    <div class="col-lg-6 offset-lg-4">
+                        <h2 class="text-danger"> Record Not Found</h2>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- card.// -->
+
+
+    </div>
+
+
+        <div *ngIf="clientDetail.FinishGoodsPurchaseDetail.length > 0">
+          
+    <button
+        class="btn btn-dark round-corner text-uppercase px-4 mb-2 mt-2" (click)="genFinishReport()">Export
+        To PDF</button>
+            <div class="row margin-pagination mt-1">
+                <div class="col-lg-6 offset-lg-2">
+                  <div class="d-flex justify-content-around">
+                   <pagination-controls id="pagination2" (pageChange)="pageFinishChanged($event)"></pagination-controls>
+                  </div>
+                </div>
+            </div>
+        </div>
+    
+
+    <div class="container" *ngIf="clientDetail.SaleDetail.length > 0">
+        <div class="table-responsive" id="style-1">
+            <h2 class="mt-3 mb-3"> <strong> Sale </strong> </h2>
+
+            <table class="table table-striped d-table text-center table-stats" id="pdftableSale" width="100%" #pdfTable>
+                <thead class="text-muted">
+                    <tr class="red">
+                        <th scope="col" width="200" class="text-dark text-truncate">
+                            Sale ID#
+                        </th>
+                        <th scope="col" width="200" class="text-dark text-truncate">
+                            Customer Name
+                        </th>
+                        <th scope="col" width="200" class="text-dark text-truncate">
+                            Product Name
+                        </th>
+                        <th scope="col" width="200" class="text-dark text-truncate">
+                            Master Cartoon
+                        </th>
+                        <th scope="col" width="200" class="text-dark text-truncate">
+                            Dozen Boxes
+                        </th>
+                        <th scope="col" width="200" class="text-dark text-truncate">
+                            Packing Capacity
+                        </th>
+                        <th scope="col" width="200" class="text-dark text-truncate">
+                            Packing Unit
+                        </th>
+                        <th scope="col" width="200" class="text-dark text-truncate">
+                            Packing Type
+                        </th>
+                        <th scope="col" width="200" class="text-dark text-truncate">
+                            Packing Type Quantity
+                        </th>
+                        <th scope="col" width="200" class="text-dark text-truncate">
+                            Total Quantity in Unit
+                        </th>
+                        <th scope="col" width="200" class="text-dark text-truncate">
+                            Total Quantity in Liters
+                        </th>
+                        <th scope="col" width="200" class="text-dark text-truncate">
+                            Total Quantity in Kg
+                        </th>
+                        <th scope="col" width="200" class="text-dark text-truncate">
+                            Currency Type
+                        </th>
+                        <th scope="col" width="200" class="text-dark text-truncate">
+                            Price
+                        </th>
+                        <th scope="col" width="200" class="text-dark text-truncate">
+                            Sale Status
+                        </th>
+                        <th scope="col" width="200" class="text-dark text-truncate">
+                            Sale Category
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody *ngFor="let data of clientDetail.SaleDetail |  paginate: { id: 'pagination3',
+                itemsPerPage: saleConfig.itemsPerPage,
+                currentPage: saleConfig.currentPage,
+                totalItems: clientDetail.SaleDetail.length }">
+                    <tr>
+                        <td>
+                            <h6 class="title text-truncate text-center">{{ data.id }}</h6>
+                        </td>
+                        <td>
+                            <h6 class="title text-truncate text-center">
+                                {{ data.finalSale_customer.customerName }}
+                            </h6>
+                        </td>
+                        <td>
+                            <h6 class="title text-truncate text-center">
+                                {{ data.finalSale_product.productName }}
+                            </h6>
+                        </td>
+                        <td>
+                            <h6 class="title text-truncate text-center">
+                                {{ data.masterCartoons }}
+                            </h6>
+                        </td>
+                        <td>
+                            <h6 class="title text-truncate text-center">
+                                {{ data.dozenBoxes }}
+                            </h6>
+
+                            <h6 *ngIf="data.catagory === 'SaltSeed'"> Not Required</h6>
+                        </td>
+                        <td>
+                            <h6 class="title text-truncate text-center">
+                                {{ data.packingCapacity }}
+                            </h6>
+                        </td>
+                        <td>
+                            <h6 class="title text-truncate text-center">
+                                {{ data.packingUnit }}
+                            </h6>
+                        </td>
+                        <td>
+                            <h6 class="title text-truncate text-center">
+                                {{ data.packingType }}
+                            </h6>
+                        </td>
+
+                        <td>
+                            <h6 class="title text-truncate text-center">
+                                {{ data.packingTypeQuanitity }}
+                                {{ data.packingType }}
+                            </h6>
+                        </td>
+                        <td>
+                            <h6 class="title text-truncate text-center">
+                                {{ data.totalQuantityinPackingUnit }} {{ data.packingUnit }}
+                            </h6>
+                        </td>
+                        <td>
+                            <h6 class="title text-truncate text-center">
+                                {{ data.totalQuantityinLiters }} LTR
+                            </h6>
+                        </td>
+                        <td>
+                            <h6 class="title text-truncate text-center">
+                                {{ data.totalQuantityinKg | number }} KG
+                            </h6>
+                        </td>
+                        <td>
+                            <h6 class="title text-truncate text-center">
+                                {{ data.finalSale_customer.currencyType }}
+                            </h6>
+                        </td>
+                        <td>
+                            <h6 class="title text-truncate text-center">{{ data.price }}</h6>
+                        </td>
+                        <td>
+                            <h6 class="title text-truncate text-primary" *ngIf="data.isSold === false">
+                                Pending
+                            </h6>
+                            <h6 class="title text-truncate text-success" *ngIf="data.isSold === true">
+                                Delivered
+                            </h6>
+                        </td>
+                        <td>
+                            <h6 class="title text-truncate text-center">
+                                <strong>{{data.catagory}} Sale </strong>
+                            </h6>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+            <div *ngIf="clientDetail.SaleDetail.length === 0">
+                <div class="row">
+                    <div class="col-lg-6 offset-lg-4">
+                        <h2 class="text-danger">Record Not Found</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- card.// -->
+    </div>
+
+
+
+
+        <div *ngIf="clientDetail.SaleDetail.length > 0">
+          
+            <button  class="btn btn-dark round-corner text-uppercase px-4 mb-2 mt-2"
+                (click)="genSaleReport()">Export
+                To PDF</button>
+                    <div class="row margin-pagination mt-1">
+                        <div class="col-lg-6 offset-lg-2">
+                          <div class="d-flex justify-content-around">
+                           <pagination-controls  id = "pagination3" (pageChange)="pageSaleChanged($event)"></pagination-controls>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+
+    <div class="container" *ngIf="clientDetail.CreditPaymentDetail.length > 0">
+        <div class="table-responsive" id="style-1">
+            <h2 class="mt-3 mb-3"> <strong> Credit Payment Detail </strong> </h2>
+
+            <table class="table table-striped d-table text-center table-stats" id="pdftableCredit" width="100%"
+                #pdfTable>
+                <thead class="text-muted">
+                    <tr class="red">
+                        <th scope="col" width="" class="text-dark text-truncate">Payment ID</th>
+                        <th scope="col" width="" class="text-dark text-truncate">Customer Name</th>
+                        <!-- <th scope="col" width=""class="text-dark text-truncate">Customer Address</th> -->
+                        <!-- <th scope="col" width=""class="text-dark text-truncate">Contact No</th> -->
+                        <th scope="col" width="" class="text-dark text-truncate">CurrencyType</th>
+                        <!-- <th scope="col" width=""class="text-dark text-truncate">Opening Balance</th> -->
+                        <!-- <th scope="col" width=""class="text-dark text-truncate">Company Name</th> -->
+                        <th scope="col" width="" class="text-dark text-truncate ">Type</th>
+                        <th scope="col" width="" class="text-dark text-truncate">Detail</th>
+                        <th scope="col" width="" class="text-dark text-truncate">Amount</th>
+
+                        <th scope="col" width="" class="text-dark text-truncate">Created Date</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of clientDetail.CreditPaymentDetail |  paginate: { id: 'pagination4',
+                    itemsPerPage: creditPaymentConfig.itemsPerPage,
+                    currentPage: creditPaymentConfig.currentPage,
+                    totalItems: clientDetail.CreditPaymentDetail.length }">
+                        <td>
+
+                            <h6 class="title text-truncate text-center">{{data.id}}</h6>
+
+                        </td>
+                        <td>
+
+                            <h6 class="title text-truncate text-center">{{data.payment_customer.customerName}}</h6>
+
+                        </td>
+                        <!-- <td>
+                                    
+                                                <h6 class="title text-truncate text-center">{{data.payment_customer.address}}</h6>
+                                     
+                                    </td> -->
+                        <!-- <td>
+                                    
+                                                <h6 class="title text-truncate text-center">{{data.payment_customer.contactNo}}</h6>
+                                     
+                                    </td> -->
+                        <td>
+
+                            <h6 class="title text-truncate text-center">{{data.payment_customer.currencyType}}</h6>
+
+                        </td>
+                        <!-- <td>
+                                    
+                                                <h6 class="title text-truncate text-center">{{data.payment_customer.balance}}</h6>
+                                     
+                                    </td> -->
+                        <!-- <td>
+                                    
+                                                <h6 class="title text-truncate text-center">{{data.payment_customer.company}}</h6>
+                                     
+                                    </td> -->
+                        <td>
+
+                            <h6 class="title text-truncate" *ngIf="data.givenType ==='Q'">Cheaque</h6>
+                            <h6 class="title text-truncate" *ngIf="data.givenType ==='C'">Cash</h6>
+                            <h6 class="title text-truncate" *ngIf="data.givenType ==='T'">Transfer</h6>
+
+
+                        </td>
+                        <td>
+
+                            <h6 class="title text-truncate text-center">{{data.detail}}</h6>
+
+                        </td>
+                        <td>
+
+                            <h6 class="title text-truncate text-center">{{data.amount}}</h6>
+
+                        </td>
+                        <td>
+
+                            <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>
+
+                        </td>
+                        <!-- <td>
+                                    
+                                                <h6 class="title text-truncate" *ngIf="data.isCredit === true">Credit</h6>
+                                                <h6 class="title text-truncate" *ngIf="data.isCredit === false">Debit</h6>
+                                     
+                                    </td> -->
+                        <!-- <td>
+                                    
+                                                <h6 class="title text-truncate" *ngIf="data.isCustomer === true">Customer</h6>
+                                                <h6 class="title text-truncate" *ngIf="data.isCustomer === false">Distributor</h6>
+                                     
+                                    </td> -->
+
+                    </tr>
+                </tbody>
+            </table>
+
+            <div *ngIf="clientDetail.CreditPaymentDetail.length === 0">
+                <div class="row">
+                    <div class="col-lg-6 offset-lg-4">
+                        <h2 class="text-danger"> Record Not Found</h2>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- card.// -->
+
+
+    </div>
+
+
+        <div *ngIf="clientDetail.CreditPaymentDetail.length > 0">
+          
+            <button
+                class="btn btn-dark round-corner text-uppercase px-4 mb-2 mt-2" (click)="genCreditPaymentReport()">Export
+                To PDF</button>
+                    <div class="row margin-pagination mt-1">
+                        <div class="col-lg-6 offset-lg-2">
+                          <div class="d-flex justify-content-around">
+                           <pagination-controls  id = "pagination4" (pageChange)="pageCreditChanged($event)"></pagination-controls>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+
+
+        <div class="container" *ngIf="clientDetail.DebitPaymentDetail.length > 0">
+            <div class="table-responsive" id="style-1">
+                <h2 class="mt-3 mb-3"> <strong> Debit Payment Detail </strong> </h2>
+    
+                <table class="table table-striped d-table text-center table-stats" id="pdftableDeBit" width="100%"
+                    #pdfTable>
+                    <thead class="text-muted">
+                        <tr class="red">
+                            <th scope="col" width="" class="text-dark text-truncate">Payment ID</th>
+                            <th scope="col" width="" class="text-dark text-truncate">Customer Name</th>
+                            <!-- <th scope="col" width=""class="text-dark text-truncate">Customer Address</th> -->
+                            <!-- <th scope="col" width=""class="text-dark text-truncate">Contact No</th> -->
+                            <th scope="col" width="" class="text-dark text-truncate">CurrencyType</th>
+                            <!-- <th scope="col" width=""class="text-dark text-truncate">Opening Balance</th> -->
+                            <!-- <th scope="col" width=""class="text-dark text-truncate">Company Name</th> -->
+                            <th scope="col" width="" class="text-dark text-truncate ">Type</th>
+                            <th scope="col" width="" class="text-dark text-truncate">Detail</th>
+                            <th scope="col" width="" class="text-dark text-truncate">Amount</th>
+    
+                            <th scope="col" width="" class="text-dark text-truncate">Created Date</th>
+    
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of clientDetail.DebitPaymentDetail |  paginate: { id: 'pagination5',
+                        itemsPerPage: debitPaymentConfig.itemsPerPage,
+                        currentPage: debitPaymentConfig.currentPage,
+                        totalItems: clientDetail.DebitPaymentDetail.length }">
+                            <td>
+    
+                                <h6 class="title text-truncate text-center">{{data.id}}</h6>
+    
+                            </td>
+                            <td>
+    
+                                <h6 class="title text-truncate text-center">{{data.payment_customer.customerName}}</h6>
+    
+                            </td>
+                            <!-- <td>
+                                        
+                                                    <h6 class="title text-truncate text-center">{{data.payment_customer.address}}</h6>
+                                         
+                                        </td> -->
+                            <!-- <td>
+                                        
+                                                    <h6 class="title text-truncate text-center">{{data.payment_customer.contactNo}}</h6>
+                                         
+                                        </td> -->
+                            <td>
+    
+                                <h6 class="title text-truncate text-center">{{data.payment_customer.currencyType}}</h6>
+    
+                            </td>
+                            <!-- <td>
+                                        
+                                                    <h6 class="title text-truncate text-center">{{data.payment_customer.balance}}</h6>
+                                         
+                                        </td> -->
+                            <!-- <td>
+                                        
+                                                    <h6 class="title text-truncate text-center">{{data.payment_customer.company}}</h6>
+                                         
+                                        </td> -->
+                            <td>
+    
+                                <h6 class="title text-truncate" *ngIf="data.givenType ==='Q'">Cheaque</h6>
+                                <h6 class="title text-truncate" *ngIf="data.givenType ==='C'">Cash</h6>
+                                <h6 class="title text-truncate" *ngIf="data.givenType ==='T'">Transfer</h6>
+    
+    
+                            </td>
+                            <td>
+    
+                                <h6 class="title text-truncate text-center">{{data.detail}}</h6>
+    
+                            </td>
+                            <td>
+    
+                                <h6 class="title text-truncate text-center">{{data.amount}}</h6>
+    
+                            </td>
+                            <td>
+    
+                                <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>
+    
+                            </td>
+                            <!-- <td>
+                                        
+                                                    <h6 class="title text-truncate" *ngIf="data.isCredit === true">Credit</h6>
+                                                    <h6 class="title text-truncate" *ngIf="data.isCredit === false">Debit</h6>
+                                         
+                                        </td> -->
+                            <!-- <td>
+                                        
+                                                    <h6 class="title text-truncate" *ngIf="data.isCustomer === true">Customer</h6>
+                                                    <h6 class="title text-truncate" *ngIf="data.isCustomer === false">Distributor</h6>
+                                         
+                                        </td> -->
+    
+                        </tr>
+                    </tbody>
+                </table>
+    
+                <div *ngIf="clientDetail.DebitPaymentDetail.length === 0">
+                    <div class="row">
+                        <div class="col-lg-6 offset-lg-4">
+                            <h2 class="text-danger"> Record Not Found</h2>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- card.// -->
+    
+    
+        </div>
+        
+        
+            <div *ngIf="clientDetail.DebitPaymentDetail.length > 0">
+          
+                <button
+                    class="btn btn-dark round-corner text-uppercase px-4 mb-2 mt-2" (click)="genDebitPaymentReport()">Export
+                    To PDF</button>
+                        <div class="row margin-pagination mt-1">
+                            <div class="col-lg-6 offset-lg-2">
+                              <div class="d-flex justify-content-around">
+                               <pagination-controls  id = "pagination5" (pageChange)="pageDebitChanged($event)"></pagination-controls>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
 </div>

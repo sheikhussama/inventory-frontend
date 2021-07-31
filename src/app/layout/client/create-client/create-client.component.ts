@@ -110,7 +110,7 @@ export class CreateClientComponent implements OnInit {
     this.role = [
       {
         id: "D",
-        value: "Distributor",
+        value: "Client",
       },
       {
         id: "C",
