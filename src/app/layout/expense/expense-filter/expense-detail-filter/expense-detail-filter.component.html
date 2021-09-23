@@ -1,0 +1,111 @@
+<div class="container-fluid register-form">
+    <div class="form">
+        <div class="note">
+            <p> Expense History</p>
+        </div>
+
+        <form class="form-content" [formGroup]="paymentDetailFilterForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <Label> <strong> Start Date</strong></Label>
+                        <input
+                            type="date"
+                            class="form-control"
+                            formControlName="startDate"
+                            placeholder="Enter Start Date"
+                            value=""
+                        />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <Label> <strong> End Date</strong></Label>
+
+                        <input
+                        type="date"
+                        class="form-control"
+                        formControlName="endDate"
+                        placeholder="Enter End Date"
+                        value=""
+                    />
+                    </div>
+                </div>
+                <!-- <div class="col-md-3">
+                    <div class="form-group">
+                        <Label> <strong> Check Balance</strong></Label>
+                        <ng-select *ngIf="flag" placeholder="Check Balance" formControlName="isCredit"
+                        [items]="blance" class="" bindLabel="Label" bindValue="value"
+                        >
+                       </ng-select>
+                    </div>
+                </div> -->
+                <!-- <div class="col-md-3">
+                    <div class="form-group">
+                        <Label> <strong>Enter Client</strong></Label>
+
+                        <ng-select *ngIf="flag" placeholder="Enter Client" formControlName="distibutorId"
+                        [items]="clientDetail" class="" bindLabel="customerName" bindValue="id"
+                        >
+                       </ng-select>
+                    </div>
+                </div> -->
+            </div>
+        
+            <div class="row">
+                <div class="col-lg-4">
+                    <button type="submit" class="btnSubmit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="container" *ngIf="expense">
+    <div class="table-responsive"  id="style-1">
+        <table class="table table-striped d-table text-center table-stats" id="pdftable" width="100%" #pdfTable>
+            <thead class="text-muted">
+                <tr class="red">
+                        <th scope="col" class="text-dark">Purpose</th>
+                        <th scope="col" width="200" class="text-dark">Amount</th>
+                        <th scope="col" width="200" class="text-dark">Reference</th>
+                        <th scope="col" width="200" class="text-dark"> Created Date</th>
+                    </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of expense | paginate: config; let i = index">
+                    <td>
+                                <h6 class="title text-truncate text-center">{{data.purpose}} </h6>
+                    </td>
+                    <td>
+
+                    
+                                <h6 class="title text-truncate text-center">{{data.amount}}</h6>
+                     
+                    </td>
+                    <td>
+
+                    
+                                <h6 class="title text-truncate text-center">{{data.reference}}</h6>
+                     
+                    </td>
+                    <td>
+
+                    
+                                <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>
+                     
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="expense.length === 0">
+            <div class="row">
+              <div class="col-lg-6 offset-lg-4">
+                   <h2 class="text-danger"> Record Not Found</h2>
+              </div>
+            </div>
+         </div>
+    </div> <!-- card.// -->
+
+    <button class="btn btn-dark round-corner text-uppercase px-4 mb-2 mt-2" (click)="genReport()">Export
+        To PDF</button>
+</div>

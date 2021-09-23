@@ -9,7 +9,8 @@ const routes: Routes = [
         path: '', component: ExpenseComponent, children: [
           {path: '', component: ListingExpenseComponent},
           {path: 'create', component: CreateExpenseComponent},
-          {path: 'update/:id', component: CreateExpenseComponent}
+          {path: 'update/:id', component: CreateExpenseComponent},
+          { path: 'expenseFilter', loadChildren: () => import('./expense-filter/expense-filter.module').then((m) => m.ExpenseFilterModule) },
         ]
       }
 ];

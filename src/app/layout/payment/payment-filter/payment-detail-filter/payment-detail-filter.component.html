@@ -67,13 +67,14 @@
                 <tr class="red">
                     <th scope="col" width=""class="text-dark text-truncate">Payment ID</th>
                     <th scope="col" width=""class="text-dark text-truncate">Customer Name</th>
-                    <th scope="col" width=""class="text-dark text-truncate">Customer Address</th>
-                    <th scope="col" width=""class="text-dark text-truncate">Contact No</th>
-                    <th scope="col" width=""class="text-dark text-truncate">Opening Balance</th>
-                    <th scope="col" width=""class="text-dark text-truncate">Company Name</th>
+                    <!-- <th scope="col" width=""class="text-dark text-truncate">Customer Address</th> -->
+                    <!-- <th scope="col" width=""class="text-dark text-truncate">Contact No</th> -->
+                    <!-- <th scope="col" width=""class="text-dark text-truncate">Opening Balance</th> -->
+                    <!-- <th scope="col" width=""class="text-dark text-truncate">Company Name</th> -->
                     <th scope="col" width="" class="text-dark text-truncate ">Type</th>
                     <th scope="col" width="" class="text-dark text-truncate">Detail</th>
                     <th scope="col" width="" class="text-dark text-truncate">Amount</th>
+                    <th scope="col" width="" class="text-dark text-truncate">Payment Status</th>
                     <th scope="col" width="" class="text-dark text-truncate">Created Date</th>
                 </tr>
             </thead>
@@ -93,34 +94,34 @@
                             </figcaption>
                         </figure>
                     </td>
-                    <td>
+                    <!-- <td>
                         <figure class="media">
                             <figcaption class="media-body">
                                 <h6 class="title text-truncate text-center">{{data.payment_customer.address}}</h6>
                             </figcaption>
                         </figure>
-                    </td>
-                    <td>
+                    </td> -->
+                    <!-- <td>
                         <figure class="media">
                             <figcaption class="media-body">
                                 <h6 class="title text-truncate text-center">{{data.payment_customer.contactNo}}</h6>
                             </figcaption>
                         </figure>
-                    </td>
-                    <td>
+                    </td> -->
+                    <!-- <td>
                         <figure class="media">
                             <figcaption class="media-body">
                                 <h6 class="title text-truncate text-center">{{data.payment_customer.balance}}</h6>
                             </figcaption>
                         </figure>
-                    </td>
-                    <td>
+                    </td> -->
+                    <!-- <td>
                         <figure class="media">
                             <figcaption class="media-body">
                                 <h6 class="title text-truncate text-center">{{data.payment_customer.company}}</h6>
                             </figcaption>
                         </figure>
-                    </td>
+                    </td> -->
                     <td>
                         <figure class="media">
                             <figcaption class="media-body">
@@ -145,6 +146,14 @@
                             </figcaption>
                         </figure>
                     </td> 
+                    <td>
+                        <figure class="media">
+                            <figcaption class="media-body">
+                                <h6 class="title text-truncate" *ngIf="data.isCredit === true">Credit (Recieve)</h6>
+                                <h6 class="title text-truncate" *ngIf="data.isCredit === false">Debit (Pay)</h6>
+                            </figcaption>
+                        </figure>
+                    </td>
                      <td>
                         <figure class="media">
                             <figcaption class="media-body">
@@ -152,14 +161,7 @@
                             </figcaption>
                         </figure>
                     </td>
-                    <!-- <td>
-                        <figure class="media">
-                            <figcaption class="media-body">
-                                <h6 class="title text-truncate" *ngIf="data.isCredit === true">Credit</h6>
-                                <h6 class="title text-truncate" *ngIf="data.isCredit === false">Debit</h6>
-                            </figcaption>
-                        </figure>
-                    </td> -->
+                    
                     <!-- <td>
                         <figure class="media">
                             <figcaption class="media-body">

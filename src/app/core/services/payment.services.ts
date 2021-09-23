@@ -37,4 +37,7 @@ export class PaymentService {
     return this.http.post(environment.endPoint + 'PaymentDetailFilter/PaymentFilter/', data);
   }
 
+  expenseDetailFilter(data: any) {
+    return this.http.post(environment.endPoint + 'PaymentDetailFilter/ExpenseFilter/', data);
+  }
 }

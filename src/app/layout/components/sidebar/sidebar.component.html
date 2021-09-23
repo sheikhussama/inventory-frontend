@@ -74,11 +74,22 @@
                 <a class="dropdown-item" [routerLink]="['/payment/paymentFilter']"> Payment History</a>
             </div>
         </div>
+        <div class="dropdown">
+            <a [routerLinkActive]="['router-link-active']" class="list-group-item dropdown-toggle" role="button"
+                id="expense" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-fw fa-desktop"></i>&nbsp;
+                <span class="mr-3 cursor-pointer">{{ 'Expense' }}</span>
 
-        <a [routerLinkActive]="['router-link-active']" [routerLink]="['/expense']" class="list-group-item">
+            </a>
+            <div class="dropdown-menu" aria-labelledby="expense">
+                <a class="dropdown-item" [routerLink]="['/expense']">Expense Detail</a>
+                <a class="dropdown-item" [routerLink]="['/expense/expenseFilter']"> Expense History</a>
+            </div>
+        </div>
+        <!-- <a [routerLinkActive]="['router-link-active']" [routerLink]="['/expense']" class="list-group-item">
             <i class="fa fa-fw fa-wrench"></i>&nbsp;
             <span>{{ 'Expense' }}</span>
-        </a>
+        </a> -->
         <a [routerLinkActive]="['router-link-active']" [routerLink]="['/users']" class="list-group-item">
             <i class="fa fa-fw fa-wrench"></i>&nbsp;
             <span>{{ 'Users' }}</span>

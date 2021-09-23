@@ -1,27 +1,28 @@
 <div>
     <app-page-header [heading]="'Payment'" [icon]="'fa-bar-chart-o'"></app-page-header>
-     
+
     <div class="row product-form-1">
-     <div class="col-lg-6 offset-lg-8 mb-3">
-        <button  class="btnSubmit" [routerLink]="['create']"> Create Payments </button>
-     </div>
+        <div class="col-lg-6 offset-lg-8 mb-3">
+            <button class="btnSubmit" [routerLink]="['create']"> Create Payments </button>
+        </div>
     </div>
-    
+
     <div class="container">
-        <div class="table-responsive"  id="style-1">
+        <div class="table-responsive" id="style-1">
             <table class="table table-striped d-table text-center table-stats" id="pdftable" width="100%" #pdfTable>
                 <thead class="text-muted">
                     <tr class="red">
-                        <th scope="col" width=""class="text-dark text-truncate">Payment ID</th>
-                        <th scope="col" width=""class="text-dark text-truncate">Customer Name</th>
+                        <th scope="col" width="" class="text-dark text-truncate">Payment ID</th>
+                        <th scope="col" width="" class="text-dark text-truncate">Customer Name</th>
                         <!-- <th scope="col" width=""class="text-dark text-truncate">Customer Address</th> -->
                         <!-- <th scope="col" width=""class="text-dark text-truncate">Contact No</th> -->
-                        <th scope="col" width=""class="text-dark text-truncate">CurrencyType</th>
+                        <th scope="col" width="" class="text-dark text-truncate">CurrencyType</th>
                         <!-- <th scope="col" width=""class="text-dark text-truncate">Opening Balance</th> -->
                         <!-- <th scope="col" width=""class="text-dark text-truncate">Company Name</th> -->
                         <th scope="col" width="" class="text-dark text-truncate ">Type</th>
                         <th scope="col" width="" class="text-dark text-truncate">Detail</th>
                         <th scope="col" width="" class="text-dark text-truncate">Amount</th>
+                        <th scope="col" width="" class="text-dark text-truncate">Payment Status</th>
 
                         <th scope="col" width="" class="text-dark text-truncate">Created Date</th>
                         <th scope="col" width="" class="text-dark text-right text-truncate">Actions</th>
@@ -31,14 +32,14 @@
                 <tbody *ngIf="purchase">
                     <tr *ngFor="let data of purchase | paginate: config; let i = index">
                         <td>
-                        
-                                    <h6 class="title text-truncate text-center">{{data.id}}</h6>
-                         
+
+                            <h6 class="title text-truncate text-center">{{data.id}}</h6>
+
                         </td>
                         <td>
-                        
-                                    <h6 class="title text-truncate text-center">{{data.payment_customer.customerName}}</h6>
-                         
+
+                            <h6 class="title text-truncate text-center">{{data.payment_customer.customerName}}</h6>
+
                         </td>
                         <!-- <td>
                         
@@ -51,10 +52,10 @@
                          
                         </td> -->
                         <td>
-                        
+
                             <h6 class="title text-truncate text-center">{{data.payment_customer.currencyType}}</h6>
-                 
-                </td>
+
+                        </td>
                         <!-- <td>
                         
                                     <h6 class="title text-truncate text-center">{{data.payment_customer.balance}}</h6>
@@ -66,34 +67,35 @@
                          
                         </td> -->
                         <td>
-                        
-                                    <h6 class="title text-truncate" *ngIf="data.givenType ==='Q'">Cheaque</h6>
-                                    <h6 class="title text-truncate" *ngIf="data.givenType ==='C'">Cash</h6>
-                                    <h6 class="title text-truncate" *ngIf="data.givenType ==='T'">Transfer</h6>
 
-                         
+                            <h6 class="title text-truncate" *ngIf="data.givenType ==='Q'">Cheaque</h6>
+                            <h6 class="title text-truncate" *ngIf="data.givenType ==='C'">Cash</h6>
+                            <h6 class="title text-truncate" *ngIf="data.givenType ==='T'">Transfer</h6>
+
+
                         </td>
                         <td>
-                        
-                                    <h6 class="title text-truncate text-center">{{data.detail}}</h6>
-                         
+
+                            <h6 class="title text-truncate text-center">{{data.detail}}</h6>
+
                         </td>
                         <td>
-                        
-                                    <h6 class="title text-truncate text-center">{{data.amount}}</h6>
-                         
-                        </td> 
-                         <td>
-                        
-                                    <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>
-                         
+
+                            <h6 class="title text-truncate text-center">{{data.amount}}</h6>
+
                         </td>
-                        <!-- <td>
-                        
-                                    <h6 class="title text-truncate" *ngIf="data.isCredit === true">Credit</h6>
-                                    <h6 class="title text-truncate" *ngIf="data.isCredit === false">Debit</h6>
-                         
-                        </td> -->
+                        <td>
+
+                            <h6 class="title text-truncate" *ngIf="data.isCredit === true">Credit (Recieve)</h6>
+                            <h6 class="title text-truncate" *ngIf="data.isCredit === false">Debit (Pay)</h6>
+
+                        </td>
+                        <td>
+
+                            <h6 class="title text-truncate text-center">{{data.timecreated | date : 'mediumDate'}}</h6>
+
+                        </td>
+
                         <!-- <td>
                         
                                     <h6 class="title text-truncate" *ngIf="data.isCustomer === true">Customer</h6>
@@ -101,10 +103,11 @@
                          
                         </td> -->
                         <td class="text-right">
-                            <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip" (click)="updatePayment(data)"
-                                data-original-title="Save to Wishlist"> <i class="fa fa-pencil"
-                                    aria-hidden="true" ></i></button>
-                            <button (click)="deletePayment(data)" href="" class="btn btn-outline-danger"> <i class="fa fa-trash"></i></button>
+                            <button title="" href="" class="btn btn-outline-success" data-toggle="tooltip"
+                                (click)="updatePayment(data)" data-original-title="Save to Wishlist"> <i
+                                    class="fa fa-pencil" aria-hidden="true"></i></button>
+                            <button (click)="deletePayment(data)" href="" class="btn btn-outline-danger"> <i
+                                    class="fa fa-trash"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -112,14 +115,14 @@
 
             <div *ngIf="purchase.length === 0">
                 <div class="row">
-                  <div class="col-lg-6 offset-lg-4">
-                       <h2 class="text-danger"> Record Not Found</h2>
-                  </div>
+                    <div class="col-lg-6 offset-lg-4">
+                        <h2 class="text-danger"> Record Not Found</h2>
+                    </div>
                 </div>
-             </div>
+            </div>
         </div> <!-- card.// -->
 
-    
+
     </div>
     <button class="btn btn-dark round-corner text-uppercase px-4 mb-2 mt-2" (click)="genReport()">Export
         To PDF</button>
@@ -128,8 +131,8 @@
 
 <div class="row margin-pagination mt-1">
     <div class="col-lg-6 offset-lg-2">
-      <div class="d-flex justify-content-around">
-       <pagination-controls  (pageChange)="pageChanged($event)"></pagination-controls>
-      </div>
+        <div class="d-flex justify-content-around">
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+        </div>
     </div>
 </div>
