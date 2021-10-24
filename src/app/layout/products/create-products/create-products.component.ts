@@ -125,8 +125,8 @@ export class CreateProductsComponent implements OnInit {
 
   onSubmit() {
     const data = this.productForm.value;
-    data.QuantityInKg = parseInt(this.total);
-    data.QuantityInUnit = parseInt(this.totalUnit);
+    data.QuantityInKg = parseFloat(this.total);
+    data.QuantityInUnit = parseFloat(this.totalUnit);
     data.user = this.userID.user_id;
 
     if (data.id > 0) {

@@ -157,10 +157,10 @@ export class CreatePurchaseComponent implements OnInit {
 
   onSubmit() {
     const data = this.purchaseForm.value;
-    data.QuantityInKg = parseInt(this.total);
-    data.perUnitQuantity = parseInt(this.totalUnit);
+    data.QuantityInKg = parseFloat(this.total);
+    data.perUnitQuantity = parseFloat(this.totalUnit);
     data.user = this.userID.user_id;
-    data.totalPrice = parseInt(this.totalPrice);
+    data.totalPrice = parseFloat(this.totalPrice);
     data.currencyType = this.currencyValue;
     if (data.id > 0) {
       this.purchaseService.updatePurchase(data, data.id).subscribe((response: any) => {
